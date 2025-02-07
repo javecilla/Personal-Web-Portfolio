@@ -1,0 +1,85 @@
+  
+        <!-- Experience & Education Grid -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <!-- Experience Section -->
+          <div class="space-y-6 bg-zinc-900/50 p-6 rounded-2xl">
+            <h3 class="text-xl font-bold mb-4">EXPERIENCE</h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="text-gray-400">2017 - 2023</div>
+                <div class="font-semibold">Front-End Developer</div>
+                <div class="text-gray-400">Larsen & Toubro</div>
+              </div>
+  
+              <div>
+                <div class="text-gray-400">2007 - 2017</div>
+                <div class="font-semibold">Framer Designer & Developer</div>
+                <div class="text-gray-400">Business Designs</div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Education Section -->
+          <div class="space-y-6 bg-zinc-900/50 p-6 rounded-2xl">
+            <h3 class="text-xl font-bold mb-4">EDUCATION</h3>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="text-gray-400">2007 - 2008</div>
+                <div class="font-semibold">Master Degree in Designing</div>
+                <div class="text-gray-400">University of Texas</div>
+              </div>
+  
+              <div>
+                <div class="text-gray-400">2004 - 2007</div>
+                <div class="font-semibold">Bachelor Degree in Psychology</div>
+                <div class="text-gray-400">University of California</div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- CTA Section -->
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <!-- Profiles -->
+          <div class="bg-zinc-900/50 p-6 rounded-2xl">
+            <div class="flex space-x-4 mb-4">
+              <button class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors">
+                <DribbbleIcon class="w-5 h-5" />
+              </button>
+              <button class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors">
+                <TwitterIcon class="w-5 h-5" />
+              </button>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400">STAY WITH ME</span>
+              <span class="text-gray-400">→</span>
+            </div>
+            <div class="font-semibold mt-2">Profiles</div>
+          </div>
+  
+          <!-- Let's Work Together -->
+          <div class="bg-zinc-900/50 p-6 rounded-2xl">
+            <div class="flex items-center space-x-2 mb-4">
+              <span class="text-gray-400">✧</span>
+              <h3 class="font-bold">Let's</h3>
+            </div>
+            <div class="text-2xl font-bold">
+              work <span class="text-blue-500">together</span>
+            </div>
+            <div class="flex justify-end mt-4">
+              <span class="text-gray-400">→</span>
+            </div>
+          </div>
+  
+          <!-- Credentials -->
+          <div class="bg-zinc-900/50 p-6 rounded-2xl">
+            <div class="w-[120px] h-[40px] bg-gray-700 mb-4 opacity-80"></div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-400">MORE ABOUT ME</span>
+              <span class="text-gray-400">→</span>
+            </div>
+            <div class="font-semibold mt-2">Credentials</div>
+          </div>
+        </div>
