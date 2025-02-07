@@ -12,7 +12,7 @@ I am a second-year BSIT student passionate about web development. Since starting
     <a target="_blank">
 	    <img src="https://komarev.com/ghpvc/?username=javecilla&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" height="20" />
     </a>
-   <a href="https://javecilla.vercel.app" target="_blank">
+   <a href="https://jerome-avecilla.vercel.app/" target="_blank">
 	<img src="https://img.shields.io/badge/portfolio-%2324292e.svg?&style=for-the-badge&logo=pfsense&logoColor=white&logoSize=30" alt="Portfolio" height="20" />
    </a>
     <a href="mailto:jeromesavc@gmail.com">
