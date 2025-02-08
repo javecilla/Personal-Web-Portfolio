@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "lucide-vue-next": "^0.474.0",
+    "prismjs": "^1.29.0",
     "tailwindcss-animate": "^1.0.7",
     "vue": "^3.3.4"
   },
   "devDependencies": {
     "@types/node": "^22.13.0",
+    "@types/prismjs": "^1.26.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.14",

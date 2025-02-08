@@ -35,7 +35,7 @@ const handleLoadComplete = () => {
     
       <main class="py-3 sm:py-8 space-y-6">
         <OverviewSection />
-        <AboutMeSection />
+        <!-- <AboutMeSection /> -->
         <TechStackSection />
         <ProjectsSection />
         <AchievementsSection />

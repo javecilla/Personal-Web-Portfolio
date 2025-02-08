@@ -19,16 +19,11 @@ const handleMobileImageLoad = () => {
 };
 
 const updateImageLoadedState = () => {
-  // Only set imageLoaded to true when both images are loaded
   imageLoaded.value = desktopImageLoaded.value && mobileImageLoaded.value;
 };
 
-// Add any additional initialization logic here
 const initializeApp = async () => {
   try {
-    // Example: Load initial data
-    // await fetchUserData();
-    // await loadConfigurations();
     return true;
   } catch (error) {
     console.error('Error initializing app:', error);
@@ -42,12 +37,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="space-y-6">
-    <!-- Profile Section -->
+  <section class="space-y-6 p-3 xl:p-2 rounded-2xl transition-all duration-500 ease-in-out">
     <div class="grid md:grid-cols-[1fr,300px] gap-4 sm:gap-6">
-      <!-- Profile Image for mobile -->
-      <div class="md:hidden space-y-6 dark:bg-zinc-900/30 bg-gray-100 p-3 xl:p-5 rounded-2xl transition-all duration-500 ease-in-out">
-        <div class="relative w-full h-[250px] sm:h-[300px]">
+      <div class="md:hidden space-y-6  ">
+        <div class="relative w-full h-[150px] sm:h-[300px]">
           <div class="absolute inset-0 rounded-2xl overflow-hidden">
             <div class="relative w-full h-full">
               <Transition
@@ -73,20 +66,14 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-
- <!-- Content Section with Node Connectors -->
- <div class="space-y-6 dark:bg-zinc-900/30 bg-gray-100 p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out">
+      <div class="space-y-6 p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out">
         <div class="relative space-y-4 sm:space-y-6 text-left p-3 xl:p-5 flex-grow">
           <span class="text-2xl sm:text-3xl font-bold dark:text-white text-gray-600 block mb-8">
             About Me
           </span>
           
-          <!-- Content paragraphs with node connectors -->
           <div class="space-y-4 relative">
-            <!-- Vertical line -->
-            <div class="absolute left-[18px] top-[15px] w-[2px] h-[calc(90%-40px)] xl:h-[calc(105%-40px)] bg-zinc-800/90"></div>
-
-            <!-- Paragraph 1 -->
+            <div class="absolute left-[18px] top-[15px] w-[2px] h-[calc(100%-40px)] xl:h-[calc(105%-40px)] bg-zinc-800/90"></div>
             <div class="relative pl-10 sm:pl-20">
               <div class="absolute left-[9px] top-1">
                 <div class="w-5 h-5">
@@ -100,7 +87,7 @@ onMounted(async () => {
 
             <!-- Paragraph 2 -->
             <div class="relative pl-10 sm:pl-20">
-              <div class="absolute left-[9px] top-3">
+              <div class="absolute left-[9px] top-[30%]">
                 <div class="w-5 h-5">
                   <div class="absolute inset-0 rounded-full bg-zinc-800/100"></div>
                 </div>
@@ -112,7 +99,7 @@ onMounted(async () => {
 
             <!-- Paragraph 3 -->
             <div class="relative pl-10 sm:pl-20">
-              <div class="absolute left-[9px] top-12">
+              <div class="absolute left-[9px] top-[80%]">
                 <div class="w-5 h-5">
                   <div class="absolute inset-0 rounded-full bg-zinc-800/100"></div>
                 </div>
@@ -132,7 +119,7 @@ onMounted(async () => {
         </div>
       </div>
       <!-- Profile Image for desktop -->
-      <div class="hidden md:block space-y-6 dark:bg-zinc-900/30 bg-gray-100 p-6 rounded-2xl transition-all duration-500 ease-in-out">
+      <div class="hidden md:block space-y-4 p-5">
         <div class="relative w-full h-full md:w-[250px] p-4">
           <div class="absolute inset-0 rounded-3xl overflow-hidden">
             <InteractiveImage
