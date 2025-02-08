@@ -1,0 +1,106 @@
+<script setup lang="ts">
+interface Props {
+	activeTab: string;
+}
+
+interface Emits {
+	(e: "update:activeTab", value: string): void;
+}
+
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+
+const tabs = ["Output", "Code"];
+
+function setActiveTab(tab: string) {
+	emit("update:activeTab", tab.toLowerCase());
+}
+</script>
+
+<template>
+	<div class="editor-header">
+		<!-- Window Controls -->
+		<div class="editor-header__controls">
+			<div class="editor-header__buttons">
+				<div class="editor-header__button editor-header__button--close"></div>
+				<div
+					class="editor-header__button editor-header__button--minimize"
+				></div>
+				<div
+					class="editor-header__button editor-header__button--maximize"
+				></div>
+			</div>
+		</div>
+
+		<!-- Tabs -->
+		<div class="editor-header__tabs">
+			<button
+				v-for="tab in tabs"
+				:key="tab"
+				@click="setActiveTab(tab)"
+				class="editor-header__tab"
+				:class="{
+					'editor-header__tab--active': props.activeTab === tab.toLowerCase(),
+				}"
+			>
+				{{ tab }}
+			</button>
+		</div>
+	</div>
+</template>
+
+<style scoped>
+.editor-header {
+	@apply rounded-[15px_15px_0_0] overflow-hidden dark:bg-zinc-900/50;
+}
+
+.editor-header__controls {
+	@apply flex items-center justify-between p-2 sm:px-4 sm:py-2 border-b border-zinc-800;
+}
+
+.editor-header__buttons {
+	@apply flex space-x-2;
+}
+
+.editor-header__button {
+	@apply w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full;
+}
+
+.editor-header__button--close {
+	@apply bg-[#ff5f56];
+}
+
+.editor-header__button--minimize {
+	@apply bg-[#ffbd2e];
+}
+
+.editor-header__button--maximize {
+	@apply bg-[#27c93f];
+}
+
+.editor-header__tabs {
+	@apply flex border-b border-zinc-800/50;
+}
+
+.editor-header__tab {
+	@apply flex-1 sm:flex-none px-4 sm:px-8 py-2 sm:py-3 text-xs sm:text-sm 
+		   transition-all duration-200 relative rounded-none hover:scale-[1.02] 
+		   hover:-translate-y-[1px] text-gray-400 hover:text-gray-200 
+		   hover:bg-zinc-800/20 tracking-wider;
+}
+
+.editor-header__tab--active {
+	@apply text-white bg-zinc-900/40 font-medium after:absolute after:bottom-0 
+		   after:left-0 after:right-0 after:h-[2px] after:bg-blue-500;
+}
+
+.editor-header__tab::after {
+	content: "";
+	transform-origin: center;
+	transition: transform 0.2s ease;
+}
+
+.editor-header__tab:hover::after {
+	transform: scaleX(1.1);
+}
+</style>

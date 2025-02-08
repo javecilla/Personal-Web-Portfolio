@@ -1,0 +1,50 @@
+<script setup lang="ts">
+// No props or state needed for now
+</script>
+
+<template>
+	<div class="introduction">
+		<h2 class="introduction__title">
+			Hi, I'm
+			<span class="introduction__title-highlight">Jerome Avecilla</span>
+		</h2>
+		<span class="introduction__subtitle">
+			<span class="introduction__subtitle-muted">Aspiring</span>
+			Full-Stack Web Developer
+		</span>
+		<p class="introduction__description">
+			I build modern, responsive, robust web applications using Vue.js,
+			TypeScript, Laravel and a range of innovative tools. I'm passionate about
+			turning creative ideas into interactive, user-friendly experiences that
+			not only look great but work seamlessly. Whether it's crafting intuitive
+			interfaces or optimizing performance, I focus on delivering digital
+			solutions that help businesses and users connect effectively.
+		</p>
+	</div>
+</template>
+
+<style scoped>
+.introduction {
+	@apply relative space-y-4 sm:space-y-6 text-center p-3 xl:p-5 flex-grow;
+}
+
+.introduction__title {
+	@apply text-3xl sm:text-4xl md:text-5xl dark:text-gray-400 text-gray-600 font-bold;
+}
+
+.introduction__title-highlight {
+	@apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
+}
+
+.introduction__subtitle {
+	@apply text-2xl sm:text-3xl font-bold dark:text-white text-gray-600 block;
+}
+
+.introduction__subtitle-muted {
+	@apply dark:text-gray-500 text-gray-400;
+}
+
+.introduction__description {
+	@apply dark:text-gray-400 text-gray-600 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed;
+}
+</style>
