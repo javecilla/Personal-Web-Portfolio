@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import { onMounted, ref } from "vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue"
 
 const isLoading = ref(true);
 const emit = defineEmits(['load-complete']);

@@ -19,7 +19,7 @@ const filteredProjects = computed(() => {
 
 <template>
   <!-- Reduced space-y-8 to space-y-6 -->
-  <section class="space-y-6 dark:bg-zinc-900/50 bg-gray-100 p-6 rounded-2xl transition-all duration-500 ease-in-out">
+  <section class="space-y-6 dark:bg-zinc-900/30 bg-gray-100 p-6 rounded-2xl transition-all duration-500 ease-in-out">
     <!-- Header with reduced spacing -->
     <div class="text-center space-y-3">
       <h2 class="text-2xl sm:text-3xl font-bold dark:text-white text-gray-600">

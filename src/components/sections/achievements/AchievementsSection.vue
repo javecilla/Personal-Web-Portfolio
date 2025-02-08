@@ -38,7 +38,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="relative overflow-hidden space-y-6 pt-5 pb-5 dark:bg-zinc-900/50 bg-gray-100 rounded-2xl transition-all duration-500 ease-in-out">
+  <section class="relative overflow-hidden space-y-6 pt-5 pb-5 dark:bg-zinc-900/30 bg-gray-100 rounded-2xl transition-all duration-500 ease-in-out">
     <div class="max-w-auto mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center space-y-3 pb-5 sm:pb-8">
         <h2 class="text-2xl sm:text-1xl font-bold dark:text-white text-gray-600">
@@ -63,7 +63,7 @@ onUnmounted(() => {
         <!-- Main Carousel Card -->
 <div class="relative w-full">
   <!-- Adjusted overall card height for mobile -->
-  <div class="relative pb-5 w-full min-h-[400px] md:h-[300px] rounded-2xl overflow-hidden bg-white dark:bg-zinc-900/50 bg-gray-100">
+  <div class="relative pb-5 w-full min-h-[400px] md:h-[300px] rounded-2xl overflow-hidden bg-white dark:bg-zinc-900/30 bg-gray-100">
     <template v-for="(achievement, index) in achievements" :key="achievement.id">
       <div
         class="absolute inset-0 w-full transition-all duration-700 ease-in-out transform"

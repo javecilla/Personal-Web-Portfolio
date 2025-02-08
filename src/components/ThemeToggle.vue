@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { SunIcon, MoonIcon } from 'lucide-vue-next';
-import { useDarkMode } from '@/composables/useDarkMode';
+import { SunIcon, MoonIcon } from "lucide-vue-next";
+import { useDarkMode } from "@/composables/useDarkMode";
 
 const { isDarkMode, toggleTheme } = useDarkMode();
 </script>

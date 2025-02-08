@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { XIcon } from 'lucide-vue-next';
-import { navigationItems } from '@/data/navigation';
-
+import { XIcon } from "lucide-vue-next";
+import { navigationItems } from "@/data/navigation";
 
 defineProps<{
   isOpen: boolean;

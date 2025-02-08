@@ -8,8 +8,10 @@ import MouseLight from '@/components/MouseLight.vue';
 
 import NavBar from '@/components/NavBar.vue';
 
-import ProjectsSection from '@/components/sections/projects/ProjectsSection.vue';
 import OverviewSection from '@/components/sections/overview/OverviewSection.vue';
+import AboutMeSection from '@/components/sections/about/AboutMeSection.vue';
+import TechStackSection from './components/sections/skills/TechStackSection.vue';
+import ProjectsSection from '@/components/sections/projects/ProjectsSection.vue';
 import AchievementsSection from '@/components/sections/achievements/AchievementsSection.vue';
 
 const isLoaded = ref(false);
@@ -24,7 +26,7 @@ const handleLoadComplete = () => {
 </script>
   
 <template>
-  <div class="max-w-[1400px] mx-auto bg-white dark:bg-black text-gray-900 dark:text-white transition-all duration-500 ease-in-out">
+  <div class="max-w-[1400px] mx-auto bg-white dark:bg-[#060606] text-gray-900 dark:text-white transition-all duration-500 ease-in-out">
     <CustomCursor />
     <MouseLight />
     <PageLoader @load-complete="handleLoadComplete" />
@@ -33,6 +35,8 @@ const handleLoadComplete = () => {
     
       <main class="py-3 sm:py-8 space-y-6">
         <OverviewSection />
+        <AboutMeSection />
+        <TechStackSection />
         <ProjectsSection />
         <AchievementsSection />
       </main>

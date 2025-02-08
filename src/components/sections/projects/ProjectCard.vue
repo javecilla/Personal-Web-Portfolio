@@ -21,7 +21,7 @@ defineProps<{
     </div>
 
     <!-- Content -->
-    <div class="p-6 space-y-6"> <!-- Adjusted top spacing with space-y-6 -->
+    <div class="p-6 space-y-6 "> <!-- Adjusted top spacing with space-y-6 -->
       <div class="space-y-4 flex flex-col items-start"> <!-- Added flex and items-start -->
         <h3 class="text-xl font-bold dark:text-white text-gray-900 text-left"> <!-- Added text-left -->
           {{ project.title }}

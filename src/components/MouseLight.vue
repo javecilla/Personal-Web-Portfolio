@@ -32,6 +32,6 @@ onUnmounted(() => {
 }
 
 html.dark {
-  --light-color: rgba(255, 255, 255, 0.03);
+  --light-color: rgba(255, 255, 255, 0.01);
 }
 </style>
