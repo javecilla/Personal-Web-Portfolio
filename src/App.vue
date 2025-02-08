@@ -5,9 +5,7 @@ import PageLoader from "@/components/PageLoader.vue";
 import PageTransition from "@/components/PageTransition.vue";
 import CustomCursor from "@/components/CustomCursor.vue";
 import MouseLight from "@/components/MouseLight.vue";
-
 import NavBar from "@/components/NavBar.vue";
-
 import OverviewSection from "@/components/sections/overview/OverviewSection.vue";
 import TechStackSection from "./components/sections/skills/TechStackSection.vue";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection.vue";
@@ -58,16 +56,71 @@ const handleLoadComplete = () => {
 </template>
 
 <style>
+/* Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
+/* Global Classes */
+@layer components {
+	/* Section Classes */
+	.section-bg {
+		@apply dark:bg-zinc-900/10 bg-gray-50;
+	}
+
+	.section-title {
+		@apply dark:text-white text-gray-600;
+	}
+
+	.section-text {
+		@apply dark:text-gray-400 text-gray-600;
+	}
+
+	/* Button Classes */
+	.btn {
+		@apply px-4 py-2 rounded-md transition-all duration-300;
+	}
+
+	.btn-primary {
+		@apply bg-blue-500 text-white hover:bg-blue-600;
+	}
+
+	/* Card Classes */
+	.card {
+		@apply rounded-xl shadow-lg transition-all duration-300;
+	}
+
+	.card-hover {
+		@apply hover:scale-105;
+	}
+
+	/* Project Section Classes */
+	.project-gradient {
+		@apply bg-gradient-to-r from-blue-500 to-purple-500;
+	}
+
+	.project-icon-btn {
+		@apply inline-flex items-center justify-center rounded-full 
+			   dark:bg-zinc-800 bg-gray-200 dark:hover:bg-zinc-700 
+			   hover:bg-gray-300 transition-all duration-300;
+	}
+
+	.project-tech-badge {
+		@apply flex items-center gap-2 px-4 py-2 rounded-full 
+			   dark:bg-zinc-800 bg-gray-200 dark:hover:bg-zinc-700 
+			   hover:bg-gray-300 transition-all duration-300;
+	}
+}
+
+/* Root Variables */
 :root {
 	--font-inter: "Inter", sans-serif;
 }
 
+/* Base Styles */
 html,
 body {
 	min-height: 100vh;
@@ -81,21 +134,6 @@ html.dark {
 	color-scheme: dark;
 	background-color: #000000;
 	transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Global Classes */
-@layer components {
-	.section-bg {
-		@apply dark:bg-zinc-900/10 bg-gray-50;
-	}
-
-	.section-title {
-		@apply dark:text-white text-gray-600;
-	}
-
-	.section-text {
-		@apply dark:text-gray-400 text-gray-600;
-	}
 }
 
 /* Custom scrollbar for dark mode */
@@ -136,16 +174,20 @@ button {
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Utility Classes */
 .overview {
 	margin-top: 10px !important;
 }
+
 .aspiring-job-title {
 	line-height: 55px;
 }
+
 .grayscale {
 	filter: grayscale(100%);
 }
-/* Update transition styles */
+
+/* Global Transitions */
 * {
 	transition-property: background-color, border-color, color, fill, stroke;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

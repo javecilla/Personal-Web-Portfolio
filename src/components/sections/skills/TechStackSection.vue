@@ -1,40 +1,69 @@
+/** * @component TechStackSection * @description Main section displaying
+technical expertise, skills, and tools * Features a grid layout of tech stacks
+with hover effects and categorized skills */
 <script setup lang="ts">
-import TechStacksExpertise from '@/components/sections/skills/TechStackExpertise.vue';
-import TechStackAndSkills from '@/components/sections/skills/TechStackAndSkills.vue';
+import TechStacksExpertise from "@/components/sections/skills/TechStackExpertise.vue";
+import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.vue";
 </script>
 
 <template>
-    <div class="space-y-8 dark:bg-zinc-900/30 bg-gray-100 p-6 rounded-2xl transition-all duration-500 ease-in-out">
-      <!-- Existing content -->
-      <div class="space-y-4 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold dark:text-white text-gray-600">
-          Tech Stacks and Tools
-        </h2>
-        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-4xl mx-auto">
-          These technologies empower me to create dynamic, responsive, and high-performance web applications.
-        </p>
-      </div>
-  
-      <TechStacksExpertise />
-  
-      <div class="text-center">
-        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base max-w-4xl mx-auto">
-          I'm thrilled to share my web development tech stack and skills. With ongoing learning and a passion for innovation, I continuously expand my knowledge to improve my skills and stay ahead of industry trends.
-        </p>
-      </div>
-  
-      <TechStackAndSkills />
-  
-    </div>
-  </template>
+	<section class="tech-stack section-bg">
+		<!-- Section Header -->
+		<div class="tech-stack__header">
+			<h2 class="tech-stack__title section-title">Tech Stacks and Tools</h2>
+			<p class="tech-stack__description section-text">
+				These technologies empower me to create dynamic, responsive, and
+				high-performance web applications.
+			</p>
+		</div>
+
+		<!-- Primary Tech Stack Expertise -->
+		<TechStacksExpertise />
+
+		<!-- Additional Description -->
+		<div class="tech-stack__subheader">
+			<p class="tech-stack__description section-text">
+				I'm thrilled to share my web development tech stack and skills. With
+				ongoing learning and a passion for innovation, I continuously expand my
+				knowledge to improve my skills and stay ahead of industry trends.
+			</p>
+		</div>
+
+		<!-- Detailed Skills Grid -->
+		<TechStackAndSkills />
+	</section>
+</template>
 
 <style scoped>
-img {
-  opacity: 0.7;
-  transition: all 0.3s ease;
+/* Main container */
+.tech-stack {
+	@apply space-y-8 p-6 rounded-2xl transition-all duration-500 ease-in-out;
 }
 
-.group:hover img {
-  opacity: 1;
+/* Header styles */
+.tech-stack__header {
+	@apply space-y-4 text-center;
+}
+
+.tech-stack__title {
+	@apply text-2xl sm:text-3xl font-bold;
+}
+
+.tech-stack__description {
+	@apply text-sm sm:text-base max-w-4xl mx-auto;
+}
+
+/* Subheader styles */
+.tech-stack__subheader {
+	@apply text-center;
+}
+
+/* Image hover effects */
+:deep(img) {
+	@apply opacity-70 transition-all duration-300;
+}
+
+:deep(.group:hover img) {
+	@apply opacity-100;
 }
 </style>
