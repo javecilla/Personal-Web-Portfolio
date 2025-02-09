@@ -4,21 +4,23 @@
 
 <template>
 	<div class="introduction">
-		<h2 class="introduction__title">
+		<h1 class="introduction__title">
 			Hi, I'm
 			<span class="introduction__title-highlight">Jerome Avecilla</span>
-		</h2>
+		</h1>
+		<p class="introduction__description" :style="{ contain: 'content' }">
+			Crafting elegant web solutions with Vue.js, TypeScript, and Laravel.
+		</p>
 		<span class="introduction__subtitle">
 			<span class="introduction__subtitle-muted">Aspiring</span>
 			Full-Stack Web Developer
 		</span>
 		<p class="introduction__description">
-			I build modern, responsive, robust web applications using Vue.js,
-			TypeScript, Laravel and a range of innovative tools. I'm passionate about
-			turning creative ideas into interactive, user-friendly experiences that
-			not only look great but work seamlessly. Whether it's crafting intuitive
-			interfaces or optimizing performance, I focus on delivering digital
-			solutions that help businesses and users connect effectively.
+			I'm passionate about turning creative ideas into interactive,
+			user-friendly experiences that not only look great but work seamlessly.
+			Whether it's crafting intuitive interfaces or optimizing performance, I
+			focus on delivering digital solutions that help businesses and users
+			connect effectively.
 		</p>
 	</div>
 </template>
@@ -36,15 +38,15 @@
 	@apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
 }
 
+.introduction__description {
+	@apply dark:text-gray-400 text-gray-600 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed;
+}
+
 .introduction__subtitle {
 	@apply text-2xl sm:text-3xl font-bold dark:text-white text-gray-600 block;
 }
 
 .introduction__subtitle-muted {
 	@apply dark:text-gray-500 text-gray-400;
-}
-
-.introduction__description {
-	@apply dark:text-gray-400 text-gray-600 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed;
 }
 </style>

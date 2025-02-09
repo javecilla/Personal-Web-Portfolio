@@ -207,8 +207,7 @@ const isEducationHovered = ref(false);
 	@apply mt-[60px] md:mr-[50px] mr-0 space-y-8;
 }
 .education__card {
-	@apply w-[480px] mb-6
-         md:w-[480px] w-full;
+	@apply w-full md:w-[480px] mb-6;
 }
 .frame--right {
 	@apply md:w-[100px] w-full md:h-[530px]  
@@ -258,9 +257,9 @@ const isEducationHovered = ref(false);
 }
 
 .timeline-center-title {
-	@apply text-5xl font-bold tracking-[0.1em] whitespace-nowrap
+	@apply text-3xl font-bold tracking-[0.1em] whitespace-nowrap
          text-gray-900 dark:text-[#F3F3F3] opacity-90 uppercase
-         md:text-5xl text-3xl;
+         md:text-5xl;
 }
 
 /* Add hover styles for frames */

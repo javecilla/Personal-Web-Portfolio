@@ -13,6 +13,10 @@ export default defineConfig({
 				transformAssetUrls: {
 					includeAbsolute: false,
 				},
+				compilerOptions: {
+					hoistStatic: true,
+					prefixIdentifiers: true,
+				},
 			},
 		}),
 		VitePWA({
@@ -95,6 +99,9 @@ export default defineConfig({
 						return "vue-vendor";
 					}
 					if (id.includes("/components/") && id.endsWith(".vue")) {
+						if (id.includes("/sections/overview/")) {
+							return "critical";
+						}
 						return "components";
 					}
 					if (id.includes("/components/sections/") && id.endsWith(".vue")) {
@@ -120,6 +127,7 @@ export default defineConfig({
 	},
 	optimizeDeps: {
 		include: ["vue"],
+		exclude: ["@vueuse/core"],
 	},
 	assetsInclude: ["**/*.svg"],
 });
