@@ -104,25 +104,28 @@
 		<meta name="apple-mobile-web-app-title" content="Jerome Avecilla" />
 		<meta name="application-name" content="Jerome Avecilla Portfolio" />
 
+		<!-- Manifest -->
+		<link rel="manifest" href="/manifest.json" />
+
 		<!-- Favicon and Icons -->
 		<link
 			rel="icon"
 			type="image/png"
 			sizes="32x32"
-			href="/assets/images/favicon-32x32.png"
+			href="/favicons/favicon-32x32.png"
 		/>
 		<link
 			rel="icon"
 			type="image/png"
 			sizes="16x16"
-			href="/assets/images/favicon-16x16.png"
+			href="/favicons/favicon-16x16.png"
 		/>
 		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
-			href="/assets/images/favicon-180x180.png"
+			href="/favicons/favicon-180x180.png"
 		/>
-		<meta name="msapplication-TileImage" content="/assets/images/favicon.png" />
+		<meta name="msapplication-TileImage" content="/favicons/favicon.png" />
 		<meta name="msapplication-TileColor" content="#f3f3f3" />
 
 		<!-- Preconnect and DNS Prefetch -->
@@ -171,7 +174,9 @@
 			gtag("config", "G-NHV90YV828");
 		</script>
 	</head>
-	<body class="bg-white dark:bg-[#060606]">
+	<body
+		class="font-sans antialiased bg-white dark:bg-[#060606] text-gray-600 dark:text-gray-400 min-h-full flex flex-col [overflow-anchor:none]"
+	>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript>
 			<iframe
