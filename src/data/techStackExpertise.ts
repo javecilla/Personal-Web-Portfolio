@@ -1,10 +1,10 @@
 import { TechStackExpertise } from "@/types/tech-stack";
 
 // Import icons from local assets
-import vueIcon from "@/assets/svgs/vue.svg?url";
-import tsIcon from "@/assets/svgs/typescript.svg?url";
-import tailwindIcon from "@/assets/svgs/tailwind.svg?url";
-import laravelIcon from "@/assets/svgs/laravel.svg?url";
+import vueIcon from "@global/svgs/vue.svg?url";
+import tsIcon from "@global/svgs/typescript.svg?url";
+import tailwindIcon from "@global/svgs/tailwind.svg?url";
+import laravelIcon from "@global/svgs/laravel.svg?url";
 
 export const techStacksExpertise: TechStackExpertise[] = [
 	{

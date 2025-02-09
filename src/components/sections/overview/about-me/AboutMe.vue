@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import ImageSkeleton from "@components/ImageSkeleton.vue";
 import InteractiveImage from "@components/InteractiveImage.vue";
-import profileImage from "@images/general/pogi.jpg";
+import profileImage from "@global/images/pogi.jpg";
 
 const imageLoaded = ref(false);
 const desktopImageLoaded = ref(false);

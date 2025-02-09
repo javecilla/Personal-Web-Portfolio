@@ -24,12 +24,12 @@ export default defineConfig({
 				theme_color: "#060606",
 				icons: [
 					{
-						src: "/favicons/android-chrome-192x192.png",
+						src: "/assets/favicons/android-chrome-192x192.png",
 						sizes: "192x192",
 						type: "image/png",
 					},
 					{
-						src: "/favicons/android-chrome-512x512.png",
+						src: "/assets/favicons/android-chrome-512x512.png",
 						sizes: "512x512",
 						type: "image/png",
 					},
@@ -80,18 +80,26 @@ export default defineConfig({
 			"@components": path.resolve(__dirname, "./src/components"),
 			"@assets": path.resolve(__dirname, "./src/assets"),
 			"@svgs": path.resolve(__dirname, "./src/assets/svgs"),
-			"@images": path.resolve(__dirname, "./src/assets/images"),
+			"@global": path.resolve(__dirname, "./public/assets"),
 		},
 	},
 	build: {
 		target: "esnext",
 		minify: "terser",
 		cssMinify: true,
-		assetsInlineLimit: 4096, // Inline assets < 4kb
+		assetsInlineLimit: 4096,
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					"vue-vendor": ["vue"],
+				manualChunks(id) {
+					if (id.includes("node_modules/vue")) {
+						return "vue-vendor";
+					}
+					if (id.includes("/components/") && id.endsWith(".vue")) {
+						return "components";
+					}
+					if (id.includes("/components/sections/") && id.endsWith(".vue")) {
+						return "sections";
+					}
 				},
 				assetFileNames: (assetInfo) => {
 					const info = assetInfo.name ? assetInfo.name : "unknown";
@@ -107,6 +115,8 @@ export default defineConfig({
 			},
 		},
 		chunkSizeWarningLimit: 1000,
+		sourcemap: false,
+		reportCompressedSize: false,
 	},
 	optimizeDeps: {
 		include: ["vue"],

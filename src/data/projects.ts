@@ -1,21 +1,21 @@
 import { Project, ProjectCategoryItem } from "@/types/project";
 
 // Import project images
-import projectA from "@images/general/ref002.png";
-import projectB from "@images/general/523aaa.png";
-import projectC from "@images/general/551asfh.png";
-import projectD from "@images/general/t2131.png";
+import projectA from "@global/images/ref002.png";
+import projectB from "@global/images/523aaa.png";
+import projectC from "@global/images/551asfh.png";
+import projectD from "@global/images/t2131.png";
 
 // Import tech icons
-import vueIcon from "@svgs/vue.svg?url";
-import tsIcon from "@svgs/typescript.svg?url";
-import tailwindIcon from "@svgs/tailwind.svg?url";
-import laravelIcon from "@svgs/laravel.svg?url";
-import bootstrapIcon from "@svgs/bootstrap.svg?url";
-import jqueryIcon from "@svgs/jquery.svg?url";
-import phpIcon from "@svgs/php.svg?url";
-import jsIcon from "@svgs/javascript.svg?url";
-import cssIcon from "@svgs/css3.svg?url";
+import vueIcon from "@global/svgs/vue.svg?url";
+import tsIcon from "@global/svgs/typescript.svg?url";
+import tailwindIcon from "@global/svgs/tailwind.svg?url";
+import laravelIcon from "@global/svgs/laravel.svg?url";
+import bootstrapIcon from "@global/svgs/bootstrap.svg?url";
+import jqueryIcon from "@global/svgs/jquery.svg?url";
+import phpIcon from "@global/svgs/php.svg?url";
+import jsIcon from "@global/svgs/javascript.svg?url";
+import cssIcon from "@global/svgs/css3.svg?url";
 
 export const projects: Project[] = [
 	{

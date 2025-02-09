@@ -1,34 +1,34 @@
 import { TechStackAndSkill } from "@/types/tech-stack";
 
 // Import icons locally
-import htmlIcon from "@svgs/html5.svg?url";
-import cssIcon from "@svgs/css3.svg?url";
-import jsIcon from "@svgs/javascript.svg?url";
-import tsIcon from "@svgs/typescript.svg?url";
-import vueIcon from "@svgs/vue.svg?url";
-import tailwindIcon from "@svgs/tailwind.svg?url";
-import bootstrapIcon from "@svgs/bootstrap.svg?url";
-import jqueryIcon from "@svgs/jquery.svg?url";
-import phpIcon from "@svgs/php.svg?url";
-import laravelIcon from "@svgs/laravel.svg?url";
-import mysqlIcon from "@svgs/mysql.svg?url";
-import gitIcon from "@svgs/git.svg?url";
-import vscodeIcon from "@svgs/vscode.svg?url";
-import gitLabIcon from "@svgs/gitlab.svg?url";
-import githubActionIcon from "@svgs/github-actions.svg?url";
-import gitBashIcon from "@svgs/gitbash.svg?url";
-import postmanIcon from "@svgs/postman.svg?url";
-import githubPagesIcon from "@svgs/github-pages.svg?url";
+import htmlIcon from "@global/svgs/html5.svg?url";
+import cssIcon from "@global/svgs/css3.svg?url";
+import jsIcon from "@global/svgs/javascript.svg?url";
+import tsIcon from "@global/svgs/typescript.svg?url";
+import vueIcon from "@global/svgs/vue.svg?url";
+import tailwindIcon from "@global/svgs/tailwind.svg?url";
+import bootstrapIcon from "@global/svgs/bootstrap.svg?url";
+import jqueryIcon from "@global/svgs/jquery.svg?url";
+import phpIcon from "@global/svgs/php.svg?url";
+import laravelIcon from "@global/svgs/laravel.svg?url";
+import mysqlIcon from "@global/svgs/mysql.svg?url";
+import gitIcon from "@global/svgs/git.svg?url";
+import vscodeIcon from "@global/svgs/vscode.svg?url";
+import gitLabIcon from "@global/svgs/gitlab.svg?url";
+import githubActionIcon from "@global/svgs/github-actions.svg?url";
+import gitBashIcon from "@global/svgs/gitbash.svg?url";
+import postmanIcon from "@global/svgs/postman.svg?url";
+import githubPagesIcon from "@global/svgs/github-pages.svg?url";
+import mysqlWorkbenchLogo from "@global/logos/mysql-workbench.jpg";
+import githubDesktopLogo from "@global/logos/github-desktop.png";
+import xamppApacheLogo from "@global/logos/xampp-apache.png";
+import sublimeTextLogo from "@global/logos/sublime-text.png";
 
-import mysqlWorkbenchLogo from "@images/logos/mysql-workbench.jpg";
-import githubDesktopLogo from "@images/logos/github-desktop.png";
-import xamppApacheLogo from "@images/logos/xampp-apache.png";
-import sublimeTextLogo from "@images/logos/sublime-text.png";
-import godaddyLogo from "@images/logos/godaddy.png";
-import hostingerLogo from "@images/logos/hostinger.png";
+import godaddyLogo from "@global/logos/godaddy.png";
+import hostingerLogo from "@global/logos/hostinger.png";
 
-import vercelFavicon from "@images/logos/vercel.ico";
-import hostgatorFavicon from "@images/logos/hostgator.ico";
+import vercelFavicon from "@global/logos/vercel.ico";
+import hostgatorFavicon from "@global/logos/hostgator.ico";
 
 export const techStackAndSkills: TechStackAndSkill[] = [
 	{

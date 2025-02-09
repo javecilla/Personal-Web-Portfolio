@@ -1,6 +1,6 @@
 import { Achievement } from "@/types/achievement";
-import ImageA from "@images/general/h1.jpg";
-import ImageB from "@images/general/h2.jpg";
+import ImageA from "@global/images/h1.jpg";
+import ImageB from "@global/images/h2.jpg";
 
 export const achievements: Achievement[] = [
 	{

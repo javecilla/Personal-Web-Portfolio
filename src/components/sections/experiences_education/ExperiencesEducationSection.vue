@@ -180,8 +180,7 @@ const isEducationHovered = ref(false);
 
 /* Left Frame */
 .experience__card {
-	@apply w-[450px] mb-6
-         md:w-[450px] w-full;
+	@apply w-full md:w-[450px] mb-6;
 }
 .frame--left {
 	@apply md:w-[380px] w-full md:h-[530px] 

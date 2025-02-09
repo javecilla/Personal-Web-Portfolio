@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { GithubIcon } from "lucide-vue-next";
 import ThemeToggle from "@components/ThemeToggle.vue";
-import menuIcon from "@svgs/menu-icon.svg?raw";
+import menuIcon from "@global/svgs/menu-icon.svg?raw";
 import Sidebar from "@components/Sidebar.vue";
 import { navigationItems } from "@/data/navigation";
 
