@@ -1,4 +1,34 @@
-import { TechStackAndSkill, Skill } from "@/types/tech-stack";
+import { TechStackAndSkill } from "@/types/tech-stack";
+
+// Import icons locally
+import htmlIcon from "@svgs/html5.svg?url";
+import cssIcon from "@svgs/css3.svg?url";
+import jsIcon from "@svgs/javascript.svg?url";
+import tsIcon from "@svgs/typescript.svg?url";
+import vueIcon from "@svgs/vue.svg?url";
+import tailwindIcon from "@svgs/tailwind.svg?url";
+import bootstrapIcon from "@svgs/bootstrap.svg?url";
+import jqueryIcon from "@svgs/jquery.svg?url";
+import phpIcon from "@svgs/php.svg?url";
+import laravelIcon from "@svgs/laravel.svg?url";
+import mysqlIcon from "@svgs/mysql.svg?url";
+import gitIcon from "@svgs/git.svg?url";
+import vscodeIcon from "@svgs/vscode.svg?url";
+import gitLabIcon from "@svgs/gitlab.svg?url";
+import githubActionIcon from "@svgs/github-actions.svg?url";
+import gitBashIcon from "@svgs/gitbash.svg?url";
+import postmanIcon from "@svgs/postman.svg?url";
+import githubPagesIcon from "@svgs/github-pages.svg?url";
+
+import mysqlWorkbenchLogo from "@images/logos/mysql-workbench.jpg";
+import githubDesktopLogo from "@images/logos/github-desktop.png";
+import xamppApacheLogo from "@images/logos/xampp-apache.png";
+import sublimeTextLogo from "@images/logos/sublime-text.png";
+import godaddyLogo from "@images/logos/godaddy.png";
+import hostingerLogo from "@images/logos/hostinger.png";
+
+import vercelFavicon from "@images/logos/vercel.ico";
+import hostgatorFavicon from "@images/logos/hostgator.ico";
 
 export const techStackAndSkills: TechStackAndSkill[] = [
 	{
@@ -7,35 +37,35 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		skills: [
 			{
 				name: "HTML",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+				icon: htmlIcon,
 			},
 			{
 				name: "CSS",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+				icon: cssIcon,
 			},
 			{
 				name: "JavaScript",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+				icon: jsIcon,
 			},
 			{
 				name: "Bootstrap",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+				icon: bootstrapIcon,
 			},
 			{
 				name: "jQuery",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg",
+				icon: jqueryIcon,
 			},
 			{
 				name: "Vue.js",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+				icon: vueIcon,
 			},
 			{
 				name: "TypeScript",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+				icon: tsIcon,
 			},
 			{
 				name: "Tailwind",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+				icon: tailwindIcon,
 			},
 		],
 	},
@@ -45,11 +75,11 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		skills: [
 			{
 				name: "PHP",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+				icon: phpIcon,
 			},
 			{
 				name: "Laravel",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
+				icon: laravelIcon,
 			},
 		],
 	},
@@ -59,7 +89,7 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		skills: [
 			{
 				name: "MySQL",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+				icon: mysqlIcon,
 			},
 		],
 	},
@@ -69,15 +99,15 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		skills: [
 			{
 				name: "Git",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+				icon: gitIcon,
 			},
 			{
 				name: "GitLab",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
+				icon: gitLabIcon,
 			},
 			{
 				name: "Github Action",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg",
+				icon: githubActionIcon,
 			},
 		],
 	},
@@ -87,31 +117,36 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		skills: [
 			{
 				name: "VS Code",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+				icon: vscodeIcon,
 			},
 			{
 				name: "Git Bash",
-				icon: "https://cdn.worldvectorlogo.com/logos/git-bash.svg",
+				icon: gitBashIcon,
 			},
+
 			{
 				name: "GitHub Desktop",
-				icon: "https://user-images.githubusercontent.com/1784648/97818784-c4fc1080-1ca4-11eb-8681-56ec3fa21756.png",
+				icon: githubDesktopLogo,
 			},
+
 			{
 				name: "MySQL Workbench",
-				icon: "https://img.utdstc.com/icon/f6f/11c/f6f11c75fda63dd454fa5db9610a77cfd6752be4db11010f2e4252551a4abccd:200",
+				icon: mysqlWorkbenchLogo,
 			},
+
 			{
 				name: "XAMPP Apache",
-				icon: "https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png",
+				icon: xamppApacheLogo,
 			},
+
 			{
 				name: "Sublime Text",
-				icon: "https://upload.wikimedia.org/wikipedia/en/d/d2/Sublime_Text_3_logo.png",
+				icon: sublimeTextLogo,
 			},
+
 			{
 				name: "Postman",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+				icon: postmanIcon,
 			},
 		],
 	},
@@ -121,23 +156,26 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		skills: [
 			{
 				name: "Github Pages",
-				icon: "https://cdn.worldvectorlogo.com/logos/github-icon-2.svg",
+				icon: githubPagesIcon,
 			},
+
 			{
 				name: "Vercel",
-				icon: "https://assets.vercel.com/image/upload/front/favicon/vercel/favicon.ico",
+				icon: vercelFavicon,
 			},
+
 			{
 				name: "Hostgator",
-				icon: "https://www.hostgator.com/content/dam/hostgator/favicons/favicon.ico",
+				icon: hostgatorFavicon,
 			},
+
 			{
 				name: "GoDaddy",
-				icon: "https://img6.wsimg.com/ux/favicon/apple-icon-60x60.png",
+				icon: godaddyLogo,
 			},
 			{
 				name: "Hostinger",
-				icon: "https://www.elegantthemes.com/blog/wp-content/uploads/2024/05/Hostinger-Logo.png",
+				icon: hostingerLogo,
 			},
 		],
 	},

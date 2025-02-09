@@ -173,9 +173,30 @@
 			gtag("js", new Date());
 			gtag("config", "G-NHV90YV828");
 		</script>
+
+		<!-- Preload Critical Assets -->
+		<link rel="preload" href="/favicons/favicon-32x32.png" as="image" />
+
+		<!-- Font Display Strategy -->
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			media="print"
+			onload="this.media='all'"
+		/>
 	</head>
 	<body
-		class="font-sans antialiased bg-white dark:bg-[#060606] text-gray-600 dark:text-gray-400 min-h-full flex flex-col [overflow-anchor:none]"
+		class="font-sans antialiased bg-white dark:bg-[#060606] text-gray-600 dark:text-gray-400 flex flex-col [overflow-anchor:none]"
 	>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript>
@@ -188,5 +209,11 @@
 		</noscript>
 		<div id="app"></div>
 		<script type="module" src="/src/main.ts"></script>
+		<noscript>
+			<link
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			/>
+		</noscript>
 	</body>
 </html>

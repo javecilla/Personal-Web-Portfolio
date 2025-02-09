@@ -1,13 +1,21 @@
-import {
-	Project,
-	ProjectCategory,
-	ProjectCategoryItem,
-	ProjectTech,
-} from "@/types/project";
-import projectA from "@global/assets/images/ref002.png";
-import projectB from "@global/assets/images/523aaa.png";
-import projectC from "@global/assets/images/551asfh.png";
-import projectD from "@global/assets/images/t2131.png";
+import { Project, ProjectCategoryItem } from "@/types/project";
+
+// Import project images
+import projectA from "@images/general/ref002.png";
+import projectB from "@images/general/523aaa.png";
+import projectC from "@images/general/551asfh.png";
+import projectD from "@images/general/t2131.png";
+
+// Import tech icons
+import vueIcon from "@svgs/vue.svg?url";
+import tsIcon from "@svgs/typescript.svg?url";
+import tailwindIcon from "@svgs/tailwind.svg?url";
+import laravelIcon from "@svgs/laravel.svg?url";
+import bootstrapIcon from "@svgs/bootstrap.svg?url";
+import jqueryIcon from "@svgs/jquery.svg?url";
+import phpIcon from "@svgs/php.svg?url";
+import jsIcon from "@svgs/javascript.svg?url";
+import cssIcon from "@svgs/css3.svg?url";
 
 export const projects: Project[] = [
 	{
@@ -20,15 +28,15 @@ export const projects: Project[] = [
 		technologies: [
 			{
 				name: "Vue.js",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
+				icon: vueIcon,
 			},
 			{
 				name: "TypeScript",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+				icon: tsIcon,
 			},
 			{
 				name: "Tailwind CSS",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+				icon: tailwindIcon,
 			},
 		],
 		category: "personal",
@@ -44,15 +52,15 @@ export const projects: Project[] = [
 		technologies: [
 			{
 				name: "Laravel",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
+				icon: laravelIcon,
 			},
 			{
 				name: "Vue.js",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
+				icon: vueIcon,
 			},
 			{
 				name: "Bootstrap",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+				icon: bootstrapIcon,
 			},
 		],
 		category: "client",
@@ -62,22 +70,21 @@ export const projects: Project[] = [
 		title: "Online Voting System",
 		description:
 			"A solo project for Golden Minds Colleges developed a dynamic and Interactive Voting System, ensuring a seamless and engaging digital voting experience for the community.",
-		image:
-			"https://camo.githubusercontent.com/bb8cf6b3e0eef08c831ceff3ec20a7ade4803822fc1cd2a5345605cf10f5e89a/68747470733a2f2f7374617469632e676f6c64656e6d696e647362756c6163616e2e636f6d2f6173736574732f696d616765732f6465762f34313331414441642e706e67",
+		image: projectB,
 		githubUrl: "https://github.com/javecilla/Online-Voting-System",
 		demoUrl: "https://voting.goldenmindsbulacan.com/",
 		technologies: [
 			{
 				name: "Laravel",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
+				icon: laravelIcon,
 			},
 			{
 				name: "jQuery",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jquery/jquery-original.svg",
+				icon: jqueryIcon,
 			},
 			{
 				name: "Bootstrap",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+				icon: bootstrapIcon,
 			},
 		],
 		category: "client",
@@ -87,21 +94,21 @@ export const projects: Project[] = [
 		title: "Ph-En Vocabulary Web App",
 		description:
 			"A commision project by a fourth-year PUP students of BSED Major in English, designed to help users master diverse English vocabulary. This web app features reading exercises, pronunciation guides, and interactive quizzes with score tracking to enhance learning.",
-		image: projectB,
+		image: projectC,
 		githubUrl: "https://github.com/javecilla/Philippine_English_Vocabulary",
 		demoUrl: "https://philippineenglishvocabulary.com/",
 		technologies: [
 			{
 				name: "PHP",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+				icon: phpIcon,
 			},
 			{
 				name: "JavaScript",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+				icon: jsIcon,
 			},
 			{
 				name: "Bootstrap",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+				icon: bootstrapIcon,
 			},
 		],
 		category: "client",
@@ -118,15 +125,15 @@ export const projects: Project[] = [
 		technologies: [
 			{
 				name: "PHP",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+				icon: phpIcon,
 			},
 			{
 				name: "JavaScript",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+				icon: jsIcon,
 			},
 			{
 				name: "CSS",
-				icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+				icon: cssIcon,
 			},
 		],
 		category: "academic",

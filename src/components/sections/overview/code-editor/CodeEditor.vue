@@ -3,9 +3,9 @@ displays both code and its output * Features tabs for switching between output
 preview and code view */
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import CodeEditorHeader from "./CodeEditorHeader.vue";
-import CodeContent from "./CodeContent.vue";
-import AboutMeSection from "@/components/sections/overview/about-me/AboutMe.vue";
+import CodeEditorHeader from "@components/sections/overview/code-editor/CodeEditorHeader.vue";
+import CodeContent from "@components/sections/overview/code-editor/CodeContent.vue";
+import AboutMeSection from "@components/sections/overview/about-me/AboutMe.vue";
 
 interface Props {
 	/** The source code to display in the editor */

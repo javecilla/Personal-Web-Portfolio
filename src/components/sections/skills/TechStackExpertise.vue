@@ -14,7 +14,7 @@ import { techStacksExpertise } from "@/data/techStackExpertise";
 				class="expertise__card group"
 			>
 				<div class="expertise__icon">
-					<img :src="tech.icon" :title="tech.name" class="expertise__image" />
+					<img :src="tech.icon" :alt="tech.name" class="expertise__icon-img" />
 				</div>
 				<span class="expertise__name">
 					{{ tech.name }}
@@ -44,12 +44,12 @@ import { techStacksExpertise } from "@/data/techStackExpertise";
 
 /* Icon container */
 .expertise__icon {
-	@apply w-12 h-12 transition-all duration-300;
+	@apply w-12 h-12 transition-all duration-300 flex items-center justify-center;
 }
 
-/* Image styles */
-.expertise__image {
-	@apply w-full h-full opacity-70 grayscale 
+/* Icon styles */
+.expertise__icon-img {
+	@apply w-40 h-40 opacity-70 grayscale 
          group-hover:opacity-100 group-hover:grayscale-0 
          transition-all duration-300;
 }

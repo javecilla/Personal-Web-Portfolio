@@ -1,7 +1,8 @@
 export interface TechStackExpertise {
 	name: string;
 	icon: string;
-	color: string;
+	description: string;
+	percentage: number;
 }
 
 export interface Skill {

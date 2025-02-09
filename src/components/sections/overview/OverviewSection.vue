@@ -4,8 +4,8 @@ portfolio that includes introduction and code editor */
 // Import base Prism styles for code highlighting
 import "prismjs/themes/prism-tomorrow.css";
 import { ref } from "vue";
-import Introduction from "./introduction/Introduction.vue";
-import CodeEditor from "./code-editor/CodeEditor.vue";
+import Introduction from "@components/sections/overview/introduction/Introduction.vue";
+import CodeEditor from "@components/sections/overview/code-editor/CodeEditor.vue";
 
 // Sample code to display in the editor - represents the About Me section
 const aboutMeCode = ref(

@@ -1,24 +1,35 @@
 import { TechStackExpertise } from "@/types/tech-stack";
 
+// Import icons from local assets
+import vueIcon from "@/assets/svgs/vue.svg?url";
+import tsIcon from "@/assets/svgs/typescript.svg?url";
+import tailwindIcon from "@/assets/svgs/tailwind.svg?url";
+import laravelIcon from "@/assets/svgs/laravel.svg?url";
+
 export const techStacksExpertise: TechStackExpertise[] = [
 	{
-		name: "Vue JS",
-		icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-		color: "#42b883",
+		name: "Vue.js",
+		icon: vueIcon,
+		description:
+			"Building scalable and maintainable web applications with Vue.js",
+		percentage: 90,
 	},
 	{
 		name: "TypeScript",
-		icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-		color: "#007acc",
+		icon: tsIcon,
+		description: "Writing type-safe and maintainable code with TypeScript",
+		percentage: 85,
 	},
 	{
 		name: "Tailwind CSS",
-		icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-		color: "#38bdf8",
+		icon: tailwindIcon,
+		description: "Creating beautiful and responsive UIs with Tailwind CSS",
+		percentage: 95,
 	},
 	{
 		name: "Laravel",
-		icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
-		color: "#FF2D20",
+		icon: laravelIcon,
+		description: "Developing robust backend systems with Laravel",
+		percentage: 80,
 	},
 ];
