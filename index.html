@@ -1,77 +1,187 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="robots" content="index, follow"/>
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
-    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
-    <meta name="description" content="My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design." />
-    <meta name="abstract" content="Jerome Avecilla | Portfolio"  />
-    <meta name="copyright" content="Jerome Avecilla"  />
-    <meta name='Classification' content='Website'/>
-    <meta name='identifier-URL' content='https://jerome-avecilla.vercel.app/'/>
-    <meta name="msapplication-TileImage" content="/assets/images/favicon2.png" />
-    <meta name="msapplication-TileColor" content="#f3f3f3" />
-    <meta name="theme-color" content="#060606" />
-    <meta name="google-site-verification" content="RAw3XoeQlQcldgqkMijkj8jMucAoJTaY_Ns44cioVfM" />
+	<head>
+		<!-- Primary Meta Tags -->
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Jerome Avecilla | Portfolio</title>
+		<meta name="title" content="Jerome Avecilla | Portfolio" />
+		<meta
+			name="description"
+			content="Personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "
+		/>
+		<meta name="author" content="Jerome Avecilla" />
+		<meta
+			name="keywords"
+			content="Jerome Avecilla, Web Developer, Full-Stack Developer, Vue.js Developer, TypeScript, Laravel, Portfolio"
+		/>
 
-    <meta property="article:author" content="https://www.facebook.com/jerome.avecilla24"/>
-    <meta property="article:publisher" content="https://www.facebook.com/jerome.avecilla24"/>
-    <meta property="og:image" content="/assets/images/pogi.jpg" />
-    <meta property="og:image:width" content="608">
-    <meta property="og:image:height" content="260">
-    <meta property="og:image:alt" content="Jerome's Portfolio" />
-    <meta property="og:image:secure_url" content="/assets/images/favicon2.png"/>
-    <meta property="og:locale" content="en_US">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Jerome Avecilla | Portfolio" />
-    <meta property="og:description" content="My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. " />
-    <meta property="og:url" content="https://jerome-avecilla.vercel.app/" />
-    <meta property="og:site_name" content="Jerome Avecilla | Portfolio"/>
-    <meta name="twitter:site" content="https://x.com/_javecilla"/>
-    <meta name="twitter:creator" content="https://x.com/_javecilla"/>
-    <meta name="twitter:title" content="Jerome Avecilla"/>
-    <meta name="twitter:description" content="My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "/>
-    <meta name="twitter:image" content="/assets/images/favicon2.png"/>
+		<!-- Robots and Canonical -->
+		<meta
+			name="robots"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
+		<link rel="canonical" href="https://jerome-avecilla.vercel.app/" />
 
-    <title>Jerome Avecilla | Portfolio</title>
+		<!-- Search Engine -->
+		<meta
+			name="googlebot"
+			content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+		/>
+		<meta
+			name="bingbot"
+			content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+		/>
+		<meta
+			name="google-site-verification"
+			content="RAw3XoeQlQcldgqkMijkj8jMucAoJTaY_Ns44cioVfM"
+		/>
 
-    <link rel='dns-prefetch' href='https://fonts.googleapis.com' />
-	  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://jerome-avecilla.vercel.app/" />
+		<meta
+			property="og:title"
+			content="Jerome Avecilla | Full-Stack Web Developer Portfolio"
+		/>
+		<meta
+			property="og:description"
+			content="Personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "
+		/>
+		<meta
+			property="og:image"
+			content="https://jerome-avecilla.vercel.app/assets/images/pogi.jpg"
+		/>
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Jerome Avecilla - Portfolio" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="Jerome Avecilla Portfolio" />
+		<meta
+			property="article:author"
+			content="https://www.facebook.com/jerome.avecilla24"
+		/>
+		<meta
+			property="article:publisher"
+			content="https://www.facebook.com/jerome.avecilla24"
+		/>
 
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon2.png" />
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@_javecilla" />
+		<meta name="twitter:creator" content="@_javecilla" />
+		<meta
+			name="twitter:title"
+			content="Jerome Avecilla | Full-Stack Web Developer Portfolio"
+		/>
+		<meta
+			name="twitter:description"
+			content="Personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "
+		/>
+		<meta
+			name="twitter:image"
+			content="https://jerome-avecilla.vercel.app/assets/images/pogi.jpg"
+		/>
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NPL8DWSH');</script>
-    <!-- End Google Tag Manager -->
+		<!-- Theme and Mobile -->
+		<meta
+			name="theme-color"
+			content="#060606"
+			media="(prefers-color-scheme: dark)"
+		/>
+		<meta
+			name="theme-color"
+			content="#ffffff"
+			media="(prefers-color-scheme: light)"
+		/>
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="Jerome Avecilla" />
+		<meta name="application-name" content="Jerome Avecilla Portfolio" />
 
-    
-    <!-- Google tag Analytics (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHV90YV828"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+		<!-- Favicon and Icons -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/assets/images/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/assets/images/favicon-16x16.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/assets/images/favicon-180x180.png"
+		/>
+		<meta name="msapplication-TileImage" content="/assets/images/favicon.png" />
+		<meta name="msapplication-TileColor" content="#f3f3f3" />
 
-      gtag('config', 'G-NHV90YV828');
-    </script>
-    <!-- End Google tag Analytics -->
+		<!-- Preconnect and DNS Prefetch -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+		<link
+			rel="preconnect"
+			href="https://www.google-analytics.com"
+			crossorigin
+		/>
+		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-  </head>
-  <body class="bg-white dark:bg-[#060606]">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPL8DWSH"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+		<!-- Sitemap -->
+		<link
+			rel="sitemap"
+			type="application/xml"
+			title="Sitemap"
+			href="/sitemap.xml"
+		/>
+
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NPL8DWSH");
+		</script>
+
+		<!-- Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-NHV90YV828"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-NHV90YV828");
+		</script>
+	</head>
+	<body class="bg-white dark:bg-[#060606]">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NPL8DWSH"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe>
+		</noscript>
+		<div id="app"></div>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
 </html>

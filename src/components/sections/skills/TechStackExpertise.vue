@@ -38,7 +38,8 @@ import { techStacksExpertise } from "@/data/techStackExpertise";
 /* Card styles */
 .expertise__card {
 	@apply relative flex flex-col items-center justify-center p-6 rounded-xl 
-         section-bg transition-all duration-300 hover:scale-105 w-full;
+         dark:bg-zinc-900/10 bg-gray-50 transition-all duration-300 
+         hover:scale-105 w-full;
 }
 
 /* Icon container */
@@ -55,7 +56,7 @@ import { techStacksExpertise } from "@/data/techStackExpertise";
 
 /* Name label */
 .expertise__name {
-	@apply mt-3 text-sm font-medium section-text
+	@apply mt-3 text-sm font-medium dark:text-gray-400 text-gray-600
          group-hover:text-gray-900 dark:group-hover:text-white;
 }
 </style>

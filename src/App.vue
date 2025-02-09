@@ -68,7 +68,7 @@ const handleLoadComplete = () => {
 @layer components {
 	/* Section Classes */
 	.section-bg {
-		@apply dark:bg-zinc-900/10 bg-gray-50;
+		@apply dark:bg-zinc-900/10 bg-gray-50 transition-all duration-500 ease-in-out;
 	}
 
 	.section-title {
