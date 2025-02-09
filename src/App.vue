@@ -10,7 +10,7 @@ import OverviewSection from "@/components/sections/overview/OverviewSection.vue"
 import TechStackSection from "./components/sections/skills/TechStackSection.vue";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection.vue";
 import AchievementsSection from "@/components/sections/achievements/AchievementsSection.vue";
-
+import ExperiencesEducationSection from "@/components/sections/experiences_education/ExperiencesEducationSection.vue";
 const isLoaded = ref(false);
 const assetsLoaded = ref(false);
 
@@ -37,6 +37,7 @@ const handleLoadComplete = () => {
 				<TechStackSection />
 				<ProjectsSection />
 				<AchievementsSection />
+				<ExperiencesEducationSection />
 			</main>
 
 			<footer
@@ -72,11 +73,29 @@ const handleLoadComplete = () => {
 	}
 
 	.section-title {
-		@apply dark:text-white text-gray-600;
+		@apply dark:text-white text-gray-600 text-2xl sm:text-3xl font-bold;
+	}
+
+	.section-title-gradient {
+		@apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
 	}
 
 	.section-text {
 		@apply dark:text-gray-400 text-gray-600;
+	}
+
+	/* Timeline Classes */
+	.timeline-marker-base {
+		@apply absolute w-4 h-4 rounded-full bg-white dark:bg-zinc-900 border-2 border-blue-500/50 -left-[29px] top-1
+         group-hover:border-blue-500 group-hover:scale-110 transition-all duration-300;
+	}
+
+	.timeline-content-base {
+		@apply bg-white/80 dark:bg-zinc-900/80 p-6 rounded-xl shadow-sm
+         border border-gray-100/50 dark:border-zinc-800/50
+         backdrop-blur-sm
+         group-hover:border-blue-500/20 group-hover:shadow-md
+         group-hover:-translate-y-0.5 transition-all duration-300;
 	}
 
 	/* Button Classes */
