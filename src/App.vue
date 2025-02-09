@@ -59,9 +59,11 @@ const handleLoadComplete = () => {
 					</div>
 				</template>
 				<template #fallback>
-					<div class="space-y-8 w-[80vw] overflow-x-hidden">
+					<div
+						class="space-y-4 sm:space-y-6 w-[100vw] md:w-[1250px] ml-0 md:-ml-[26px] overflow-x-hidden md:overflow-x-visible max-w-full"
+					>
 						<!-- Overview Section Skeleton -->
-						<section class="space-y-4 sm:space-y-6 overflow-hidden">
+						<section class="space-y-3 sm:space-y-4 overflow-hidden">
 							<div class="flex flex-col md:flex-row gap-4 sm:gap-8 md:gap-12">
 								<!-- Introduction Part -->
 								<div class="w-full md:w-1/2 space-y-4 sm:space-y-6">
@@ -99,7 +101,7 @@ const handleLoadComplete = () => {
 
 						<!-- Tech Stack Section Skeleton -->
 						<section
-							class="section-bg p-3 sm:p-6 rounded-xl sm:rounded-2xl space-y-6 sm:space-y-8 overflow-hidden"
+							class="section-bg p-3 sm:p-6 rounded-xl sm:rounded-2xl space-y-4 sm:space-y-6 overflow-hidden"
 						>
 							<div class="text-center space-y-3 sm:space-y-4">
 								<div

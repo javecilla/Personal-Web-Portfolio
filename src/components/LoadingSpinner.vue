@@ -1,12 +1,10 @@
 <template>
 	<div class="loader">
-		<div class="loading-container">
-			<div class="loading-circle"></div>
-			<div class="loading-circle"></div>
-			<div class="loading-circle"></div>
-			<div class="loading-shadow"></div>
-			<div class="loading-shadow"></div>
-			<div class="loading-shadow"></div>
+		<div class="lds-ellipsis">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
 		</div>
 	</div>
 </template>
@@ -16,86 +14,83 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 120px;
+	min-height: 60px;
 }
 
-.loading-container {
-	width: 100px;
-	height: 100px;
+.lds-ellipsis,
+.lds-ellipsis div {
+	box-sizing: border-box;
+}
+
+.lds-ellipsis {
+	display: inline-block;
 	position: relative;
-	transform-style: preserve-3d;
-	perspective: 500px;
+	width: 80px;
+	height: 40px;
 }
 
-.loading-circle {
+.lds-ellipsis div {
 	position: absolute;
-	width: 20px;
-	height: 20px;
+	top: 13.33333px;
+	width: 13.33333px;
+	height: 13.33333px;
 	border-radius: 50%;
-	background: linear-gradient(45deg, #3b82f6, #6366f1);
-	animation: jump 0.8s ease-in-out infinite;
+	background: #3b82f6;
+	animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
-.loading-shadow {
-	position: absolute;
-	width: 20px;
-	height: 4px;
-	border-radius: 50%;
-	background: rgba(0, 0, 0, 0.1);
-	top: 62px;
-	transform-origin: 50%;
-	animation: shadow 0.8s ease-in-out infinite;
+.lds-ellipsis div:nth-child(1) {
+	left: 8px;
+	animation: lds-ellipsis1 0.6s infinite;
 }
 
-.loading-circle:nth-child(1),
-.loading-shadow:nth-child(4) {
-	left: 0;
-	animation-delay: -0.3s;
+.lds-ellipsis div:nth-child(2) {
+	left: 8px;
+	animation: lds-ellipsis2 0.6s infinite;
 }
 
-.loading-circle:nth-child(2),
-.loading-shadow:nth-child(5) {
-	left: 40px;
-	animation-delay: -0.15s;
+.lds-ellipsis div:nth-child(3) {
+	left: 32px;
+	animation: lds-ellipsis2 0.6s infinite;
 }
 
-.loading-circle:nth-child(3),
-.loading-shadow:nth-child(6) {
-	left: 80px;
-	animation-delay: 0s;
+.lds-ellipsis div:nth-child(4) {
+	left: 56px;
+	animation: lds-ellipsis3 0.6s infinite;
 }
 
-@keyframes jump {
+@keyframes lds-ellipsis1 {
 	0% {
-		top: 40px;
-		transform: scaleX(1) scaleY(1);
-	}
-	50% {
-		top: 15px;
-		transform: scaleX(1.2) scaleY(0.8);
+		transform: scale(0);
 	}
 	100% {
-		top: 40px;
-		transform: scaleX(1) scaleY(1);
+		transform: scale(1);
 	}
 }
 
-@keyframes shadow {
+@keyframes lds-ellipsis3 {
 	0% {
-		transform: scaleX(1);
-		opacity: 0.3;
-	}
-	50% {
-		transform: scaleX(0.8);
-		opacity: 0.1;
+		transform: scale(1);
 	}
 	100% {
-		transform: scaleX(1);
-		opacity: 0.3;
+		transform: scale(0);
 	}
 }
 
-:root[class~="dark"] .loading-shadow {
-	background: rgba(255, 255, 255, 0.1);
+@keyframes lds-ellipsis2 {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(24px, 0);
+	}
+}
+
+:root[class~="dark"] .lds-ellipsis div {
+	background: #3b82f6;
+}
+
+:root:not([class~="dark"]) .lds-ellipsis div {
+	background: #3b82f6;
 }
 </style>

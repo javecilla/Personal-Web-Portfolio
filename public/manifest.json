@@ -2,7 +2,7 @@
 	"name": "Portfolio",
 	"icons": [
 		{
-			"src": "/favicons/android-chrome-36x36.png",
+			"src": "/assets/favicons/android-chrome-36x36.png",
 			"sizes": "36x36",
 			"type": "image/png",
 			"density": 0.75

@@ -67,7 +67,7 @@ import { techStackAndSkills } from "@/data/techStackAndSkills";
 
 /* Card styles */
 .skills__card {
-	@apply section-bg p-4 rounded-xl flex flex-col items-center 
+	@apply dark:bg-zinc-900/10 bg-gray-50 p-4 rounded-xl flex flex-col items-center 
          transition-all duration-300 hover:scale-105;
 }
 
@@ -89,6 +89,6 @@ import { techStackAndSkills } from "@/data/techStackAndSkills";
 
 /* Category label */
 .skills__label {
-	@apply mt-3 text-sm font-medium section-text;
+	@apply mt-3 text-sm font-medium dark:text-gray-400 text-gray-600;
 }
 </style>

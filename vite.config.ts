@@ -91,8 +91,7 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks: {
-					"vue-vendor": ["vue", "vue-router"],
-					"ui-vendor": ["@headlessui/vue", "@heroicons/vue"],
+					"vue-vendor": ["vue"],
 				},
 				assetFileNames: (assetInfo) => {
 					const info = assetInfo.name ? assetInfo.name : "unknown";
@@ -110,7 +109,7 @@ export default defineConfig({
 		chunkSizeWarningLimit: 1000,
 	},
 	optimizeDeps: {
-		include: ["vue", "vue-router", "@headlessui/vue", "@heroicons/vue"],
+		include: ["vue"],
 	},
 	assetsInclude: ["**/*.svg"],
 });
