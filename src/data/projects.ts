@@ -1,4 +1,4 @@
-import { Project, ProjectCategoryItem } from "@/types/project";
+import { Project, ProjectCategory, ProjectCategoryItem } from "@/types/project";
 
 // Import project images
 import goldenMindsWeb from "@global/images/ref002.png";
@@ -20,6 +20,7 @@ import cssIcon from "@global/svgs/css3.svg?url";
 
 export const projects: Project[] = [
 	{
+		id: 1,
 		title: "Portfolio Website",
 		description:
 			"My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. ",
@@ -40,10 +41,11 @@ export const projects: Project[] = [
 				icon: tailwindIcon,
 			},
 		],
-		category: "personal",
+		category: ProjectCategory.PERSONAL,
 		isHighlight: false,
 	},
 	{
+		id: 2,
 		title: "Golden Minds Official Website",
 		description:
 			"A solo project dedicated to building and maintaining the Official Website of Golden Minds Colleges-Academy. Designed as a dynamic platform, it serves the student community by providing essential information, updates, and resources to enhance their academic experience.",
@@ -64,10 +66,11 @@ export const projects: Project[] = [
 				icon: bootstrapIcon,
 			},
 		],
-		category: "client",
+		category: ProjectCategory.CLIENT,
 		isHighlight: true,
 	},
 	{
+		id: 3,
 		title: "Online Voting System",
 		description:
 			"A solo project for Golden Minds Colleges developed a dynamic and Interactive Voting System, ensuring a seamless and engaging digital voting experience for the community.",
@@ -88,10 +91,11 @@ export const projects: Project[] = [
 				icon: bootstrapIcon,
 			},
 		],
-		category: "client",
+		category: ProjectCategory.CLIENT,
 		isHighlight: true,
 	},
 	{
+		id: 4,
 		title: "Ph-En Vocabulary Web App",
 		description:
 			"A commision project by a fourth-year PUP students of BSED Major in English, designed to help users master diverse English vocabulary. This web app features reading exercises, pronunciation guides, and interactive quizzes with score tracking to enhance learning.",
@@ -112,10 +116,11 @@ export const projects: Project[] = [
 				icon: bootstrapIcon,
 			},
 		],
-		category: "client",
+		category: ProjectCategory.CLIENT,
 		isHighlight: true,
 	},
 	{
+		id: 5,
 		title: "Web-Based Inventory System",
 		description:
 			"The Inventory System is a comprehensive web-based solution developed as a thesis project during my Senior High School at Golden Minds Colleges. This project fulfills the requirements of the Information and Communication Technology (ICT) strand and aims to enhance the management of HRM tools and equipment inventories. ",
@@ -137,7 +142,7 @@ export const projects: Project[] = [
 				icon: cssIcon,
 			},
 		],
-		category: "academic",
+		category: ProjectCategory.ACADEMIC,
 		isHighlight: false,
 	},
 	// Add more projects here
@@ -146,7 +151,7 @@ export const projects: Project[] = [
 export const categories: ProjectCategoryItem[] = [
 	{ id: "highlights", label: "Highlights" },
 	{ id: "all", label: "All Projects" },
-	{ id: "academic", label: "Academic" },
-	{ id: "personal", label: "Personal" },
-	{ id: "client", label: "Client" },
+	{ id: ProjectCategory.ACADEMIC, label: "Academic" },
+	{ id: ProjectCategory.PERSONAL, label: "Personal" },
+	{ id: ProjectCategory.CLIENT, label: "Client" },
 ];

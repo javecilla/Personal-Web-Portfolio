@@ -99,13 +99,31 @@ export default defineConfig({
 		assetsDir: 'assets',
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					'vue-vendor': ['vue'],
-					'icons': ['lucide-vue-next'],
-					'components': [
-						'./src/components/NavBar.vue',
-						'./src/components/PageLoader.vue'
-					],
+				manualChunks(id) {
+					// More granular chunking strategy
+					if (id.includes('node_modules')) {
+						if (id.includes('vue')) {
+							return 'vue-core';
+						}
+						return 'vendor';
+					}
+					
+					// Separate utility functions
+					if (id.includes('/composables/') || id.includes('/utils/')) {
+						return 'utils';
+					}
+					
+					// Group base components separately
+					if (id.includes('/components/base/')) {
+						return 'base-components';
+					}
+					
+					// Group section components
+					if (id.includes('/components/sections/')) {
+						return 'sections';
+					}
+					
+					return 'main';
 				},
 				assetFileNames: (assetInfo) => {
 					const info = assetInfo.name ? assetInfo.name : "unknown";
@@ -135,13 +153,22 @@ export default defineConfig({
 		terserOptions: {
 			compress: {
 				drop_console: true,
-				drop_debugger: true
+				drop_debugger: true,
+				pure_funcs: ['console.log']
 			}
+		},
+		// Improve code splitting
+		modulePreload: {
+			polyfill: true
 		}
 	},
 	optimizeDeps: {
+		// Add proper dependency optimization
 		include: ['vue', 'lucide-vue-next'],
-		exclude: ['your-big-library']
+		exclude: [],
+		esbuildOptions: {
+			target: 'esnext'
+		}
 	},
 	assetsInclude: ["**/*.svg"],
 	server: {

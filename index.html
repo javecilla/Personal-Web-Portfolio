@@ -9,6 +9,7 @@
 		/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Jerome Avecilla</title>
+		<base href="/" />
 		<meta name="title" content="Jerome Avecilla | Portfolio" />
 		<meta
 			name="description"
@@ -206,17 +207,18 @@
 				rel="stylesheet"
 			/>
 		</noscript>
-
-		<!-- Add base URL -->
-		<base href="/" />
 		
-		<!-- Add error handling for assets -->
 		<script>
 			window.addEventListener('error', function(e) {
 				if (e.target.tagName === 'IMG' || e.target.tagName === 'SCRIPT') {
 					console.warn('Resource failed to load:', e.target.src);
 				}
 			}, true);
+		</script>
+		<script type="module">
+			// Ensure proper module loading order
+			window.__VUE_PROD_DEVTOOLS__ = false;
+			window.__VUE_OPTIONS_API__ = false;
 		</script>
 	</head>
 	<body

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onUnmounted } from "vue";
+import { useStore } from '@/store'; // Import from local store file
 import LoadingSpinner from "@components/LoadingSpinner.vue";
 
-const isLoading = ref(true);
+const store = useStore();
 const loadingProgress = ref(0);
 const loadingText = ref("Initializing...");
 const emit = defineEmits(["load-complete"]);
@@ -11,61 +12,23 @@ const updateLoadingText = (progress: number) => {
 	if (progress < 30) loadingText.value = "Loading assets...";
 	else if (progress < 60) loadingText.value = "Preparing content...";
 	else if (progress < 90) loadingText.value = "Almost there...";
-	else loadingText.value = "Launching...";
+	else loadingText.value = "Welcome Bossing!";
 };
 
-const simulateProgress = () => {
-	const interval = setInterval(() => {
+onMounted(() => {
+	const progressInterval = setInterval(() => {
 		if (loadingProgress.value < 98) {
-			loadingProgress.value += Math.random() * 10;
+			loadingProgress.value += Math.random() * 15;
 			updateLoadingText(loadingProgress.value);
-		} else {
-			clearInterval(interval);
-		}
-	}, 200);
-	return interval;
-};
-
-const checkAssetsLoaded = () => {
-	return new Promise((resolve) => {
-		// Wait for all images to load
-		Promise.all(
-			Array.from(document.images)
-				.filter((img) => !img.complete)
-				.map(
-					(img) =>
-						new Promise((resolve) => {
-							img.onload = img.onerror = resolve;
-						})
-				)
-		).then(() => resolve(true));
-	});
-};
-
-onMounted(async () => {
-	const progressInterval = simulateProgress();
-
-	try {
-		// Wait for fonts to load
-		await document.fonts.ready;
-		// Wait for images to load
-		await checkAssetsLoaded();
-		// Add any other initialization logic here
-
-		clearInterval(progressInterval);
-		loadingProgress.value = 100;
-		loadingText.value = "Welcome!";
-
-		setTimeout(() => {
-			isLoading.value = false;
+		} else if (store.getters.isFullyLoaded) {
+			clearInterval(progressInterval);
+			loadingProgress.value = 100;
+			loadingText.value = "Complete!";
 			emit("load-complete");
-		}, 500);
-	} catch (error) {
-		console.error("Error during loading:", error);
-		clearInterval(progressInterval);
-		isLoading.value = false;
-		emit("load-complete");
-	}
+		}
+	}, 100);
+
+	onUnmounted(() => clearInterval(progressInterval));
 });
 </script>
 
@@ -77,7 +40,7 @@ onMounted(async () => {
 		leave-to-class="opacity-0"
 	>
 		<div
-			v-if="isLoading"
+			v-if="!store.getters.isFullyLoaded"
 			class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-black"
 		>
 			<div class="text-center">

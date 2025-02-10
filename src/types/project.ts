@@ -1,22 +1,27 @@
 export interface ProjectTech {
-	name: string;
-	icon: string;
+  name: string;
+  icon: string;
 }
 
-export type ProjectCategory = "academic" | "personal" | "client";
-
-export interface Project {
-	title: string;
-	description: string;
-	image: string;
-	githubUrl: string;
-	demoUrl: string;
-	technologies: ProjectTech[];
-	category: ProjectCategory;
-	isHighlight?: boolean;
+export const enum ProjectCategory {
+  PERSONAL = 'personal',
+  CLIENT = 'client',
+  ACADEMIC = 'academic'
 }
 
 export interface ProjectCategoryItem {
-	id: string;
-	label: string;
+  id: ProjectCategory | 'all' | 'highlights';
+  label: string;
+}
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  githubUrl: string;
+  demoUrl: string;
+  technologies: ProjectTech[];
+  category: ProjectCategory;
+  isHighlight?: boolean;
 }

@@ -1,101 +1,54 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent, onMounted } from "vue";
+import { useStore } from '@/store';
 import PageLoader from "@components/PageLoader.vue";
 import PageTransition from "@components/PageTransition.vue";
 import CustomCursor from "@components/CustomCursor.vue";
 import NavBar from "@components/NavBar.vue";
 import ErrorBoundary from "@components/ErrorBoundary.vue";
 
-// Single loading state with timeout
-const isLoading = ref(true);
-const isContentReady = ref(false);
+// Simplified loading states
+const store = useStore();
+const isContentVisible = ref(false);
 
 onMounted(() => {
-  // Add timeout to prevent infinite loading
-  const loadTimeout = setTimeout(() => {
-    if (isLoading.value) {
-      console.warn('Loading timeout reached, forcing content display');
-      handleLoadComplete();
-    }
-  }, 10000); // 10 second timeout
+  // Wait for initial render and fonts
+  Promise.all([
+    document.fonts.ready,
+    new Promise(resolve => requestAnimationFrame(resolve))
+  ]).then(() => {
+    store.commit('setInitialLoadComplete');
+    setTimeout(() => {
+      isContentVisible.value = true;
+    }, 500);
+  });
 
-  return () => clearTimeout(loadTimeout);
+  // Failsafe timeout
+  setTimeout(() => {
+    store.commit('setInitialLoadComplete');
+    isContentVisible.value = true;
+  }, 3000);
 });
 
-// Shared error handling config
-const asyncComponentConfig = {
-  delay: 0,
-  timeout: 30000,
-  errorComponent: {
-    template: '<div class="text-red-500 p-4">Failed to load component</div>'
-  }
+// Watch for Suspense component load state
+const onComponentsLoaded = () => {
+  store.commit('setComponentsLoaded');
 };
 
 // Optimize component loading
 const components = {
-  MouseLight: defineAsyncComponent({
-    ...asyncComponentConfig,
-    loader: () => import("@/components/MouseLight.vue" /* @vite-ignore */),
-    delay: 200, // Add small delay to avoid flashing
-    timeout: 30000,
-  }),
-  OverviewSection: defineAsyncComponent({
-    ...asyncComponentConfig,
-    loader: () => import("@/components/sections/overview/OverviewSection.vue"),
-    suspensible: true,
-    delay: 0, // Load immediately as it's above the fold
-  }),
-  // Load below-the-fold components with delay
-  TechStackSection: defineAsyncComponent({
-    ...asyncComponentConfig,
-    loader: () => import("@/components/sections/skills/TechStackSection.vue"),
-    delay: 300,
-  }),
-  ProjectsSection: defineAsyncComponent({
-    ...asyncComponentConfig,
-    loader: () => import("@/components/sections/projects/ProjectsSection.vue"),
-  }),
-  AchievementsSection: defineAsyncComponent({
-    ...asyncComponentConfig,
-    loader: () => import("@/components/sections/achievements/AchievementsSection.vue"),
-  }),
-  ExperiencesEducationSection: defineAsyncComponent({
-    ...asyncComponentConfig,
-    loader: () => import("@/components/sections/experiences_education/ExperiencesEducationSection.vue"),
-  })
-};
-
-// Preload critical sections
-onMounted(() => {
-  // Preload next section when first section is visible
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Preload next section
-        import("@/components/sections/skills/TechStackSection.vue");
-      }
-    });
-  });
-
-  const firstSection = document.querySelector('.overview-section');
-  if (firstSection) observer.observe(firstSection);
-});
-
-const handleLoadComplete = () => {
-  isLoading.value = false;
-  setTimeout(() => {
-    isContentReady.value = true;
-  }, 100);
+  MouseLight: defineAsyncComponent(() => import("@/components/MouseLight.vue")),
+  OverviewSection: defineAsyncComponent(() => import("@/components/sections/overview/OverviewSection.vue")),
+  TechStackSection: defineAsyncComponent(() => import("@/components/sections/skills/TechStackSection.vue")),
+  ProjectsSection: defineAsyncComponent(() => import("@/components/sections/projects/ProjectsSection.vue")),
+  AchievementsSection: defineAsyncComponent(() => import("@/components/sections/achievements/AchievementsSection.vue")),
+  ExperiencesEducationSection: defineAsyncComponent(() => import("@/components/sections/experiences_education/ExperiencesEducationSection.vue")),
 };
 </script>
 
 <template>
   <div class="min-h-screen">
-    <!-- Single loading state -->
-    <PageLoader 
-      v-if="isLoading" 
-      @load-complete="handleLoadComplete" 
-    />
+    <PageLoader />
     
     <!-- Main content -->
     <Transition
@@ -103,18 +56,20 @@ const handleLoadComplete = () => {
       enter-from-class="opacity-0"
       enter-to-class="opacity-100"
     >
-      <div v-show="isContentReady">
+      <div v-show="isContentVisible">
         <CustomCursor />
         <components.MouseLight />
-        <PageTransition :is-loaded="true" class="w-full">
+        <PageTransition :is-loaded="store.getters.isFullyLoaded" class="w-full">
           <NavBar />
           <main class="py-3 sm:py-8">
             <ErrorBoundary>
-              <Suspense>
+              <Suspense @resolve="onComponentsLoaded">
                 <template #default>
                   <!-- Wrap multiple components in a single root div for Suspense -->
                   <div class="space-y-4 sm:space-y-6">
-                    <components.OverviewSection />
+                    <div data-section="overview">
+                      <components.OverviewSection />
+                    </div>
                     <components.TechStackSection />
                     <components.ProjectsSection />
                     <components.AchievementsSection />

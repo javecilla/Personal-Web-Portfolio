@@ -19,15 +19,35 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "types": [
+      "node",
+      "vite/client",
+      "@vue/runtime-core",
+      "@vue/runtime-dom"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@vue",
+      "./node_modules/vuex/types",
+      "./src/types"
+    ],
 
     /* Paths */
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
-      "@global/*": ["./public/*"]
+      "@global/*": ["./public/*"],
+      "@assets/*": ["./src/assets/*"],
+      "vuex": ["./node_modules/vuex/dist/vuex.d.ts"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/types/env.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
