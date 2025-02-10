@@ -7,7 +7,7 @@ import viteImagemin from "vite-plugin-imagemin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: '/',
+	base: './',
 	plugins: [
 		vue({
 			template: {
@@ -98,32 +98,13 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
-					// Vendor chunks
+					 // Simplified chunking strategy
 					if (id.includes('node_modules')) {
-						if (id.includes('vue')) {
-							return 'vendor-vue';
-						}
-						// Group other node_modules into a single vendor chunk
 						return 'vendor';
 					}
-
-					// Component chunks based on directory structure
-					if (id.includes('/src/components/')) {
-						if (id.includes('/base/')) {
-							return 'components-base';
-						}
-						if (id.includes('/sections/')) {
-							return 'components-sections';
-						}
-						return 'components-common';
+					if (id.includes('/components/')) {
+						return 'components';
 					}
-
-					// Utils and composables
-					if (id.includes('/composables/')) {
-						return 'composables';
-					}
-
-					// Keep everything else in default chunk
 					return undefined;
 				},
 				assetFileNames: (assetInfo) => {
