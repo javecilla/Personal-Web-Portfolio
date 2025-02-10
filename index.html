@@ -220,7 +220,12 @@
 				loading="lazy"
 			></iframe>
 		</noscript>
-		<div id="app"></div>
+		<div id="app">
+			<!-- Initial loading state -->
+			<div id="loading" class="fixed inset-0 flex items-center justify-center bg-white dark:bg-[#060606]">
+				<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+			</div>
+		</div>
 		<script type="module" src="/src/main.ts"></script>
 	</body>
 </html>

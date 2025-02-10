@@ -152,7 +152,18 @@ onMounted(async () => {
 			</div>
 			<!-- Profile Image for desktop -->
 			<div class="hidden md:block space-y-4 p-5">
-				<div class="relative w-full h-full md:w-[250px] p-4">
+				<div class="relative w-full aspect-3-4 md:w-[250px]">
+					<Transition
+						enter-active-class="transition-opacity duration-300"
+						enter-from-class="opacity-0"
+						enter-to-class="opacity-100"
+					>
+						<ImageSkeleton
+							v-if="!imageLoaded"
+							rounded="rounded-3xl"
+							className="absolute inset-0 w-full h-full"
+						/>
+					</Transition>
 					<div class="absolute inset-0 rounded-3xl overflow-hidden">
 						<BaseImage
 							:src="profileImage"
@@ -169,4 +180,8 @@ onMounted(async () => {
 	</section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.aspect-3-4 {
+  aspect-ratio: 3 / 4;
+}
+</style>
