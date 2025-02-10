@@ -28,13 +28,13 @@ export default defineConfig({
 				theme_color: "#060606",
 				icons: [
 					{
-						src: "/assets/favicons/android-chrome-192x192.png",
-						sizes: "192x192",
+						src: "/assets/favicons/android-chrome-180x180.png",
+						sizes: "180x180",
 						type: "image/png",
 					},
 					{
-						src: "/assets/favicons/android-chrome-512x512.png",
-						sizes: "512x512",
+						src: "/assets/favicons/android-chrome-192x192.png",
+						sizes: "192x192",
 						type: "image/png",
 					},
 				],

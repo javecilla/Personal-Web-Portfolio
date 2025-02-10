@@ -5,6 +5,9 @@ controls, and responsive design */
 import { ref, onMounted, onUnmounted } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { achievements } from "@/data/achievements";
+import BaseButton from '@/components/base/BaseButton.vue';
+import AchievementDot from '@/components/sections/achievements/AchievementDot.vue';
+import { useSwipe } from '@/composables/useSwipe';
 
 // State management
 const currentSlide = ref(0);
@@ -46,10 +49,19 @@ onMounted(() => {
 onUnmounted(() => {
 	clearInterval(autoplayInterval);
 });
+
+const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
+  onSwipeLeft: () => navigateSlide('next'),
+  onSwipeRight: () => navigateSlide('prev'),
+  threshold: 50
+});
 </script>
 
 <template>
-	<section class="achievements section-bg">
+	<section 
+		class="achievements section-bg"
+		aria-label="Achievements and Certificates"
+	>
 		<div class="achievements__container">
 			<!-- Header -->
 			<div class="achievements__header">
@@ -63,91 +75,105 @@ onUnmounted(() => {
 				</p>
 			</div>
 
-			<!-- Carousel Container -->
-			<div class="achievements__carousel">
-				<!-- Previous Button -->
-				<button
-					@click="navigateSlide('prev')"
-					class="achievements__nav-btn achievements__nav-btn--prev"
-				>
-					<ChevronLeft class="achievements__nav-icon" />
-				</button>
-
-				<!-- Main Carousel -->
-				<div class="achievements__slides">
-					<template
-						v-for="(achievement, index) in achievements"
-						:key="achievement.id"
+			<!-- Carousel Container with New Layout -->
+			<div class="achievements__carousel-wrapper">
+				<!-- Navigation Row -->
+				<div class="achievements__navigation-row">
+					<BaseButton
+						variant="icon"
+						aria-label="View previous achievement"
+						class="achievements__nav-btn achievements__nav-btn--prev"
+						@click="() => navigateSlide('prev')"
 					>
-						<div
-							class="achievements__slide"
-							:class="[
-								currentSlide === index
-									? 'achievements__slide--active'
-									: index > currentSlide
-									? 'achievements__slide--next'
-									: 'achievements__slide--prev',
-							]"
+						<ChevronLeft class="achievements__nav-icon" />
+					</BaseButton>
+
+					<!-- Main Carousel -->
+					<div 
+						class="achievements__slides"
+						@touchstart="onTouchStart"
+						@touchmove="onTouchMove"
+						@touchend="onTouchEnd"
+					>
+						<template
+							v-for="(achievement, index) in achievements"
+							:key="achievement.id"
 						>
-							<!-- Grid Layout -->
-							<div class="achievements__grid">
-								<!-- Image Section -->
-								<div class="achievements__image-container group">
-									<img
-										:src="achievement.image"
-										:alt="achievement.title"
-										class="achievements__image"
-									/>
-									<div class="achievements__image-overlay"></div>
-								</div>
+							<div
+								class="achievements__slide"
+								:class="[ 
+									currentSlide === index
+										? 'achievements__slide--active'
+										: index > currentSlide
+										? 'achievements__slide--next'
+										: 'achievements__slide--prev',
+								]"
+							>
+								<!-- Grid Layout -->
+								<div class="achievements__grid">
+									<!-- Image Section -->
+									<div class="achievements__image-container group">
+										<img
+											:src="achievement.image"
+											:alt="achievement.title"
+											class="achievements__image"
+										/>
+										<div class="achievements__image-overlay"></div>
+									</div>
 
-								<!-- Content Section -->
-								<div class="achievements__content">
-									<div class="achievements__content-inner">
-										<div class="achievements__category">
-											<span class="achievements__category-text">
-												{{ achievement.category }}
-											</span>
+									<!-- Content Section -->
+									<div class="achievements__content">
+										<div class="achievements__content-inner">
+											<div class="achievements__category">
+												<span class="achievements__category-text">
+													{{ achievement.category }}
+												</span>
+											</div>
+
+											<h3 class="achievements__content-title">
+												{{ achievement.title }}
+											</h3>
+
+											<small class="achievements__meta">
+												{{ achievement.date }} - {{ achievement.location }}
+											</small>
+
+											<p
+												class="achievements__description achievements__description--detail"
+											>
+												{{ achievement.description }}
+											</p>
 										</div>
-
-										<h3 class="achievements__content-title">
-											{{ achievement.title }}
-										</h3>
-
-										<small class="achievements__meta">
-											{{ achievement.date }} - {{ achievement.location }}
-										</small>
-
-										<p
-											class="achievements__description achievements__description--detail"
-										>
-											{{ achievement.description }}
-										</p>
 									</div>
 								</div>
 							</div>
-						</div>
-					</template>
+						</template>
+					</div>
+
+					<BaseButton
+						variant="icon"
+						aria-label="View next achievement"
+						class="achievements__nav-btn achievements__nav-btn--next"
+						@click="() => navigateSlide('next')"
+					>
+						<ChevronRight class="achievements__nav-icon" />
+					</BaseButton>
 				</div>
 
-				<!-- Next Button -->
-				<button
-					@click="navigateSlide('next')"
-					class="achievements__nav-btn achievements__nav-btn--next"
+				<!-- Navigation Dots Below -->
+				<div 
+					class="achievements__dots"
+					role="tablist"
+					aria-label="Achievement slides"
 				>
-					<ChevronRight class="achievements__nav-icon" />
-				</button>
-			</div>
-
-			<!-- Navigation Dots -->
-			<div class="achievements__dots">
-				<button
-					v-for="(_, index) in achievements"
-					:key="index"
-					@click="currentSlide = index"
-					class="achievements__dot"
-					:class="{ 'achievements__dot--active': currentSlide === index }"
-				/>
+					<AchievementDot
+						v-for="(_, index) in achievements"
+						:key="index"
+						:index="index"
+						:is-active="currentSlide === index"
+						@select="currentSlide = index"
+					/>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -178,8 +204,32 @@ onUnmounted(() => {
 }
 
 /* Carousel container */
+.achievements__carousel-wrapper {
+	@apply flex flex-col gap-6;
+}
+
+.achievements__navigation-row {
+	@apply relative flex items-center w-full;
+}
+
+.achievements__nav-btn {
+	@apply z-50 relative md:static;
+}
+
+.achievements__dots {
+	@apply flex justify-center gap-2 m-0;
+}
+
+/* Update existing nav button styles */
+.achievements__nav-btn {
+	@apply md:block p-3 rounded-full bg-white/10 backdrop-blur-sm 
+         transition-all duration-300 border border-gray-200
+         hover:bg-white/20 z-50;
+}
+
+/* Update carousel container */
 .achievements__carousel {
-	@apply relative flex items-center min-h-[400px] md:min-h-[300px];
+	@apply relative w-full min-h-[400px] md:min-h-[300px];
 }
 
 /* Navigation buttons */
@@ -214,7 +264,7 @@ onUnmounted(() => {
 
 /* Slides container */
 .achievements__slides {
-	@apply relative w-full min-h-[400px] md:min-h-[300px];
+	@apply relative w-full min-h-[400px] md:min-h-[300px] touch-pan-y;
 }
 
 .achievements__slide {
@@ -308,24 +358,6 @@ onUnmounted(() => {
 
 .dark .achievements__description--detail {
 	@apply text-gray-400;
-}
-
-/* Navigation dots */
-.achievements__dots {
-	@apply flex justify-center mt-4 md:mt-6 space-x-2;
-}
-
-.achievements__dot {
-	@apply w-2 h-2 rounded-full transition-all duration-300 focus:outline-none
-         bg-gray-300 hover:bg-gray-400;
-}
-
-.dark .achievements__dot {
-	@apply bg-gray-600 hover:bg-gray-500;
-}
-
-.achievements__dot--active {
-	@apply bg-gradient-to-r from-blue-500 to-purple-500 scale-110;
 }
 
 /* Animation helper */

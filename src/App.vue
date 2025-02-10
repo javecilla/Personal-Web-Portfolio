@@ -50,7 +50,7 @@ const handleLoadComplete = () => {
 		<main class="py-3 sm:py-8">
 			<Suspense>
 				<template #default>
-					<div>
+					<div class="space-y-4 sm:space-y-6">
 						<OverviewSection />
 						<TechStackSection />
 						<ProjectsSection />
@@ -60,7 +60,7 @@ const handleLoadComplete = () => {
 				</template>
 				<template #fallback>
 					<div
-						class="space-y-4 sm:space-y-6 w-[100vw] md:w-[1250px] ml-0 md:-ml-[26px] overflow-x-hidden md:overflow-x-visible max-w-full"
+						class="space-y-4 sm:space-y-6 w-[80vw] md:w-[1250px] ml-0 md:-ml-[26px] overflow-x-hidden md:overflow-x-visible max-w-full"
 					>
 						<!-- Overview Section Skeleton -->
 						<section class="space-y-3 sm:space-y-4 overflow-hidden">

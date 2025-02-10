@@ -22,7 +22,7 @@ const isEducationHovered = ref(false);
 		<div class="experiences-education__content relative min-h-[600px]">
 			<!-- Mobile Titles -->
 			<div class="md:hidden space-y-8 px-4 mb-6">
-				<h3 class="timeline-center-title">EXPERIENCE</h3>
+					<h2 class="timeline-center-title">Work Experience</h2>
 			</div>
 
 			<!-- Frames -->
@@ -45,7 +45,7 @@ const isEducationHovered = ref(false);
 								<span class="card__content--date"
 									>{{ experience.startDate }} - {{ experience.endDate }}</span
 								>
-								<h1 class="card_content--title">{{ experience.position }}</h1>
+									<h3 class="card_content--title">{{ experience.position }}</h3>
 								<span class="card_content--subtitle"
 									>{{ experience.company }} - {{ experience.location }}</span
 								>
@@ -60,7 +60,7 @@ const isEducationHovered = ref(false);
 
 				<!-- Mobile Education Title -->
 				<div class="md:hidden space-y-8 px-4 mt-12 mb-6">
-					<h3 class="timeline-center-title">EDUCATION</h3>
+						<h2 class="timeline-center-title timeline-center-title__education">Education</h2>
 				</div>
 
 				<!-- Education Frame -->
@@ -80,10 +80,10 @@ const isEducationHovered = ref(false);
 							<div class="card__content">
 								<span class="card__content--date"
 									>{{ education.startDate }} - {{ education.endDate }}</span
-								>
-								<h1 class="card_content--title">
+									>
+									<h3 class="card_content--title">
 									{{ education.degree }}
-								</h1>
+								</h3>
 								<span class="card_content--subtitle"
 									>{{ education.school }} - {{ education.campus }}</span
 								>
@@ -102,10 +102,10 @@ const isEducationHovered = ref(false);
 				<div class="timeline-vertical-line"></div>
 				<div class="timeline-center-titles">
 					<div class="timeline-title-wrapper experience">
-						<h3 class="timeline-center-title">EXPERIENCE</h3>
+							<h2 class="timeline-center-title">Work Experience</h2>
 					</div>
 					<div class="timeline-title-wrapper education">
-						<h3 class="timeline-center-title">EDUCATION</h3>
+							<h2 class="timeline-center-title">Education</h2>
 					</div>
 				</div>
 			</div>
@@ -167,7 +167,7 @@ const isEducationHovered = ref(false);
 }
 
 .card_content--title {
-	@apply text-xl font-bold text-gray-900 dark:text-white;
+	@apply text-lg md:text-xl font-bold text-gray-900 dark:text-white;
 }
 
 .card_content--subtitle {
@@ -245,11 +245,11 @@ const isEducationHovered = ref(false);
 }
 
 .timeline-title-wrapper.experience {
-	@apply translate-x-[-50px] -translate-y-[70%] transform rotate-90;
+	@apply translate-x-[-50px] translate-y-[10%] transform rotate-90;
 }
 
 .timeline-title-wrapper.education {
-	@apply translate-x-[50px] -translate-y-[320%] transform -rotate-90;
+	@apply translate-x-[50px] -translate-y-[300%] transform -rotate-90;
 }
 
 .timeline-title-gradient {

@@ -5,6 +5,7 @@ import ThemeToggle from "@components/ThemeToggle.vue";
 import menuIcon from "@global/svgs/menu-icon.svg?raw";
 import Sidebar from "@components/Sidebar.vue";
 import { navigationItems } from "@/data/navigation";
+import BaseLink from '@/components/base/BaseLink.vue';
 
 const isScrolled = ref(false);
 const isSidebarOpen = ref(false);
@@ -43,35 +44,41 @@ onUnmounted(() => {
 			<div class="flex h-16 items-center justify-between">
 				<!-- Logo -->
 				<div class="flex items-center">
-					<a href="#" class="text-2xl font-bold">
+					<BaseLink 
+						href="#" 
+						ariaLabel="Home"
+						class="text-2xl font-bold"
+					>
 						<span
 							class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
 							>.me</span
 						>
-					</a>
+					</BaseLink>
 					<!-- Desktop Navigation -->
 					<nav class="hidden md:flex ml-10 space-x-8">
-						<a
+						<BaseLink
 							v-for="item in navigationItems"
 							:key="item.name"
 							:href="item.href"
-							class="text-sm dark:text-gray-300 text-gray-600 hover:text-gray-900 dark:hover:text-white transition-colors"
+							:aria-label="item.name"
+							variant="nav"
 						>
 							{{ item.name }}
-						</a>
+						</BaseLink>
 					</nav>
 				</div>
 
 				<!-- Right side buttons -->
 				<div class="flex items-center space-x-3">
 					<ThemeToggle />
-					<a
+					<BaseLink
 						href="https://github.com/javecilla"
-						target="_blank"
-						class="p-2 dark:bg-zinc-800 bg-gray-200 rounded-full dark:hover:bg-zinc-700 hover:bg-gray-300 transition-all duration-300 ease-in-out"
+						ariaLabel="Visit my GitHub profile"
+						variant="icon"
+						external
 					>
 						<GithubIcon class="h-5 w-5 dark:text-white text-gray-900" />
-					</a>
+					</BaseLink>
 
 					<!-- Mobile menu button -->
 					<button
@@ -84,11 +91,14 @@ onUnmounted(() => {
 						></div>
 					</button>
 
-					<button
-						class="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full hover:opacity-90 transition-opacity text-sm"
+					<BaseLink
+						href="/resume"
+						ariaLabel="Download my resume"
+						variant="button"
+						class="hidden md:flex"
 					>
 						<span>Resume</span>
-					</button>
+					</BaseLink>
 				</div>
 			</div>
 		</div>

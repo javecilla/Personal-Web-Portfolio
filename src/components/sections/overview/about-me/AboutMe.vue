@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import ImageSkeleton from "@components/ImageSkeleton.vue";
-import InteractiveImage from "@components/InteractiveImage.vue";
+import BaseImage from '@/components/base/BaseImage.vue';
+import BaseLink from '@/components/base/BaseLink.vue';
 import profileImage from "@global/images/pogi.jpg";
 
 const imageLoaded = ref(false);
@@ -56,16 +57,18 @@ onMounted(async () => {
 									className="absolute inset-0 w-full h-full"
 								/>
 							</Transition>
-							<img
+							<BaseImage
 								:src="profileImage"
 								alt="Profile"
-								class="w-full h-full object-cover object-center rounded-2xl transition-transform transform hover:scale-105"
+								variant="profile"
+								rounded="2xl"
 								:class="{ 'opacity-0': !mobileImageLoaded }"
 								@load="handleMobileImageLoad"
-							/>
-							<div
-								class="absolute inset-0 rounded-2xl bg-black opacity-20"
-							></div>
+							>
+								<template #overlay>
+									<div class="absolute inset-0 rounded-2xl bg-black opacity-20"></div>
+								</template>
+							</BaseImage>
 						</div>
 					</div>
 				</div>
@@ -131,13 +134,15 @@ onMounted(async () => {
 							</div>
 							<p class="section-text text-sm sm:text-base">
 								Currently, I work part-time as an IT Assistant at
-								<a
+								<BaseLink
 									href="https://www.goldenminds.edu.ph/"
-									target="_blank"
+									ariaLabel="Visit Golden Minds Colleges website"
+									external
 									class="section-text hover:opacity-80 transition-opacity"
 								>
-									Golden Minds Colleges </a
-								>, where I design, develop, and implement cutting-edge web-based
+									Golden Minds Colleges
+								</BaseLink>
+								, where I design, develop, and implement cutting-edge web-based
 								applications while optimizing existing systems to adapt to
 								evolving business needs and industry standards.
 							</p>
@@ -149,10 +154,12 @@ onMounted(async () => {
 			<div class="hidden md:block space-y-4 p-5">
 				<div class="relative w-full h-full md:w-[250px] p-4">
 					<div class="absolute inset-0 rounded-3xl overflow-hidden">
-						<InteractiveImage
+						<BaseImage
 							:src="profileImage"
 							alt="Profile"
-							:is-loaded="desktopImageLoaded"
+							variant="interactive"
+							rounded="3xl"
+							:class="{ 'opacity-0': !desktopImageLoaded }"
 							@load="handleDesktopImageLoad"
 						/>
 					</div>
