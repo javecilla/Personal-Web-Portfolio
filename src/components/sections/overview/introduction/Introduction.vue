@@ -12,7 +12,18 @@
 			Crafting elegant web solutions with Vue.js, TypeScript, and Laravel.
 		</p>
 		<span class="introduction__subtitle">
-			<span class="introduction__subtitle-muted">Aspiring</span>
+				<span 
+					class="introduction__subtitle-muted"
+					:class="[
+						'text-[var(--text-muted)]',
+						'dark:text-[var(--text-muted-dark)]',
+						'text-2xl sm:text-3xl',
+						'font-bold'
+					]"
+				>
+					Aspiring
+				</span>
+
 			Full-Stack Web Developer
 		</span>
 		<p class="introduction__description">
@@ -47,6 +58,7 @@
 }
 
 .introduction__subtitle-muted {
-	@apply dark:text-gray-500 text-gray-400;
+	@apply dark:text-gray-500 text-gray-400 font-bold;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -95,7 +95,7 @@ onMounted(async () => {
 									></div>
 								</div>
 							</div>
-							<p class="section-text text-sm sm:text-base">
+							<p class="text-[var(--text-body)] dark:text-[var(--text-body-dark)] text-sm sm:text-base leading-relaxed">
 								Hello, I'm Jerome Avecilla—a 20-year-old BSIT student with a
 								passion for web development. Since 2021, I've been honing my
 								skills in HTML, CSS, JavaScript and now expanding my knowledge
@@ -114,7 +114,7 @@ onMounted(async () => {
 									></div>
 								</div>
 							</div>
-							<p class="section-text text-sm sm:text-base">
+							<p class="text-[var(--text-body)] dark:text-[var(--text-body-dark)] text-sm sm:text-base leading-relaxed">
 								I am committed to continuous learning and thrive in
 								collaborative environments where innovative ideas come to life.
 								Whether working independently or as part of a team, I
@@ -132,13 +132,13 @@ onMounted(async () => {
 									></div>
 								</div>
 							</div>
-							<p class="section-text text-sm sm:text-base">
+							<p class="text-[var(--text-body)] dark:text-[var(--text-body-dark)] text-sm sm:text-base leading-relaxed">
 								Currently, I work part-time as an IT Assistant at
 								<BaseLink
 									href="https://www.goldenminds.edu.ph/"
 									ariaLabel="Visit Golden Minds Colleges website"
 									external
-									class="section-text hover:opacity-80 transition-opacity"
+									class="font-medium"
 								>
 									Golden Minds Colleges
 								</BaseLink>

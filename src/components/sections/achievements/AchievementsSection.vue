@@ -117,6 +117,10 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 										? 'achievements__slide--next'
 										: 'achievements__slide--prev',
 								]"
+								:id="`achievement-panel-${index}`"
+								role="tabpanel"
+								:aria-labelledby="`achievement-tab-${index}`"
+								:tabindex="currentSlide === index ? 0 : -1"
 							>
 								<!-- Grid Layout -->
 								<div class="achievements__grid">
@@ -201,6 +205,9 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 						:key="index"
 						:index="index"
 						:is-active="currentSlide === index"
+						:id="`achievement-tab-${index}`"
+						:ariaControls="`achievement-panel-${index}`"
+						:total-slides="achievements.length"
 						@select="currentSlide = index"
 					/>
 				</div>

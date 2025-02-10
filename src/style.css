@@ -16,6 +16,13 @@
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	--text-muted: #666666;
+	--text-muted-dark: #A1A1AA;
+	--text-body: #333333;
+	--text-body-dark: #E4E4E7;
+	--link-color: #2563EB;
+	--link-color-dark: #60A5FA;
 }
 
 a {
@@ -35,6 +42,10 @@ body {
 	min-height: 100vh;
 	font-family: var(--font-inter);
 	scroll-behavior: smooth;
+
+	@apply font-sans antialiased;
+	@apply bg-white dark:bg-[#060606];
+	@apply text-[var(--text-body)] dark:text-[var(--text-body-dark)];
 }
 
 h1 {

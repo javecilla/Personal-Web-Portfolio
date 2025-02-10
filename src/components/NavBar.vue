@@ -10,6 +10,12 @@ import BaseLink from '@/components/base/BaseLink.vue';
 const isScrolled = ref(false);
 const isSidebarOpen = ref(false);
 
+// Add aria labels
+const mobileMenuLabels = {
+  open: 'Open navigation menu',
+  close: 'Close navigation menu'
+};
+
 const handleScroll = () => {
 	isScrolled.value = window.scrollY > 0;
 };
@@ -76,18 +82,24 @@ onUnmounted(() => {
 						ariaLabel="Visit my GitHub profile"
 						variant="icon"
 						external
+						class="p-2 dark:bg-zinc-800 bg-gray-200 rounded-full dark:hover:bg-zinc-700 hover:bg-gray-300 transition-all duration-300 ease-in-out inline-flex items-center justify-center"
 					>
 						<GithubIcon class="h-5 w-5 dark:text-white text-gray-900" />
 					</BaseLink>
 
 					<!-- Mobile menu button -->
 					<button
+						type="button"
 						class="md:hidden p-2 dark:bg-zinc-800 bg-gray-200 rounded-full dark:hover:bg-zinc-700 hover:bg-gray-300 transition-all duration-300 ease-in-out inline-flex items-center justify-center"
+						:aria-expanded="isSidebarOpen"
+						:aria-label="isSidebarOpen ? mobileMenuLabels.close : mobileMenuLabels.open"
 						@click="isSidebarOpen = true"
 					>
+						<span class="sr-only">{{ isSidebarOpen ? mobileMenuLabels.close : mobileMenuLabels.open }}</span>
 						<div
 							v-html="menuIcon"
 							class="h-5 w-5 dark:text-white text-gray-900 flex items-center justify-center"
+							aria-hidden="true"
 						></div>
 					</button>
 
@@ -95,9 +107,9 @@ onUnmounted(() => {
 						href="/resume"
 						ariaLabel="Download my resume"
 						variant="button"
-						class="hidden md:flex"
+						class="hidden md:flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 transition-all duration-300 px-6"
 					>
-						<span>Resume</span>
+						<span class="text-white font-medium">Resume</span>
 					</BaseLink>
 				</div>
 			</div>
