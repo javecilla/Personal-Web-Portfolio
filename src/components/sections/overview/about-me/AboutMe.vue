@@ -182,6 +182,6 @@ onMounted(async () => {
 
 <style scoped>
 .aspect-3-4 {
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 5;
 }
 </style>
