@@ -7,6 +7,7 @@ import viteImagemin from "vite-plugin-imagemin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	base: '/',
 	plugins: [
 		vue({
 			template: {
@@ -155,11 +156,9 @@ export default defineConfig({
 		include: ["vue"],
 	},
 	assetsInclude: ["**/*.svg"],
-	experimental: {
-		renderBuiltUrl(filename: string, { hostType }) {
-			if (hostType === 'js') {
-				return { runtime: `window.__vite_public_path + ${JSON.stringify(filename)}` }
-			}
+	server: {
+		fs: {
+			strict: true
 		}
 	}
 });
