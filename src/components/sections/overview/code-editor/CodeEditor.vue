@@ -2,17 +2,16 @@
 displays both code and its output * Features tabs for switching between output
 preview and code view */
 <script setup lang="ts">
+interface Props {
+  code: string;
+}
+
+defineProps<Props>();
+
 import { ref, onMounted, onUnmounted } from "vue";
 import CodeEditorHeader from "@components/sections/overview/code-editor/CodeEditorHeader.vue";
 import CodeContent from "@components/sections/overview/code-editor/CodeContent.vue";
 import AboutMeSection from "@components/sections/overview/about-me/AboutMe.vue";
-
-interface Props {
-	/** The source code to display in the editor */
-	code: string;
-}
-
-const props = defineProps<Props>();
 
 // State management
 const activeTab = ref("output");

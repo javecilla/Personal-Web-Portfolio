@@ -7,15 +7,15 @@ interface Props {
   rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
 }
 
-const emit = defineEmits<{
-  (e: 'load'): void;
-}>();
-
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   variant: 'default',
   loading: 'lazy',
   rounded: 'none'
 });
+
+const emit = defineEmits<{
+  (e: 'load'): void;
+}>();
 
 const roundedClasses = {
   none: '',
@@ -41,11 +41,11 @@ const variantClasses = {
       :src="src"
       :alt="alt"
       :loading="loading"
-      :class="[
+      :class="[ 
         variantClasses[variant],
         roundedClasses[rounded]
       ]"
-      @load="emit('load')"
+      @load="() => emit('load')"
     />
     <slot name="overlay" />
   </div>

@@ -6,7 +6,7 @@ interface Props {
   variant?: 'default' | 'icon' | 'nav' | 'button';
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   external: false,
   variant: 'default'
 });

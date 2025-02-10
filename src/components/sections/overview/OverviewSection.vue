@@ -111,16 +111,32 @@ const aboutMeCode = ref(
 
 <template>
 	<section class="space-y-2 max-w-[1400px] -mb-[20px]">
-		<div class="gap-4 sm:gap-6">
-			<div
-				class="overflow-hidden lg:-mt-[40px] p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out"
-			>
-				<!-- Overview/Introduction Section -->
-				<Introduction />
+    <Suspense>
+      <template #default>
+        <div class="gap-4 sm:gap-6">
+          <div
+            class="overflow-hidden lg:-mt-[40px] p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out"
+          >
+            <!-- Overview/Introduction Section -->
+            <Introduction />
 
-				<!-- Interactive Code Editor Section -->
-				<CodeEditor :code="aboutMeCode" />
-			</div>
-		</div>
+            <!-- Interactive Code Editor Section -->
+            <CodeEditor :code="aboutMeCode" />
+          </div>
+        </div>
+      </template>
+      <template #fallback>
+        <div class="flex items-center justify-center min-h-[400px]">
+          <span class="text-lg">Loading...</span>
+        </div>
+      </template>
+    </Suspense>
 	</section>
 </template>
+
+<style>
+/* Move critical styles inline */
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.5rem;
+}
+</style>

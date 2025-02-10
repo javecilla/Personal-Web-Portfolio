@@ -77,6 +77,7 @@ export default defineConfig({
 	],
 	css: {
 		postcss: "./postcss.config.cjs",
+		devSourcemap: true,
 	},
 	resolve: {
 		alias: {
@@ -91,22 +92,38 @@ export default defineConfig({
 		target: "esnext",
 		minify: "terser",
 		cssMinify: true,
+		cssCodeSplit: true,
 		assetsInlineLimit: 4096,
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
-					if (id.includes("node_modules/vue")) {
-						return "vue-vendor";
-					}
-					if (id.includes("/components/") && id.endsWith(".vue")) {
-						if (id.includes("/sections/overview/")) {
-							return "critical";
+					// Vendor chunks
+					if (id.includes('node_modules')) {
+						if (id.includes('vue')) {
+							return 'vendor-vue';
 						}
-						return "components";
+						// Group other node_modules into a single vendor chunk
+						return 'vendor';
 					}
-					if (id.includes("/components/sections/") && id.endsWith(".vue")) {
-						return "sections";
+
+					// Component chunks based on directory structure
+					if (id.includes('/src/components/')) {
+						if (id.includes('/base/')) {
+							return 'components-base';
+						}
+						if (id.includes('/sections/')) {
+							return 'components-sections';
+						}
+						return 'components-common';
 					}
+
+					// Utils and composables
+					if (id.includes('/composables/')) {
+						return 'composables';
+					}
+
+					// Keep everything else in default chunk
+					return undefined;
 				},
 				assetFileNames: (assetInfo) => {
 					const info = assetInfo.name ? assetInfo.name : "unknown";
@@ -115,19 +132,34 @@ export default defineConfig({
 					if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
 						return `assets/img/[name]-[hash][extname]`;
 					}
+					if (/\.(css)$/.test(info)) {
+						return `assets/css/[name]-[hash][extname]`;
+					}
+					if (/\.(woff2?|ttf|otf|eot)$/.test(info)) {
+						return 'assets/fonts/[name]-[hash][extname]';
+					}
+					if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(info)) {
+						return 'assets/images/[name]-[hash][extname]';
+					}
 					return `assets/${extType}/[name]-[hash][extname]`;
 				},
 				chunkFileNames: "assets/js/[name]-[hash].js",
 				entryFileNames: "assets/js/[name]-[hash].js",
 			},
 		},
-		chunkSizeWarningLimit: 1000,
-		sourcemap: false,
+		chunkSizeWarningLimit: 2000,
+		sourcemap: true,
 		reportCompressedSize: false,
 	},
 	optimizeDeps: {
 		include: ["vue"],
-		exclude: ["@vueuse/core"],
 	},
 	assetsInclude: ["**/*.svg"],
+	experimental: {
+		renderBuiltUrl(filename: string, { hostType }) {
+			if (hostType === 'js') {
+				return { runtime: `window.__vite_public_path + ${JSON.stringify(filename)}` }
+			}
+		}
+	}
 });

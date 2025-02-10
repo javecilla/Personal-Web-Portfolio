@@ -81,7 +81,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 				<div class="achievements__navigation-row">
 					<BaseButton
 						variant="icon"
-						aria-label="View previous achievement"
+						:ariaLabel="'View previous achievement'"
 						class="achievements__nav-btn achievements__nav-btn--prev"
 						@click="() => navigateSlide('prev')"
 					>
@@ -152,7 +152,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 
 					<BaseButton
 						variant="icon"
-						aria-label="View next achievement"
+						:ariaLabel="'View next achievement'"
 						class="achievements__nav-btn achievements__nav-btn--next"
 						@click="() => navigateSlide('next')"
 					>

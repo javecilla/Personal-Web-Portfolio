@@ -60,7 +60,7 @@ onUnmounted(() => {
 							v-for="item in navigationItems"
 							:key="item.name"
 							:href="item.href"
-							:aria-label="item.name"
+							:ariaLabel="item.name"
 							variant="nav"
 						>
 							{{ item.name }}
