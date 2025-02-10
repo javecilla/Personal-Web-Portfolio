@@ -7,7 +7,7 @@ import viteImagemin from "vite-plugin-imagemin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: './',
+	base: '',
 	plugins: [
 		vue({
 			template: {
@@ -95,17 +95,17 @@ export default defineConfig({
 		cssMinify: true,
 		cssCodeSplit: true,
 		assetsInlineLimit: 4096,
+		outDir: 'dist',
+		assetsDir: 'assets',
 		rollupOptions: {
 			output: {
-				manualChunks(id) {
-					 // Simplified chunking strategy
-					if (id.includes('node_modules')) {
-						return 'vendor';
-					}
-					if (id.includes('/components/')) {
-						return 'components';
-					}
-					return undefined;
+				manualChunks: {
+					'vue-vendor': ['vue'],
+					'icons': ['lucide-vue-next'],
+					'components': [
+						'./src/components/NavBar.vue',
+						'./src/components/PageLoader.vue'
+					],
 				},
 				assetFileNames: (assetInfo) => {
 					const info = assetInfo.name ? assetInfo.name : "unknown";
@@ -129,17 +129,29 @@ export default defineConfig({
 				entryFileNames: "assets/js/[name]-[hash].js",
 			},
 		},
-		chunkSizeWarningLimit: 2000,
+		chunkSizeWarningLimit: 1000,
 		sourcemap: true,
 		reportCompressedSize: false,
+		terserOptions: {
+			compress: {
+				drop_console: true,
+				drop_debugger: true
+			}
+		}
 	},
 	optimizeDeps: {
-		include: ["vue"],
+		include: ['vue', 'lucide-vue-next'],
+		exclude: ['your-big-library']
 	},
 	assetsInclude: ["**/*.svg"],
 	server: {
 		fs: {
 			strict: true
 		}
+	},
+	preview: {
+		port: 4173,
+		host: true,
+		strictPort: true,
 	}
 });

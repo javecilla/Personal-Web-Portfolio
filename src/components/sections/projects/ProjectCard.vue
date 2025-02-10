@@ -2,25 +2,56 @@
 information with image, description, and links * Features hover effects, tech
 stack icons, and action buttons */
 <script setup lang="ts">
+import { ref } from 'vue';
 import { GithubIcon, Globe } from "lucide-vue-next";
 import type { Project } from "@/types/project";
+import ImageSkeleton from "@components/ImageSkeleton.vue";
+import BaseImage from '@/components/base/BaseImage.vue';
 
 defineProps<{
 	project: Project;
 }>();
+
+const imageLoaded = ref(false);
+
+const handleImageLoad = () => {
+	imageLoaded.value = true;
+};
 </script>
 
 <template>
 	<div class="project-card group section-bg">
-		<!-- Project Image -->
+		<!-- Project Image with Skeleton -->
 		<div class="project-card__image-container">
-			<img
-				:src="project.image"
-				:alt="project.title"
-				loading="eager"
-				class="project-card__image"
-			/>
-			<div class="project-card__image-overlay"></div>
+			<Transition
+				enter-active-class="transition-opacity duration-300"
+				enter-from-class="opacity-0"
+				enter-to-class="opacity-100"
+			>
+				<ImageSkeleton
+					v-if="!imageLoaded"
+					rounded="rounded-t-2xl"
+					className="absolute inset-0 w-full h-full"
+				/>
+			</Transition>
+			
+			<div class="relative w-full h-full">
+				<BaseImage
+					:src="project.image"
+					:alt="project.title"
+					variant="project"
+					rounded="2xl"
+					:class="[
+						'project-card__image',
+						{ 'opacity-0': !imageLoaded }
+					]"
+					@load="handleImageLoad"
+				>
+					<template #overlay>
+						<div class="project-card__image-overlay group-hover:opacity-0"></div>
+					</template>
+				</BaseImage>
+			</div>
 		</div>
 
 		<!-- Content -->
@@ -94,7 +125,8 @@ defineProps<{
 }
 
 .project-card__image-overlay {
-	@apply absolute inset-0 bg-gradient-to-t from-black/50 to-transparent;
+	@apply absolute inset-0 bg-gradient-to-t from-black/50 to-transparent
+         transition-opacity duration-500;
 }
 
 /* Content section */

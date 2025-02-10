@@ -206,6 +206,18 @@
 				rel="stylesheet"
 			/>
 		</noscript>
+
+		<!-- Add base URL -->
+		<base href="/" />
+		
+		<!-- Add error handling for assets -->
+		<script>
+			window.addEventListener('error', function(e) {
+				if (e.target.tagName === 'IMG' || e.target.tagName === 'SCRIPT') {
+					console.warn('Resource failed to load:', e.target.src);
+				}
+			}, true);
+		</script>
 	</head>
 	<body
 		class="font-sans antialiased bg-white dark:bg-[#060606] text-gray-600 dark:text-gray-400 flex flex-col [overflow-anchor:none]"

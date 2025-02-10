@@ -7,12 +7,21 @@ import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { achievements } from "@/data/achievements";
 import BaseButton from '@/components/base/BaseButton.vue';
 import AchievementDot from '@/components/sections/achievements/AchievementDot.vue';
+import ImageSkeleton from "@components/ImageSkeleton.vue";
+import BaseImage from '@/components/base/BaseImage.vue';
 import { useSwipe } from '@/composables/useSwipe';
 
 // State management
 const currentSlide = ref(0);
 const isAnimating = ref(false);
 const slideDirection = ref<"left" | "right">("right");
+
+// Add image loading state
+const imageLoaded = ref<{ [key: number]: boolean }>({});
+
+const handleImageLoad = (index: number) => {
+  imageLoaded.value[index] = true;
+};
 
 /**
  * Handles slide navigation with animation
@@ -111,14 +120,35 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 							>
 								<!-- Grid Layout -->
 								<div class="achievements__grid">
-									<!-- Image Section -->
+									<!-- Image Section with Skeleton -->
 									<div class="achievements__image-container group">
-										<img
+										<Transition
+											enter-active-class="transition-opacity duration-300"
+											enter-from-class="opacity-0"
+											enter-to-class="opacity-100"
+										>
+											<ImageSkeleton
+												v-if="!imageLoaded[index]"
+												rounded="rounded-xl"
+												className="absolute inset-0 w-full h-full"
+											/>
+										</Transition>
+										
+										<BaseImage
 											:src="achievement.image"
 											:alt="achievement.title"
-											class="achievements__image"
-										/>
-										<div class="achievements__image-overlay"></div>
+											variant="achievement"
+											rounded="xl"
+											:class="[
+												'achievements__image',
+												{ 'opacity-0': !imageLoaded[index] }
+											]"
+											@load="() => handleImageLoad(index)"
+										>
+											<template #overlay>
+												<div class="achievements__image-overlay"></div>
+											</template>
+										</BaseImage>
 									</div>
 
 									<!-- Content Section -->
@@ -290,12 +320,12 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 
 /* Image section */
 .achievements__image-container {
-	@apply relative h-[225px] md:h-full overflow-hidden;
+	@apply relative h-[225px] md:h-full overflow-hidden rounded-xl;
 }
 
 .achievements__image {
 	@apply object-cover w-full h-full transition-all duration-700 
-         filter grayscale transform;
+         filter grayscale transform opacity-100;
 }
 
 .group:hover .achievements__image {

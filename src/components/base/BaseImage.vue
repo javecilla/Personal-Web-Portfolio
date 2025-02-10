@@ -2,15 +2,17 @@
 interface Props {
   src: string;
   alt: string;
-  variant?: 'default' | 'profile' | 'interactive';
+  variant?: 'default' | 'profile' | 'interactive' | 'project' | 'achievement';
   loading?: 'lazy' | 'eager';
-  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
+  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full' | 't-2xl';
+  priority?: boolean;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
   loading: 'lazy',
-  rounded: 'none'
+  rounded: 'none',
+  priority: false
 });
 
 const emit = defineEmits<{
@@ -18,21 +20,33 @@ const emit = defineEmits<{
 }>();
 
 const roundedClasses = {
-  none: '',
-  sm: 'rounded-sm',
-  md: 'rounded-md',
-  lg: 'rounded-lg',
-  xl: 'rounded-xl',
+  'none': '',
+  'sm': 'rounded-sm',
+  'md': 'rounded-md',
+  'lg': 'rounded-lg',
+  'xl': 'rounded-xl',
   '2xl': 'rounded-2xl',
   '3xl': 'rounded-3xl',
-  full: 'rounded-full'
-};
+  'full': 'rounded-full',
+  't-2xl': 'rounded-t-2xl'
+} as const;
 
 const variantClasses = {
-  default: 'w-full h-full object-cover',
-  profile: 'w-full h-full object-cover object-center transition-transform transform hover:scale-105',
-  interactive: 'w-full h-full object-cover object-center transition-all duration-500 hover:scale-105'
-};
+  'default': 'w-full h-full object-cover',
+  'profile': 'w-full h-full object-cover object-center transition-transform transform hover:scale-105',
+  'interactive': 'w-full h-full object-cover object-center transition-all duration-500 hover:scale-105',
+  'project': 'w-full h-full object-cover object-center',
+  'achievement': 'w-full h-full object-cover object-center'
+} as const;
+
+// Add preload hint for priority images
+if (props.priority) {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = props.src;
+  document.head.appendChild(link);
+}
 </script>
 
 <template>
@@ -40,10 +54,12 @@ const variantClasses = {
     <img
       :src="src"
       :alt="alt"
-      :loading="loading"
+      :loading="priority ? 'eager' : loading"
+      :fetchpriority="priority ? 'high' : 'auto'"
+      decoding="async"
       :class="[ 
-        variantClasses[variant],
-        roundedClasses[rounded]
+        variantClasses[props.variant],
+        roundedClasses[props.rounded]
       ]"
       @load="() => emit('load')"
     />
