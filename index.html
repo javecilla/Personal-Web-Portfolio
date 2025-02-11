@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 	<head>
-		<!-- Primary Meta Tags -->
 		<meta charset="UTF-8" />
 		<meta
 			name="viewport"
@@ -10,7 +9,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Jerome Avecilla</title>
 		
-		<meta name="title" content="Jerome Avecilla | Portfolio" />
+		<meta name="title" content="Jerome Avecilla | Web Portfolio" />
 		<meta
 			name="description"
 			content="Personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "
@@ -20,15 +19,11 @@
 			name="keywords"
 			content="Jerome Avecilla, Web Developer, Full-Stack Developer, Vue.js Developer, TypeScript, Laravel, Portfolio"
 		/>
-
-		<!-- Robots and Canonical -->
 		<meta
 			name="robots"
 			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 		/>
 		<link rel="canonical" href="https://jerome-avecilla.vercel.app/" />
-
-		<!-- Search Engine -->
 		<meta
 			name="googlebot"
 			content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
@@ -42,12 +37,12 @@
 			content="RAw3XoeQlQcldgqkMijkj8jMucAoJTaY_Ns44cioVfM"
 		/>
 
-		<!-- Open Graph / Facebook -->
+
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://jerome-avecilla.vercel.app/" />
 		<meta
 			property="og:title"
-			content="Jerome Avecilla | Full-Stack Web Developer Portfolio"
+			content="Jerome Avecilla | Web Portfolio"
 		/>
 		<meta
 			property="og:description"
@@ -55,7 +50,7 @@
 		/>
 		<meta
 			property="og:image"
-			content="https://jerome-avecilla.vercel.app/assets/images/general/pogi.jpg"
+			content="https://jerome-avecilla.vercel.app/assets/images/pogi.jpg"
 		/>
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
@@ -70,14 +65,12 @@
 			property="article:publisher"
 			content="https://www.facebook.com/jerome.avecilla24"
 		/>
-
-		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@_javecilla" />
 		<meta name="twitter:creator" content="@_javecilla" />
 		<meta
 			name="twitter:title"
-			content="Jerome Avecilla | Full-Stack Web Developer Portfolio"
+			content="Jerome Avecilla | Web Portfolio"
 		/>
 		<meta
 			name="twitter:description"
@@ -85,10 +78,10 @@
 		/>
 		<meta
 			name="twitter:image"
-			content="https://jerome-avecilla.vercel.app/assets/images/general/pogi.jpg"
+			content="https://jerome-avecilla.vercel.app/assets/images/pogi.jpg"
 		/>
 
-		<!-- Theme and Mobile -->
+
 		<meta
 			name="theme-color"
 			content="#060606"
@@ -105,34 +98,37 @@
 		<meta name="apple-mobile-web-app-title" content="Jerome Avecilla" />
 		<meta name="application-name" content="Jerome Avecilla Portfolio" />
 
-		<!-- Manifest -->
-		<link rel="manifest" href="/manifest.json" />
-
-		<!-- Favicon and Icons -->
 		<link
 			rel="icon"
 			type="image/png"
 			sizes="32x32"
-			href="/assets/favicons/favicon-32x32.png"
+			href="https://jerome-avecilla.vercel.app/assets/favicons/favicon-32x32.png"
 		/>
 		<link
 			rel="icon"
 			type="image/png"
 			sizes="16x16"
-			href="/assets/favicons/favicon-16x16.png"
+			href="https://jerome-avecilla.vercel.app/assets/favicons/favicon-16x16.png"
 		/>
 		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
-			href="/assets/favicons/favicon-180x180.png"
+			href="https://jerome-avecilla.vercel.app/assets/favicons/favicon-180x180.png"
 		/>
 		<meta
 			name="msapplication-TileImage"
-			content="/assets/favicons/favicon.png"
+			content="https://jerome-avecilla.vercel.app/assets/favicons/favicon.png"
 		/>
 		<meta name="msapplication-TileColor" content="#f3f3f3" />
+		<meta name="msapplication-config" content="https://jerome-avecilla.vercel.app/browserconfig.xml" />
+		<link
+			rel="sitemap"
+			type="application/xml"
+			title="Sitemap"
+			href="https://jerome-avecilla.vercel.app/sitemap.xml"
+		/>
+		<link rel="manifest" href="https://jerome-avecilla.vercel.app/manifest.json" />
 
-		<!-- Preconnect and DNS Prefetch -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 		<link
 			rel="preconnect"
@@ -141,16 +137,10 @@
 		/>
 		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 		<link rel="dns-prefetch" href="https://www.google-analytics.com" />
-
-		<!-- Sitemap -->
-		<link
-			rel="sitemap"
-			type="application/xml"
-			title="Sitemap"
-			href="/sitemap.xml"
-		/>
-		<base href="/" />
-
+		<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+		<link rel="dns-prefetch" href="https://www.google.com" />
+		<link rel="dns-prefetch" href="https://www.gstatic.com" />
+		
 		<!--  Google Tag Manager -->
 		<script>
 			window.addEventListener("load", function () {
@@ -193,7 +183,6 @@
 			});
 		</script>
 		
-		<!-- Google Fonts -->
 		<link
 			rel="preload"
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -215,6 +204,8 @@
 				}
 			}, true);
 		</script>
+
+		<base href="/" />	
 		<script type="module">
 			// Ensure proper module loading order
 			window.__VUE_PROD_DEVTOOLS__ = false;
@@ -224,7 +215,6 @@
 	<body
 		class="font-sans antialiased bg-white dark:bg-[#060606] text-gray-600 dark:text-gray-400 flex flex-col [overflow-anchor:none]"
 	>
-		<!-- GTM noscript -->
 		<noscript>
 			<iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-NPL8DWSH"
