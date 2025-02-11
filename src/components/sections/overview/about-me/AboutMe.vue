@@ -2,7 +2,6 @@
 import { ref, onMounted } from "vue";
 import ImageSkeleton from "@components/ImageSkeleton.vue";
 import BaseImage from '@/components/base/BaseImage.vue';
-import BaseLink from '@/components/base/BaseLink.vue';
 import profileImage from "@global/images/pogi.jpg";
 
 const imageLoaded = ref(false);
@@ -106,18 +105,6 @@ onMounted(async () => {
             <div class="about-me__timeline-item">
               <div class="about-me__timeline-marker third_paragraph"></div>
               <p class="about-me__text">
-               <!-- Currently, I work part-time as an IT Assistant at
-                <BaseLink
-                  href="https://www.goldenminds.edu.ph/"
-                  ariaLabel="Visit Golden Minds Colleges website"
-                  external
-                  class="about-me__link"
-                >
-                  Golden Minds Colleges
-                </BaseLink>
-                , where I design, develop, and implement cutting-edge web-based
-                applications while optimizing existing systems to adapt to
-                evolving business needs and industry standards.-->
                 I'm currently honing my skills through side projects and exploring new technologies in web development. Always eager to collaborate with talented minds and inspire others on this journey.
               </p>
             </div>
