@@ -66,7 +66,7 @@ function setActiveTab(tab: string) {
 
 /* Window controls styles */
 .editor-header__controls {
-	@apply flex items-center justify-between p-2 sm:px-4 sm:py-2 border-b dark:border-zinc-800 border-gray-200;
+	@apply flex items-center justify-between p-3 lg:p-[15px] sm:px-4 sm:py-2 border-b dark:border-zinc-800 border-gray-200;
 }
 
 .editor-header__buttons {

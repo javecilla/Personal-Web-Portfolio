@@ -9,7 +9,7 @@
 			<span class="introduction__title-highlight">Jerome Avecilla</span>
 		</h1>
 		<p class="introduction__description" :style="{ contain: 'content' }">
-			Crafting elegant web solutions with Vue.js, TypeScript, and Laravel.
+			Building cool stuff with Vue.js, TypeScript, and Laravel—because the internet deserves better!
 		</p>
 		<span class="introduction__subtitle">
 				<span 

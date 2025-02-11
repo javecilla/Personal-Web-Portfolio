@@ -9,7 +9,7 @@
 		/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Jerome Avecilla</title>
-		<base href="/" />
+		
 		<meta name="title" content="Jerome Avecilla | Portfolio" />
 		<meta
 			name="description"
@@ -149,10 +149,10 @@
 			title="Sitemap"
 			href="/sitemap.xml"
 		/>
+		<base href="/" />
 
 		<!--  Google Tag Manager -->
 		<script>
-			// Defer GTM loading
 			window.addEventListener("load", function () {
 				setTimeout(function () {
 					(function (w, d, s, l, i) {
@@ -166,7 +166,7 @@
 						j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
 						f.parentNode.insertBefore(j, f);
 					})(window, document, "script", "dataLayer", "GTM-NPL8DWSH");
-				}, 3000); // Delay by 3 seconds
+				}, 3000); 
 			});
 		</script>
 
@@ -180,7 +180,7 @@
 					}
 					gtag("js", new Date());
 					gtag("config", "G-NHV90YV828", {
-						send_page_view: false, // Disable automatic page views
+						send_page_view: false, 
 						transport_type: "beacon",
 					});
 					// Load GA script asynchronously
@@ -189,7 +189,7 @@
 					ga.defer = true;
 					ga.src = "https://www.googletagmanager.com/gtag/js?id=G-NHV90YV828";
 					document.head.appendChild(ga);
-				}, 3000); // Delay by 3 seconds
+				}, 3000); 
 			});
 		</script>
 		
