@@ -6,7 +6,8 @@ export const experiences: Experience[] = [
 		position: "IT Assistant",
 		location: "Sta. Maria, Bulacan",
 		description:
-			"My journey at Golden Minds Colleges began in 2022 when my advisor, Junilo Victoriano Flores, the school's sole IT professional specializing in web development, referred me to Sir Derek Malibiran, the Owner and President of the school. I joined the development team, initially focusing on front-end UI/UX improvements to enhance the college's digital platforms. Over time, I expanded my role to include backend integration, collaborating closely with Sir Jelo. Today, I lead the design, development, and maintenance of the college's digital assets, implementing innovative solutions to optimize performance, improve user experience, and meet business requirements.",
+			//"My journey at Golden Minds Colleges began in 2022 when my advisor, Junilo Victoriano Flores, the school's sole IT professional specializing in web development, referred me to Sir Derek Malibiran, the Owner and President of the school. I joined the development team, initially focusing on front-end UI/UX improvements to enhance the college's digital platforms. Over time, I expanded my role to include backend integration, collaborating closely with Sir Jelo. Today, I lead the design, development, and maintenance of the college's digital assets, implementing innovative solutions to optimize performance, improve user experience, and meet business requirements."
+			"My journey at Golden Minds Colleges started in 2022 when my advisor, Junilo Victoriano Flores, introduced me to the school's President, Sir Derek Malibiran. Initially, I focused on front-end UI/UX improvements, refining the college’s digital platforms for better usability. As I gained experience, I expanded into backend development, collaborating closely with Sir Jelo to integrate seamless functionality. Over time, I took on a leadership role in designing, developing, and maintaining the college’s digital infrastructure—implementing innovative solutions to enhance performance, streamline operations, and align with institutional goals.",
 		projects: [
 			{
 				name: "Golden Minds Colleges Official Website",
@@ -25,7 +26,7 @@ export const experiences: Experience[] = [
 			},
 		],
 		startDate: "May 2022",
-		endDate: "Present",
+		endDate: "January 2025",
 	},
 ];
 

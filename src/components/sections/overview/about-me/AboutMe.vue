@@ -106,7 +106,7 @@ onMounted(async () => {
             <div class="about-me__timeline-item">
               <div class="about-me__timeline-marker third_paragraph"></div>
               <p class="about-me__text">
-                Currently, I work part-time as an IT Assistant at
+               <!-- Currently, I work part-time as an IT Assistant at
                 <BaseLink
                   href="https://www.goldenminds.edu.ph/"
                   ariaLabel="Visit Golden Minds Colleges website"
@@ -117,7 +117,8 @@ onMounted(async () => {
                 </BaseLink>
                 , where I design, develop, and implement cutting-edge web-based
                 applications while optimizing existing systems to adapt to
-                evolving business needs and industry standards.
+                evolving business needs and industry standards.-->
+                I'm currently honing my skills through side projects and exploring new technologies in web development. Always eager to collaborate with talented minds and inspire others on this journey.
               </p>
             </div>
           </div>
@@ -216,7 +217,7 @@ onMounted(async () => {
   @apply mt-[50px] md:mt-[25px];
 }
 .about-me__timeline-marker.third_paragraph {
-  @apply mt-[120px] md:mt-[50px];
+  @apply mt-[100px] md:mt-[50px];
 }
 
 .about-me__text {
