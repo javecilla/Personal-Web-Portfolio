@@ -9,9 +9,9 @@ interface Props {
 defineProps<Props>();
 
 import { ref, onMounted, onUnmounted } from "vue";
-import CodeEditorHeader from "@components/sections/overview/code-editor/CodeEditorHeader.vue";
-import CodeContent from "@components/sections/overview/code-editor/CodeContent.vue";
-import AboutMeSection from "@components/sections/overview/about-me/AboutMe.vue";
+import CodeEditorHeader from "@/components/sections/overview/code-editor/CodeEditorHeader.vue";
+import CodeContent from "@/components/sections/overview/code-editor/CodeContent.vue";
+import AboutMeSection from "@/components/sections/overview/about-me/AboutMe.vue";
 
 // State management
 const activeTab = ref("output");

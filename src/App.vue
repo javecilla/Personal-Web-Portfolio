@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent, onMounted } from "vue";
 import { useStore } from '@/store';
-import PageLoader from "@components/PageLoader.vue";
-import PageTransition from "@components/PageTransition.vue";
-import CustomCursor from "@components/CustomCursor.vue";
-import NavBar from "@components/NavBar.vue";
-import ErrorBoundary from "@components/ErrorBoundary.vue";
+import PageLoader from "@/components/PageLoader.vue";
+import PageTransition from "@/components/PageTransition.vue";
+import CustomCursor from "@/components/CustomCursor.vue";
+import NavBar from "@/components/NavBar.vue";
+import ErrorBoundary from "@/components/ErrorBoundary.vue";
 
 // Simplified loading states
 const store = useStore();
 const isContentVisible = ref(false);
+
+// Add layout transition control
+const layoutReady = ref(false);
 
 onMounted(() => {
   // Wait for initial render and fonts
@@ -17,17 +20,19 @@ onMounted(() => {
     document.fonts.ready,
     new Promise(resolve => requestAnimationFrame(resolve))
   ]).then(() => {
+    layoutReady.value = true;
     store.commit('setInitialLoadComplete');
     setTimeout(() => {
       isContentVisible.value = true;
-    }, 500);
+    }, 100); // Reduced delay
   });
 
-  // Failsafe timeout
+  // Failsafe timeout reduced
   setTimeout(() => {
+    layoutReady.value = true;
     store.commit('setInitialLoadComplete');
     isContentVisible.value = true;
-  }, 3000);
+  }, 2000);
 });
 
 // Watch for Suspense component load state
@@ -47,7 +52,7 @@ const components = {
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen" :class="{ 'ready': layoutReady }">
     <PageLoader />
     
     <!-- Main content -->
@@ -55,6 +60,7 @@ const components = {
       enter-active-class="transition-opacity duration-300"
       enter-from-class="opacity-0"
       enter-to-class="opacity-100"
+      mode="out-in"
     >
       <div v-show="isContentVisible">
         <CustomCursor />
@@ -368,5 +374,14 @@ const components = {
 </template>
 
 <style>
+.min-h-screen {
+  min-height: 100vh;
+  contain: layout size;
+}
+
+.ready {
+  contain: none;
+}
+
 /* Component styles moved to src/assets/css/components.css */
 </style>

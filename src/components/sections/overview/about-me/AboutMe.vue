@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import ImageSkeleton from "@components/ImageSkeleton.vue";
+import ImageSkeleton from "@/components/ImageSkeleton.vue";
 import BaseImage from '@/components/base/BaseImage.vue';
 import profileImage from "@global/images/pogi.jpg";
 
@@ -34,6 +34,18 @@ const initializeApp = async () => {
 onMounted(async () => {
 	await initializeApp();
 });
+
+// Add image dimensions
+const IMAGE_DIMENSIONS = {
+  mobile: {
+    width: 150,
+    height: 300
+  },
+  desktop: {
+    width: 250,
+    height: 417 // Using 5:3 aspect ratio
+  }
+};
 </script>
 
 <template>
@@ -41,21 +53,26 @@ onMounted(async () => {
     <div class="about-me__grid">
       <!-- Mobile Image Container -->
       <div class="about-me__mobile-image">
-        <div class="about-me__image-wrapper">
+        <div class="about-me__image-wrapper" :style="`min-height: ${IMAGE_DIMENSIONS.mobile.height}px`">
           <div class="about-me__image-container">
             <Transition
               enter-active-class="transition-opacity duration-300"
               enter-from-class="opacity-0"
               enter-to-class="opacity-100"
+              mode="out-in"
             >
               <ImageSkeleton
                 v-if="!imageLoaded"
+                :width="IMAGE_DIMENSIONS.mobile.width"
+                :height="IMAGE_DIMENSIONS.mobile.height"
                 rounded="rounded-2xl"
                 className="about-me__skeleton"
               />
             </Transition>
             <BaseImage
               :src="profileImage"
+              :width="IMAGE_DIMENSIONS.mobile.width"
+              :height="IMAGE_DIMENSIONS.mobile.height"
               alt="Profile"
               variant="profile"
               rounded="2xl"
@@ -114,14 +131,17 @@ onMounted(async () => {
 
       <!-- Desktop Image -->
       <div class="about-me__desktop-image">
-        <div class="about-me__desktop-image-wrapper">
+        <div class="about-me__desktop-image-wrapper" :style="`min-height: ${IMAGE_DIMENSIONS.desktop.height}px`">
           <Transition
             enter-active-class="transition-opacity duration-300"
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
+            mode="out-in"
           >
             <ImageSkeleton
               v-if="!imageLoaded"
+              :width="IMAGE_DIMENSIONS.desktop.width"
+              :height="IMAGE_DIMENSIONS.desktop.height"
               rounded="rounded-3xl"
               className="about-me__skeleton"
             />
@@ -129,6 +149,8 @@ onMounted(async () => {
           <div class="about-me__desktop-image-container">
             <BaseImage
               :src="profileImage"
+              :width="IMAGE_DIMENSIONS.desktop.width"
+              :height="IMAGE_DIMENSIONS.desktop.height"
               alt="Profile"
               variant="interactive"
               rounded="3xl"
@@ -145,6 +167,7 @@ onMounted(async () => {
 <style scoped>
 .about-me__grid {
   @apply grid md:grid-cols-[1fr,300px] gap-4 sm:gap-6;
+  min-height: 300px; /* Prevent layout shift */
 }
 
 .about-me__mobile-image {
@@ -153,6 +176,7 @@ onMounted(async () => {
 
 .about-me__image-wrapper {
   @apply relative w-full h-[150px] sm:h-[300px];
+  contain: layout size;
 }
 
 .about-me__image-container {
@@ -217,6 +241,7 @@ onMounted(async () => {
 
 .about-me__desktop-image-wrapper {
   @apply relative w-full aspect-3-4 md:w-[250px];
+  contain: layout size;
 }
 
 .about-me__desktop-image-container {
@@ -225,6 +250,7 @@ onMounted(async () => {
 
 .about-me__skeleton {
   @apply absolute inset-0 w-full h-full;
+  contain: layout size;
 }
 
 .aspect-3-4 {

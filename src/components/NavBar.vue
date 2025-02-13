@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { GithubIcon } from "lucide-vue-next";
-import ThemeToggle from "@components/ThemeToggle.vue";
+import ThemeToggle from "@/components/ThemeToggle.vue";
 import menuIcon from "@global/svgs/menu-icon.svg?raw";
-import Sidebar from "@components/Sidebar.vue";
+import Sidebar from "@/components/Sidebar.vue";
 import { navigationItems } from "@/data/navigation";
-import BaseLink from '@/components/base/BaseLink.vue';
+import BaseLink from '@//components/base/BaseLink.vue';
 
 const isScrolled = ref(false);
 const isSidebarOpen = ref(false);

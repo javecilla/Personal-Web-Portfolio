@@ -5,8 +5,8 @@
 <script setup lang="ts">
 import "prismjs/themes/prism-tomorrow.css";
 import { ref } from "vue";
-import Introduction from "@components/sections/overview/introduction/Introduction.vue";
-import CodeEditor from "@components/sections/overview/code-editor/CodeEditor.vue";
+import Introduction from "@/components/sections/overview/introduction/Introduction.vue";
+import CodeEditor from "@/components/sections/overview/code-editor/CodeEditor.vue";
 
 const aboutMeCode = ref(
 `<script setup lang="ts">

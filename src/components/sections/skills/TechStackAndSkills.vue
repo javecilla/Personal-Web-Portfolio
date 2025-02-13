@@ -3,7 +3,7 @@ technical skills with interactive grid layout * Features responsive design,
 hover effects, and dynamic sizing based on skill count */
 <script setup lang="ts">
 import { ref } from 'vue';
-import ImageSkeleton from "@components/ImageSkeleton.vue";
+import ImageSkeleton from "@/components/ImageSkeleton.vue";
 import { techStackAndSkills } from "@/data/techStackAndSkills";
 
 // Track loading state for each icon

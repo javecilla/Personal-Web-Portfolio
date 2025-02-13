@@ -5,7 +5,7 @@ stack icons, and action buttons */
 import { ref } from 'vue';
 import { GithubIcon, Globe } from "lucide-vue-next";
 import type { Project } from "@/types/project";
-import ImageSkeleton from "@components/ImageSkeleton.vue";
+import ImageSkeleton from "@/components/ImageSkeleton.vue";
 import BaseImage from '@/components/base/BaseImage.vue';
 
 defineProps<{

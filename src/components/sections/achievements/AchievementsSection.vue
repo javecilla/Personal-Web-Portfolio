@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { achievements } from "@/data/achievements";
 import BaseButton from '@/components/base/BaseButton.vue';
 import AchievementDot from '@/components/sections/achievements/AchievementDot.vue';
-import ImageSkeleton from "@components/ImageSkeleton.vue";
+import ImageSkeleton from "@/components/ImageSkeleton.vue";
 import BaseImage from '@/components/base/BaseImage.vue';
 import { useSwipe } from '@/composables/useSwipe';
 

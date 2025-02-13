@@ -211,6 +211,30 @@
 			window.__VUE_PROD_DEVTOOLS__ = false;
 			window.__VUE_OPTIONS_API__ = false;
 		</script>
+		
+		<style>
+			/* Prevent FOUT */
+			.font-sans {
+				font-display: swap;
+			}
+			
+			/* Prevent layout shifts during load */
+			body {
+				min-height: 100vh;
+			}
+			
+			#app {
+				min-height: 100vh;
+				opacity: 0;
+				animation: fade-in 0.3s ease-out forwards;
+			}
+			
+			@keyframes fade-in {
+				to {
+					opacity: 1;
+				}
+			}
+		</style>
 	</head>
 	<body
 		class="font-sans antialiased bg-white dark:bg-[#060606] text-gray-600 dark:text-gray-400 flex flex-col [overflow-anchor:none]"

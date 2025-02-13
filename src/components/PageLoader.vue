@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from "vue";
 import { useStore } from '@/store'; // Import from local store file
-import LoadingSpinner from "@components/LoadingSpinner.vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 const store = useStore();
 const loadingProgress = ref(0);
