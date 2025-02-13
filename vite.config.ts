@@ -9,17 +9,7 @@ import viteImagemin from "vite-plugin-imagemin";
 export default defineConfig({
 	base: '',
 	plugins: [
-		vue({
-			template: {
-				transformAssetUrls: {
-					includeAbsolute: false,
-				},
-				compilerOptions: {
-					hoistStatic: true,
-					prefixIdentifiers: true,
-				},
-			},
-		}),
+		vue(),  // Simplified vue plugin config since newer versions handle optimization automatically
 		VitePWA({
 			registerType: "autoUpdate",
 			includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
@@ -77,7 +67,7 @@ export default defineConfig({
 		}),
 	],
 	css: {
-		postcss: "./postcss.config.cjs",
+		postcss: "./postcss.config.js", // Changed from .cjs to .js
 		devSourcemap: true,
 	},
 	resolve: {

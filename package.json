@@ -2,6 +2,7 @@
 	"name": "portfolio1",
 	"private": true,
 	"version": "0.0.1",
+	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"build": "vue-tsc && vite build --base=./",
@@ -19,7 +20,7 @@
 	"devDependencies": {
 		"@types/node": "^22.13.0",
 		"@types/prismjs": "^1.26.0",
-		"@vitejs/plugin-vue": "^4.2.3",
+		"@vitejs/plugin-vue": "^5.0.0",
 		"@vue/runtime-core": "^3.5.13",
 		"@vue/runtime-dom": "^3.5.13",
 		"@vue/tsconfig": "^0.7.0",
@@ -28,10 +29,10 @@
 		"postcss-nesting": "^13.0.1",
 		"tailwindcss": "^3.3.2",
 		"typescript": "^5.7.3",
-		"vite": "^4.3.9",
+		"vite": "^5.0.0",
 		"vite-plugin-compression": "^0.5.1",
-		"vite-plugin-imagemin": "^0.5.3",
-		"vite-plugin-pwa": "^0.21.1",
+		"vite-plugin-imagemin": "^0.6.1",
+		"vite-plugin-pwa": "^0.17.4",
 		"vue-tsc": "^2.2.0"
 	}
 }
