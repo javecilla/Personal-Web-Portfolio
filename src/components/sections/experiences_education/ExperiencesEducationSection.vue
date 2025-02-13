@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Experience, Education } from "@/types/experiences";
+import type { Experience, Education } from "@/types/experience";  // Fixed import path
 import { experiences, education } from "@/data/experiences";
 
-const experiencess = ref<Experience[]>(experiences);
-const educations = ref<Education[]>(education);
+// Convert readonly arrays to mutable arrays for refs
+const experiencess = ref<Experience[]>([...experiences]);
+const educations = ref<Education[]>([...education]);
 const isExperienceHovered = ref(false);
 const isEducationHovered = ref(false);
 </script>

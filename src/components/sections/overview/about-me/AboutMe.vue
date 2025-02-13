@@ -37,7 +37,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="about-me">
+  <section class="dark:bg-zinc-900/10 bg-gray-50 rounded-2xl transition-all duration-500 ease-in-out space-y-6 p-3 xl:p-2">
     <div class="about-me__grid">
       <!-- Mobile Image Container -->
       <div class="about-me__mobile-image">
@@ -143,10 +143,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.about-me {
-  @apply section-bg space-y-6 p-3 xl:p-2 rounded-2xl transition-all duration-500 ease-in-out;
-}
-
 .about-me__grid {
   @apply grid md:grid-cols-[1fr,300px] gap-4 sm:gap-6;
 }

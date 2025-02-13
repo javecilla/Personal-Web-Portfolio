@@ -6,7 +6,7 @@ import tsIcon from "@global/svgs/typescript.svg?url";
 import tailwindIcon from "@global/svgs/tailwind.svg?url";
 import laravelIcon from "@global/svgs/laravel.svg?url";
 
-export const techStacksExpertise: TechStackExpertise[] = [
+export const techStacksExpertise: readonly TechStackExpertise[] = [
 	{
 		name: "Vue.js",
 		icon: vueIcon,
@@ -32,4 +32,4 @@ export const techStacksExpertise: TechStackExpertise[] = [
 		description: "Developing robust backend systems with Laravel",
 		percentage: 80,
 	},
-];
+] as const;

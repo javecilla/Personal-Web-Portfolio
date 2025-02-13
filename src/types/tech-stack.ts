@@ -1,17 +1,19 @@
 export interface TechStackExpertise {
-	name: string;
-	icon: string;
-	description: string;
-	percentage: number;
+  readonly name: string;
+  readonly icon: string;
+  readonly description: string;
+  readonly percentage: number;
 }
 
 export interface Skill {
-	name: string;
-	icon: string;
+  readonly name: string;
+  readonly icon: string;
 }
 
+export type StackCategory = 'frontend' | 'backend' | 'database' | 'ci-cd' | 'tools' | 'web-hosting';
+
 export interface TechStackAndSkill {
-	id: string;
-	label: string;
-	skills: Skill[];
+  readonly id: StackCategory | string;
+  readonly label: string;
+  readonly skills: readonly Skill[];
 }

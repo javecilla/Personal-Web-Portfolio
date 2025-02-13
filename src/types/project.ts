@@ -1,27 +1,38 @@
+export type ProjectStatus = 'completed' | 'ongoing' | 'maintenance';
+export type ProjectType = 'web' | 'mobile' | 'desktop' | 'api';
+export type TechStack = string;
+
 export interface ProjectTech {
-  name: string;
-  icon: string;
+  readonly name: string;
+  readonly icon: string;
 }
 
-export const enum ProjectCategory {
+export enum ProjectCategory {
   PERSONAL = 'personal',
   CLIENT = 'client',
   ACADEMIC = 'academic'
 }
 
 export interface ProjectCategoryItem {
-  id: ProjectCategory | 'all' | 'highlights';
-  label: string;
+  readonly id: ProjectCategory | 'all' | 'highlights';
+  readonly label: string;
 }
 
 export interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  githubUrl: string;
-  demoUrl: string;
-  technologies: ProjectTech[];
-  category: ProjectCategory;
-  isHighlight?: boolean;
+  readonly id: string | number;
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
+  readonly status?: ProjectStatus;
+  readonly type?: ProjectType;
+  readonly techStack?: readonly TechStack[];
+  readonly technologies?: readonly ProjectTech[];
+  readonly sourceCode?: string;
+  readonly githubUrl?: string;
+  readonly liveDemo?: string;
+  readonly demoUrl?: string;
+  readonly startDate?: string;
+  readonly endDate?: string;
+  readonly category: ProjectCategory;
+  readonly isHighlight: boolean;
 }

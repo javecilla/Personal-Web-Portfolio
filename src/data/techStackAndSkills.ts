@@ -1,4 +1,4 @@
-import { TechStackAndSkill } from "@/types/tech-stack";
+import { TechStackAndSkill, StackCategory } from "@/types/tech-stack";
 
 // Import icons locally
 import htmlIcon from "@global/svgs/html5.svg?url";
@@ -30,9 +30,9 @@ import hostingerLogo from "@global/logos/hostinger.png";
 import vercelFavicon from "@global/logos/vercel.ico";
 import hostgatorFavicon from "@global/logos/hostgator.ico";
 
-export const techStackAndSkills: TechStackAndSkill[] = [
+export const techStackAndSkills: readonly TechStackAndSkill[] = [
 	{
-		id: "frontend",
+		id: "frontend" as StackCategory,
 		label: "Front-end",
 		skills: [
 			{
@@ -70,7 +70,7 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		],
 	},
 	{
-		id: "backend",
+		id: "backend" as StackCategory,
 		label: "Back-end",
 		skills: [
 			{
@@ -84,7 +84,7 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		],
 	},
 	{
-		id: "database",
+		id: "database" as StackCategory,
 		label: "Databases",
 		skills: [
 			{
@@ -94,7 +94,7 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		],
 	},
 	{
-		id: "ci-cd",
+		id: "ci-cd" as StackCategory,
 		label: "CI/CD",
 		skills: [
 			{
@@ -112,7 +112,7 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		],
 	},
 	{
-		id: "tools",
+		id: "tools" as StackCategory,
 		label: "Development Tools",
 		skills: [
 			{
@@ -151,7 +151,7 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 		],
 	},
 	{
-		id: "web-hosting",
+		id: "web-hosting" as StackCategory,
 		label: "Web Hosting (Experiences)",
 		skills: [
 			{
@@ -179,4 +179,4 @@ export const techStackAndSkills: TechStackAndSkill[] = [
 			},
 		],
 	},
-];
+] as const;

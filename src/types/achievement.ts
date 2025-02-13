@@ -1,8 +1,15 @@
+// Define specific date format type
+type AchievementDate = `${string} ${number}`;
+
+// Define allowed categories
+export type AchievementCategory = 'Competition' | 'Academic' | 'Professional' | 'Certification';
+
+// Main interface
 export interface Achievement {
-	category: string;
-	title: string;
-	description: string;
-	image: string;
-	date: string;
-	location: string;
+  readonly category: AchievementCategory;  // Make it more type-safe with specific categories
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
+  readonly date: AchievementDate;  // Enforce date format
+  readonly location: string;
 }
