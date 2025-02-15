@@ -2,7 +2,7 @@
 interface Props {
   src: string;
   alt: string;
-  variant?: 'default' | 'profile' | 'interactive' | 'project' | 'achievement';
+  variant?: 'default' | 'profile' | 'interactive' | 'project' | 'achievement' | 'avatar';
   loading?: 'lazy' | 'eager';
   rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full' | 't-2xl';
   priority?: boolean;
@@ -36,7 +36,8 @@ const variantClasses = {
   'profile': 'w-full h-full object-cover object-center transition-transform transform hover:scale-105',
   'interactive': 'w-full h-full object-cover object-center transition-all duration-500 hover:scale-105',
   'project': 'w-full h-full object-cover object-center',
-  'achievement': 'w-full h-full object-cover object-center'
+  'achievement': 'w-full h-full object-cover object-center',
+  'avatar': 'w-full h-full object-cover object-center transition-all duration-300'
 } as const;
 
 // Add preload hint for priority images
