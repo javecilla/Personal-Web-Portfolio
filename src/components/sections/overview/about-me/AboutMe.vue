@@ -196,7 +196,7 @@ const IMAGE_DIMENSIONS = {
 }
 
 .about-me__title {
-  @apply section-title block mb-8;
+  @apply dark:text-white text-gray-600 text-2xl sm:text-3xl font-bold block mb-8;
 }
 
 .about-me__timeline {

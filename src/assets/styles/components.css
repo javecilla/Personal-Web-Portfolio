@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .animate-pulse-slower {
+    animation: pulse-slower 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes pulse-slower {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.1; }
+}
+
 @layer components {
 	/* Section Classes */
 	.section-bg {

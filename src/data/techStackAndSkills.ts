@@ -12,17 +12,11 @@ import jqueryIcon from "@global/svgs/jquery.svg?url";
 import phpIcon from "@global/svgs/php.svg?url";
 import laravelIcon from "@global/svgs/laravel.svg?url";
 import mysqlIcon from "@global/svgs/mysql.svg?url";
+import postgresqlIcon from "@global/svgs/postgresql.svg?url";
 import gitIcon from "@global/svgs/git.svg?url";
-import vscodeIcon from "@global/svgs/vscode.svg?url";
 import gitLabIcon from "@global/svgs/gitlab.svg?url";
 import githubActionIcon from "@global/svgs/github-actions.svg?url";
-import gitBashIcon from "@global/svgs/gitbash.svg?url";
-import postmanIcon from "@global/svgs/postman.svg?url";
 import githubPagesIcon from "@global/svgs/github-pages.svg?url";
-import mysqlWorkbenchLogo from "@global/logos/mysql-workbench.jpg";
-import githubDesktopLogo from "@global/logos/github-desktop.png";
-import xamppApacheLogo from "@global/logos/xampp-apache.png";
-import sublimeTextLogo from "@global/logos/sublime-text.png";
 
 import godaddyLogo from "@global/logos/godaddy.png";
 import hostingerLogo from "@global/logos/hostinger.png";
@@ -91,6 +85,10 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
 				name: "MySQL",
 				icon: mysqlIcon,
 			},
+			{
+				name: "PostgreSQL",
+				icon: postgresqlIcon,
+			},
 		],
 	},
 	{
@@ -108,45 +106,6 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
 			{
 				name: "Github Action",
 				icon: githubActionIcon,
-			},
-		],
-	},
-	{
-		id: "tools" as StackCategory,
-		label: "Development Tools",
-		skills: [
-			{
-				name: "VS Code",
-				icon: vscodeIcon,
-			},
-			{
-				name: "Git Bash",
-				icon: gitBashIcon,
-			},
-
-			{
-				name: "GitHub Desktop",
-				icon: githubDesktopLogo,
-			},
-
-			{
-				name: "MySQL Workbench",
-				icon: mysqlWorkbenchLogo,
-			},
-
-			{
-				name: "XAMPP Apache",
-				icon: xamppApacheLogo,
-			},
-
-			{
-				name: "Sublime Text",
-				icon: sublimeTextLogo,
-			},
-
-			{
-				name: "Postman",
-				icon: postmanIcon,
 			},
 		],
 	},

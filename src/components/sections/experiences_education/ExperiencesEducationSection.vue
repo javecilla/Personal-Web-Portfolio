@@ -263,38 +263,6 @@ const isEducationHovered = ref(false);
          md:text-5xl;
 }
 
-/* Add hover styles for frames */
-.frame--left:hover {
-	@apply border-blue-500/50;
-}
-
-.frame--right:hover {
-	@apply border-blue-500/50;
-}
-
-/* Add hover styles for dots */
-.frame--left:hover .frame__dot,
-.frame--right:hover .frame__dot {
-	@apply border-blue-500/50;
-}
-
-/* Experience hover effects */
-.frame--left:hover ~ .timeline-center-content .timeline-vertical-line {
-	@apply bg-gradient-to-b from-blue-500 to-purple-500 opacity-20;
-}
-
-.frame--left:hover .frame__dot {
-	@apply bg-gradient-to-r from-blue-500 to-purple-500 border-transparent;
-}
-
-/* Education hover effects */
-.frame--right:hover ~ .timeline-center-content .timeline-vertical-line {
-	@apply bg-gradient-to-b from-blue-500 to-purple-500 opacity-20;
-}
-
-.frame--right:hover .frame__dot {
-	@apply bg-gradient-to-r from-blue-500 to-purple-500 border-transparent;
-}
 
 /* Mobile timeline adjustments */
 @media (max-width: 768px) {

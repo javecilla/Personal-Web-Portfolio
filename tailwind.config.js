@@ -5,5 +5,8 @@ export default {
     "./index.html",
     "./src/**/*.{html,js,ts,vue,jsx,tsx}",
   ],
-  // ...existing code...
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 }
