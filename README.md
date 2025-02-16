@@ -8,8 +8,6 @@ A modern, responsive portfolio website showcasing my work and skills. Built with
 - TypeScript
 - Tailwind CSS
 - Vite
-- VueUse
-- Lucide Icons
 
 ## Features
 
@@ -18,14 +16,20 @@ A modern, responsive portfolio website showcasing my work and skills. Built with
 - ⚡ Optimized performance
 - 🎨 Modern UI/UX
 - 🔄 Interactive components
+- 👨‍💻 About me section with code view
+- 🚀 Tech Stack and Skills section
 - 📝 Project showcase
-- 🏆 Skills & achievements section
+- 🏆 Achievements & certificates section
+- 🎓 Education & experience section
+- 🤔 Frequently Asked Questions section
+- 🚀 Contact form
+- 📡 Deployment on Vercel
 
 ## Project Setup
 
 ### Prerequisites
 
-- Node.js v20+
+- Node.js v22+
 - npm v10+
 
 ### Installation

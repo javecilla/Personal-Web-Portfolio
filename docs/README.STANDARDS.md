@@ -7,16 +7,19 @@
 - Directory structure:
   ```
   src/
-  ├── components/      # UI components
-  ├── utils/          # Helper functions
-  ├── constants/      # Static content
-  ├── types/          # TypeScript types
-  └── stores/         # Pinia stores
+  ├── assets/           # Static assets
+  ├── components/       # UI components
+  ├── composables/      # Composables  
+  ├── constants/        # Static content
+  ├── data/             # Predefined data
+  ├── stores/           # Vuex stores
+  ├── types/            # TypeScript types
+  └── utils/            # Helper functions
   ```
 - Use named exports for better tree-shaking
 
 ## Naming Conventions
-- Directories: lowercase-with-dashes
+- Directories: lowercase_with_undescore
 - Components: PascalCase.vue
 - Composables: useFeatureName.ts
 - Stores: stores/featureName.ts
