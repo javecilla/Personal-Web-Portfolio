@@ -49,6 +49,7 @@ const components = {
   AchievementsSection: defineAsyncComponent(() => import("@/components/sections/achievements/AchievementsSection.vue")),
   ExperiencesEducationSection: defineAsyncComponent(() => import("@/components/sections/experiences_education/ExperiencesEducationSection.vue")),
   TestimonialsSection: defineAsyncComponent(() => import("@/components/sections/testimonials/TestimonialsSection.vue")),
+  FAQSection: defineAsyncComponent(() => import("@/components/sections/faqs/FAQSection.vue")),
 };
 </script>
 
@@ -82,6 +83,7 @@ const components = {
                     <components.AchievementsSection />
                     <components.ExperiencesEducationSection />
                     <components.TestimonialsSection />
+                    <components.FAQSection />
                   </div>
                 </template>
                 <template #fallback>

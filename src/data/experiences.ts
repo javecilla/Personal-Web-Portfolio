@@ -43,7 +43,7 @@ export const education: Education[] = [
   {
     school: "Golden Minds Colleges",
     degree:
-      "Technical Vocational Livelihood Information Communication Technology",
+      "Technical Vocational Livelihood in Information and Communication Technology",
     campus: "Sta. Maria Campus",
     description:
       "Completed Senior High School with a focus on ICT, gaining foundational knowledge in programming, web development, and computer systems.",
