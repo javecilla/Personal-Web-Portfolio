@@ -14,7 +14,7 @@ export const achievements: readonly Achievement[] = [
 	},
 	{
 		category: "Academic" as AchievementCategory,
-		title: "Best Capstone of the Year - Research & Innovation",
+		title: "Best Capstone of the Year - Research and Innovation",
 		description:
 			"Months of research, sleepless nights, and countless debugging sessions led to something truly remarkable! Our team developed a Web-Based Inventory Management System, designed to streamline stock tracking, optimize resource allocation, and eliminate inefficiencies for businesses. Our innovative approach and technical execution earned us the Best Thesis of the Year award at Golden Minds Colleges (GMC). This achievement highlights our skills in software development, database management, and system automation, proving that well-built technology can transform business operations.",
 		image: ImageB,

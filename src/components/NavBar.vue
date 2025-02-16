@@ -109,7 +109,7 @@ onUnmounted(() => {
 						href="/resume"
 						ariaLabel="Download my resume"
 						variant="button"
-						class="hidden md:flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 transition-all duration-300 px-6"
+						class="hidden md:flex text-center items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 transition-all duration-300 px-6"
 					>
 						<span class="text-white font-medium">Resume</span>
 					</BaseLink>

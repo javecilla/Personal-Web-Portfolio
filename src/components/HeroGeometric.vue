@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ElegantShape from "@components/ElegantShape.vue";
+import ElegantShape from "@/components/ElegantShape.vue";
 
 withDefaults(
 	defineProps<{

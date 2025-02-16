@@ -75,7 +75,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 			<!-- Header -->
 			<div class="achievements__header">
 				<h2 class="achievements__title section-title">
-					Achievements & Certificates
+					Achievements and Certificates
 				</h2>
 				<p class="achievements__description section-text">
 					Explore my key accomplishments as a BSIT student, highlighting
