@@ -1,5 +1,5 @@
 export interface Social {
-    icon: any;
+    icon: string;
     label: string;
     href: string;
 }

@@ -1,30 +1,29 @@
 import { Social } from "@/types/social";
-import { Mail, Facebook, Linkedin, Send, Slack } from 'lucide-vue-next'; 
+import x from '@global/logos/x.png';
+import facebook from '@global/svgs/facebook.svg';
+import slack from '@global/svgs/slack.svg';
+import linkedin from '@global/svgs/linkedin.svg';
+
 
 export const socials: Social[] = [
     {
-        icon: Mail,
-        label: 'Email',
-        href: 'mailto:jeromesavc@gmail.com',
-    },
-    {
-        icon: Linkedin,
+        icon: linkedin,
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/jerome-avecilla-528722239/',
+        href: 'https://www.linkedin.com/in/jerome-avecilla',
     },
     {
-        icon: Slack,
+        icon: slack,
         label: 'Slack',
         href: 'https://javecilla.slack.com/team/javecilla',
     },
     {
-        icon: Facebook,
+        icon: facebook,
         label: 'Facebook', 
         href: 'https://facebook.com/jerome.avecilla24',  
     },
     {
-        icon: Send,
-        label: 'Telegram',
-        href: 'https://t.me/@javecilla',
+        icon: x,
+        label: 'X',
+        href: 'https://x.com/@_javecilla',
     },
 ] as const;

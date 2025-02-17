@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { socials } from "@/data/socials";  
+import ImageSkeleton from "@/components/ImageSkeleton.vue";
+
+// Track loading state for each icon
+const loadedIcons = ref(new Set<string>());
+
+const handleIconLoad = (skillName: string) => {
+  loadedIcons.value.add(skillName);
+};
+
+const isIconLoaded = (skillName: string): boolean => {
+  return loadedIcons.value.has(skillName);
+};
 </script>
 
 <template>
@@ -25,11 +38,28 @@ import { socials } from "@/data/socials";
               :title="link.label"
               class="social-link group"
             >
-              <component 
-                :is="link.icon" 
+              <Transition
+                enter-active-class="transition-opacity duration-300"
+                enter-from-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="transition-opacity duration-300"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
+								>
+                <ImageSkeleton
+                  v-show="!isIconLoaded(link.label)"
+                  rounded="rounded-md"
+                  className="skills__icon-skeleton"
+                />
+							</Transition>
+              <img
+                :src="link.icon"
+                :alt="link.label"
+                :title="link.label"
                 class="social-link__icon"
-                :size="22" 
-              />
+                :class="{ 'social-link__icon--loaded': isIconLoaded(link.label) }"
+                @load="handleIconLoad(link.label)"
+							/>
               <span class="social-link__label">
                 {{ link.label }}
               </span>
@@ -99,6 +129,9 @@ import { socials } from "@/data/socials";
 </template>
 
 <style scoped>
+.social-link__icon--loaded {
+	@apply opacity-100 z-20;
+}
 .contact-section {
   @apply space-y-10 sm:space-y-16 p-6 lg:p-8 rounded-2xl; /* Increased space-y values */
 }
@@ -140,8 +173,8 @@ import { socials } from "@/data/socials";
 
 .social-link__icon {
   @apply flex-shrink-0 /* Prevent icon from shrinking */
-         transition-all duration-300
-         text-gray-500 dark:text-white/70;
+         text-gray-500 dark:text-white/70
+         w-[23px] h-[23px] transition-all duration-300 grayscale group-hover:grayscale-0;
 }
 
 .social-link__label {

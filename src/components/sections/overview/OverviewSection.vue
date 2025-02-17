@@ -137,12 +137,12 @@ const aboutMeCode = ref(
 </script>
 
 <template>
-	<section class="space-y-2 max-w-[1400px] -mb-[20px]">
+	<section class="">
     <Suspense>
       <template #default>
         <div class="gap-4 sm:gap-6">
           <div
-            class="overflow-hidden lg:-mt-[40px] p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out"
+            class="overflow-hidden lg:-mt-[15px] p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out"
           >
             <!-- Overview/Introduction Section -->
             <Introduction />
