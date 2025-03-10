@@ -120,3 +120,31 @@ html.dark {
 .grayscale {
 	filter: grayscale(1);
 }
+
+/* Smooth scrolling container */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on your navbar height */
+  overflow-y: scroll;
+}
+
+/* For browsers that don't support smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Simpler section styles */
+section[id] {
+  scroll-margin-top: 80px;
+  min-height: auto; /* Remove fixed height */
+  padding: 60px 0;
+  position: relative;
+}
+
+/* Ensure sections have enough height to properly trigger the observer */
+.section-bg {
+  min-height: 60vh;
+  position: relative;
+}

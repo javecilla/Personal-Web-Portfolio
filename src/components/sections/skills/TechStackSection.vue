@@ -1,13 +1,13 @@
-/** * @component TechStackSection * @description Main section displaying
-technical expertise, skills, and tools * Features a grid layout of tech stacks
-with hover effects and categorized skills */
 <script setup lang="ts">
+defineProps<{
+  id?: string;
+}>();
 import TechStacksExpertise from "@/components/sections/skills/TechStackExpertise.vue";
 import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.vue";
 </script>
 
 <template>
-	<section class="tech-stack section-bg">
+	<section :id="id" class="tech-stack section-bg">
 		<!-- Section Header -->
 		<div class="tech-stack__header">
 			<h2 class="tech-stack__title section-title">Tech Stacks and Tools</h2>

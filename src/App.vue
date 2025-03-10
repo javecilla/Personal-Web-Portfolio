@@ -11,6 +11,7 @@ import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
 import ChatButton from "@/components/chat/ChatButton.vue";
 import BackToTop from "@/components/BackToTop.vue";
+import { useActiveSection } from '@/composables/useActiveSection';
 
 // Use storeToRefs to properly handle reactivity
 const store = useRootStore();
@@ -42,6 +43,17 @@ onMounted(() => {
     setInitialLoadComplete(); // Call action directly
     isContentVisible.value = true;
   }, 2000);
+
+  // Handle initial fragment navigation
+  const hash = window.location.hash;
+  if (hash) {
+    setTimeout(() => {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 1000); // Delay to ensure content is loaded
+  }
 });
 
 // Watch for Suspense component load state
@@ -61,6 +73,9 @@ const components = {
   FAQSection: defineAsyncComponent(() => import("@/components/sections/faqs/FAQSection.vue")),
   ContactSection: defineAsyncComponent(() => import("@/components/sections/contact/ContactSection.vue"))
 };
+
+// Add active section tracking
+useActiveSection();
 </script>
 
 <template>
@@ -87,14 +102,14 @@ const components = {
             <Suspense @resolve="onComponentsLoaded">
               <template #default>
                 <div class="space-y-4 sm:space-y-6">
-                  <components.OverviewSection />
-                  <components.TechStackSection />
-                  <components.ProjectsSection />
-                  <components.AchievementsSection />
-                  <components.ExperiencesEducationSection />
+                  <components.OverviewSection id="about" />
+                  <components.TechStackSection id="skills" />
+                  <components.ProjectsSection id="projects" />
+                  <components.AchievementsSection id="certificates" />
+                  <components.ExperiencesEducationSection id="experience" />
                   <components.TestimonialsSection />
                   <components.FAQSection />
-                  <components.ContactSection />
+                  <components.ContactSection id="contact" />
                 </div>
               </template>
               <template #fallback>

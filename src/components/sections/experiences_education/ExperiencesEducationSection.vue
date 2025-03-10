@@ -3,6 +3,10 @@ import { ref } from "vue";
 import type { Experience, Education } from "@/types/experience";  // Fixed import path
 import { experiences, education } from "@/data/experiences";
 
+defineProps<{
+  id?: string;
+}>()
+
 // Convert readonly arrays to mutable arrays for refs
 const experiencess = ref<Experience[]>([...experiences]);
 const educations = ref<Education[]>([...education]);
@@ -11,7 +15,7 @@ const isEducationHovered = ref(false);
 </script>
 
 <template>
-	<section class="experiences-education section-bg">
+	<section :id="id" class="experiences-education section-bg">
 		<div class="experiences-education__header">
 			<h2 class="section-title">Work Experiences and Educational Background</h2>
 			<p class="section-text">

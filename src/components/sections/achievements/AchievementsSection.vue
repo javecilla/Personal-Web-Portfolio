@@ -1,6 +1,3 @@
-/** * @component AchievementsSection * @description Displays achievements and
-certificates in an interactive carousel * Features auto-sliding, navigation
-controls, and responsive design */
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
@@ -10,6 +7,10 @@ import AchievementDot from '@/components/sections/achievements/AchievementDot.vu
 import ImageSkeleton from "@/components/ImageSkeleton.vue";
 import BaseImage from '@/components/base/BaseImage.vue';
 import { useSwipe } from '@/composables/useSwipe';
+
+defineProps<{
+  id?: string;
+}>()
 
 // State management
 const currentSlide = ref(0);
@@ -68,6 +69,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 
 <template>
 	<section 
+		:id="id"
 		class="achievements section-bg"
 		aria-label="Achievements and Certificates"
 	>

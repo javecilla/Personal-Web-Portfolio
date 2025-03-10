@@ -13,6 +13,14 @@ const scrollToTop = () => {
     top: 0,
     behavior: 'smooth'
   });
+  
+  // Reset hash and trigger hashchange event
+  const url = new URL(window.location.href);
+  url.hash = 'about';  // Set to about instead of removing
+  window.history.replaceState({}, '', url.href);
+  
+  // Dispatch hashchange event to update active state
+  window.dispatchEvent(new HashChangeEvent('hashchange'));
 };
 
 onMounted(() => {
@@ -46,9 +54,9 @@ onUnmounted(() => {
 
 <style scoped>
 .back-to-top {
-  @apply fixed right-6 bottom-28 z-40
+  @apply fixed right-5 bottom-28 z-40
          flex items-center justify-center
-         w-10 h-10
+         w-14 h-14
          text-gray-600 dark:text-gray-300
          bg-white/80 dark:bg-zinc-800/80
          border border-gray-200 dark:border-zinc-700/50

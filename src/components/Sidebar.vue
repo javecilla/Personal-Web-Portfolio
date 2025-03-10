@@ -1,11 +1,28 @@
 <script setup lang="ts">
 import { XIcon } from "lucide-vue-next";
 import { navigationItems } from "@/data/navigation";
+import { ref, onMounted, onUnmounted } from 'vue';
 
 defineProps<{
   isOpen: boolean;
   onClose: () => void;
 }>();
+
+const currentHash = ref(window.location.hash || '#about');
+
+const updateActiveHash = () => {
+  currentHash.value = window.location.hash || '#about';
+};
+
+onMounted(() => {
+  window.addEventListener('hashchange', updateActiveHash);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('hashchange', updateActiveHash);
+});
+
+const isActive = (href: string) => currentHash.value === href;
 </script>
 
 <template>
@@ -37,7 +54,7 @@ defineProps<{
       >
         <div class="fixed right-0 top-0 bottom-0 w-3/4 max-w-sm bg-white/90 dark:bg-black/90 border-l dark:border-zinc-800/50 backdrop-blur-xl">
           <div class="flex items-center justify-between p-6 border-b dark:border-zinc-800/50">
-            <span class="text-lg font-semibold dark:text-white text-gray-900">Navigation</span>
+            <span class="text-lg font-bold dark:text-white text-gray-900">.me</span>
             <button 
               class="p-2 hover:bg-gray-100/50 dark:hover:bg-zinc-800/50 rounded-full transition-colors"
               @click="onClose"
@@ -61,7 +78,12 @@ defineProps<{
                 :key="item.name"
                 :href="item.href"
                 :style="{ transitionDelay: `${index * 50}ms` }"
-                class="flex items-center space-x-3 p-3 rounded-lg text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-zinc-800/50 transition-colors"
+                class="flex items-center space-x-3 p-3 rounded-lg transition-colors"
+                :class="[
+                  isActive(item.href) ? 
+                  'text-blue-500 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/10' : 
+                  'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/50 dark:hover:bg-zinc-800/50'
+                ]"
                 @click="onClose"
               >
                 <component :is="item.icon" class="w-5 h-5" />

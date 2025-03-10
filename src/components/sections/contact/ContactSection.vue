@@ -4,6 +4,10 @@ import { socials } from "@/data/socials";
 import ImageSkeleton from "@/components/ImageSkeleton.vue";
 import { contactService } from '@/services/contactService';
 
+defineProps<{
+  id?: string;
+}>()
+
 // Track loading state for each icon
 const loadedIcons = ref(new Set<string>());
 const handleIconLoad = (skillName: string) => {
@@ -141,7 +145,7 @@ const successMessage = ref('');
 </script>
 
 <template>
-  <section class="contact-section section-bg">
+  <section :id="id" class="contact-section section-bg">
     <div class="contact-section__header">
       <h2 class="section-title">Let's Connect</h2>
       <p class="section-text">

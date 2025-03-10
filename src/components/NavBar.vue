@@ -20,13 +20,23 @@ const handleScroll = () => {
 	isScrolled.value = window.scrollY > 0;
 };
 
+const currentHash = ref(window.location.hash || '#about');
+
+const updateActiveHash = () => {
+  currentHash.value = window.location.hash || '#about';
+};
+
 onMounted(() => {
 	window.addEventListener("scroll", handleScroll);
+  window.addEventListener('hashchange', updateActiveHash);
 });
 
 onUnmounted(() => {
 	window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener('hashchange', updateActiveHash);
 });
+
+const isActive = (href: string) => currentHash.value === href;
 </script>
 
 <template>
@@ -36,9 +46,7 @@ onUnmounted(() => {
 		:on-close="() => (isSidebarOpen = false)"
 		:nav-items="navigationItems"
 	/>
-
 	
-
 	<header
 		class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
 		:class="[
@@ -53,7 +61,7 @@ onUnmounted(() => {
 				<!-- Logo -->
 				<div class="flex items-center">
 					<BaseLink 
-						href="#" 
+						href="#about" 
 						ariaLabel="Home"
 						class="text-2xl font-bold"
 					>
@@ -70,6 +78,11 @@ onUnmounted(() => {
 							:href="item.href"
 							:ariaLabel="item.name"
 							variant="nav"
+							:class="[
+								isActive(item.href) ? 
+								'text-blue-500 dark:text-blue-400 text-bold' : 
+								'text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent'
+							]"
 						>
 							{{ item.name }}
 						</BaseLink>

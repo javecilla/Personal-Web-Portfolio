@@ -7,6 +7,10 @@ import { projects } from "@/data/projects";
 import ProjectCard from "./ProjectCard.vue";
 import ProjectFilter from "./ProjectFilter.vue";
 
+defineProps<{
+  id?: string;
+}>()
+
 const selectedCategory = ref("highlights");
 
 const filteredProjects = computed(() => {
@@ -23,7 +27,7 @@ const filteredProjects = computed(() => {
 </script>
 
 <template>
-	<section class="projects section-bg">
+	<section :id="id" class="projects section-bg">
 		<!-- Header -->
 		<div class="projects__header">
 			<h2 class="projects__title section-title">Featured Projects</h2>

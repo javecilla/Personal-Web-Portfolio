@@ -1,12 +1,12 @@
-/** 
- * @component OverviewSection 
- * @description Main overview section of the portfolio that includes introduction and code editor 
- */
 <script setup lang="ts">
 import "prismjs/themes/prism-tomorrow.css";
 import { ref } from "vue";
 import Introduction from "@/components/sections/overview/introduction/Introduction.vue";
 import CodeEditor from "@/components/sections/overview/code-editor/CodeEditor.vue";
+
+defineProps<{
+  id?: string;
+}>()
 
 const aboutMeCode = ref(
 `<script setup lang="ts">
@@ -137,7 +137,7 @@ const aboutMeCode = ref(
 </script>
 
 <template>
-	<section class="">
+  <section :id="id" class="overview">
     <Suspense>
       <template #default>
         <div class="gap-4 sm:gap-6">
@@ -158,7 +158,7 @@ const aboutMeCode = ref(
         </div>
       </template>
     </Suspense>
-	</section>
+  </section>
 </template>
 
 <style>
