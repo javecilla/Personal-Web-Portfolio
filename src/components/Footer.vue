@@ -5,7 +5,7 @@ import ImageSkeleton from "@/components/ImageSkeleton.vue";
 
 const isImageLoaded = ref(false);
 
-const handleImageLoad = () => {
+const handleImageLoad = () => {``
   isImageLoaded.value = true;
 };
 </script>

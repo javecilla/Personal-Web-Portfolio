@@ -46,7 +46,6 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
     "src/types/env.d.ts",
     "src/types/**/*.d.ts"
   ],

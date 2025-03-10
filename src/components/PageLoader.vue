@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from "vue";
-import { useStore } from '@/store'; // Import from local store file
+import { storeToRefs } from 'pinia'
+import { useRootStore } from '@/stores/root';
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
-const store = useStore();
+const store = useRootStore();
+const { isFullyLoaded } = storeToRefs(store);
 const loadingProgress = ref(0);
 const loadingText = ref("Initializing...");
 const emit = defineEmits(["load-complete"]);
@@ -20,7 +22,7 @@ onMounted(() => {
 		if (loadingProgress.value < 98) {
 			loadingProgress.value += Math.random() * 15;
 			updateLoadingText(loadingProgress.value);
-		} else if (store.getters.isFullyLoaded) {
+		} else if (isFullyLoaded.value) {
 			clearInterval(progressInterval);
 			loadingProgress.value = 100;
 			loadingText.value = "Complete!";
@@ -40,7 +42,7 @@ onMounted(() => {
 		leave-to-class="opacity-0"
 	>
 		<div
-			v-if="!store.getters.isFullyLoaded"
+			v-if="!isFullyLoaded"
 			class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-black"
 		>
 			<div class="text-center">

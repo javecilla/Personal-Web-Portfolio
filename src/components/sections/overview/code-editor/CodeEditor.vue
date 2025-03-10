@@ -14,7 +14,7 @@ import CodeContent from "@/components/sections/overview/code-editor/CodeContent.
 import AboutMeSection from "@/components/sections/overview/about-me/AboutMe.vue";
 
 // State management
-const activeTab = ref("output");
+const activeTab = ref("preview");
 const isMobile = ref(false);
 
 /**
@@ -48,11 +48,11 @@ onUnmounted(() => {
 					<div class="code-editor__tabs">
 						<!-- Output Preview Tab -->
 						<div
-							v-show="activeTab === 'output'"
+							v-show="activeTab === 'preview'"
 							class="code-editor__tab"
 							:class="{
-								'code-editor__tab--active': activeTab === 'output',
-								'code-editor__tab--inactive': activeTab !== 'output',
+								'code-editor__tab--active': activeTab === 'preview',
+								'code-editor__tab--inactive': activeTab !== 'preview',
 							}"
 						>
 							<AboutMeSection />

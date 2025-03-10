@@ -87,29 +87,46 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
-					// More granular chunking strategy
+					// Core dependencies
+					if (id.includes('node_modules/vue') || id.includes('node_modules/@vue')) {
+						return 'vendor-vue-core';
+					}
+					// State management
+					if (id.includes('node_modules/pinia')) {
+						return 'vendor-state';
+					}
+					// UI Framework
+					if (id.includes('node_modules/element-plus')) {
+						return 'vendor-element';
+					}
+					// Utilities
+					if (id.includes('node_modules/@vueuse') || id.includes('node_modules/dayjs')) {
+						return 'vendor-utils';
+					}
+					// Other node_modules
 					if (id.includes('node_modules')) {
-						if (id.includes('vue')) {
-							return 'vue-core';
-						}
 						return 'vendor';
 					}
-					
-					// Separate utility functions
+					// Rest of your existing chunks...
 					if (id.includes('/composables/') || id.includes('/utils/')) {
 						return 'utils';
 					}
-					
-					// Group base components separately
 					if (id.includes('/components/base/')) {
 						return 'base-components';
 					}
-					
-					// Group section components
 					if (id.includes('/components/sections/')) {
 						return 'sections';
 					}
-					
+					if (id.includes('/stores/')) {
+						return 'stores';
+					}
+					if (id.includes('/services/')) {
+						return 'services';
+					}
+					if (id.includes('/types/')) {
+						return 'types';
+					}
+
 					return 'main';
 				},
 				assetFileNames: (assetInfo) => {
@@ -134,27 +151,37 @@ export default defineConfig({
 				entryFileNames: "assets/js/[name]-[hash].js",
 			},
 		},
-		chunkSizeWarningLimit: 1000,
+		chunkSizeWarningLimit: 2000,
 		sourcemap: true,
 		reportCompressedSize: false,
 		terserOptions: {
 			compress: {
 				drop_console: true,
 				drop_debugger: true,
-				pure_funcs: ['console.log']
+				pure_funcs: ['console.log'],
+				passes: 1
+			},
+			format: {
+				comments: false
+			},
+			mangle: {
+				toplevel: true
 			}
 		},
+		emptyOutDir: true,
 		modulePreload: {
-			polyfill: true
+			polyfill: false
 		}
 	},
 	optimizeDeps: {
-		//dependency optimization
-		include: ['vue', 'lucide-vue-next'],
-		exclude: [],
-		esbuildOptions: {
-			target: 'esnext'
-		}
+		include: [
+			'vue',
+			'pinia',
+			'element-plus',
+			'dayjs',
+			'@vueuse/core'
+		],
+		force: true
 	},
 	assetsInclude: ["**/*.svg"],
 	server: {

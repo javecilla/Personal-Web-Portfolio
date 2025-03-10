@@ -6,6 +6,7 @@ import votingSystem from "@global/images/vt62as.png";
 import phEnWeb from "@global/images/523aaa.png";
 import portfolioWeb from "@global/images/t2131.png";
 import inventoryWeb from "@global/images/551asfh.png";
+import chatBot from "@global/images/ch4tb.png";
 
 // Import tech icons
 import vueIcon from "@global/svgs/vue.svg?url";
@@ -145,7 +146,31 @@ export const projects: readonly Project[] = [
     category: ProjectCategory.ACADEMIC,
     isHighlight: false,
   },
-  // Add more projects here
+  {
+		id: 6,
+		title: "Conversational Chatbot (FAQs)",
+		description:
+			"A conversational chatbot designed to assist users in finding answers to frequently asked questions. This project showcases my skills in natural language processing and user interaction design.",
+		image: chatBot,
+		githubUrl: "https://github.com/javecilla/Conversational-Chatbot-for-FAQs",
+		demoUrl: "https://chatbot-faqs.vercel.app/",
+		technologies: [
+			{
+				name: "Vue.js",
+				icon: vueIcon,
+			},
+			{
+				name: "TypeScript",
+				icon: tsIcon,
+			},
+			{
+				name: "Tailwind CSS",
+				icon: tailwindIcon,
+			},
+		],
+		category: ProjectCategory.PERSONAL,
+		isHighlight: false,
+	},
 ] as const;
 
 export const categories: readonly ProjectCategoryItem[] = [

@@ -10,7 +10,9 @@ A modern, responsive portfolio website showcasing my work and skills. Built with
 - Vite
 
 ## Features
-
+- 🤖 Conversational ChatBot for FAQs
+- 🗄️ Firebase Database(Firebase)
+- 📡 Deploy on Vercel
 - 🌓 Dark/Light mode theming
 - 📱 Responsive design
 - ⚡ Optimized performance
@@ -23,7 +25,6 @@ A modern, responsive portfolio website showcasing my work and skills. Built with
 - 🎓 Education & experience section
 - 🤔 Frequently Asked Questions section
 - 🚀 Contact form
-- 📡 Deployment on Vercel
 
 ## Project Setup
 
@@ -60,13 +61,20 @@ npm run build
 ```
 Personal-Web-Portfolio/
 ├── src/
+│   ├── layout/         # Main entry point
 │   ├── components/     # Vue components
 │   ├── composables/    # Reusable component logic
-│   ├── assets/        # Static assets
-│   ├── utils/         # Utility functions
-│   ├── types/         # TypeScript types
-│   └── constants/     # Static data
-├── public/            # Public assets
+│   ├── assets/         # Static assets
+│   ├── utils/          # Utility functions
+│   ├── types/          # TypeScript types
+│   ├── stores/         # Pinia Store module
+│   ├── services/       # API services
+│   ├── libs/           # Third-party libraries
+│   ├── constants/      # Static data
+│   ├── App.vue         # Root component
+│   ├── main.ts         # Entry point
+│   └── vite-env.d.ts   # Vite TypeScript env
+├── public/             # Public assets
 └── ... config files
 ```
 
@@ -78,6 +86,10 @@ Personal-Web-Portfolio/
 - Implement responsive design using Tailwind CSS
 - Optimize for performance and accessibility
 
+## Demo
+
+You can try the live demo [https://jerome-avecilla.vercel.app/](https://jerome-avecilla.vercel.app/)
+
 ## Contact
 
 - Portfolio: [jerome-avecilla.vercel.app](https://jerome-avecilla.vercel.app/)
@@ -86,4 +98,4 @@ Personal-Web-Portfolio/
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

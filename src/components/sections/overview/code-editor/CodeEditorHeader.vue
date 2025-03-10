@@ -15,7 +15,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 // Available tabs
-const tabs = ["Output", "Code"];
+const tabs = ["Preview", "Code"];
 
 /**
  * Handles tab switching

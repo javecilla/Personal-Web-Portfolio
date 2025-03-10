@@ -13,6 +13,7 @@ import phpIcon from "@global/svgs/php.svg?url";
 import laravelIcon from "@global/svgs/laravel.svg?url";
 import mysqlIcon from "@global/svgs/mysql.svg?url";
 import postgresqlIcon from "@global/svgs/postgresql.svg?url";
+import firebaseIcon from "@global/svgs/firebase.svg?url";
 import gitIcon from "@global/svgs/git.svg?url";
 import gitLabIcon from "@global/svgs/gitlab.svg?url";
 import githubActionIcon from "@global/svgs/github-actions.svg?url";
@@ -88,6 +89,10 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
 			{
 				name: "PostgreSQL",
 				icon: postgresqlIcon,
+			},
+			{
+				name: "Firebase",
+				icon: firebaseIcon,
 			},
 		],
 	},

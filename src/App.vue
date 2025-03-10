@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent, onMounted } from "vue";
-import { useStore } from '@/store';
+import { storeToRefs } from 'pinia'
+import { useRootStore } from '@/stores/root';
 import ErrorBoundary from "@/components/ErrorBoundary.vue";
 import PageSkeleton from "@/components/PageSkeleton.vue";
 import PageLoader from "@/components/PageLoader.vue";
@@ -8,10 +9,14 @@ import PageTransition from "@/components/PageTransition.vue";
 import CustomCursor from "@/components/CustomCursor.vue";
 import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
+import ChatButton from "@/components/chat/ChatButton.vue";
 
+// Use storeToRefs to properly handle reactivity
+const store = useRootStore();
+const { isFullyLoaded } = storeToRefs(store);
+const { setInitialLoadComplete, setComponentsLoaded } = store;
 
 // Simplified loading states
-const store = useStore();
 const isContentVisible = ref(false);
 
 // Add layout transition control
@@ -24,7 +29,7 @@ onMounted(() => {
     new Promise(resolve => requestAnimationFrame(resolve))
   ]).then(() => {
     layoutReady.value = true;
-    store.commit('setInitialLoadComplete');
+    setInitialLoadComplete(); // Call action directly
     setTimeout(() => {
       isContentVisible.value = true;
     }, 100); // Reduced delay
@@ -33,14 +38,14 @@ onMounted(() => {
   // Failsafe timeout reduced
   setTimeout(() => {
     layoutReady.value = true;
-    store.commit('setInitialLoadComplete');
+    setInitialLoadComplete(); // Call action directly
     isContentVisible.value = true;
   }, 2000);
 });
 
 // Watch for Suspense component load state
 const onComponentsLoaded = () => {
-  store.commit('setComponentsLoaded');
+  setComponentsLoaded(); // Call action directly
 };
 
 // Optimize component loading
@@ -53,7 +58,7 @@ const components = {
   ExperiencesEducationSection: defineAsyncComponent(() => import("@/components/sections/experiences_education/ExperiencesEducationSection.vue")),
   TestimonialsSection: defineAsyncComponent(() => import("@/components/sections/testimonials/TestimonialsSection.vue")),
   FAQSection: defineAsyncComponent(() => import("@/components/sections/faqs/FAQSection.vue")),
-  ContactSection: defineAsyncComponent(() => import("@/components/sections/contact/ContactSection.vue")),
+  ContactSection: defineAsyncComponent(() => import("@/components/sections/contact/ContactSection.vue"))
 };
 </script>
 
@@ -71,7 +76,10 @@ const components = {
       <div v-show="isContentVisible">
         <CustomCursor />
         <components.MouseLight />
-        <PageTransition :is-loaded="store.getters.isFullyLoaded" class="w-full">
+        <PageTransition 
+          :is-loaded="isFullyLoaded" 
+          class="w-full"
+        >
           <NavBar />
         
           <ErrorBoundary>
@@ -100,6 +108,8 @@ const components = {
         </PageTransition>
       </div>
     </Transition>
+
+    <ChatButton />
   </main>
 </template>
 
