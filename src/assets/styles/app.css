@@ -25,6 +25,16 @@
 	--link-color-dark: #60A5FA;
 }
 
+@layer base {
+  .prose {
+    @apply prose-headings:text-gray-900 dark:prose-headings:text-white
+           prose-p:text-gray-600 dark:prose-p:text-gray-300
+           prose-strong:text-gray-900 dark:prose-strong:text-white
+           prose-ul:text-gray-600 dark:prose-ul:text-gray-300
+           max-w-none;
+  }
+}
+
 a {
 	font-weight: 500;
 	color: #646cff;

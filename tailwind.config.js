@@ -1,3 +1,5 @@
+import typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -6,7 +8,24 @@ export default {
     "./src/**/*.{html,js,ts,vue,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            color: 'inherit',
+            a: {
+              color: 'inherit',
+              textDecoration: 'none',
+            },
+          },
+        },
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    typography({
+      className: 'prose',
+    }),
+  ],
 }

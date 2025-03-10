@@ -1,11 +1,10 @@
-/** * @component ProjectsSection * @description Main projects section displaying
-featured and filtered projects * Features category filtering, project cards, and
-responsive grid layout */
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import type { Project } from '../../../types/project';
 import { projects } from "@/data/projects";
 import ProjectCard from "./ProjectCard.vue";
 import ProjectFilter from "./ProjectFilter.vue";
+import ProjectModal from "./ProjectModal.vue";
 
 defineProps<{
   id?: string;
@@ -24,6 +23,19 @@ const filteredProjects = computed(() => {
 		(project) => project.category === selectedCategory.value
 	);
 });
+
+const selectedProject = ref<Project | null>(null);
+const isModalOpen = ref(false);
+
+const handleProjectClick = (project: Project) => {
+  selectedProject.value = project;
+  isModalOpen.value = true;
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+  selectedProject.value = null;
+};
 </script>
 
 <template>
@@ -52,8 +64,16 @@ const filteredProjects = computed(() => {
 				v-for="project in filteredProjects"
 				:key="project.title"
 				:project="project"
+				@click="handleProjectClick"
 			/>
 		</div>
+
+		<!-- Project Modal -->
+		<ProjectModal
+			:show="isModalOpen"
+			:project="selectedProject"
+			@close="closeModal"
+		/>
 	</section>
 </template>
 

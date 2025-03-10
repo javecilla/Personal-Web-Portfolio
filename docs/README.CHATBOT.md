@@ -23,7 +23,7 @@ A personalized conversational chat bot that answer all FAQs about me, integratin
         - [String] content: "I provide the following **web development solutions**:\n- **Frontend development** with Vue.js and TypeScript\n- **Backend development** with Laravel..."
         - [Number] timestamp: 1741365256
 
-## Features
+## Key Features
 
 #### **1️⃣ User-Friendly Interface**  
 - ✅ **Collapsible Chat Box** - like the messenger interface.

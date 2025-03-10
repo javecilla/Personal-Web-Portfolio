@@ -1,6 +1,3 @@
-/** * @component ProjectFilter * @description Filter component for project
-categories with interactive buttons * Features gradient highlight for active
-category and hover effects */
 <script setup lang="ts">
 import { categories } from "@/data/projects";
 

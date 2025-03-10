@@ -1,6 +1,3 @@
-/** * @component ProjectCard * @description Displays individual project
-information with image, description, and links * Features hover effects, tech
-stack icons, and action buttons */
 <script setup lang="ts">
 import { ref } from 'vue';
 import { GithubIcon, Globe } from "lucide-vue-next";
@@ -12,6 +9,10 @@ defineProps<{
 	project: Project;
 }>();
 
+const emit = defineEmits<{
+  (e: 'click', project: Project): void;
+}>();
+
 const imageLoaded = ref(false);
 
 const handleImageLoad = () => {
@@ -20,7 +21,10 @@ const handleImageLoad = () => {
 </script>
 
 <template>
-	<div class="project-card group section-bg">
+	<div 
+		class="project-card group section-bg cursor-pointer"
+		@click="emit('click', project)"
+	>
 		<!-- Project Image with Skeleton -->
 		<div class="project-card__image-container">
 			<Transition
@@ -112,6 +116,9 @@ const handleImageLoad = () => {
 /* Main container */
 .project-card {
 	@apply rounded-2xl transition-all duration-500 ease-in-out overflow-hidden;
+	@apply hover:shadow-lg dark:hover:shadow-zinc-900/20 
+         transform transition-all duration-300 
+         hover:-translate-y-1;
 }
 
 /* Image container */
@@ -121,7 +128,7 @@ const handleImageLoad = () => {
 
 .project-card__image {
 	@apply w-full h-full object-cover transition-all duration-500 grayscale 
-         group-hover:grayscale-0 group-hover:scale-110;
+         group-hover:grayscale-0 group-hover:scale-[1.05] group-hover:opacity-100;
 }
 
 .project-card__image-overlay {

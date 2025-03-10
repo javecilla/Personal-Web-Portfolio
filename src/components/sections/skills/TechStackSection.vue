@@ -7,7 +7,7 @@ import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.
 </script>
 
 <template>
-	<section :id="id" class="tech-stack section-bg">
+	<section :id="id" class="tech-stack section-bg -mt-[100px]" style="margin-top: -50px">
 		<!-- Section Header -->
 		<div class="tech-stack__header">
 			<h2 class="tech-stack__title section-title">Tech Stacks and Tools</h2>
@@ -37,7 +37,7 @@ import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.
 <style scoped>
 /* Main container */
 .tech-stack {
-	@apply space-y-8 p-6 rounded-2xl transition-all duration-500 ease-in-out;
+	@apply space-y-6 p-6 rounded-2xl transition-all duration-500 ease-in-out;
 }
 
 /* Header styles */
