@@ -10,6 +10,7 @@ import CustomCursor from "@/components/CustomCursor.vue";
 import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
 import ChatButton from "@/components/chat/ChatButton.vue";
+import BackToTop from "@/components/BackToTop.vue";
 
 // Use storeToRefs to properly handle reactivity
 const store = useRootStore();
@@ -106,6 +107,7 @@ const components = {
          
           <Footer />
         </PageTransition>
+        <BackToTop />
       </div>
     </Transition>
 
