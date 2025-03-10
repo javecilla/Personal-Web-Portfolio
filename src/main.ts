@@ -4,12 +4,15 @@ import App from '@/App.vue'
 import '@/assets/styles/app.css'
 import '@/assets/styles/components.css'
 
-// Create app instance
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
+// app.use(ElementPlus)
+// app.mount('#app')
+
 const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
 
-// Initialize Element Plus and other dependencies asynchronously
 Promise.all([
   import('element-plus'),
   import('element-plus/dist/index.css'),

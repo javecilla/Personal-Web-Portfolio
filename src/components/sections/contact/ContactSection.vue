@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { socials } from "@/data/socials";  
+import { ref, onMounted } from 'vue';
+import { socials } from "@/data/socials";
 import ImageSkeleton from "@/components/ImageSkeleton.vue";
+import { contactService } from '@/services/contactService';
 
 // Track loading state for each icon
 const loadedIcons = ref(new Set<string>());
-
 const handleIconLoad = (skillName: string) => {
   loadedIcons.value.add(skillName);
 };
@@ -13,6 +13,131 @@ const handleIconLoad = (skillName: string) => {
 const isIconLoaded = (skillName: string): boolean => {
   return loadedIcons.value.has(skillName);
 };
+
+// Add handlers to clear errors on input
+const clearError = (field: string) => {
+  if (errors.value[field]) {
+    errors.value = {
+      ...errors.value,
+      [field]: ''
+    };
+  }
+};
+
+// Update your form ref and handlers
+const form = ref({
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+});
+
+// Add watch handlers for each field
+const handleInput = (field: keyof typeof form.value) => {
+  clearError(field);
+  if (errors.value.submit) {
+    errors.value.submit = '';
+  }
+  if (successMessage.value) {
+    successMessage.value = '';
+  }
+};
+
+const isSubmitting = ref(false);
+const errors = ref<Record<string, string>>({});
+
+const validateForm = () => {
+  const newErrors: Record<string, string> = {};
+  
+  if (!form.value.name.trim()) {
+    newErrors.name = 'Name is required';
+  }
+  
+  if (!form.value.email.trim()) {
+    newErrors.email = 'Email is required';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
+    newErrors.email = 'Invalid email format';
+  }
+  
+  if (!form.value.subject.trim()) {
+    newErrors.subject = 'Subject is required';
+  }
+  
+  if (!form.value.message.trim()) {
+    newErrors.message = 'Message is required';
+  }
+
+  errors.value = newErrors;
+  return Object.keys(newErrors).length === 0;
+};
+
+// Add reCAPTCHA
+let recaptchaWidget: number;
+
+onMounted(() => {
+  const script = document.createElement('script');
+  script.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+
+  script.onload = () => {
+    window.grecaptcha.ready(() => {
+      recaptchaWidget = window.grecaptcha.render('recaptcha', {
+        sitekey: import.meta.env.VITE_GOOGLE_RECAPTCHA_FRONTEND_KEY,
+        theme: 'light',
+        callback: () => {
+          // Clear recaptcha error when user completes the challenge
+          if (errors.value.recaptcha) {
+            errors.value.recaptcha = '';
+          }
+        }
+      });
+    });
+  };
+});
+
+const handleSubmit = async (e: Event) => {
+  e.preventDefault();
+  
+  if (!validateForm()) {
+    return;
+  }
+
+  try {
+    isSubmitting.value = true;
+    const recaptchaToken = await window.grecaptcha.getResponse(recaptchaWidget);
+    
+    if (!recaptchaToken) {
+      errors.value.recaptcha = 'Please complete the reCAPTCHA';
+      return;
+    }
+
+    //console.log(form.value);
+
+    await contactService.sendMessage(form.value, recaptchaToken);
+    
+    // Reset form after successful submission
+    form.value = {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    };
+    window.grecaptcha.reset(recaptchaWidget);
+    
+    // Add success message in the form instead of toast
+    errors.value = {};
+    successMessage.value = 'Message sent successfully! I will get back to you soon.';
+  } catch (error) {
+    errors.value.submit = 'Failed to send message. Please try again.';
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
+// Add success message ref
+const successMessage = ref('');
 </script>
 
 <template>
@@ -67,29 +192,47 @@ const isIconLoaded = (skillName: string): boolean => {
           </div>
         </div>
         <div class="contact-box">
-          <form class="contact-form">
+          <form class="contact-form" @submit="handleSubmit">
+            <!-- Show success message if exists -->
+            <div v-if="successMessage" class="success-message">
+              {{ successMessage }}
+            </div>
+            
+            <!-- Show form error if exists -->
+            <div v-if="errors.submit" class="error-message mb-4">
+              {{ errors.submit }}
+            </div>
+
             <!-- Add a wrapper div for the two-column layout -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div class="form-group">
                 <label for="name" class="form-label">Name <span class="text-red-500">*</span></label>
                 <input
                   id="name"
+                  v-model="form.name"
                   type="text"
-                  required
+                  :class="{ 'error': errors.name }"
                   class="form-input"
+                  autocomplete="off"
                   placeholder="Hello..."
+                  @input="handleInput('name')"
                 />
+                <span v-if="errors.name" class="error-message">{{ errors.name }}</span>
               </div>
 
               <div class="form-group">
                 <label for="email" class="form-label">Email <span class="text-red-500">*</span></label>
                 <input
                   id="email"
-                  type="email"
-                  required
+                  v-model="form.email"
+                  type="text"
+                  :class="{ 'error': errors.email }"
                   class="form-input"
+                  autocomplete="off"
                   placeholder="Where i can reply?"
+                  @input="handleInput('email')"
                 />
+                <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
               </div>
             </div>
 
@@ -97,29 +240,48 @@ const isIconLoaded = (skillName: string): boolean => {
               <label for="subject" class="form-label">Subject <span class="text-red-500">*</span></label>
               <input
                 id="subject"
+                v-model="form.subject"
                 type="text"
-                required
+                :class="{ 'error': errors.subject }"
                 class="form-input"
+                autocomplete="off"
                 placeholder="What's the subjects?"
+                @input="handleInput('subject')"
               />
+              <span v-if="errors.subject" class="error-message">{{ errors.subject }}</span>
             </div>
 
             <div class="form-group">
               <label for="message" class="form-label">Message <span class="text-red-500">*</span></label>
               <textarea
                 id="message"
-                required
+                v-model="form.message"
+                :class="{ 'error': errors.message }"
                 class="form-textarea"
+                autocomplete="off"
                 placeholder="Tell me about your project..."
                 rows="4"
+                @input="handleInput('message')"
               ></textarea>
+              <span v-if="errors.message" class="error-message">{{ errors.message }}</span>
+            </div>
+
+            <!-- Replace the reCAPTCHA section with this updated version -->
+            <div class="form-group col-span-full">
+              <div class="recaptcha-container">
+                <div id="recaptcha"></div>
+                <span v-if="errors.recaptcha" class="recaptcha-error">
+                  {{ errors.recaptcha }}
+                </span>
+              </div>
             </div>
 
             <button
               type="submit"
               class="submit-button"
+              :disabled="isSubmitting"
             >
-              <span>Send Message</span>
+              <span>{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
             </button>
           </form>
         </div>
@@ -249,8 +411,7 @@ const isIconLoaded = (skillName: string): boolean => {
          transition-all duration-200
          disabled:opacity-50 disabled:cursor-not-allowed
          focus:ring-2 focus:ring-blue-500/20
-         focus:outline-none
-         pointer-events-none;
+         focus:outline-none;
 }
 
 /* Hover and focus states */
@@ -262,5 +423,30 @@ const isIconLoaded = (skillName: string): boolean => {
 .contact-box:hover .form-input:focus,
 .contact-box:hover .form-textarea:focus {
   @apply shadow-sm;
+}
+
+.error {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+}
+
+.error-message {
+  @apply text-red-500 text-sm text-left mt-1 block;
+}
+
+/* Remove the .error-message.text-center style and add these new styles */
+.recaptcha-container {
+  @apply flex flex-col items-center space-y-2;
+}
+
+.recaptcha-error {
+  @apply text-red-500 text-sm mt-1 block w-full text-center;
+}
+
+.success-message {
+  @apply text-green-600 dark:text-green-400 
+         text-sm text-left mt-1 mb-4 
+         p-3 bg-green-50 dark:bg-green-900/10 
+         border border-green-100 dark:border-green-900/10 
+         rounded-lg;
 }
 </style>

@@ -187,6 +187,18 @@ export default defineConfig({
 	server: {
 		fs: {
 			strict: true
+		},
+		proxy: {
+			'/recaptcha': {
+				target: 'https://www.google.com/recaptcha/api',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/recaptcha/, '')
+			},
+			'/api/verify-recaptcha': {
+				target: 'https://www.google.com/recaptcha/api/siteverify',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api\/verify-recaptcha/, '')
+			}
 		}
 	},
 	preview: {
