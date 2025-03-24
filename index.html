@@ -173,7 +173,7 @@
 						send_page_view: false, 
 						transport_type: "beacon",
 					});
-					// Load GA script asynchronously
+
 					var ga = document.createElement("script");
 					ga.async = true;
 					ga.defer = true;
@@ -207,18 +207,15 @@
 
 		<base href="/" />	
 		<script type="module">
-			// Ensure proper module loading order
 			window.__VUE_PROD_DEVTOOLS__ = false;
 			window.__VUE_OPTIONS_API__ = false;
 		</script>
 		
 		<style>
-			/* Prevent FOUT */
 			.font-sans {
 				font-display: swap;
 			}
 			
-			/* Prevent layout shifts during load */
 			body {
 				min-height: 100vh;
 			}

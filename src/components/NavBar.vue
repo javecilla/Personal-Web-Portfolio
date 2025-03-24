@@ -10,7 +10,6 @@ import BaseLink from '@//components/base/BaseLink.vue';
 const isScrolled = ref(false);
 const isSidebarOpen = ref(false);
 
-// Add aria labels
 const mobileMenuLabels = {
   open: 'Open navigation menu',
   close: 'Close navigation menu'
@@ -119,10 +118,10 @@ const isActive = (href: string) => currentHash.value === href;
 					</button>
 
 					<BaseLink
-						href="/resume"
+						href="javascript:void(0)"
 						ariaLabel="Download my resume"
 						variant="button"
-						class="hidden md:flex text-center items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 transition-all duration-300 px-6"
+						class="hidden md:flex text-center items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 transition-all duration-300 px-6 cursor-not-allowed"
 					>
 						<span class="text-white font-medium">Resume</span>
 					</BaseLink>
@@ -135,7 +134,6 @@ const isActive = (href: string) => currentHash.value === href;
 </template>
 
 <style scoped>
-/* Optional: Add backdrop-filter support for older browsers */
 @supports not (backdrop-filter: blur(12px)) {
 	.backdrop-blur-md {
 		background-color: rgba(255, 255, 255, 0.95);

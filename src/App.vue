@@ -13,15 +13,11 @@ import ChatButton from "@/components/chat/ChatButton.vue";
 import BackToTop from "@/components/BackToTop.vue";
 import { useActiveSection } from '@/composables/useActiveSection';
 
-// Use storeToRefs to properly handle reactivity
 const store = useRootStore();
 const { isFullyLoaded } = storeToRefs(store);
 const { setInitialLoadComplete, setComponentsLoaded } = store;
 
-// Simplified loading states
 const isContentVisible = ref(false);
-
-// Add layout transition control
 const layoutReady = ref(false);
 
 onMounted(() => {
@@ -31,16 +27,16 @@ onMounted(() => {
     new Promise(resolve => requestAnimationFrame(resolve))
   ]).then(() => {
     layoutReady.value = true;
-    setInitialLoadComplete(); // Call action directly
+    setInitialLoadComplete();
     setTimeout(() => {
       isContentVisible.value = true;
-    }, 100); // Reduced delay
+    }, 100);
   });
 
   // Failsafe timeout reduced
   setTimeout(() => {
     layoutReady.value = true;
-    setInitialLoadComplete(); // Call action directly
+    setInitialLoadComplete();   
     isContentVisible.value = true;
   }, 2000);
 
@@ -52,16 +48,14 @@ onMounted(() => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 1000); // Delay to ensure content is loaded
+    }, 1000); 
   }
 });
 
-// Watch for Suspense component load state
 const onComponentsLoaded = () => {
-  setComponentsLoaded(); // Call action directly
+  setComponentsLoaded();
 };
 
-// Optimize component loading
 const components = {
   MouseLight: defineAsyncComponent(() => import("@/components/MouseLight.vue")),
   OverviewSection: defineAsyncComponent(() => import("@/components/sections/overview/OverviewSection.vue")),
@@ -74,7 +68,6 @@ const components = {
   ContactSection: defineAsyncComponent(() => import("@/components/sections/contact/ContactSection.vue"))
 };
 
-// Add active section tracking
 useActiveSection();
 </script>
 

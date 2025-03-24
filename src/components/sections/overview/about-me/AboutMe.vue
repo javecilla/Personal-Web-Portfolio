@@ -35,7 +35,6 @@ onMounted(async () => {
 	await initializeApp();
 });
 
-// Add image dimensions
 const IMAGE_DIMENSIONS = {
   mobile: {
     width: 150,

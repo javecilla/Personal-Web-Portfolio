@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Experience, Education } from "@/types/experience";  // Fixed import path
+import type { Experience, Education } from "@/types/experience"; 
 import { experiences, education } from "@/data/experiences";
 
 defineProps<{
   id?: string;
 }>()
 
-// Convert readonly arrays to mutable arrays for refs
 const experiencess = ref<Experience[]>([...experiences]);
 const educations = ref<Education[]>([...education]);
 const isExperienceHovered = ref(false);
@@ -281,7 +280,6 @@ const isEducationHovered = ref(false);
 		@apply text-2xl tracking-normal mb-4;
 	}
 
-	/* Adjust frame content padding */
 	.frame__content {
 		@apply pl-0;
 	}
@@ -291,7 +289,6 @@ const isEducationHovered = ref(false);
 		@apply mt-0 ml-0 mr-0;
 	}
 
-	/* Adjust container spacing */
 	.frames-container {
 		@apply px-4 gap-0 space-y-8;
 	}
@@ -300,7 +297,6 @@ const isEducationHovered = ref(false);
 		@apply border-0;
 	}
 
-	/* Ensure content is properly spaced */
 	.experiences-education__content {
 		@apply min-h-0;
 	}

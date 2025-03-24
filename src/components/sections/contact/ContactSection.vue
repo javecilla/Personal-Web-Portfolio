@@ -18,7 +18,6 @@ const isIconLoaded = (skillName: string): boolean => {
   return loadedIcons.value.has(skillName);
 };
 
-// Add handlers to clear errors on input
 const clearError = (field: string) => {
   if (errors.value[field]) {
     errors.value = {
@@ -28,7 +27,6 @@ const clearError = (field: string) => {
   }
 };
 
-// Update your form ref and handlers
 const form = ref({
   name: '',
   email: '',
@@ -36,7 +34,6 @@ const form = ref({
   message: ''
 });
 
-// Add watch handlers for each field
 const handleInput = (field: keyof typeof form.value) => {
   clearError(field);
   if (errors.value.submit) {
@@ -75,7 +72,6 @@ const validateForm = () => {
   return Object.keys(newErrors).length === 0;
 };
 
-// Add reCAPTCHA
 let recaptchaWidget: number;
 
 onMounted(() => {
@@ -118,10 +114,8 @@ const handleSubmit = async (e: Event) => {
     }
 
     //console.log(form.value);
-
     await contactService.sendMessage(form.value, recaptchaToken);
     
-    // Reset form after successful submission
     form.value = {
       name: '',
       email: '',
@@ -130,7 +124,6 @@ const handleSubmit = async (e: Event) => {
     };
     window.grecaptcha.reset(recaptchaWidget);
     
-    // Add success message in the form instead of toast
     errors.value = {};
     successMessage.value = 'Message sent successfully! I will get back to you soon.';
   } catch (error) {
@@ -140,7 +133,6 @@ const handleSubmit = async (e: Event) => {
   }
 };
 
-// Add success message ref
 const successMessage = ref('');
 </script>
 
@@ -299,12 +291,11 @@ const successMessage = ref('');
 	@apply opacity-100 z-20;
 }
 .contact-section {
-  @apply space-y-10 sm:space-y-16 p-6 lg:p-8 rounded-2xl; /* Increased space-y values */
+  @apply space-y-10 sm:space-y-16 p-6 lg:p-8 rounded-2xl;
 }
 
 .contact-section__header {
   @apply space-y-2 sm:space-y-3 text-center;
-  /* Removed mb-10 sm:mb-8 since we're using space-y on the parent */
 }
 
 .contact-container {
@@ -316,18 +307,16 @@ const successMessage = ref('');
 }
 
 .contact-social {
-  @apply flex flex-col items-center md:items-start gap-4 pt-2
-         w-full; /* Added full width */
+  @apply flex flex-col items-center md:items-start gap-4 pt-2 w-full;
 }
 
 .contact-social__links {
   @apply flex flex-row md:flex-col gap-3 
-         w-full justify-center md:justify-start; /* Changed from w-[20px] to w-full */
+         w-full justify-center md:justify-start;
 }
 
 .social-link {
-  @apply flex items-center /* Changed from items-start */
-         justify-center md:justify-start /* Updated justification */
+  @apply flex items-center justify-center md:justify-start
          px-3 py-3 md:px-4 md:py-3
          dark:bg-zinc-900/20 bg-white/80
          backdrop-blur-sm
@@ -360,11 +349,10 @@ const successMessage = ref('');
          relative;
 }
 
-/* Update the shadow styles to only show on medium screens and up */
+/* shadow styles to only show on medium screens and up */
 .contact-box::before {
   content: '';
-  @apply absolute 
-         hidden md:block /* Hide on mobile, show on md breakpoint and up */
+  @apply absolute hidden md:block
          -right-[35px] -top-[30px]
          w-full h-full
          rounded-xl
@@ -418,7 +406,6 @@ const successMessage = ref('');
          focus:outline-none;
 }
 
-/* Hover and focus states */
 .form-input:hover,
 .form-textarea:hover {
   @apply border-gray-300 dark:border-zinc-800;
@@ -437,7 +424,6 @@ const successMessage = ref('');
   @apply text-red-500 text-sm text-left mt-1 block;
 }
 
-/* Remove the .error-message.text-center style and add these new styles */
 .recaptcha-container {
   @apply flex flex-col items-center space-y-2;
 }

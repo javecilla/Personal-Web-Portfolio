@@ -12,12 +12,9 @@ defineProps<{
   id?: string;
 }>()
 
-// State management
 const currentSlide = ref(0);
 const isAnimating = ref(false);
 const slideDirection = ref<"left" | "right">("right");
-
-// Add image loading state
 const imageLoaded = ref<{ [key: number]: boolean }>({});
 
 const handleImageLoad = (index: number) => {
@@ -47,11 +44,10 @@ const navigateSlide = (direction: "prev" | "next") => {
 	}, 1000);
 };
 
-// Auto-play functionality
-let autoplayInterval: number;
+const autoplayInterval = ref<number>();
 
 onMounted(() => {
-	autoplayInterval = window.setInterval(() => {
+	autoplayInterval.value = window.setInterval(() => {
 		navigateSlide("next");
 	}, 60000);
 });
@@ -359,12 +355,13 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 }
 
 .achievements__category-text {
-	@apply text-xs md:text-sm px-2 py-1.5 bg-gray-200 rounded-full 
-         transition-all duration-300 ease-in-out;
-}
-
-.dark .achievements__category-text {
-	@apply bg-zinc-800;
+	@apply px-3 py-1.5
+         text-sm font-medium
+         border-2 border-blue-500/50 dark:border-blue-400/50
+         text-blue-600 dark:text-blue-400
+         rounded-full
+         bg-blue-50/50 dark:bg-blue-900/10
+         whitespace-nowrap;
 }
 
 .achievements__category-text:hover {
@@ -399,7 +396,6 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 	@apply text-gray-400;
 }
 
-/* Animation helper */
 .transform {
 	will-change: transform;
 }

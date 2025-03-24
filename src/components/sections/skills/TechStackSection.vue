@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import TechStacksExpertise from "@/components/sections/skills/TechStackExpertise.vue";
+import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.vue";
+
 defineProps<{
   id?: string;
 }>();
-import TechStacksExpertise from "@/components/sections/skills/TechStackExpertise.vue";
-import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.vue";
 </script>
 
 <template>
@@ -35,12 +36,10 @@ import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.
 </template>
 
 <style scoped>
-/* Main container */
 .tech-stack {
 	@apply space-y-6 p-6 rounded-2xl transition-all duration-500 ease-in-out;
 }
 
-/* Header styles */
 .tech-stack__header {
 	@apply space-y-4 text-center;
 }
@@ -53,12 +52,10 @@ import TechStackAndSkills from "@/components/sections/skills/TechStackAndSkills.
 	@apply text-sm sm:text-base max-w-4xl mx-auto;
 }
 
-/* Subheader styles */
 .tech-stack__subheader {
 	@apply text-center;
 }
 
-/* Image hover effects */
 :deep(img) {
 	@apply opacity-70 transition-all duration-300;
 }

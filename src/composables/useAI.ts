@@ -1,4 +1,3 @@
-// /src/composables/useAI.ts
 import type { GeminiResponse } from '@/types/ai';
 
 export function useAI() {
@@ -24,13 +23,13 @@ export function useAI() {
 
       const data = await response.json() as GeminiResponse;
       let responseText = data.candidates[0]?.content.parts[0].text ?? 'No response';
-      console.log('Raw Gemini Response:', responseText); // Debug raw response
+      // console.log('Raw Gemini Response:', responseText);
       responseText = responseText
         .replace(/^((Hey|Hello)( there)?!?\s*)/i, '') // Remove informal greetings only at the start (case-insensitive)
         .replace(/ID:\s*\d+\s*A:\s*/i, '') // Keep existing ID pattern
         .replace(/\s+/g, ' ') // Normalize whitespace to single spaces
         .trim(); // Remove leading/trailing whitespace
-      console.log('Cleaned Gemini Response:', responseText); // Debug cleaned response
+        //console.log('Cleaned Gemini Response:', responseText); 
       return responseText;
     } catch (error) {
       console.error('Gemini AI error:', error);

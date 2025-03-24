@@ -9,7 +9,6 @@ onErrorCaptured((e: Error) => {
   return false
 })
 
-// Add reload function
 const handleReload = () => {
   if (typeof window !== 'undefined') {
     window.location.reload()

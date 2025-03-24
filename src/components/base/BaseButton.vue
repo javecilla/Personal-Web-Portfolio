@@ -1,24 +1,3 @@
-<template>
-  <button
-    :class="[
-      'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500',
-      'transition-colors duration-200',
-      'disabled:opacity-50 disabled:cursor-not-allowed',
-      baseClasses,
-      variantClasses[variant]
-    ]"
-    :aria-label="ariaLabel"
-    :type="type"
-    :disabled="disabled"
-    @keydown.space.prevent="$emit('click')"
-    @keyup.space.prevent="$emit('click')"
-    @keydown.enter.prevent="$emit('click')"
-    @click="$emit('click')"
-  >
-    <slot />
-  </button>
-</template>
-
 <script setup lang="ts">
 interface Props {
   ariaLabel: string;
@@ -45,3 +24,27 @@ const variantClasses = {
   icon: 'p-2 dark:bg-zinc-800 bg-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-zinc-700'
 } as const;
 </script>
+
+<template>
+  <button
+    :class="[
+      'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500',
+      'transition-colors duration-200',
+      'disabled:opacity-50 disabled:cursor-not-allowed',
+      baseClasses,
+      variantClasses[variant]
+    ]"
+    :aria-label="ariaLabel"
+    :type="type"
+    :disabled="disabled"
+    @keydown.space.prevent="$emit('click')"
+    @keyup.space.prevent="$emit('click')"
+    @keydown.enter.prevent="$emit('click')"
+    @click="$emit('click')"
+  >
+    <slot />
+  </button>
+</template>
+
+<style scoped>
+</style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import GeminiChat from './GeminiChat.vue';
+import GeminiChat from '@/components/chat/GeminiChat.vue';
 import { MessageCircle, Minus } from 'lucide-vue-next';
 
 const isOpen = ref(false);

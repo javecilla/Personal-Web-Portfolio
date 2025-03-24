@@ -40,7 +40,6 @@ withDefaults(
 				gradient="from-rose-500/[0.15]"
 				class-name="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
 			/>
-			<!-- Add more ElegantShapes as needed -->
 		</div>
 
 		<div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-6">
@@ -90,7 +89,6 @@ withDefaults(
 	}
 }
 
-/* Add animation delays */
 h1.animate-fadeUp {
 	animation-delay: 0.7s;
 }

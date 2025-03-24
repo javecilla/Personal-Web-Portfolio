@@ -1,4 +1,3 @@
-// Define project type for experiences
 export interface ExperienceProject {
   readonly name: string;
   readonly description: string;

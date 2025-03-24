@@ -4,7 +4,6 @@ import { computed, ref } from 'vue';
 import codeIcon from '@global/gif_webp/code-icon.webp?url';
 import ImageSkeleton from "@/components/ImageSkeleton.vue";
 
-// Track loading state for icons
 const loadedIcons = ref(new Set<string>());
 const isCenterIconLoaded = ref(false);
 
@@ -21,7 +20,7 @@ const techWithPositions = computed(() => {
   return techStacksExpertise.map((tech, index) => {
     const angle = (index * 360) / techStacksExpertise.length;
     const radian = (angle - 90) * (Math.PI / 180); // -90 to start from top
-    const radius = 150; // Adjust this value to change circle size
+    const radius = 150; 
     
     return {
       ...tech,
@@ -125,7 +124,7 @@ const techWithPositions = computed(() => {
 
 .expertise__center {
   @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-         w-16 h-16  /* Reduced from w-24 h-24 for better proportion */
+         w-16 h-16  
          flex items-center justify-center
          rounded-full
          bg-white dark:bg-zinc-900/10
@@ -133,7 +132,7 @@ const techWithPositions = computed(() => {
 }
 
 .expertise__center-skeleton {
-  @apply w-8 h-8  /* Adjusted to match new icon size */
+  @apply w-8 h-8  
          absolute
          left-1/2 top-1/2
          -translate-x-1/2 -translate-y-1/2
@@ -141,7 +140,7 @@ const techWithPositions = computed(() => {
 }
 
 .expertise__center-gif {
-  @apply w-8 h-8  /* Adjusted size */
+  @apply w-8 h-8
          object-contain
          opacity-0 grayscale
          transition-all duration-300

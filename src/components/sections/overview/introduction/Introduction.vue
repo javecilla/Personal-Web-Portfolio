@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// No props or state needed for now
 </script>
 
 <template>

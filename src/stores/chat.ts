@@ -107,8 +107,6 @@ export const useChatStore = defineStore('chat', {
       this.messages = [];
       this.sessionId = this.generateSessionId();
       localStorage.setItem(SESSION_ID_KEY, this.sessionId); 
-      
-      // Start fresh chat session
       return this.initChat(true);
     },
 
@@ -120,7 +118,7 @@ export const useChatStore = defineStore('chat', {
       const message = this.messages.find(m => m.timestamp === timestamp);
       if (message && this.currentChatId) {
         try {
-          // Update in Firebase - only send the fields that Firebase expects
+          // Update in Firebase only send the fields that Firebase expects
           await chatService.updateMessage(this.currentChatId, {
             role: message.role,
             content: content,

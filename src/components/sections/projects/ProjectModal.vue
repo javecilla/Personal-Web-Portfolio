@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, watch, computed } from 'vue';
 import { XIcon } from 'lucide-vue-next';
-import type { Project } from '../../../types/project';
+import type { Project } from '@/types/project';
 import { useMarkdown } from '@/composables/useMarkdown';
 
 const props = defineProps<{
@@ -72,7 +72,6 @@ onUnmounted(() => {
 
             <!-- Details -->
             <div class="modal-details">
-              <!-- Updated header layout -->
               <div class="modal-header">
                 <h3 class="modal-title">{{ project.title }}</h3>
                 <span class="modal-category">
@@ -80,10 +79,8 @@ onUnmounted(() => {
                 </span>
               </div>
               
-              <!-- Update description section to use v-html -->
               <div class="modal-description" v-html="formattedDescription"></div>
 
-              <!-- Technologies with auto-width -->
               <div class="modal-tech-stack">
                 <h4 class="modal-subtitle">Technologies Used</h4>
                 <div class="modal-tech-icons">

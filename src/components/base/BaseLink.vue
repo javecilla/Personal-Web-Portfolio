@@ -4,19 +4,19 @@ interface Props {
   ariaLabel: string;
   external?: boolean;
   variant?: 'default' | 'icon' | 'nav' | 'button';
-  className?: string; // Add this line
+  className?: string;
 }
 
 withDefaults(defineProps<Props>(), {
   external: false,
   variant: 'default',
-  className: '' // Add default value
+  className: ''
 });
 
 const variantClasses = {
   default: 'text-[var(--link-color)] hover:opacity-80 dark:text-[var(--link-color-dark)]',
   nav: 'text-gray-800 dark:text-gray-200 hover:text-[var(--link-color)] dark:hover:text-[var(--link-color-dark)]',
-  button: 'px-4 py-2 rounded-full', // Removed background color from here
+  button: 'px-4 py-2 rounded-full',
   icon: 'text-gray-800 dark:text-gray-200 hover:text-[var(--link-color)] dark:hover:text-[var(--link-color-dark)]'
 } as const;
 </script>

@@ -20,7 +20,7 @@ const words = computed(() => props.text.split(' '));
         {{ word }}{{ index !== 1 ? '\u00A0' : '' }}
       </span>
     </div>
-    <div class="mt-2 block"> <!-- Added mt-2 for spacing -->
+    <div class="mt-2 block">  
       <span
         v-for="(word, index) in words.slice(2)"
         :key="index"

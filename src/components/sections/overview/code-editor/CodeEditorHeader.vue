@@ -1,26 +1,16 @@
-/** * @component CodeEditorHeader * @description Header component for the code
-editor with VS Code-like window controls and tabs */
 <script setup lang="ts">
 interface Props {
-	/** Currently active tab */
 	activeTab: string;
 }
 
 interface Emits {
-	/** Event emitted when active tab changes */
 	(e: "update:activeTab", value: string): void;
 }
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
-
-// Available tabs
 const tabs = ["Preview", "Code"];
 
-/**
- * Handles tab switching
- * @param tab The tab to switch to
- */
 function setActiveTab(tab: string) {
 	emit("update:activeTab", tab.toLowerCase());
 }

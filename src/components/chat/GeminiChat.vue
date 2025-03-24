@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick, onMounted } from 'vue';
-import { useChatStore } from '../../stores/chat';
-import { useChatBot } from '../../utils/chatBot';
+import { useChatStore } from '@/stores/chat';
+import { useChatBot } from '@/utils/chatBot';
 import MarkdownIt from 'markdown-it';
 import { PlusIcon } from "lucide-vue-next";
 import ConfirmationModal from './ConfirmationModal.vue';
@@ -72,7 +72,6 @@ onMounted(async () => {
     // Ensure each model message has its content rendered properly
     chatStore.messages.forEach(msg => {
       if (msg.role === 'model' && msg.content) {
-        // Force a re-render of markdown content
         chatStore.updateMessage(msg.timestamp, msg.content, msg.options);
       }
     });
@@ -93,7 +92,6 @@ async function sendMessage() {
     if (!chatStore.currentChatId) {
       await chatStore.initChat();
     }
-    // Add this line - Create user message first
     await chatStore.addMessage('user', currentInput);
     await nextTick(() => scrollToBottom());
 
@@ -112,7 +110,6 @@ async function sendMessage() {
         scrollToBottom();
       }
 
-      // First update the UI
       chatStore.updateMessage(botMessageId, fullResponse.trim());
       
       // get quick replies
@@ -152,7 +149,7 @@ const startNewConversation = async () => {
   await chatStore.endSession(); 
   userInput.value = '';
   resetOffTopic();
-  focusTextarea(); // Call focus here
+  focusTextarea(); 
   
   const botMessageId = await chatStore.addMessage('model', '', undefined, true);
   typingIndicator.value = true;
@@ -378,16 +375,15 @@ const confirmNewConversation = async () => {
 
 textarea {
   overflow-y: auto;
-  max-height: 200px; /* Limit maximum height */
+  max-height: 200px;  
 }
 
-/* Make sure buttons don't shrink */
 button {
   flex-shrink: 0;
 }
 
 .overflow-y-auto {
-  height: calc(100% - 60px); /* Adjust for input area */
+  height: calc(100% - 60px); 
 }
 
 form {

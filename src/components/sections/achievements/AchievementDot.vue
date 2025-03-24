@@ -3,7 +3,7 @@ interface Props {
   index: number;
   isActive: boolean;
   id: string;
-  ariaControls: string;  // Changed from 'aria-controls' to camelCase
+  ariaControls: string;
   totalSlides: number;
 }
 

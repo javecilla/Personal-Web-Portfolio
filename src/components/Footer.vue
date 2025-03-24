@@ -59,14 +59,11 @@ const handleImageLoad = () => {``
 </template>
 
 <style scoped>
-/* Main Footer */
 .footer {
   @apply relative p-0 m-0 w-full max-w-5xl mx-auto overflow-hidden
          text-gray-300 dark:text-gray-200 -mb-[33px];
-  /* Removed bg-black and rounded-xl */
 }
 
-/* Background Glow */
 .footer__background {
   @apply absolute inset-0 w-full h-full opacity-50 dark:opacity-25;
   background: 
@@ -102,21 +99,17 @@ const handleImageLoad = () => {``
   @apply opacity-90;
 }
 
-/* Container */
 .footer__container {
   @apply flex flex-col items-center text-center 
          space-y-4 sm:space-y-6 
          mt-8 mb-8 
          relative z-10 
-         p-6 sm:p-16 md:p-28; /* Adjusted padding for mobile */
+         p-6 sm:p-16 md:p-28;
 }
 
-/* Header */
 .footer__header {
   @apply flex items-start gap-3 sm:gap-4;
 }
-
-/* Profile */
 .footer__profile {
   @apply relative flex-shrink-0;
 }
@@ -138,7 +131,6 @@ const handleImageLoad = () => {``
   @apply opacity-100 z-20;
 }
 
-/* User Info */
 .footer__info {
   @apply text-left space-y-0.5;
 }
@@ -156,16 +148,15 @@ const handleImageLoad = () => {``
   @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
          font-bold bg-gradient-to-r from-blue-500 to-purple-500 
          bg-clip-text text-transparent
-         px-4 sm:px-0; /* Added horizontal padding for mobile */
+         px-4 sm:px-0; 
 }
 
-/* Message */
 .footer__message {
   @apply dark:text-gray-400 text-gray-600 
          text-sm sm:text-base 
-         max-w-[280px] sm:max-w-xl md:max-w-2xl lg:max-w-4xl /* Controlled width for different breakpoints */
+         max-w-[280px] sm:max-w-xl md:max-w-2xl lg:max-w-4xl 
          mx-auto leading-relaxed
-         px-4 sm:px-0; /* Added horizontal padding for mobile */
+         px-4 sm:px-0;
 }
 
 /* Message - Light mode only */
@@ -174,4 +165,3 @@ const handleImageLoad = () => {``
 }
 
 </style>
-

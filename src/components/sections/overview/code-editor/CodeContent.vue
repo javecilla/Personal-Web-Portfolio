@@ -1,41 +1,22 @@
-/** * @component CodeContent * @description Displays code with syntax
-highlighting, line numbers, and expandable content * Features include: * -
-Syntax highlighting using Prism.js * - Line numbers * - Expandable/collapsible
-content * - Mobile responsive design */
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
 import Prism from "@/utils/prism-config";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-vue-next";
 
 interface Props {
-	/** The source code to display */
 	code: string;
-	/** The programming language for syntax highlighting */
 	language?: string;
-	/** Whether the component is being rendered in mobile view */
 	isMobile: boolean;
 }
 
 const props = defineProps<Props>();
-
-// State management
 const isCodeExpanded = ref(false);
 const codeWrapperRef = ref<HTMLElement | null>(null);
 
-/**
- * Calculates the number of lines in the code
- * @param code The source code string
- * @returns The number of lines
- */
 function getLineNumbers(code: string): number {
 	return code.split("\n").length;
 }
 
-/**
- * Formats the code by ensuring empty lines have a space
- * @param code The source code to format
- * @returns Formatted code string
- */
 function formatCode(code: string): string {
 	return code
 		.split("\n")
@@ -43,9 +24,6 @@ function formatCode(code: string): string {
 		.join("\n");
 }
 
-/**
- * Applies syntax highlighting to the code using Prism.js
- */
 function highlightCode() {
 	requestAnimationFrame(() => {
 		const codeElements = document.querySelectorAll("pre code.language-vue");
@@ -67,10 +45,6 @@ function highlightCode() {
 	});
 }
 
-/**
- * Toggles the expanded state of the code view
- * Scrolls to the top when collapsing
- */
 function toggleCodeExpansion() {
 	isCodeExpanded.value = !isCodeExpanded.value;
 
@@ -82,10 +56,8 @@ function toggleCodeExpansion() {
 	}
 }
 
-// Watch for code changes and rehighlight
 watch(() => props.code, highlightCode);
 
-// Initial highlighting
 onMounted(highlightCode);
 </script>
 

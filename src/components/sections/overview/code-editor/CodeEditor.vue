@@ -1,31 +1,22 @@
-/** * @component CodeEditor * @description A VS Code-like editor component that
-displays both code and its output * Features tabs for switching between output
-preview and code view */
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from "vue";
+import CodeEditorHeader from "@/components/sections/overview/code-editor/CodeEditorHeader.vue";
+import CodeContent from "@/components/sections/overview/code-editor/CodeContent.vue";
+import AboutMeSection from "@/components/sections/overview/about-me/AboutMe.vue";
+
 interface Props {
   code: string;
 }
 
 defineProps<Props>();
 
-import { ref, onMounted, onUnmounted } from "vue";
-import CodeEditorHeader from "@/components/sections/overview/code-editor/CodeEditorHeader.vue";
-import CodeContent from "@/components/sections/overview/code-editor/CodeContent.vue";
-import AboutMeSection from "@/components/sections/overview/about-me/AboutMe.vue";
-
-// State management
 const activeTab = ref("preview");
 const isMobile = ref(false);
 
-/**
- * Checks if the current viewport is mobile width
- * Updates isMobile state accordingly
- */
 function checkMobile() {
 	isMobile.value = window?.innerWidth < 640;
 }
 
-// Lifecycle hooks for mobile detection
 onMounted(() => {
 	checkMobile();
 	window.addEventListener("resize", checkMobile);

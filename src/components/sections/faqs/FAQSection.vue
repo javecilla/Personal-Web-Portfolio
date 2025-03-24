@@ -3,15 +3,12 @@ import { ref } from 'vue';
 import { faqs } from '@/data/faqs';
 import { Plus, Minus } from 'lucide-vue-next';
 
-// Change from Set to single number (null when none selected)
 const openItemId = ref<number | null>(null);
 
 function toggleItem(id: number) {
-  // If clicking the same item that's open, close it
   if (openItemId.value === id) {
     openItemId.value = null;
   } else {
-    // Open the clicked item (automatically closes any other)
     openItemId.value = id;
   }
 }
@@ -143,7 +140,6 @@ function formatNumber(num: number): string {
   @apply bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400;
 }
 
-/* Add border only when active */
 .faq-item[aria-expanded="true"] {
   @apply border-blue-500/20;
 }
