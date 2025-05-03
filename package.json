@@ -1,7 +1,7 @@
 {
 	"name": "portfolio",
 	"private": true,
-	"version": "0.20.10",
+	"version": "0.21.12",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -32,6 +32,7 @@
 		"@types/node": "^22.13.4",
 		"@types/prismjs": "^1.26.0",
 		"@vitejs/plugin-vue": "5.0.0",
+		"@vue/babel-plugin-jsx": "1.4.0",
 		"@vue/runtime-core": "^3.5.13",
 		"@vue/runtime-dom": "^3.5.13",
 		"@vue/tsconfig": "^0.7.0",

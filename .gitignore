@@ -8,19 +8,13 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
+.vscode
 .idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# Custom directories
-/notes
-.env
-*.log
-.cursorrules
 
 # Logs
 logs
@@ -30,3 +24,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+# Custom directories
+/notes
+.env
+*.log
+.cursorrules
+.trae

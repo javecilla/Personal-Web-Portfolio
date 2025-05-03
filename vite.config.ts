@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+//import vueJsx from '@vitejs/plugin-vue-jsx';
 import path from "path";
 import { VitePWA } from "vite-plugin-pwa";
 import viteCompression from "vite-plugin-compression";
@@ -9,7 +10,8 @@ import viteImagemin from "vite-plugin-imagemin";
 export default defineConfig({
 	base: '/',
 	plugins: [
-		vue(), 
+		vue(),
+		//vueJsx(),
 		VitePWA({
 			registerType: "autoUpdate",
 			includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],

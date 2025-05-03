@@ -1,7 +1,9 @@
 import { Testimonial } from "@/types/testimonial";
 import bernardoAvatar from '@global/images/avatars/bernardo.jpeg';
+import jeloAvatar from '@global/images/avatars/jelo.jpg';
 import estrellaAvatar from '@global/images/avatars/estrella.jpg';
 import juanerioAvatar from '@global/images/avatars/juanerio.png';
+import derekAvatar from '@global/images/avatars/derek.jpg';
 import michealDummyAvatar from '@global/images/avatars/lotje.jpeg';
 
 export const testimonials: readonly Testimonial[] = [
@@ -12,6 +14,14 @@ export const testimonials: readonly Testimonial[] = [
         company: "",
         avatar: bernardoAvatar,
         content: "Jerome consistently delivers technical excellence and innovative solutions to our projects. His ability to grasp our requirements and exceed expectations is truly remarkable. Talagang masaya kami sa kanyang contributions, as he is both a team player and a positive presence in all our meetings."
+    },
+    {
+        id: 2,
+        name: "Junilo V. Flores",
+        role: "IT Coordinator",
+        company: "Golden Minds Colleges",
+        avatar: jeloAvatar,
+        content: "Jerome is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive."
     },
     {
         id: 3,
@@ -28,6 +38,14 @@ export const testimonials: readonly Testimonial[] = [
         company: "InnovateTech Solutions",
         avatar: michealDummyAvatar,
         content: "Jerome is a skilled student developer who is always willing to go the extra mile to ensure that the project is successful. His eagerness to learn new technologies that align with the market allows him to deliver high-quality results that exceed my expectations."
+    },
+    {
+        id: 5,
+        name: "Derek Malibiran",
+        role: "School President",
+        company: "Golden Minds Colleges",
+        avatar: derekAvatar,
+        content: "First i saw Jerome he is a good friend of mine, i know him from my school. He is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive."
     },
     {
         id: 6,

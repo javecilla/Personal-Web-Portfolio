@@ -44,7 +44,7 @@ const handleImageLoad = () => {``
         <!-- User Info -->
         <div class="footer__info">
           <h2 class="footer__name">Jerome Avecilla</h2>
-          <p class="footer__role">Full-Stack Web Developer</p>
+          <p class="footer__role">Student Developer</p>
         </div>
       </div>
 

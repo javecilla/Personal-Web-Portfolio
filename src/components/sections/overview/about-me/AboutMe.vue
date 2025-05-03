@@ -98,7 +98,7 @@ const IMAGE_DIMENSIONS = {
             <div class="about-me__timeline-item">
               <div class="about-me__timeline-marker first_paragraph"></div>
               <p class="about-me__text">
-                Hello, I'm Jerome Avecilla—a 20-year-old BSIT student with a
+                Hello, I'm Jerome Avecilla—a 21-year-old BSIT student with a
                 passion for web development. Since 2021, I've been honing my
                 skills in HTML, CSS, JavaScript and now expanding my knowledge
                 in modern frameworks like Vue.js, enabling me to create

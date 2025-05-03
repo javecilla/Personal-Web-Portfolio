@@ -13,18 +13,15 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": [
-      "node",
-      "vite/client",
-      "@vue/runtime-core",
-      "@vue/runtime-dom"
-    ],
+    "types": ["node", "vite/client", "@vue/runtime-core", "@vue/runtime-dom"],
     "typeRoots": [
       "./node_modules/@types",
       "./node_modules/@vue",
@@ -46,6 +43,7 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
+    "src/**/*.vue",
     "src/types/env.d.ts",
     "src/types/**/*.d.ts"
   ],
