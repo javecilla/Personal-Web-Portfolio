@@ -187,6 +187,19 @@ export default defineConfig({
 	},
 	assetsInclude: ["**/*.svg"],
 	server: {
+		host: '0.0.0.0',
+		port: 5173,
+		strictPort: false, // Allow fallback to next available port
+		open: false,
+		cors: true,
+		headers: {
+			'Cache-Control': 'public, max-age=31536000, immutable',
+		},
+		// Additional network configuration
+		hmr: {
+			host: 'localhost',
+			port: 5173,
+		},
 		fs: {
 			strict: true
 		},

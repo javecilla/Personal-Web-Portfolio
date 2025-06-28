@@ -44,7 +44,7 @@ const navigateSlide = (direction: "prev" | "next") => {
 	}, 1000);
 };
 
-const autoplayInterval = ref<number>();
+const autoplayInterval = ref<number | undefined>();
 
 onMounted(() => {
 	autoplayInterval.value = window.setInterval(() => {
@@ -53,7 +53,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-	clearInterval(autoplayInterval);
+	if (autoplayInterval.value) {
+		clearInterval(autoplayInterval.value);
+	}
 });
 
 const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
@@ -247,30 +249,15 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 	@apply relative flex items-center w-full;
 }
 
-.achievements__nav-btn {
-	@apply z-50 relative md:static;
-}
-
 .achievements__dots {
 	@apply flex justify-center gap-2 m-0;
 }
 
-/* Update existing nav button styles */
+/* Navigation buttons - consolidated styles */
 .achievements__nav-btn {
-	@apply md:block p-3 rounded-full bg-white/10 backdrop-blur-sm 
+	@apply hidden md:block p-2 rounded-full bg-white/10 backdrop-blur-sm 
          transition-all duration-300 border border-gray-200
          hover:bg-white/20 z-50;
-}
-
-/* Update carousel container */
-.achievements__carousel {
-	@apply relative w-full min-h-[400px] md:min-h-[300px];
-}
-
-/* Navigation buttons */
-.achievements__nav-btn {
-	@apply hidden md:block p-3 rounded-full bg-white/10 backdrop-blur-sm 
-         transition-all duration-300 border border-gray-200;
 }
 
 .achievements__nav-btn:hover {
@@ -290,7 +277,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 }
 
 .achievements__nav-icon {
-	@apply w-6 h-6 text-gray-600;
+	@apply w-5 h-5 text-gray-600;
 }
 
 .dark .achievements__nav-icon {
@@ -325,7 +312,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 
 /* Image section */
 .achievements__image-container {
-	@apply relative h-[225px] md:h-full overflow-hidden rounded-xl;
+	@apply relative mt-[30px] h-[225px] md:h-[300px] overflow-hidden rounded-xl;
 }
 
 .achievements__image {

@@ -36,7 +36,7 @@ const variantClasses = {
   'profile': 'w-full h-full object-cover object-center transition-transform transform hover:scale-105',
   'interactive': 'w-full h-full object-cover object-center transition-all duration-500 hover:scale-105',
   'project': 'w-full h-full object-cover object-center',
-  'achievement': 'w-full h-full object-cover object-center',
+  'achievement': 'w-full h-full object-cover object-center aspect-[4/3]',
   'avatar': 'w-full h-full object-cover object-center transition-all duration-300'
 } as const;
 

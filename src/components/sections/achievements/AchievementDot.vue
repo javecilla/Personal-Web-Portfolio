@@ -19,7 +19,7 @@ defineEmits<{
     role="tab"
     :class="[
       'achievements__dot--button',
-      'w-4 h-4 md:w-5 md:h-5 rounded-full transition-colors duration-200 -mt-5 md:mt-[60px]',
+      'w-1 h-1 md:w-2 md:h-2 rounded-full transition-colors duration-200 -mt-5 md:mt-[60px]',
       'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
       isActive 
         ? 'bg-blue-500 hover:bg-blue-600' 
