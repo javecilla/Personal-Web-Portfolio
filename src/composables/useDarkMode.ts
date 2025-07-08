@@ -4,19 +4,21 @@ export function useDarkMode() {
   const isDarkMode = ref(true);
 
   const toggleTheme = () => {
-    isDarkMode.value = !isDarkMode.value;
-    document.documentElement.classList.toggle('dark', isDarkMode.value);
-    localStorage.setItem('theme', isDarkMode.value ? 'dark' : 'light');
+    // Disable theme toggle - always keep dark mode
+    console.log('Theme toggle disabled - dark mode only');
   };
 
   onMounted(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      isDarkMode.value = savedTheme === 'dark';
-    } else {
-      isDarkMode.value = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    document.documentElement.classList.toggle('dark', isDarkMode.value);
+    // Force dark mode regardless of user preferences or localStorage
+    isDarkMode.value = true;
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+    
+    // Override any existing theme preference
+    localStorage.setItem('theme', 'dark');
+    
+    // Force color scheme to dark
+    document.documentElement.style.colorScheme = 'dark';
   });
 
   return {

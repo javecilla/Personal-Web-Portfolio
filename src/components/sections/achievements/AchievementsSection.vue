@@ -250,7 +250,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 }
 
 .achievements__dots {
-	@apply flex justify-center gap-2 m-0;
+	@apply flex justify-center gap-2 mt-[30px];
 }
 
 /* Navigation buttons - consolidated styles */

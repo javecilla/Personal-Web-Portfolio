@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-	<section :id="id" class="tech-stack section-bg -mt-[100px]" style="margin-top: -50px">
+	<section :id="id" class="tech-stack section-bg" style="margin-top: 10px">
 		<!-- Section Header -->
 		<div class="tech-stack__header">
 			<h2 class="tech-stack__title section-title">Tech Stacks and Tools</h2>

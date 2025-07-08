@@ -137,7 +137,7 @@ const aboutMeCode = ref(
 </script>
 
 <template>
-  <section :id="id" class="overview">
+  <section :id="id" class="overview mt-[-30px!important]">
     <Suspense>
       <template #default>
         <div class="gap-4 sm:gap-6">
@@ -162,6 +162,9 @@ const aboutMeCode = ref(
 </template>
 
 <style>
+.overview {
+  @apply w-full;
+}
 /* Move critical styles inline */
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   margin-top: 0.5rem;

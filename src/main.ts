@@ -13,11 +13,14 @@ const app = createApp(App)
 const pinia = createPinia()
 app.use(pinia)
 
+// Mount the app first to ensure Pinia is available
+app.mount('#app')
+
+// Then load ElementPlus asynchronously
 Promise.all([
   import('element-plus'),
   import('element-plus/dist/index.css'),
   import('dayjs/locale/en')
 ]).then(([ElementPlus]) => {
   app.use(ElementPlus.default, { size: 'default' })
-  app.mount('#app')
 })

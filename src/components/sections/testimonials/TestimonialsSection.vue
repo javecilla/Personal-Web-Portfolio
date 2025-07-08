@@ -22,8 +22,8 @@ const handleImageLoad = (testimonialId: number) => {
     </div>
 
     <div class="masonry-grid">
-      <article 
-        v-for="testimonial in testimonials" 
+      <article
+        v-for="testimonial in testimonials"
         :key="testimonial.id"
         class="masonry-item"
       >
@@ -56,6 +56,7 @@ const handleImageLoad = (testimonialId: number) => {
                 />
               </div>
             </div>
+
             <div class="testimonial-card__meta">
               <h3 class="testimonial-card__name">{{ testimonial.name }}</h3>
               <p class="testimonial-card__role">
@@ -64,6 +65,7 @@ const handleImageLoad = (testimonialId: number) => {
               <!-- at {{ testimonial.company }} -->
             </div>
           </div>
+
           <div class="testimonial-card__content">
             <svg 
               class="testimonial-card__quote-icon" 
@@ -127,8 +129,8 @@ const handleImageLoad = (testimonialId: number) => {
          transition-all duration-300
          transform;
   height: fit-content;
-  display: inline-block;
   width: 100%;
+  display: inline-block;
 }
 
 /* Card Styles */
@@ -168,8 +170,12 @@ const handleImageLoad = (testimonialId: number) => {
 }
 
 .testimonial-card__role {
-  @apply text-xs sm:text-sm text-gray-500 dark:text-gray-400 
-         truncate mt-0.5;
+  @apply text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  display: block;
 }
 
 .testimonial-card__content {

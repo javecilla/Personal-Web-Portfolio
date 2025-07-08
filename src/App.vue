@@ -112,7 +112,7 @@ useActiveSection();
               </template>
             </Suspense>
           </ErrorBoundary>
-         
+
           <Footer />
         </PageTransition>
         <BackToTop />

@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 :root {
-	--font-inter: "Inter", system-ui, -apple-system, sans-serif;
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-	--text-muted: #666666;
-	--text-muted-dark: #A1A1AA;
-	--text-body: #333333;
-	--text-body-dark: #E4E4E7;
-	--link-color: #2563EB;
-	--link-color-dark: #60A5FA;
+  --text-muted: #666666;
+  --text-muted-dark: #a1a1aa;
+  --text-body: #333333;
+  --text-body-dark: #e4e4e7;
+  --link-color: #2563eb;
+  --link-color-dark: #60a5fa;
 }
 
 @layer base {
@@ -36,105 +36,107 @@
 }
 
 a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
 }
 a:hover {
-	color: #535bf2;
+  color: #535bf2;
 }
 
 body {
-	margin: 0;
-	display: flex;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
-	font-family: var(--font-inter);
-	scroll-behavior: smooth;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-inter);
+  scroll-behavior: smooth;
 
-	@apply font-sans antialiased;
-	@apply bg-white dark:bg-[#060606];
-	@apply text-[var(--text-body)] dark:text-[var(--text-body-dark)];
+  @apply font-sans antialiased;
+  @apply bg-[#060606];
+  @apply text-[var(--text-body-dark)];
 }
 
 h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 button {
-	border-radius: 8px;
-	border: 1px solid transparent;
-	padding: 0.6em 1.2em;
-	font-size: 1em;
-	font-weight: 500;
-	font-family: inherit;
-	background-color: #1a1a1a;
-	cursor: pointer;
-	transition: border-color 0.25s;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  color: #e4e4e7;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 button:hover {
-	border-color: #646cff;
+  border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .card {
-	padding: 2em;
+  padding: 2em;
 }
 
 #app {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-	text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
+/* Dark mode only - removed light mode preferences */
+
+/* Force dark mode always */
+html {
+  color-scheme: dark !important;
 }
 
 html.dark {
-	color-scheme: dark;
+  color-scheme: dark;
+}
+
+/* Override any system preferences */
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: dark !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	* {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .overview {
-	margin-block-start: 10px !important;
+  margin-block-start: 10px !important;
 }
 
 .aspiring-job-title {
-	line-height: 3.4375rem;
+  line-height: 3.4375rem;
 }
 
 .grayscale {
-	filter: grayscale(1);
+  filter: grayscale(1);
 }
 
 /* Smooth scrolling container */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; 
+  scroll-padding-top: 80px;
   overflow-y: scroll;
 }
 
@@ -147,7 +149,7 @@ html {
 
 section[id] {
   scroll-margin-top: 80px;
-  min-height: auto; 
+  min-height: auto;
   padding: 60px 0;
   position: relative;
 }
