@@ -18,7 +18,7 @@ export const testimonials: readonly Testimonial[] = [
     {
         id: 2,
         name: "Junilo V. Flores",
-        role: "IT Coordinator / Previous Adviser",
+        role: "IT Coordinator / SHS Adviser",
         company: "Golden Minds Colleges",
         avatar: jeloAvatar,
         content: "Jerome is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive."

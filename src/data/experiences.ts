@@ -34,7 +34,7 @@ export const education: Education[] = [
   {
     school: "Bulacan State University",
     degree:
-      "Bachelor of Science in Information Technology Specialized in Web Development",
+      "Bachelor of Science in Information Technology Specialized in Web and Mobile Development",
     campus: "Main Campus",
     description: "",
     startDate: "July 2023",

@@ -8,7 +8,7 @@ const { isDarkMode, toggleTheme } = useDarkMode();
 <template>
   <button 
     @click="toggleTheme" 
-    class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-all duration-300 ease-in-out flex items-center justify-center cursor-not-allowed opacity-50"
+    class="p-2 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-all duration-300 ease-in-out flex items-center justify-center cursor-not-allowed"
     title="Dark mode only"
   >
     <MoonIcon class="h-5 w-5 text-white" />

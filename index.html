@@ -9,15 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Jerome Avecilla</title>
 
-    <!-- Force dark mode immediately -->
-    <script>
-      // Force dark mode before any content loads
-      document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
-      document.documentElement.style.colorScheme = 'dark'
-      localStorage.setItem('theme', 'dark')
-    </script>
-
     <meta name="title" content="Jerome Avecilla | Web Portfolio" />
     <meta
       name="description"
@@ -179,6 +170,13 @@
           document.head.appendChild(ga)
         }, 3000)
       })
+    </script>
+
+    <script>
+      document.documentElement.classList.add('dark')
+      document.documentElement.classList.remove('light')
+      document.documentElement.style.colorScheme = 'dark'
+      localStorage.setItem('theme', 'dark')
     </script>
 
     <link

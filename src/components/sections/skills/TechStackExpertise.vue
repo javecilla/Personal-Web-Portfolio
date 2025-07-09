@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { techStacksExpertise } from "@/data/techStackExpertise";
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue';
 import codeIcon from '@global/gif_webp/code-icon.webp?url';
 import ImageSkeleton from "@/components/ImageSkeleton.vue";
 
@@ -24,12 +24,25 @@ const updateContainerWidth = () => {
   }
 };
 
+let resizeObserver: ResizeObserver | undefined;
+
 onMounted(() => {
-  updateContainerWidth();
-  window.addEventListener('resize', updateContainerWidth);
+  nextTick(() => {
+    updateContainerWidth();
+    if (containerRef.value) {
+      resizeObserver = new ResizeObserver(() => {
+        updateContainerWidth();
+      });
+      resizeObserver.observe(containerRef.value);
+    }
+  });
 });
+
 onUnmounted(() => {
   window.removeEventListener('resize', updateContainerWidth);
+  if (resizeObserver && containerRef.value) {
+    resizeObserver.unobserve(containerRef.value);
+  }
 });
 
 const getResponsiveRadius = () => {
