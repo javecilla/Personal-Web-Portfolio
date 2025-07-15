@@ -78,7 +78,7 @@ Golden Minds Colleges lacked a centralized, user-friendly online presence, leavi
 
 ## Technical Challenges & Solutions  
 - **Frontend Reactivity**: Integrated Vue.js with Laravel to enable dynamic updates without full page reloads, enhancing user interaction.  
-- **Database Scalability**: Designed PostgreSQL schemas with efficient indexing to handle growing content and user traffic.
+- **Database Scalability**: Designed MySQL schemas with efficient indexing to handle growing content and user traffic.
 
 ## Impact  
 - Reduced student inquiries by 35% by centralizing information online.  
@@ -88,7 +88,7 @@ Golden Minds Colleges lacked a centralized, user-friendly online presence, leavi
 ## Architecture  
 - **Backend**: Laravel for robust API endpoints, content management, and authentication.  
 - **Frontend**: Vue.js for reactive components paired with Bootstrap for styling.  
-- **Database**: PostgreSQL with normalized tables for scalable data storage.  
+- **Database**: MySQL with normalized tables for scalable data storage.  
 - **Deployment**: Hosted on HostGator with Cloudflare for security and CDN performance.
 
 Building this website sharpened my skills in full-stack development. I gained proficiency in integrating Vue.js with Laravel for a smooth, reactive frontend, reducing average page load times by 25% through optimization techniques like lazy loading. I also improved my database design skills with PostgreSQL, ensuring scalability for future growth, and embraced version control best practices using Git for efficient solo project management.
@@ -98,20 +98,24 @@ Building this website sharpened my skills in full-stack development. I gained pr
     demoUrl: "https://www.goldenminds.edu.ph/",
     technologies: [
       {
-        name: "Laravel",
-        icon: laravelIcon,
+        name: "MySQL",
+        icon: mysqlIcon,
       },
       {
-        name: "Vue.js",
-        icon: vueIcon,
+        name: "Laravel",
+        icon: laravelIcon,
       },
       {
         name: "Bootstrap",
         icon: bootstrapIcon,
       },
       {
-        name: "PostgreSQL",
-        icon: postgresIcon,
+        name: "Vue.js",
+        icon: vueIcon,
+      },
+      {
+        name: "JavaScript",
+        icon: jsIcon,
       },
     ],
     category: ProjectCategory.CLIENT,
@@ -160,21 +164,25 @@ Developing this system deepened my expertise in several key areas. I honed my ab
     githubUrl: "https://github.com/javecilla/Online-Voting-System",
     demoUrl: "https://voting.goldenmindsbulacan.com/",
     technologies: [
+    {
+        name: "MySQL",
+        icon: mysqlIcon,
+      },
       {
         name: "Laravel",
         icon: laravelIcon,
-      },
-      {
-        name: "jQuery",
-        icon: jqueryIcon,
       },
       {
         name: "Bootstrap",
         icon: bootstrapIcon,
       },
       {
-        name: "MySQL",
-        icon: mysqlIcon,
+        name: "jQuery",
+        icon: jqueryIcon,
+      },
+      {
+        name: "JavaScript",
+        icon: jsIcon,
       },
     ],
     category: ProjectCategory.CLIENT,
@@ -218,20 +226,24 @@ Developing this system deepened my expertise in several key areas. I honed my ab
     demoUrl: "https://philippineenglishvocabulary.com/",
     technologies: [
       {
-        name: "PHP",
-        icon: phpIcon,
+        name: "MySQL",
+        icon: mysqlIcon,
       },
       {
-        name: "JavaScript",
-        icon: jsIcon,
+        name: "PHP",
+        icon: phpIcon,
       },
       {
         name: "Bootstrap",
         icon: bootstrapIcon,
       },
       {
-        name: "MySQL",
-        icon: mysqlIcon,
+        name: "jQuery",
+        icon: jqueryIcon,
+      },
+      {
+        name: "JavaScript",
+        icon: jsIcon,
       },
     ],
     category: ProjectCategory.CLIENT,
@@ -268,20 +280,24 @@ This project refined my skills in **full-stack development**, particularly in de
     demoUrl: "https://ims.goldenmindsbulacan.com/",
     technologies: [
       {
+        name: "MySQL",
+        icon: mysqlIcon,
+      },
+      {
         name: "PHP",
         icon: phpIcon,
       },
       {
+        name: "Bootstrap",
+        icon: bootstrapIcon,
+      },
+      {
+        name: "jQuery",
+        icon: jqueryIcon,
+      },
+      {
         name: "JavaScript",
         icon: jsIcon,
-      },
-      {
-        name: "CSS",
-        icon: cssIcon,
-      },
-      {
-        name: "MySQL",
-        icon: mysqlIcon,
       },
     ],
     category: ProjectCategory.ACADEMIC,
@@ -405,20 +421,24 @@ This project refined my skills in **full-stack development**, particularly in de
     demoUrl: "https://avecilla-project-multipurpose.infinityfreeapp.com",
     technologies: [
       {
+        name: "MySQL",
+        icon: mysqlIcon,
+      },
+      {
         name: "PHP",
         icon: phpIcon,
       },
       {
+        name: "Bootstrap",
+        icon: bootstrapIcon,
+      },
+      {
+        name: "jQuery",
+        icon: jqueryIcon,
+      },
+      {
         name: "JavaScript",
         icon: jsIcon,
-      },
-      {
-        name: "CSS",
-        icon: cssIcon,
-      },
-      {
-        name: "MySQL",
-        icon: mysqlIcon,
       },
     ],
     category: ProjectCategory.ACADEMIC,
@@ -459,24 +479,28 @@ The existing portal at Golden Minds Colleges was built entirely with legacy PHP 
 This project deepened my experience in building modular and scalable systems for educational institutions. I sharpened my expertise in backend architecture with Laravel, frontend reactivity with Vue.js, and secure data modeling with PostgreSQL. I also applied version control best practices to maintain consistent progress throughout the solo development cycle.
 `,
     image: goldenMindSims,
-    githubUrl: "https://github.com/javecilla/SIMSSHS-GMC-Revised",
+    githubUrl: "https://github.com/javecilla/GMC-SIMSSHS-Revised",
     demoUrl: "https://simsshs.goldenminds.edu.ph/",
     technologies: [
       {
-        name: "Laravel",
-        icon: laravelIcon,
+        name: "PostgreSQL",
+        icon: postgresIcon,
       },
       {
-        name: "Vue.js",
-        icon: vueIcon,
+        name: "Laravel",
+        icon: laravelIcon,
       },
       {
 				name: "Tailwind CSS",
 				icon: tailwindIcon,
 			},
       {
-        name: "PostgreSQL",
-        icon: postgresIcon,
+        name: "Vue.js",
+        icon: vueIcon,
+      },
+      {
+        name: "TypeScript",
+        icon: tsIcon,
       },
     ],
     category: ProjectCategory.CLIENT,
