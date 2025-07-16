@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 
+console.trace('[Pinia Debug] useChatStore/rootStore called');
+
 export const useRootStore = defineStore('root', {
   state: () => ({
     isInitialLoadComplete: false,

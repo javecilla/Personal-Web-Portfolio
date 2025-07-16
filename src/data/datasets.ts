@@ -56,7 +56,7 @@ export const dataSets: DataSets[] = [
   {
     id: 7,
     question: "Who are you?",
-    answer: "I’m Jerome Avecilla, a 20-year-old BSIT student and aspiring full-stack web developer. I’m passionate about crafting user-friendly, high-performance web applications using modern tech like Vue.js, TypeScript, and Laravel. Beyond coding, I’m a basketball fan, swimmer, hiker, and avid gamer—catch me playing Valorant or Wild Rift!",
+    answer: "I’m Jerome Avecilla, a 21-year-old BSIT student and aspiring full-stack web developer. I’m passionate about crafting user-friendly, high-performance web applications using modern tech like Vue.js, TypeScript, and Laravel. Beyond coding, I’m a basketball fan, swimmer, hiker, and avid gamer—catch me playing Valorant or Wild Rift!",
     keywords: ["who", "Jerome", "about", "introduction", "me"],
     patternSuggestions: [8, 9, 16],
     formatSuggestion: ["paragraph", "sentence"], 
@@ -65,7 +65,7 @@ export const dataSets: DataSets[] = [
   {
     id: 8,
     question: "What’s your background?",
-    answer: "I’m currently pursuing a Bachelor of Science in Information Technology (specializing in Web Development) at Bulacan State University since July 2023. Before that, I completed my Senior High School at Golden Minds Colleges (2021-2023) with a focus on ICT, where I built a strong foundation in programming and web development.",
+    answer: "I’m currently pursuing a Bachelor of Science in Information Technology specializing in Web and Mobile Application Development at Bulacan State University since July 2023. Before that, I completed my Senior High School at Golden Minds Colleges (2021-2023) with a focus on ICT, where I built a strong foundation in programming and web development.",
     keywords: ["background", "history", "education", "experience", "past"],
     patternSuggestions: [14, 15, 9],
     formatSuggestion: ["paragraph", "sentence"], 
@@ -331,4 +331,13 @@ export const dataSets: DataSets[] = [
     formatSuggestion: ["paragraph", "sentence"],
     category: "Services",
   },
+  {
+    id: 38,
+    question: "What tech stacks or tools your are currently learning?",
+    answer: "I'm currently learning and mastering docker to expand my knowledge and skills in the field of web development and software engineering.",
+    keywords: ["tech stacks", "tools", "learning", "mastering", "docker", "kubernetes", "microservices"],
+    patternSuggestions: [31, 32, 33],
+    formatSuggestion: ["bullet", "list"],
+    category: "Technical Design",
+  }
 ];

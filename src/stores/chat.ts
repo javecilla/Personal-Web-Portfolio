@@ -4,6 +4,7 @@ import type { ChatState } from '@/types/chat';
 import { chatService } from '@/services/chatService';
 
 const SESSION_ID_KEY = 'chat_session_id';
+console.trace('[Pinia Debug] useChatStore/rootStore file loaded');
 
 export const useChatStore = defineStore('chat', {
   state: (): ChatState => ({
@@ -132,3 +133,5 @@ export const useChatStore = defineStore('chat', {
     },
   },
 });
+
+console.trace('[Pinia Debug] useChatStore defined and ready');
