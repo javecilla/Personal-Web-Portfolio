@@ -10,7 +10,7 @@ export const testimonials: readonly Testimonial[] = [
     {
         id: 1,
         name: "Alex Gayle M. Bernardo",
-        role: "4th Year BSED Major in English (PUP)",
+        role: "4th Year BSED Major in English at PUP",
         company: "",
         avatar: bernardoAvatar,
         content: "Jerome consistently delivers technical excellence and innovative solutions to our projects. His ability to grasp our requirements and exceed expectations is truly remarkable. Talagang masaya kami sa kanyang contributions, as he is both a team player and a positive presence in all our meetings."
@@ -18,7 +18,7 @@ export const testimonials: readonly Testimonial[] = [
     {
         id: 2,
         name: "Junilo V. Flores",
-        role: "IT Coordinator / SHS Adviser",
+        role: "IT Coordinator at GMC",
         company: "Golden Minds Colleges",
         avatar: jeloAvatar,
         content: "Jerome is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive."
@@ -41,8 +41,8 @@ export const testimonials: readonly Testimonial[] = [
     },
     {
         id: 5,
-        name: "Derek Malibiran",
-        role: "School President",
+        name: "Engr. Derek Malibiran",
+        role: "School President at GMC",
         company: "Golden Minds Colleges",
         avatar: derekAvatar,
         content: "First i saw Jerome he is a good friend of mine, i know him from my school. He is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive."
@@ -50,7 +50,7 @@ export const testimonials: readonly Testimonial[] = [
     {
         id: 6,
         name: "Rose Angeline L. Juanerio",
-        role: "4th Year BSED Major in English (PUP)",
+        role: "4th Year BSED Major in English at PUP",
         company: "",
         avatar: juanerioAvatar,
         content: "Jerome is communication skills with us is always clear and concise. He is always willing to go the extra mile to ensure that our project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive."

@@ -44,14 +44,14 @@ const handleImageLoad = () => {``
         <!-- User Info -->
         <div class="footer__info">
           <h2 class="footer__name">Jerome Avecilla</h2>
-          <p class="footer__role">Student Developer</p>
+          <p class="footer__role">Student Web Developer</p>
         </div>
       </div>
 
       <!-- Message with glowing background -->
       <h4 class="footer__title">I don’t just code all day!</h4>
       <p class="footer__message">
-        Beyond my coding skills, I’m not just a keyboard warrior—I’m a huge basketball fan, a swimming enthusiast, an avid hiker, and always planning my next travel adventure. But wait... that’s not all! I’m also an online gaming aficionado. On mobile, you’ll catch me in Wild Rift (League of Legends), and for PC, I’m all about Valorant, League of Legends, and Crossfire.
+        Beyond my coding skills, I’m not just a keyboard warrior. I’m a huge basketball fan, a swimming enthusiast, an avid hiker, and always planning my next travel adventure. But wait... that’s not all! I’m also an online gaming aficionado. On mobile, you’ll catch me in Wild Rift and Teamfight Tactics (League of Legends), and for PC, I’m all about Valorant, League of Legends, and Crossfire.
         So, if you’re up for a game or want to collaborate on a web development project (or both), hit me up! Let’s team up, code, and maybe win some matches along the way! 🎮
       </p>
     </div>

@@ -7,7 +7,7 @@ export const experiences: readonly Experience[] = [
     type: 'Part-time' as EmploymentType,
     location: "Sta. Maria, Bulacan",
     description:
-      "My journey at Golden Minds Colleges started in 2022 when my advisor, Junilo Victoriano Flores, introduced me to the school's President, Sir Derek Malibiran. Initially, I focused on front-end UI/UX improvements, refining the college’s digital platforms for better usability. As I gained experience, I expanded into backend development, collaborating closely with Sir Jelo to integrate seamless functionality. Over time, I took on a leadership role in designing, developing, and maintaining the college’s digital infrastructure—implementing innovative solutions to enhance performance, streamline operations, and align with institutional goals.",
+      "My journey at Golden Minds Colleges started in 2022 when my advisor, Junilo Victoriano Flores, introduced me to the school's President, Engr. Derek Malibiran. Initially, I focused on front-end UI/UX improvements, refining the college’s digital platforms for better usability. As I gained experience, I expanded into backend development, collaborating closely with Sir Jelo to integrate seamless functionality. Over time, I took on a leadership role in designing, developing, and maintaining the college’s digital infrastructure—implementing innovative solutions to enhance performance, streamline operations, and align with institutional goals.",
     projects: [
       {
         name: "Golden Minds Colleges Official Website",
@@ -34,8 +34,8 @@ export const education: Education[] = [
   {
     school: "Bulacan State University",
     degree:
-      "Bachelor of Science in Information Technology Specialized in Web and Mobile Development",
-    campus: "Main Campus",
+      "Bachelor of Science in Information Technology Specialized in Web and Mobile Application Development",
+    campus: "Malolos Main Campus",
     description: "",
     startDate: "July 2023",
     endDate: "Present",

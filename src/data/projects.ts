@@ -91,7 +91,7 @@ Golden Minds Colleges lacked a centralized, user-friendly online presence, leavi
 - **Database**: MySQL with normalized tables for scalable data storage.  
 - **Deployment**: Hosted on HostGator with Cloudflare for security and CDN performance.
 
-Building this website sharpened my skills in full-stack development. I gained proficiency in integrating Vue.js with Laravel for a smooth, reactive frontend, reducing average page load times by 25% through optimization techniques like lazy loading. I also improved my database design skills with PostgreSQL, ensuring scalability for future growth, and embraced version control best practices using Git for efficient solo project management.
+Building this website sharpened my skills in full-stack development. I gained proficiency in integrating Vue.js with Laravel for a smooth, reactive frontend, reducing average page load times by 25% through optimization techniques like lazy loading. I also improved my database design skills with MySQL, ensuring scalability for future growth, and embraced version control best practices using Git for efficient solo project management.
 `,
     image: goldenMindsWeb,
     githubUrl: "https://github.com/javecilla/Golden-Minds-Colleges-Web-System",

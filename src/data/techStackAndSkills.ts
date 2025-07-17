@@ -21,7 +21,7 @@ import githubPagesIcon from "@global/svgs/github-pages.svg?url";
 
 import godaddyLogo from "@global/logos/godaddy.png";
 import hostingerLogo from "@global/logos/hostinger.png";
-
+import infinityFreeLogo from "@global/logos/infinityfree.svg?url";
 import vercelFavicon from "@global/logos/vercel.ico";
 import hostgatorFavicon from "@global/logos/hostgator.ico";
 
@@ -140,6 +140,10 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
 			{
 				name: "Hostinger",
 				icon: hostingerLogo,
+			},
+			{
+				name: "InfinityFree",
+				icon: infinityFreeLogo,
 			},
 		],
 	},
