@@ -1,199 +1,220 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted } from 'vue';
-import { useChatStore } from '@/stores/chat';
-import { useChatBot } from '@/utils/chatBot';
-import MarkdownIt from 'markdown-it';
-import { PlusIcon } from "lucide-vue-next";
-import ConfirmationModal from './ConfirmationModal.vue';
+import { ref, nextTick, onMounted } from 'vue'
+import { useChatStore } from '@/stores/chat'
+import { useChatBot } from '@/utils/chatBot'
+import MarkdownIt from 'markdown-it'
+import { PlusIcon } from 'lucide-vue-next'
+import ConfirmationModal from './ConfirmationModal.vue'
 
-const userInput = ref('');
-const isLoading = ref(false);
-const typingIndicator = ref(false);
-const isInitializing = ref(true);
-const showConfirmModal = ref(false);
-const textareaRef = ref<HTMLTextAreaElement | null>(null);
+const userInput = ref('')
+const isLoading = ref(false)
+const typingIndicator = ref(false)
+const isInitializing = ref(true)
+const showConfirmModal = ref(false)
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
-const chatStore = useChatStore();
-const { streamResponse, generateQuickReplies, isOffTopic, resetOffTopic } = useChatBot(chatStore);
+const chatStore = useChatStore()
+const { streamResponse, generateQuickReplies, isOffTopic, resetOffTopic } =
+  useChatBot(chatStore)
 
-const md = new MarkdownIt({ html: true, breaks: true, linkify: true });
+const md = new MarkdownIt({ html: true, breaks: true, linkify: true })
 
 const scrollToBottom = () => {
-  const chatContainer = document.querySelector('.overflow-y-auto');
-  if (chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight;
-};
+  const chatContainer = document.querySelector('.overflow-y-auto')
+  if (chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight
+}
 
 const getStarterQuickReplies = () => [
   'Who are you?',
   'Do you accept project commissions?',
-  'What services do you offer?',
-];
+  'What services do you offer?'
+]
 
 const focusTextarea = () => {
   nextTick(() => {
     if (textareaRef.value) {
-      textareaRef.value.focus();
+      textareaRef.value.focus()
     }
-  });
-};
+  })
+}
 
 onMounted(async () => {
-  isInitializing.value = true;
-  await chatStore.initChat();
-  
+  isInitializing.value = true
+  await chatStore.initChat()
+
   if (chatStore.messages.length === 0) {
     //console.log('Starting new chat with welcome message');
-    const botMessageId = await chatStore.addMessage('model', '', undefined, true);
-    typingIndicator.value = true;
+    const botMessageId = await chatStore.addMessage(
+      'model',
+      '',
+      undefined,
+      true
+    )
+    typingIndicator.value = true
 
     try {
-      const streams = streamResponse('', true);
-      let fullResponse = '';
+      const streams = streamResponse('', true)
+      let fullResponse = ''
       for await (const chunk of streams) {
-        fullResponse += chunk + ' ';
+        fullResponse += chunk + ' '
         await nextTick(() => {
-          chatStore.updateMessage(botMessageId, fullResponse.trim());
-          scrollToBottom();
-        });
+          chatStore.updateMessage(botMessageId, fullResponse.trim())
+          scrollToBottom()
+        })
       }
-      
+
       // After streaming completes, update and sync to Firebase with the full response
-      await chatStore.updateAndSyncMessage(botMessageId, fullResponse.trim(), getStarterQuickReplies());
-      await nextTick(() => scrollToBottom());
+      await chatStore.updateAndSyncMessage(
+        botMessageId,
+        fullResponse.trim(),
+        getStarterQuickReplies()
+      )
+      await nextTick(() => scrollToBottom())
     } catch (error) {
-      console.error('Starter conversation error:', error);
-      chatStore.updateMessage(botMessageId, 'Oops, something went wrong with the starter message!');
-      await nextTick(() => scrollToBottom());
+      console.error('Starter conversation error:', error)
+      chatStore.updateMessage(
+        botMessageId,
+        'Oops, something went wrong with the starter message!'
+      )
+      await nextTick(() => scrollToBottom())
     } finally {
-      typingIndicator.value = false;
+      typingIndicator.value = false
     }
   } else {
     //console.log('Restored existing chat:', chatStore.messages);
     // Ensure each model message has its content rendered properly
-    chatStore.messages.forEach(msg => {
+    chatStore.messages.forEach((msg) => {
       if (msg.role === 'model' && msg.content) {
-        chatStore.updateMessage(msg.timestamp, msg.content, msg.options);
+        chatStore.updateMessage(msg.timestamp, msg.content, msg.options)
       }
-    });
-    await nextTick(() => scrollToBottom());
+    })
+    await nextTick(() => scrollToBottom())
   }
-  isInitializing.value = false;
-  focusTextarea();
-});
+  isInitializing.value = false
+  focusTextarea()
+})
 
 async function sendMessage() {
-  if (!userInput.value.trim() || isLoading.value) return;
+  if (!userInput.value.trim() || isLoading.value) return
 
-  const currentInput = userInput.value;
-  userInput.value = '';
-  isLoading.value = true;
+  const currentInput = userInput.value
+  userInput.value = ''
+  isLoading.value = true
 
   try {
     if (!chatStore.currentChatId) {
-      await chatStore.initChat();
+      await chatStore.initChat()
     }
-    await chatStore.addMessage('user', currentInput);
-    await nextTick(() => scrollToBottom());
+    await chatStore.addMessage('user', currentInput)
+    await nextTick(() => scrollToBottom())
 
     try {
-      const botMessageId = await chatStore.addMessage('model', '');
-      typingIndicator.value = true;
-      await nextTick(() => scrollToBottom());
+      const botMessageId = await chatStore.addMessage('model', '')
+      typingIndicator.value = true
+      await nextTick(() => scrollToBottom())
 
-      const stream = streamResponse(currentInput);
-      let fullResponse = '';
+      const stream = streamResponse(currentInput)
+      let fullResponse = ''
 
       for await (const chunk of stream) {
-        fullResponse += chunk;
-        typingIndicator.value = false;
-        chatStore.updateMessage(botMessageId, fullResponse.trim());
-        scrollToBottom();
+        fullResponse += chunk
+        typingIndicator.value = false
+        chatStore.updateMessage(botMessageId, fullResponse.trim())
+        scrollToBottom()
       }
 
-      chatStore.updateMessage(botMessageId, fullResponse.trim());
-      
-      // get quick replies
-      const chatHistory = chatStore.messages.slice(-5);
-      const quickReplies = await generateQuickReplies(chatHistory, currentInput);
-      
-      // Then update everything to Firebase
-      await chatStore.updateAndSyncMessage(botMessageId, fullResponse.trim(), quickReplies);
-      
-      // Reset states after everything is done
-      isLoading.value = false;
-      typingIndicator.value = false;
+      chatStore.updateMessage(botMessageId, fullResponse.trim())
 
+      // get quick replies
+      const chatHistory = chatStore.messages.slice(-5)
+      const quickReplies = await generateQuickReplies(chatHistory, currentInput)
+
+      // Then update everything to Firebase
+      await chatStore.updateAndSyncMessage(
+        botMessageId,
+        fullResponse.trim(),
+        quickReplies
+      )
+
+      // Reset states after everything is done
+      isLoading.value = false
+      typingIndicator.value = false
     } catch (error) {
-      console.error('Streaming error:', error);
-      typingIndicator.value = false;
-      isLoading.value = false;
-      const lastBotMessage = [...chatStore.messages].reverse().find(m => m.role === 'model');
-      const botMessageId = lastBotMessage?.timestamp || 0;
-      chatStore.updateMessage(botMessageId, 'Oops, something went wrong!');
-      scrollToBottom();
+      console.error('Streaming error:', error)
+      typingIndicator.value = false
+      isLoading.value = false
+      const lastBotMessage = [...chatStore.messages]
+        .reverse()
+        .find((m) => m.role === 'model')
+      const botMessageId = lastBotMessage?.timestamp || 0
+      chatStore.updateMessage(botMessageId, 'Oops, something went wrong!')
+      scrollToBottom()
     }
   } catch (error) {
-    console.error('Error in sendMessage:', error);
-    isLoading.value = false;
-    userInput.value = currentInput; // Restore input on error
+    console.error('Error in sendMessage:', error)
+    isLoading.value = false
+    userInput.value = currentInput // Restore input on error
   }
 }
 
 const selectOption = async (option: string) => {
-  userInput.value = option.trim().replace(/[.!?]+$/g, '');
-  await sendMessage();
-  nextTick(() => scrollToBottom());
-};
+  userInput.value = option.trim().replace(/[.!?]+$/g, '')
+  await sendMessage()
+  nextTick(() => scrollToBottom())
+}
 
 const startNewConversation = async () => {
-  await chatStore.endSession(); 
-  userInput.value = '';
-  resetOffTopic();
-  focusTextarea(); 
-  
-  const botMessageId = await chatStore.addMessage('model', '', undefined, true);
-  typingIndicator.value = true;
-  await nextTick(() => scrollToBottom());
+  await chatStore.endSession()
+  userInput.value = ''
+  resetOffTopic()
+  focusTextarea()
+
+  const botMessageId = await chatStore.addMessage('model', '', undefined, true)
+  typingIndicator.value = true
+  await nextTick(() => scrollToBottom())
 
   try {
-    const stream = streamResponse('', true);
-    let fullResponse = '';
+    const stream = streamResponse('', true)
+    let fullResponse = ''
     for await (const chunk of stream) {
-      fullResponse += chunk + ' ';
+      fullResponse += chunk + ' '
       await nextTick(() => {
-        chatStore.updateMessage(botMessageId, fullResponse.trim());
-        scrollToBottom();
-      });
+        chatStore.updateMessage(botMessageId, fullResponse.trim())
+        scrollToBottom()
+      })
     }
 
     await chatStore.updateAndSyncMessage(
-      botMessageId, 
-      fullResponse.trim(), 
+      botMessageId,
+      fullResponse.trim(),
       getStarterQuickReplies()
-    );
-    
-    await nextTick(() => scrollToBottom());
+    )
+
+    await nextTick(() => scrollToBottom())
   } catch (error) {
-    console.error('Starter conversation error:', error);
-    chatStore.updateMessage(botMessageId, 'Oops, something went wrong with the starter message!');
-    await nextTick(() => scrollToBottom());
+    console.error('Starter conversation error:', error)
+    chatStore.updateMessage(
+      botMessageId,
+      'Oops, something went wrong with the starter message!'
+    )
+    await nextTick(() => scrollToBottom())
   } finally {
-    typingIndicator.value = false;
+    typingIndicator.value = false
   }
-};
+}
 
 const handleNewConversation = async () => {
   if (chatStore.messages.length > 0) {
-    showConfirmModal.value = true;
+    showConfirmModal.value = true
   } else {
-    await startNewConversation();
+    await startNewConversation()
   }
-};
+}
 
 const confirmNewConversation = async () => {
-  showConfirmModal.value = false;
-  await startNewConversation();
-};
+  showConfirmModal.value = false
+  await startNewConversation()
+}
 </script>
 
 <template>
@@ -203,13 +224,15 @@ const confirmNewConversation = async () => {
       :is-open="showConfirmModal"
       message="Starting a new conversation will clear your current chat history. Are you sure you want to continue?"
       :on-confirm="confirmNewConversation"
-      :on-cancel="() => showConfirmModal = false"
+      :on-cancel="() => (showConfirmModal = false)"
     />
 
     <!-- Loading State -->
     <div v-if="isInitializing" class="flex-1 flex items-center justify-center">
       <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-purple-500 border-t-transparent"></div>
+        <div
+          class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-purple-500 border-t-transparent"
+        ></div>
         <p class="mt-2 text-gray-600">Initializing chat...</p>
       </div>
     </div>
@@ -217,9 +240,15 @@ const confirmNewConversation = async () => {
     <!-- Chat Content -->
     <template v-else>
       <div class="relative flex-1 space-y-3 overflow-y-auto px-4 py-2">
-        <div v-for="msg in chatStore.messages" :key="msg.timestamp" class="flex items-start gap-3">
+        <div
+          v-for="msg in chatStore.messages"
+          :key="msg.timestamp"
+          class="flex items-start gap-3"
+        >
           <div v-if="msg.role !== 'user'" class="flex-shrink-0">
-            <div class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center">
+            <div
+              class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-5 h-5 text-purple-500"
@@ -228,7 +257,9 @@ const confirmNewConversation = async () => {
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path d="M12 2a8 8 0 0 1 8 8v1h2v3h-2v1a8 8 0 0 1-16 0v-1H2v-3h2v-1a8 8 0 0 1 8-8z" />
+                <path
+                  d="M12 2a8 8 0 0 1 8 8v1h2v3h-2v1a8 8 0 0 1-16 0v-1H2v-3h2v-1a8 8 0 0 1 8-8z"
+                />
                 <path d="M9 12h.01" />
                 <path d="M15 12h.01" />
               </svg>
@@ -241,11 +272,24 @@ const confirmNewConversation = async () => {
             >
               BOT (Javecilla) -
               <span class="text-gray-600 text-sm ml-2">
-                {{ new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
+                {{
+                  new Date(msg.timestamp).toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })
+                }}
               </span>
             </div>
-            <div v-if="msg.role === 'user'" class="text-gray-600 text-sm text-right mb-1">
-              {{ new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
+            <div
+              v-if="msg.role === 'user'"
+              class="text-gray-600 text-sm text-right mb-1"
+            >
+              {{
+                new Date(msg.timestamp).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+              }}
             </div>
             <div
               :class="[
@@ -253,8 +297,8 @@ const confirmNewConversation = async () => {
                 msg.role === 'user'
                   ? 'ml-auto bg-purple-500 text-white'
                   : msg.isStarter
-                    ? 'bg-[#b4a7d6]'
-                    : 'bg-gray-100',
+                  ? 'bg-[#b4a7d6]'
+                  : 'bg-gray-100'
               ]"
             >
               <div
@@ -269,7 +313,10 @@ const confirmNewConversation = async () => {
                 v-html="md.render(msg.content || '')"
               ></div>
             </div>
-            <div v-if="msg.role === 'model' && msg.options" class="flex flex-wrap gap-2 mt-3">
+            <div
+              v-if="msg.role === 'model' && msg.options"
+              class="flex flex-wrap gap-2 mt-3"
+            >
               <button
                 v-for="option in msg.options"
                 :key="option"
@@ -294,7 +341,9 @@ const confirmNewConversation = async () => {
             :disabled="isLoading || isOffTopic"
           />
         </div>
-        <div class="flex items-center justify-between gap-4 pt-2 pb-1 px-2 -mt-3">
+        <div
+          class="flex items-center justify-between gap-4 pt-2 pb-1 px-2 -mt-3"
+        >
           <button
             @click="handleNewConversation"
             type="button"
@@ -302,8 +351,11 @@ const confirmNewConversation = async () => {
             :class="{ 'animate-pulse': isOffTopic }"
             title="Start a new conversation"
           >
-            <PlusIcon class="w-5 h-5 text-white forced-icon mr-1" stroke-width="1.5" />
-            New 
+            <PlusIcon
+              class="w-5 h-5 text-white forced-icon mr-1"
+              stroke-width="1.5"
+            />
+            New
           </button>
           <button
             type="submit"
@@ -330,9 +382,15 @@ const confirmNewConversation = async () => {
   animation: blink 1.5s infinite;
 }
 @keyframes blink {
-  0% { opacity: 0.2; }
-  20% { opacity: 1; }
-  100% { opacity: 0.2; }
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
 :deep(p) {
   margin: 0.5em 0;
@@ -375,7 +433,7 @@ const confirmNewConversation = async () => {
 
 textarea {
   overflow-y: auto;
-  max-height: 200px;  
+  max-height: 200px;
 }
 
 button {
@@ -383,7 +441,7 @@ button {
 }
 
 .overflow-y-auto {
-  height: calc(100% - 60px); 
+  height: calc(100% - 60px);
 }
 
 form {

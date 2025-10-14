@@ -1,114 +1,165 @@
-import Fuse from 'fuse.js';
-import { dataSets } from '@/data/datasets';
-import type { GeminiMessage } from '@/types/ai';
-import type { DataSets } from '@/types/data-sets'; 
-import { useAI } from '@/composables/useAI';
-import { ref } from 'vue';
+// chatBot.ts
+import Fuse from 'fuse.js'
+import { dataSets } from '@/data/datasets'
+import type { GeminiMessage } from '@/types/ai'
+import type { DataSets } from '@/types/data-sets'
+import { useAI } from '@/composables/useAI'
+import { ref } from 'vue'
 
-export const useChatBot = (chatStore: ReturnType<typeof import('@/stores/chat')['useChatStore']>) => {
-  const { useGemini } = useAI(); 
+export const useChatBot = (
+  chatStore: ReturnType<typeof import('@/stores/chat')['useChatStore']>
+) => {
+  const { useGemini } = useAI()
 
   const fuse = new Fuse(dataSets, {
     keys: [
       { name: 'question', weight: 0.6 },
-      { name: 'keywords', weight: 0.4 },
+      { name: 'keywords', weight: 0.4 }
     ],
     threshold: 0.4, // Lowered threshold to catch more matches across all FAQs
     ignoreLocation: true,
     includeScore: true,
     minMatchCharLength: 2, // Lowered to catch more keywords
-    shouldSort: true,
-  });
+    shouldSort: true
+  })
 
   const chunkResponse = (text: string): string[] => {
     // Split into sentences, ensuring complete words and avoiding fragmentation
-    const sentences = text.split(/(?<=[.!?])\s+/).map(sentence => sentence.trim());
-    if (sentences.length > 1) return sentences;
+    const sentences = text
+      .split(/(?<=[.!?])\s+/)
+      .map((sentence) => sentence.trim())
+    if (sentences.length > 1) return sentences
     // Fallback to chunking by complete words and sentences
-    return text.match(/[^\s.!?]+(?:\s+[^\s.!?]+)*[.!?]?/g) || [text];
-  };
+    return text.match(/[^\s.!?]+(?:\s+[^\s.!?]+)*[.!?]?/g) || [text]
+  }
 
   // Generate quick reply options based on chat history, prioritizing category-based suggestions, and excluding prior questions
-  const generateQuickReplies = async (history: GeminiMessage[], currentQuestion: string): Promise<string[]> => {
-    let suggestions: string[] = []; 
+  const generateQuickReplies = async (
+    history: GeminiMessage[],
+    currentQuestion: string
+  ): Promise<string[]> => {
+    let suggestions: string[] = []
 
     // Get all user questions (typed or clicked) from chat history, ensuring uniqueness and proper formatting
     const userInteractions = history
-      .filter(msg => msg.role === 'user' && msg.content.trim())
-      .map(msg => msg.content.trim().toLowerCase().replace(/[.!?]+$/g, '').trim()); // Remove trailing punctuation, normalize, and trim whitespace
-    //console.log('User Interactions (Previous Questions):', userInteractions); 
-    const previousQuestions = [...new Set(userInteractions)]; // Unique lowercase questions, cleaned of punctuation and whitespace
+      .filter((msg) => msg.role === 'user' && msg.content.trim())
+      .map((msg) =>
+        msg.content
+          .trim()
+          .toLowerCase()
+          .replace(/[.!?]+$/g, '')
+          .trim()
+      ) // Remove trailing punctuation, normalize, and trim whitespace
+    //console.log('User Interactions (Previous Questions):', userInteractions);
+    const previousQuestions = [...new Set(userInteractions)] // Unique lowercase questions, cleaned of punctuation and whitespace
 
-    const currentQuestionLower = currentQuestion.trim().toLowerCase().replace(/[.!?]+$/g, '').trim(); // Normalize current question
-    //console.log('Current Question:', currentQuestionLower); 
+    const currentQuestionLower = currentQuestion
+      .trim()
+      .toLowerCase()
+      .replace(/[.!?]+$/g, '')
+      .trim() // Normalize current question
+    //console.log('Current Question:', currentQuestionLower);
 
     // Find the FAQ ID for the current question (if any) using Fuse
-    const fuseResults = fuse.search(currentQuestionLower);
-    let fuseMatch: { item: DataSets; score: number } | undefined;
+    const fuseResults = fuse.search(currentQuestionLower)
+    let fuseMatch: { item: DataSets; score: number } | undefined
     for (const match of fuseResults) {
       if (match.score !== undefined && match.score < 0.75) {
-        fuseMatch = { item: match.item as DataSets, score: match.score };
-        break;
+        fuseMatch = { item: match.item as DataSets, score: match.score }
+        break
       }
     }
-    const currentFaqId = fuseMatch?.item.id || null;
+    const currentFaqId = fuseMatch?.item.id || null
 
     // Prioritize category-based suggestions from the matched FAQ
     if (currentFaqId) {
-      const currentFaq = dataSets.find(faq => faq.id === currentFaqId);
+      const currentFaq = dataSets.find((faq) => faq.id === currentFaqId)
       if (currentFaq?.category) {
         // Get all FAQs in the same category, excluding the current question and previously asked questions
         const sameCategoryFaqs = dataSets
-          .filter(faq => faq.category === currentFaq.category && faq.id !== currentFaqId)
-          .filter(faq => !previousQuestions.includes(faq.question.toLowerCase().replace(/[.!?]+$/g, '').trim()))
-          .map(faq => faq.question);
+          .filter(
+            (faq) =>
+              faq.category === currentFaq.category && faq.id !== currentFaqId
+          )
+          .filter(
+            (faq) =>
+              !previousQuestions.includes(
+                faq.question
+                  .toLowerCase()
+                  .replace(/[.!?]+$/g, '')
+                  .trim()
+              )
+          )
+          .map((faq) => faq.question)
 
         // Use up to 3 suggestions from the same category
         if (sameCategoryFaqs.length > 0) {
-          suggestions = sameCategoryFaqs.slice(0, 3);
+          suggestions = sameCategoryFaqs.slice(0, 3)
         }
       }
 
       // If no category-based suggestions or not enough, fall back to patternSuggestions
       if (suggestions.length === 0 && currentFaq?.patternSuggestions) {
         const patternSuggestions = currentFaq.patternSuggestions
-          .map(id => dataSets.find(faq => faq.id === id))
-          .filter(faq => faq && !previousQuestions.includes(faq.question.toLowerCase().replace(/[.!?]+$/g, '').trim()))
-          .map(faq => faq!.question); // Use non-null assertion since we filtered for existence
+          .map((id) => dataSets.find((faq) => faq.id === id))
+          .filter(
+            (faq) =>
+              faq &&
+              !previousQuestions.includes(
+                faq.question
+                  .toLowerCase()
+                  .replace(/[.!?]+$/g, '')
+                  .trim()
+              )
+          )
+          .map((faq) => faq!.question) // Use non-null assertion since we filtered for existence
 
         if (patternSuggestions.length > 0) {
-          suggestions = patternSuggestions.slice(0, 3);
+          suggestions = patternSuggestions.slice(0, 3)
         }
       }
 
       // If still no suggestions or not enough, fall back to Fuse-based suggestions from related FAQs
       if (suggestions.length === 0) {
-        const userKeywords = currentQuestionLower.split(/\s+/).filter(word => word.length > 1); // Relaxed to catch more keywords
+        const userKeywords = currentQuestionLower
+          .split(/\s+/)
+          .filter((word) => word.length > 1) // Relaxed to catch more keywords
 
-        dataSets.forEach(faq => {
-          const faqQuestionLower = faq.question.toLowerCase().replace(/[.!?]+$/g, '').trim(); // Fixed typo
-          const faqKeywords = faq.keywords || [];
+        dataSets.forEach((faq) => {
+          const faqQuestionLower = faq.question
+            .toLowerCase()
+            .replace(/[.!?]+$/g, '')
+            .trim() // Fixed typo
+          const faqKeywords = faq.keywords || []
 
           // Skip if this is the exact current question or was previously asked/clicked
-          if (faqQuestionLower === currentQuestionLower || previousQuestions.includes(faqQuestionLower)) return;
+          if (
+            faqQuestionLower === currentQuestionLower ||
+            previousQuestions.includes(faqQuestionLower)
+          )
+            return
 
           // Check if the FAQ shares keywords or significant words with the user's question
-          const hasRelatedKeywords = userKeywords.some(keyword => 
-            faqQuestionLower.includes(keyword) || faqKeywords.includes(keyword)
-          );
+          const hasRelatedKeywords = userKeywords.some(
+            (keyword) =>
+              faqQuestionLower.includes(keyword) ||
+              faqKeywords.includes(keyword)
+          )
 
           if (hasRelatedKeywords && suggestions.length < 3) {
-            suggestions.push(faq.question); // Add related FAQ question
+            suggestions.push(faq.question) // Add related FAQ question
           }
-        });
+        })
       }
 
       // If still no suggestions, use Gemini for dynamic suggestions
       if (suggestions.length === 0) {
-        const chatHistoryText = userInteractions.join('\n');
-        const faqQuestions = dataSets.map(faq => faq.question).join('\n');
+        const chatHistoryText = userInteractions.join('\n')
+        const faqQuestions = dataSets.map((faq) => faq.question).join('\n')
         const geminiPrompt = `
-          You are Jerome Avecilla’s professional AI chatbot, designed to suggest up to 3 relevant follow-up questions based on the user’s previous questions and Jerome’s FAQ dataset. Suggest questions that are conversational, engaging, strictly align with the FAQ questions below, and use clear, professional language with Markdown formatting (e.g., **bold**, *italics*) and emojis (e.g., 😊) where appropriate. Do not suggest questions that the user has already asked or clicked (previous questions: ${previousQuestions.join(', ')}), nor modify the phrasing significantly. Prioritize questions from the same category as the current question if applicable.
+          You are Jerome Avecilla’s professional AI chatbot, designed to suggest up to 3 relevant follow-up questions based on the user’s previous questions and Jerome’s FAQ dataset. Suggest questions that are conversational, engaging, strictly align with the FAQ questions below, and use clear, professional language with Markdown formatting (e.g., **bold**, *italics*) and emojis (e.g., 😊) where appropriate. Do not suggest questions that the user has already asked or clicked (previous questions: ${previousQuestions.join(
+            ', '
+          )}), nor modify the phrasing significantly. Prioritize questions from the same category as the current question if applicable.
 
           Previous User Questions:
           ${chatHistoryText || 'No previous questions.'}
@@ -117,33 +168,53 @@ export const useChatBot = (chatStore: ReturnType<typeof import('@/stores/chat')[
           ${faqQuestions}
 
           Provide up to 3 suggested questions, separated by newlines, formatted as plain text questions (e.g., "What services do you offer?").
-        `;
-        //console.log('Gemini Prompt:', geminiPrompt); 
+        `
+        //console.log('Gemini Prompt:', geminiPrompt);
 
         try {
-          const geminiResponse = await useGemini('', geminiPrompt); // Use empty prompt for suggestions
-          //console.log('Gemini Response for Suggestions:', geminiResponse); 
+          const geminiResponse = await useGemini('', geminiPrompt) // Use empty prompt for suggestions
+          //console.log('Gemini Response for Suggestions:', geminiResponse);
           const geminiSuggestions = geminiResponse
             .split('\n')
-            .map(line => line.trim())
-            .filter(line => line && dataSets.some(faq => faq.question === line) && !previousQuestions.includes(line.toLowerCase().replace(/[.!?]+$/g, '').trim())) // Normalize and exclude prior questions
-            .slice(0, 3); // Limit to 3 suggestions
-          suggestions.push(...geminiSuggestions);
+            .map((line) => line.trim())
+            .filter(
+              (line) =>
+                line &&
+                dataSets.some((faq) => faq.question === line) &&
+                !previousQuestions.includes(
+                  line
+                    .toLowerCase()
+                    .replace(/[.!?]+$/g, '')
+                    .trim()
+                )
+            ) // Normalize and exclude prior questions
+            .slice(0, 3) // Limit to 3 suggestions
+          suggestions.push(...geminiSuggestions)
         } catch (error) {
-          console.error('Error generating Gemini suggestions:', error);
+          console.error('Error generating Gemini suggestions:', error)
           // Fallback to default suggestions from all FAQs, excluding prior questions
           suggestions = dataSets
-            .filter(faq => !previousQuestions.includes(faq.question.toLowerCase().replace(/[.!?]+$/g, '').trim()))
-            .map(faq => faq.question)
-            .slice(0, 3); // Limit to 3 unique suggestions from all FAQs
+            .filter(
+              (faq) =>
+                !previousQuestions.includes(
+                  faq.question
+                    .toLowerCase()
+                    .replace(/[.!?]+$/g, '')
+                    .trim()
+                )
+            )
+            .map((faq) => faq.question)
+            .slice(0, 3) // Limit to 3 unique suggestions from all FAQs
         }
       }
     } else {
       // If no FAQ match, use Gemini for dynamic suggestions as the primary fallback
-      const chatHistoryText = userInteractions.join('\n');
-      const faqQuestions = dataSets.map(faq => faq.question).join('\n');
+      const chatHistoryText = userInteractions.join('\n')
+      const faqQuestions = dataSets.map((faq) => faq.question).join('\n')
       const geminiPrompt = `
-        You are Jerome Avecilla’s professional AI chatbot, designed to suggest up to 3 relevant follow-up questions based on the user’s previous questions and Jerome’s FAQ dataset. Suggest questions that are conversational, engaging, strictly align with the FAQ questions below, and use clear, professional language with Markdown formatting (e.g., **bold**, *italics*) and emojis (e.g., 😊) where appropriate. Do not suggest questions that the user has already asked or clicked (previous questions: ${previousQuestions.join(', ')}), nor modify the phrasing significantly. Prioritize questions from common categories (e.g., Services, About Me) if applicable.
+        You are Jerome Avecilla’s professional AI chatbot, designed to suggest up to 3 relevant follow-up questions based on the user’s previous questions and Jerome’s FAQ dataset. Suggest questions that are conversational, engaging, strictly align with the FAQ questions below, and use clear, professional language with Markdown formatting (e.g., **bold**, *italics*) and emojis (e.g., 😊) where appropriate. Do not suggest questions that the user has already asked or clicked (previous questions: ${previousQuestions.join(
+          ', '
+        )}), nor modify the phrasing significantly. Prioritize questions from common categories (e.g., Services, About Me) if applicable.
 
         Previous User Questions:
         ${chatHistoryText || 'No previous chats.'}
@@ -152,56 +223,88 @@ export const useChatBot = (chatStore: ReturnType<typeof import('@/stores/chat')[
         ${faqQuestions}
 
         Provide up to 3 suggested questions, separated by newlines, formatted as plain text questions (e.g., "What services do you offer?").
-      `;
+      `
 
       try {
-        const geminiResponse = await useGemini('', geminiPrompt); // Use empty prompt for suggestions
-        //console.log('Gemini Response for Suggestions:', geminiResponse); 
+        const geminiResponse = await useGemini('', geminiPrompt) // Use empty prompt for suggestions
+        //console.log('Gemini Response for Suggestions:', geminiResponse);
         const geminiSuggestions = geminiResponse
           .split('\n')
-          .map(line => line.trim())
-          .filter(line => line && dataSets.some(faq => faq.question === line) && !previousQuestions.includes(line.toLowerCase().replace(/[.!?]+$/g, '').trim())) // Normalize and exclude prior questions
-          .slice(0, 3); // Limit to 3 suggestions
-        suggestions.push(...geminiSuggestions);
+          .map((line) => line.trim())
+          .filter(
+            (line) =>
+              line &&
+              dataSets.some((faq) => faq.question === line) &&
+              !previousQuestions.includes(
+                line
+                  .toLowerCase()
+                  .replace(/[.!?]+$/g, '')
+                  .trim()
+              )
+          ) // Normalize and exclude prior questions
+          .slice(0, 3) // Limit to 3 suggestions
+        suggestions.push(...geminiSuggestions)
       } catch (error) {
-        console.error('Error generating Gemini suggestions:', error);
+        console.error('Error generating Gemini suggestions:', error)
         // Fallback to default suggestions from all FAQs, excluding prior questions
         suggestions = dataSets
-          .filter(faq => !previousQuestions.includes(faq.question.toLowerCase().replace(/[.!?]+$/g, '').trim()))
-          .map(faq => faq.question)
+          .filter(
+            (faq) =>
+              !previousQuestions.includes(
+                faq.question
+                  .toLowerCase()
+                  .replace(/[.!?]+$/g, '')
+                  .trim()
+              )
+          )
+          .map((faq) => faq.question)
           .sort(() => Math.random() - 0.5) // Randomize
-          .slice(0, 3); // Limit to 3 random unique suggestions from all FAQs
+          .slice(0, 3) // Limit to 3 random unique suggestions from all FAQs
       }
     }
 
     //console.log('Final Suggestions:', suggestions);
-    return [...new Set(suggestions)].slice(0, 3); // Unique, up to 3 suggestions
-  };
+    return [...new Set(suggestions)].slice(0, 3) // Unique, up to 3 suggestions
+  }
 
-  let irrelevantCount = 0;
-  const isOffTopic = ref(false); 
+  let irrelevantCount = 0
+  const isOffTopic = ref(false)
 
-  const streamResponse = async function* (prompt: string, isStarter: boolean = false) {
+  const streamResponse = async function* (
+    prompt: string,
+    isStarter: boolean = false
+  ) {
     if (isStarter) {
-      const starterText = 'Hello 👋, I am Javecilla Chat bot. How can I assist you? 😊';
-      yield starterText;
-      irrelevantCount = 0;
-      return;
+      const starterText =
+        'Hello 👋, I am Javecilla Chat bot. How can I assist you? 😊'
+      yield starterText
+      irrelevantCount = 0
+      return
     }
-  
-    const userInput = prompt.trim().toLowerCase();
+
+    const userInput = prompt.trim().toLowerCase()
     //console.log('User Input Type:', typeof userInput, 'Value:', userInput);
-  
-    const chatHistory = chatStore.messages.map((msg: GeminiMessage) => 
-      `${msg.role === 'user' ? 'User' : 'Chatbot'}: ${msg.content} (at ${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`
-    ).join('\n');
+
+    const chatHistory = chatStore.messages
+      .map(
+        (msg: GeminiMessage) =>
+          `${msg.role === 'user' ? 'User' : 'Chatbot'}: ${
+            msg.content
+          } (at ${new Date(msg.timestamp).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit'
+          })})`
+      )
+      .join('\n')
     //console.log('Full Chat History:', chatHistory);
-  
-    const isQuestion = /(?:^|\s)(how|what|why|when|where|who)\b/i.test(userInput) || userInput.endsWith('?');
+
+    const isQuestion =
+      /(?:^|\s)(how|what|why|when|where|who)\b/i.test(userInput) ||
+      userInput.endsWith('?')
     //console.log('Is Question:', isQuestion, 'User Input:', userInput);
-  
-    let responseText = '';
-  
+
+    let responseText = ''
+
     // Check if input is about Jerome or relevant to the conversation
     const relevanceCheckPrompt = `
       As Jerome's AI assistant, analyze if this message is relevant to Jerome or the ongoing conversation.
@@ -216,58 +319,63 @@ export const useChatBot = (chatStore: ReturnType<typeof import('@/stores/chat')[
       Chat history: "${chatHistory}"
 
       Respond with only "relevant" or "irrelevant". Context: This is Jerome Avecilla's chatbot.
-    `;
+    `
 
     try {
-      const relevanceCheck = await useGemini('', relevanceCheckPrompt);
-      const isRelevant = relevanceCheck.toLowerCase().includes('relevant');
+      const relevanceCheck = await useGemini('', relevanceCheckPrompt)
+      const isRelevant = relevanceCheck.toLowerCase().includes('relevant')
 
       if (!isRelevant) {
-        irrelevantCount++;
+        irrelevantCount++
         if (irrelevantCount >= 3) {
-          isOffTopic.value = true;
-          const offTopicResponse = "I'm focused on helping you learn about Jerome, his services, and our conversation. For other topics, let's start fresh! Click the button on the left to begin a new conversation about Jerome. 😊";
-          yield offTopicResponse;
-          return;
+          isOffTopic.value = true
+          const offTopicResponse =
+            "I'm focused on helping you learn about Jerome, his services, and our conversation. For other topics, let's start fresh! Click the button on the left to begin a new conversation about Jerome. 😊"
+          yield offTopicResponse
+          return
         }
       } else {
-        irrelevantCount = 0;
-        isOffTopic.value = false;
+        irrelevantCount = 0
+        isOffTopic.value = false
       }
 
       if (isQuestion || userInput.trim()) {
-        const results = fuse.search(userInput);
+        const results = fuse.search(userInput)
         /*console.log('Fuse Search Results:', results.map(r => ({
           id: r.item.id,
           question: r.item.question,
           score: r.score || 1,
         })));*/
-        const topMatch = results.length > 0 ? results[0].item : null;
-  
+        const topMatch = results.length > 0 ? results[0].item : null
+
         //console.log('results:', results.map(r => r.score || 1));
         // Off-topic tracking
-        if (!topMatch || (results.length > 0 && (results[0].score || 1)  > 0.75)) {
-          irrelevantCount++;
+        if (
+          !topMatch ||
+          (results.length > 0 && (results[0].score || 1) > 0.75)
+        ) {
+          irrelevantCount++
           if (irrelevantCount >= 3) {
-            isOffTopic.value = true; // Set to true when limit reached
-            responseText = "It seems we’re drifting off-topic. Want to start fresh? Click the button on the left to begin a new conversation! 😊";
-            const chunks = chunkResponse(responseText);
+            isOffTopic.value = true // Set to true when limit reached
+            responseText =
+              'It seems we’re drifting off-topic. Want to start fresh? Click the button on the left to begin a new conversation! 😊'
+            const chunks = chunkResponse(responseText)
             for (const chunk of chunks) {
-              yield chunk;
-              await new Promise(resolve => setTimeout(resolve, 100));
+              yield chunk
+              await new Promise((resolve) => setTimeout(resolve, 100))
             }
-            irrelevantCount = 0; // Reset after suggestion
-            return;
+            irrelevantCount = 0 // Reset after suggestion
+            return
           }
         } else {
-          irrelevantCount = 0; // Reset if a relevant question is asked
-          isOffTopic.value = false; // Reset when back on topic
+          irrelevantCount = 0 // Reset if a relevant question is asked
+          isOffTopic.value = false // Reset when back on topic
         }
-    
-       // const hasMatch = topMatch !== null;
+
+        // const hasMatch = topMatch !== null;
         // Detect list request
-        const isListRequest = /list|bullet|points/i.test(userInput);
-    
+        const isListRequest = /list|bullet|points/i.test(userInput)
+
         let formattingInstruction = `
           Format the response based on the FAQ's formatSuggestion field and the user’s input. 
           - If the FAQ's formatSuggestion includes 'bullet' or the input contains 'list', 'bullet', or 'points', use '- ' followed by a space on a new line for each item, preserving '\\n-' from the FAQ.
@@ -276,25 +384,25 @@ export const useChatBot = (chatStore: ReturnType<typeof import('@/stores/chat')[
           - **Mandatorily preserve the exact Markdown formatting (e.g., '\\n-', '\\n1., **bold**, *italics*) from the FAQ answer when a match is found**, including all items without omission or rephrasing unless clarity requires minor adjustment.
           - Use separate paragraphs for introductory or trailing text (e.g., 'I've worked on...' or 'Check my portfolio!').
           - Always use **Markdown formatting** (e.g., **bold**, *italics*, '-' for lists, '| header | data |' for tables) and emojis (e.g., 😊, 🚀) to enhance engagement.
-        `;
+        `
         // Apply formatSuggestion outside isListRequest to ensure all matches are considered
         if (topMatch && topMatch.formatSuggestion) {
           if (topMatch.formatSuggestion.includes('bullet')) {
             formattingInstruction += `
               Prioritize a bullet-point list format based on formatSuggestion, ensuring all items are included.
-            `;
+            `
           } else if (topMatch.formatSuggestion.includes('numbered')) {
             formattingInstruction += `
               Prioritize a numbered list format based on formatSuggestion, ensuring all items are included.
-            `;
+            `
           }
         }
         if (isListRequest) {
           formattingInstruction += `
             Prioritize a bullet-point list format when 'list' is mentioned, ensuring all items are included.
-          `;
+          `
         }
-    
+
         const faqContext = `
           Prompt for AI Chatbot Isolation (Conversational Mode with History)
     
@@ -314,69 +422,119 @@ export const useChatBot = (chatStore: ReturnType<typeof import('@/stores/chat')[
           - Return *only the answer text with Markdown and emojis*, no "ID: X A:" prefixes.
     
           FAQ Dataset:
-          ${dataSets.map(faq => `ID: ${String(faq.id)}\nQ: ${faq.question}\nA: ${faq.answer}\nKeywords: ${faq.keywords?.join(', ') || ''}\nCategory: ${faq.category || 'Uncategorized'}\nFormatSuggestion: ${faq.formatSuggestion?.join(', ') || 'paragraph, sentence'}`).join('\n\n')}
+          ${dataSets
+            .map(
+              (faq) =>
+                `ID: ${String(faq.id)}\nQ: ${faq.question}\nA: ${
+                  faq.answer
+                }\nKeywords: ${faq.keywords?.join(', ') || ''}\nCategory: ${
+                  faq.category || 'Uncategorized'
+                }\nFormatSuggestion: ${
+                  faq.formatSuggestion?.join(', ') || 'paragraph, sentence'
+                }`
+            )
+            .join('\n\n')}
     
           Chat History (all messages):
           ${chatHistory}
     
           Top FAQ Match (if any):
-          ${topMatch ? `ID: ${String(topMatch.id)}\nQ: ${topMatch.question}\nA: ${topMatch.answer}\nCategory: ${topMatch.category || 'Uncategorized'}\nFormatSuggestion: ${topMatch.formatSuggestion?.join(', ') || 'paragraph, sentence'}` : 'None'}
-        `;
-    
-        const geminiResponse = await useGemini(userInput, faqContext);
+          ${
+            topMatch
+              ? `ID: ${String(topMatch.id)}\nQ: ${topMatch.question}\nA: ${
+                  topMatch.answer
+                }\nCategory: ${
+                  topMatch.category || 'Uncategorized'
+                }\nFormatSuggestion: ${
+                  topMatch.formatSuggestion?.join(', ') || 'paragraph, sentence'
+                }`
+              : 'None'
+          }
+        `
+
+        const geminiResponse = await useGemini(userInput, faqContext)
         //console.log('Gemini Response:', geminiResponse);
-    
+
         // Post-process to enforce formatSuggestion
-        responseText = geminiResponse.trim();
+        responseText = geminiResponse.trim()
         if (topMatch && topMatch.formatSuggestion) {
-          if (topMatch.formatSuggestion.includes('bullet') && (topMatch.answer.includes('\n- ') || isListRequest)) {
-            responseText = geminiResponse.replace(/\n-/g, '\n- ').replace(/- /g, '\n- ').trim(); // Ensure bullet list
-          } else if (topMatch.formatSuggestion.includes('numbered') && topMatch.answer.includes('\n1.')) {
-            responseText = geminiResponse.replace(/\n\d+\./g, match => match.trim() + ' ').replace(/\d+\. /g, '\n$&').trim(); // Ensure numbered list
-          } else if (topMatch.formatSuggestion.includes('paragraph') && !topMatch.formatSuggestion.includes('bullet') && !topMatch.formatSuggestion.includes('numbered')) {
-            responseText = geminiResponse.replace(/(\n-|\n\d+\.)/g, '').trim(); // Force plain text
+          if (
+            topMatch.formatSuggestion.includes('bullet') &&
+            (topMatch.answer.includes('\n- ') || isListRequest)
+          ) {
+            responseText = geminiResponse
+              .replace(/\n-/g, '\n- ')
+              .replace(/- /g, '\n- ')
+              .trim() // Ensure bullet list
+          } else if (
+            topMatch.formatSuggestion.includes('numbered') &&
+            topMatch.answer.includes('\n1.')
+          ) {
+            responseText = geminiResponse
+              .replace(/\n\d+\./g, (match) => match.trim() + ' ')
+              .replace(/\d+\. /g, '\n$&')
+              .trim() // Ensure numbered list
+          } else if (
+            topMatch.formatSuggestion.includes('paragraph') &&
+            !topMatch.formatSuggestion.includes('bullet') &&
+            !topMatch.formatSuggestion.includes('numbered')
+          ) {
+            responseText = geminiResponse.replace(/(\n-|\n\d+\.)/g, '').trim() // Force plain text
           }
         } else if (isListRequest && geminiResponse.includes('-')) {
           // Fallback for list request with inline hyphens
-          const lines = geminiResponse.split('\n').map(line => line.trim());
-          let listItems = lines.filter(line => line.startsWith('- ') || line.startsWith('* '));
+          const lines = geminiResponse.split('\n').map((line) => line.trim())
+          let listItems = lines.filter(
+            (line) => line.startsWith('- ') || line.startsWith('* ')
+          )
           if (listItems.length === 0) {
-            const items = geminiResponse.split('-').map(item => item.trim()).filter(item => item && !item.includes('portfolio'));
+            const items = geminiResponse
+              .split('-')
+              .map((item) => item.trim())
+              .filter((item) => item && !item.includes('portfolio'))
             if (items.length > 1) {
-              const intro = geminiResponse.split('-')[0].trim();
-              const outro = geminiResponse.split('portfolio')[1]?.trim() || '';
-              listItems = items.slice(1).map(item => `- ${item}`);
-              responseText = [intro, listItems.join('\n'), outro ? `You can find more details in my portfolio! ${outro}` : ''].filter(text => text.trim()).join('\n\n');
+              const intro = geminiResponse.split('-')[0].trim()
+              const outro = geminiResponse.split('portfolio')[1]?.trim() || ''
+              listItems = items.slice(1).map((item) => `- ${item}`)
+              responseText = [
+                intro,
+                listItems.join('\n'),
+                outro
+                  ? `You can find more details in my portfolio! ${outro}`
+                  : ''
+              ]
+                .filter((text) => text.trim())
+                .join('\n\n')
             }
           } else {
-            responseText = geminiResponse.trim();
+            responseText = geminiResponse.trim()
           }
         }
       } else if (!userInput.trim()) {
-        responseText = 'How may I assist you today? 😊';
+        responseText = 'How may I assist you today? 😊'
       }
-    
-      const chunks = chunkResponse(responseText);
-    
+
+      const chunks = chunkResponse(responseText)
+
       for (const chunk of chunks) {
-        yield chunk;
-        await new Promise(resolve => setTimeout(resolve, 100));
+        yield chunk
+        await new Promise((resolve) => setTimeout(resolve, 100))
       }
     } catch (error) {
-      console.error('Error in streamResponse:', error);
-      yield "I apologize, but I'm having trouble processing that. Let's continue our conversation about Me (Jerome)! 😊";
+      console.error('Error in streamResponse:', error)
+      yield "I apologize, but I'm having trouble processing that. Let's continue our conversation about Me (Jerome)! 😊"
     }
-  };
+  }
 
   const resetOffTopic = () => {
-    irrelevantCount = 0;
-    isOffTopic.value = false;
-  };
+    irrelevantCount = 0
+    isOffTopic.value = false
+  }
 
   return {
     streamResponse,
-    generateQuickReplies, 
+    generateQuickReplies,
     isOffTopic,
-    resetOffTopic, 
-  };
-};
+    resetOffTopic
+  }
+}
