@@ -1,63 +1,66 @@
-import { Project, ProjectCategory, ProjectCategoryItem } from "@/types/project";
+import { Project, ProjectCategory, ProjectCategoryItem } from '@/types/project'
 
 // Import project images
-import goldenMindSims from "@global/images/ref001.png";
-import goldenMindsWeb from "@global/images/ref002.png";
-import votingSystem from "@global/images/vt62as.png";
-import phEnWeb from "@global/images/523aaa.png";
-import portfolioWeb from "@global/images/t2131.png";
-import galleryWeb from "@global/images/t2131.png";
-import inventoryWeb from "@global/images/551asfh.png";
-import chatBot from "@global/images/ch4tb.png";
-import oarsmc from "@global/images/oarsmc.png";
+import goldenMindSims from '@global/images/ref001.png'
+import goldenMindsWeb from '@global/images/ref002.png'
+import votingSystem from '@global/images/vt62as.png'
+import phEnWeb from '@global/images/523aaa.png'
+import portfolioWeb from '@global/images/t2131.png'
+import galleryWeb from '@global/images/t2131.png'
+import inventoryWeb from '@global/images/551asfh.png'
+import chatBot from '@global/images/ch4tb.png'
+import oarsmc from '@global/images/oarsmc.png'
+import kmykSystem from '@global/images/kmyk.png'
 
 // Import tech icons
-import vueIcon from "@global/svgs/vue.svg?url";
-import tsIcon from "@global/svgs/typescript.svg?url";
-import tailwindIcon from "@global/svgs/tailwind.svg?url";
-import laravelIcon from "@global/svgs/laravel.svg?url";
-import bootstrapIcon from "@global/svgs/bootstrap.svg?url";
-import jqueryIcon from "@global/svgs/jquery.svg?url";
-import phpIcon from "@global/svgs/php.svg?url";
-import jsIcon from "@global/svgs/javascript.svg?url";
-import cssIcon from "@global/svgs/css3.svg?url";
-import mysqlIcon from "@global/svgs/mysql.svg?url";
-import postgresIcon from "@global/svgs/postgresql.svg?url";
-import firebaseIcon from "@global/svgs/firebase.svg?url";
+import vueIcon from '@global/svgs/vue.svg?url'
+import tsIcon from '@global/svgs/typescript.svg?url'
+import tailwindIcon from '@global/svgs/tailwind.svg?url'
+import laravelIcon from '@global/svgs/laravel.svg?url'
+import bootstrapIcon from '@global/svgs/bootstrap.svg?url'
+import jqueryIcon from '@global/svgs/jquery.svg?url'
+import phpIcon from '@global/svgs/php.svg?url'
+import jsIcon from '@global/svgs/javascript.svg?url'
+import cssIcon from '@global/svgs/css3.svg?url'
+import htmlIcon from '@global/svgs/html5.svg?url'
+import mysqlIcon from '@global/svgs/mysql.svg?url'
+import postgresIcon from '@global/svgs/postgresql.svg?url'
+import firebaseIcon from '@global/svgs/firebase.svg?url'
 
 export const projects: readonly Project[] = [
   {
-		id: 1,
-		title: "Portfolio Website",
-		description:
-			"My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design.",
-		image: portfolioWeb,
-		githubUrl: "https://github.com/javecilla/portfolio",
-		demoUrl: "https://javecilla.vercel.app/",
-		technologies: [
-			{
-				name: "Vue.js",
-				icon: vueIcon,
-			},
-			{
-				name: "TypeScript",
-				icon: tsIcon,
-			},
-			{
-				name: "Tailwind CSS",
-				icon: tailwindIcon,
-			},
+    id: 1,
+    title: 'Portfolio Website',
+    description:
+      'My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design.',
+    image: portfolioWeb,
+    githubUrl: 'https://github.com/javecilla/portfolio',
+    demoUrl: 'https://javecilla.vercel.app/',
+    technologies: [
       {
-        name: "Firebase",
-        icon: firebaseIcon,
+        name: 'Vue.js',
+        icon: vueIcon
       },
-		],
-		category: ProjectCategory.PERSONAL,
-		isHighlight: false,
-	},
+      {
+        name: 'TypeScript',
+        icon: tsIcon
+      },
+      {
+        name: 'Tailwind CSS',
+        icon: tailwindIcon
+      },
+      {
+        name: 'Firebase',
+        icon: firebaseIcon
+      }
+    ],
+    category: ProjectCategory.PERSONAL,
+    isHighlight: false,
+    isRecent: false
+  },
   {
     id: 2,
-    title: "Golden Minds Official Website",
+    title: 'Golden Minds Official Website',
     description: `I developed the Official Website for Golden Minds Colleges and Academy as a solo project, creating a dynamic platform to serve the student community. Launched to streamline access to essential information, updates, and academic resources, this site enhances the overall educational experience for students and staff.
 
 ## Problem & Solution  
@@ -94,36 +97,37 @@ Golden Minds Colleges lacked a centralized, user-friendly online presence, leavi
 Building this website sharpened my skills in full-stack development. I gained proficiency in integrating Vue.js with Laravel for a smooth, reactive frontend, reducing average page load times by 25% through optimization techniques like lazy loading. I also improved my database design skills with MySQL, ensuring scalability for future growth, and embraced version control best practices using Git for efficient solo project management.
 `,
     image: goldenMindsWeb,
-    githubUrl: "https://github.com/javecilla/Golden-Minds-Colleges-Web-System",
-    demoUrl: "https://www.goldenminds.edu.ph/",
+    githubUrl: 'https://github.com/javecilla/Golden-Minds-Colleges-Web-System',
+    demoUrl: 'https://www.goldenminds.edu.ph/',
     technologies: [
       {
-        name: "MySQL",
-        icon: mysqlIcon,
+        name: 'MySQL',
+        icon: mysqlIcon
       },
       {
-        name: "Laravel",
-        icon: laravelIcon,
+        name: 'Laravel',
+        icon: laravelIcon
       },
       {
-        name: "Bootstrap",
-        icon: bootstrapIcon,
+        name: 'Bootstrap',
+        icon: bootstrapIcon
       },
       {
-        name: "Vue.js",
-        icon: vueIcon,
+        name: 'Vue.js',
+        icon: vueIcon
       },
       {
-        name: "JavaScript",
-        icon: jsIcon,
-      },
+        name: 'JavaScript',
+        icon: jsIcon
+      }
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: true,
+    isRecent: false
   },
   {
     id: 3,
-    title: "Online Voting System",
+    title: 'Online Voting System',
     description: ` 
 I created a dynamic Online Voting System for Golden Minds Colleges to replace inefficient manual voting processes. Launched in 2023, this solo project delivers a seamless, secure, and engaging digital voting experience, enhancing community participation across multiple events.
 
@@ -161,36 +165,37 @@ Manual voting at Golden Minds Colleges was slow, error-prone, and inaccessible t
 Developing this system deepened my expertise in several key areas. I honed my ability to optimize high-traffic database queries, achieving a 30% reduction in response times through efficient indexing and query refactoring. Additionally, I mastered secure API integration particularly with third-party services like GCash by leveraging thorough documentation to ensure robust, maintainable code. This project also led me to adopt unit testing for critical components like vote calculations, enhancing reliability and enabling early detection of edge cases.
 `,
     image: votingSystem,
-    githubUrl: "https://github.com/javecilla/Online-Voting-System",
-    demoUrl: "https://voting.goldenmindsbulacan.com/",
+    githubUrl: 'https://github.com/javecilla/Online-Voting-System',
+    demoUrl: 'https://voting.goldenmindsbulacan.com/',
     technologies: [
-    {
-        name: "MySQL",
-        icon: mysqlIcon,
+      {
+        name: 'MySQL',
+        icon: mysqlIcon
       },
       {
-        name: "Laravel",
-        icon: laravelIcon,
+        name: 'Laravel',
+        icon: laravelIcon
       },
       {
-        name: "Bootstrap",
-        icon: bootstrapIcon,
+        name: 'Bootstrap',
+        icon: bootstrapIcon
       },
       {
-        name: "jQuery",
-        icon: jqueryIcon,
+        name: 'jQuery',
+        icon: jqueryIcon
       },
       {
-        name: "JavaScript",
-        icon: jsIcon,
-      },
+        name: 'JavaScript',
+        icon: jsIcon
+      }
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: true,
+    isRecent: false
   },
   {
     id: 4,
-    title: "Ph-En Vocabulary Web App",
+    title: 'Ph-En Vocabulary Web App',
     description: `
   I developed the Philippine-English Vocabulary Web App as a commissioned project for fourth-year Bachelor of Secondary Education (BSED) students majoring in English at Polytechnic University of the Philippines (PUP). Designed to enhance vocabulary mastery, this web app offers interactive learning tools, pronunciation guides, and quizzes to support effective language acquisition.
 
@@ -222,36 +227,37 @@ Developing this system deepened my expertise in several key areas. I honed my ab
   This project reinforced my expertise in full-stack web development, particularly in integrating multimedia elements and optimizing database performance. The challenge of making vocabulary learning interactive pushed me to refine user experience design and create a tool that balances education with engagement.
   `,
     image: phEnWeb,
-    githubUrl: "https://github.com/javecilla/Philippine_English_Vocabulary",
-    demoUrl: "https://philippineenglishvocabulary.com/",
+    githubUrl: 'https://github.com/javecilla/Philippine_English_Vocabulary',
+    demoUrl: 'https://philippineenglishvocabulary.com/',
     technologies: [
       {
-        name: "MySQL",
-        icon: mysqlIcon,
+        name: 'MySQL',
+        icon: mysqlIcon
       },
       {
-        name: "PHP",
-        icon: phpIcon,
+        name: 'PHP',
+        icon: phpIcon
       },
       {
-        name: "Bootstrap",
-        icon: bootstrapIcon,
+        name: 'Bootstrap',
+        icon: bootstrapIcon
       },
       {
-        name: "jQuery",
-        icon: jqueryIcon,
+        name: 'jQuery',
+        icon: jqueryIcon
       },
       {
-        name: "JavaScript",
-        icon: jsIcon,
-      },
+        name: 'JavaScript',
+        icon: jsIcon
+      }
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: false,
-  },  
+    isRecent: false
+  },
   {
     id: 5,
-    title: "Web-Based Inventory System",
+    title: 'Web-Based Inventory System',
     description: `
 I developed the Web-Based Inventory System as a thesis project during my Senior High School at Golden Minds Colleges, Sta. Maria Campus, Bulacan. This project fulfills the requirements of the **Information and Communication Technology (ICT)** strand and provides a structured and automated approach to managing HRM tools and equipment inventories.
 
@@ -276,37 +282,38 @@ This project refined my skills in **full-stack development**, particularly in de
 `,
     image: inventoryWeb,
     githubUrl:
-      "https://github.com/javecilla/Web-Based-Inventory-Management-System",
-    demoUrl: "https://ims.goldenmindsbulacan.com/",
+      'https://github.com/javecilla/Web-Based-Inventory-Management-System',
+    demoUrl: 'https://ims.goldenmindsbulacan.com/',
     technologies: [
       {
-        name: "MySQL",
-        icon: mysqlIcon,
+        name: 'MySQL',
+        icon: mysqlIcon
       },
       {
-        name: "PHP",
-        icon: phpIcon,
+        name: 'PHP',
+        icon: phpIcon
       },
       {
-        name: "Bootstrap",
-        icon: bootstrapIcon,
+        name: 'Bootstrap',
+        icon: bootstrapIcon
       },
       {
-        name: "jQuery",
-        icon: jqueryIcon,
+        name: 'jQuery',
+        icon: jqueryIcon
       },
       {
-        name: "JavaScript",
-        icon: jsIcon,
-      },
+        name: 'JavaScript',
+        icon: jsIcon
+      }
     ],
     category: ProjectCategory.ACADEMIC,
     isHighlight: false,
-},
+    isRecent: false
+  },
   {
-		id: 6,
-		title: "Conversational Chatbot (FAQs)",
-		description: `A personalized conversational chat bot that answer all FAQs about me, integrating generative AI to provide real-time, interactive responses, natural langauge that similar to the AI chat platforms like ChatGPT, Claude, etc.
+    id: 6,
+    title: 'Conversational Chatbot (FAQs)',
+    description: `A personalized conversational chat bot that answer all FAQs about me, integrating generative AI to provide real-time, interactive responses, natural langauge that similar to the AI chat platforms like ChatGPT, Claude, etc.
 
 ## Key Features
 
@@ -337,32 +344,33 @@ This project refined my skills in **full-stack development**, particularly in de
 - **Screen Reader Support** – Ensure content is readable by screen readers.  
 `,
     image: chatBot,
-		githubUrl: "https://github.com/javecilla/Conversational-Chatbot-for-FAQs",
-		demoUrl: "https://chatbot-faqs.vercel.app/",
-		technologies: [
-			{
-				name: "Vue.js",
-				icon: vueIcon,
-			},
-			{
-				name: "TypeScript",
-				icon: tsIcon,
-			},
-			{
-				name: "Tailwind CSS",
-				icon: tailwindIcon,
-			},
+    githubUrl: 'https://github.com/javecilla/Conversational-Chatbot-for-FAQs',
+    demoUrl: 'https://chatbot-faqs.vercel.app/',
+    technologies: [
       {
-        name: "Firebase",
-        icon: firebaseIcon,
+        name: 'Vue.js',
+        icon: vueIcon
       },
-		],
-		category: ProjectCategory.PERSONAL,
-		isHighlight: false,
-	},
+      {
+        name: 'TypeScript',
+        icon: tsIcon
+      },
+      {
+        name: 'Tailwind CSS',
+        icon: tailwindIcon
+      },
+      {
+        name: 'Firebase',
+        icon: firebaseIcon
+      }
+    ],
+    category: ProjectCategory.PERSONAL,
+    isHighlight: false,
+    isRecent: false
+  },
   {
     id: 7,
-    title: "Online Account Receivables for Multi-Purpose Cooperative",
+    title: 'Online Account Receivables for Multi-Purpose Cooperative',
     description: `
 An individual project Online Account Receivables (OAR) System for a Multi-Purpose Cooperative during my 2nd Year on Web System Technologies subject. This system streamlines the management of cooperative accounts, transactions, and financial records, enhancing efficiency and transparency.
 
@@ -416,37 +424,37 @@ A solo or individual project given by my professor, I developed this system to m
 This project refined my skills in **full-stack development**, particularly in designing **efficient database structures** and implementing **role-based access control**.  
 `,
     image: oarsmc,
-    githubUrl:
-      "https://github.com/javecilla/it211-project-account-receivable",
-    demoUrl: "https://avecilla-project-multipurpose.infinityfreeapp.com",
+    githubUrl: 'https://github.com/javecilla/it211-project-account-receivable',
+    demoUrl: 'https://avecilla-project-multipurpose.infinityfreeapp.com',
     technologies: [
       {
-        name: "MySQL",
-        icon: mysqlIcon,
+        name: 'MySQL',
+        icon: mysqlIcon
       },
       {
-        name: "PHP",
-        icon: phpIcon,
+        name: 'PHP',
+        icon: phpIcon
       },
       {
-        name: "Bootstrap",
-        icon: bootstrapIcon,
+        name: 'Bootstrap',
+        icon: bootstrapIcon
       },
       {
-        name: "jQuery",
-        icon: jqueryIcon,
+        name: 'jQuery',
+        icon: jqueryIcon
       },
       {
-        name: "JavaScript",
-        icon: jsIcon,
-      },
+        name: 'JavaScript',
+        icon: jsIcon
+      }
     ],
     category: ProjectCategory.ACADEMIC,
     isHighlight: false,
+    isRecent: false
   },
   {
     id: 8,
-    title: "Golden Minds Revised SIMSSHS",
+    title: 'Golden Minds Revised SIMSSHS',
     description: `I developed the Golden Minds Colleges Student Information Management System (SIMS) for Senior High School as a solo project to streamline academic operations and improve data accuracy. This platform empowers the institution with modern tools for managing student records, grades, enrollment, and scheduling.
 
 ## Problem & Solution  
@@ -479,36 +487,37 @@ The existing portal at Golden Minds Colleges was built entirely with legacy PHP 
 This project deepened my experience in building modular and scalable systems for educational institutions. I sharpened my expertise in backend architecture with Laravel, frontend reactivity with Vue.js, and secure data modeling with PostgreSQL. I also applied version control best practices to maintain consistent progress throughout the solo development cycle.
 `,
     image: goldenMindSims,
-    githubUrl: "https://github.com/javecilla/GMC-SIMSSHS-Revised",
-    demoUrl: "https://simsshs.goldenminds.edu.ph/",
+    githubUrl: 'https://github.com/javecilla/GMC-SIMSSHS-Revised',
+    demoUrl: 'https://simsshs.goldenminds.edu.ph/',
     technologies: [
       {
-        name: "PostgreSQL",
-        icon: postgresIcon,
+        name: 'PostgreSQL',
+        icon: postgresIcon
       },
       {
-        name: "Laravel",
-        icon: laravelIcon,
+        name: 'Laravel',
+        icon: laravelIcon
       },
       {
-				name: "Tailwind CSS",
-				icon: tailwindIcon,
-			},
-      {
-        name: "Vue.js",
-        icon: vueIcon,
+        name: 'Tailwind CSS',
+        icon: tailwindIcon
       },
       {
-        name: "TypeScript",
-        icon: tsIcon,
+        name: 'Vue.js',
+        icon: vueIcon
       },
+      {
+        name: 'TypeScript',
+        icon: tsIcon
+      }
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: true,
+    isRecent: false
   },
   {
     id: 9,
-    title: "Gallery Website",
+    title: 'Gallery Website',
     description: `Welcome to our little corner of the internet—a digital gallery that showcases moments, memories, and creations that mean the world to us.
   
   This website features visual content like images and videos, thoughtfully arranged to reflect both artistry and emotion. More than just a gallery, it’s a shared space—a canvas that holds pieces of our story.
@@ -539,35 +548,89 @@ This project deepened my experience in building modular and scalable systems for
   
   This project isn’t just a site—it’s a space to relive the memories that shaped us. A love letter written in pixels and frames.`,
     image: galleryWeb,
-    githubUrl: "https://github.com/javecilla/04-12-2024",
-    demoUrl: "https://04122024.vercel.app/",
+    githubUrl: 'https://github.com/javecilla/04-12-2024',
+    demoUrl: 'https://04122024.vercel.app/',
     technologies: [
       {
-        name: "Vue.js",
-        icon: vueIcon,
+        name: 'Vue.js',
+        icon: vueIcon
       },
       {
-        name: "TypeScript",
-        icon: tsIcon,
+        name: 'TypeScript',
+        icon: tsIcon
       },
       {
-        name: "Tailwind CSS",
-        icon: tailwindIcon,
+        name: 'Tailwind CSS',
+        icon: tailwindIcon
       },
       {
-        name: "Firebase",
-        icon: firebaseIcon,
-      },
+        name: 'Firebase',
+        icon: firebaseIcon
+      }
     ],
     category: ProjectCategory.PERSONAL,
     isHighlight: false,
+    isRecent: false
   },
-] as const;
+  {
+    id: 10,
+    title: 'Kalat Mo, Yaman Ko',
+    description: `I developed Kalat Mo, Yaman Ko, a community-driven digital platform designed to transform clutter into opportunities and strengthen local connections through sustainability.  
+
+This platform empowers users to **share, give away, and repurpose pre-loved items**, aligning with the core principles of **Reduce, Reuse, and Recycle**. Beyond just item sharing, it’s a space built to promote **eco-conscious living** and foster a **collaborative community ecosystem**.
+
+I was referred by my professor to join the project team as the **Frontend Developer**, where I handled the full front-end implementation—ensuring a clean, responsive, and accessible user interface. The platform also integrates an automated CI/CD pipeline for frictionless deployment and iteration.
+
+## Key Features
+
+#### **Community-Centered Experience**  
+- **Item Sharing & Repurposing** – Users can give away or claim pre-loved items.  
+- **Eco-Sustainability Focus** – Encourages reducing waste through community engagement.  
+- **Intuitive Navigation** – Simple, guided flow for ease of use.  
+
+#### **Frontend Development Excellence**  
+- **Responsive Web Design** – Optimized for both desktop and mobile experiences.  
+- **Lightweight & Fast UI** – Prioritizing performance and accessibility.  
+- **Clean Visual Hierarchy** – Organized content that aligns with sustainability goals.
+
+#### **CI/CD & Automation**  
+- **GitHub Auto-Deployment** – Every push to the main branch triggers live updates.  
+- **Continuous Integration** – Smooth release cycles for fast iteration.  
+- **Scalable Codebase** – Structured for future feature rollouts.
+
+This project reflects a **fusion of sustainable innovation and clean frontend engineering**—a platform built to inspire communities to **turn clutter into collective value**.`,
+    image: kmykSystem,
+    githubUrl: 'https://github.com/javecilla/Kalat-Mo-Yaman-Ko',
+    demoUrl: 'https://website-079a545a.fee.xnf.temporary.site/',
+    technologies: [
+      {
+        name: 'HTML',
+        icon: htmlIcon
+      },
+      {
+        name: 'CSS',
+        icon: cssIcon
+      },
+      {
+        name: 'Bootstrap',
+        icon: bootstrapIcon
+      },
+      {
+        name: 'JavaScript',
+        icon: jsIcon
+      }
+    ],
+    category: ProjectCategory.CLIENT,
+    isHighlight: false,
+    isRecent: true
+  }
+] as const
 
 export const categories: readonly ProjectCategoryItem[] = [
-  { id: "highlights" as const, label: "Highlights" },
-  { id: "all" as const, label: "All Projects" },
-  { id: ProjectCategory.ACADEMIC, label: "Academic" },
-  { id: ProjectCategory.PERSONAL, label: "Personal" },
-  { id: ProjectCategory.CLIENT, label: "Client" },
-] as const;
+  { id: 'highlights' as const, label: 'Highlights' },
+  { id: 'recent' as const, label: 'Recent' },
+  { id: 'all' as const, label: 'All Projects' },
+  { id: ProjectCategory.ACADEMIC, label: 'Academic' },
+  { id: ProjectCategory.PERSONAL, label: 'Personal' },
+  { id: ProjectCategory.CLIENT, label: 'Client' }
+] as const
