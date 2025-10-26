@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import picture from '@global/images/formal.png';
-import ImageSkeleton from "@/components/ImageSkeleton.vue";
+import { ref } from 'vue'
+import picture from '@global/images/formal2.png'
+import ImageSkeleton from '@/components/ImageSkeleton.vue'
 
-const isImageLoaded = ref(false);
+const isImageLoaded = ref(false)
 
-const handleImageLoad = () => {``
-  isImageLoaded.value = true;
-};
+const handleImageLoad = () => {
+  ;``
+  isImageLoaded.value = true
+}
 </script>
 
 <template>
@@ -15,7 +16,8 @@ const handleImageLoad = () => {``
     <!-- Background Glow Effect -->
     <div class="footer__background"></div>
 
-    <div class="footer__container group"> <!-- Add group class here -->
+    <div class="footer__container group">
+      <!-- Add group class here -->
       <div class="footer__header">
         <!-- Profile & Details -->
         <div class="footer__profile">
@@ -51,13 +53,19 @@ const handleImageLoad = () => {``
       <!-- Message with glowing background -->
       <h4 class="footer__title">I don’t just code all day!</h4>
       <p class="footer__message">
-        Beyond my coding skills, I’m not just a keyboard warrior. I’m a huge basketball fan, a swimming enthusiast, an avid hiker, and always planning my next travel adventure. But wait... that’s not all! I’m also an online gaming aficionado. On mobile, you’ll catch me in Wild Rift and Teamfight Tactics (League of Legends), and for PC, I’m all about Valorant, League of Legends, and Crossfire.
-        So, if you’re up for a game or want to collaborate on a web development project (or both), hit me up! Let’s team up, code, and maybe win some matches along the way! 🎮
+        Beyond my coding skills, I’m not just a keyboard warrior. I’m a huge
+        basketball fan, a swimming enthusiast, an avid hiker, and always
+        planning my next travel adventure. But wait... that’s not all! I’m also
+        an online gaming aficionado. On mobile, you’ll catch me in Wild Rift and
+        Teamfight Tactics (League of Legends), and for PC, I’m all about League
+        of Legends, and Crossfire. So, if you’re up for a game or want to
+        collaborate on a web development project (or both), hit me up! Let’s
+        team up, code, and maybe win some matches along the way! 🎮
       </p>
     </div>
   </footer>
 </template>
-
+`
 <style scoped>
 .footer {
   @apply relative p-0 m-0 w-full max-w-5xl mx-auto overflow-hidden
@@ -66,8 +74,8 @@ const handleImageLoad = () => {``
 
 .footer__background {
   @apply absolute inset-0 w-full h-full opacity-50 dark:opacity-25;
-  background: 
-    linear-gradient(to bottom, 
+  background: linear-gradient(
+      to bottom,
       rgb(9, 9, 9) 10%,
       transparent 100%,
       transparent 0%,
@@ -84,7 +92,8 @@ const handleImageLoad = () => {``
 
 /* Background Glow - Light mode only */
 :root:not(.dark) .footer__background {
-  background: linear-gradient(to bottom, 
+  background: linear-gradient(
+      to bottom,
       rgb(255, 255, 255) 10%,
       transparent 100%,
       transparent 0%,
@@ -143,12 +152,11 @@ const handleImageLoad = () => {``
   @apply text-sm text-gray-400;
 }
 
-
 .footer__title {
   @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
          font-bold bg-gradient-to-r from-blue-500 to-purple-500 
          bg-clip-text text-transparent
-         px-4 sm:px-0; 
+         px-4 sm:px-0;
 }
 
 .footer__message {
@@ -163,5 +171,4 @@ const handleImageLoad = () => {``
 :root:not(.dark) .footer__message {
   @apply text-gray-600;
 }
-
 </style>

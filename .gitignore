@@ -26,7 +26,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Custom directories
-/notes
+notes
 .env
 *.log
 .cursorrules
