@@ -62,7 +62,7 @@ const isActive = (href: string) => currentHash.value === href
           <Link href="#about" ariaLabel="Home" class="text-2xl font-bold">
             <span
               class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
-              >.me</span
+              >JA.</span
             >
           </Link>
           <!-- Desktop Navigation -->

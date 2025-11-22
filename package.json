@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "private": true,
-  "version": "0.22.14",
+  "version": "1.0.23",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -78,9 +78,9 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
           Achievements and Certificates
         </h4>
         <p class="achievements__description section-text">
-          Explore my key accomplishments as a BSIT student, highlighting
-          academic milestones, impactful projects, and my dedication to
-          technology and innovation.
+          Explore my key accomplishments as a IT student, highlighting academic
+          milestones, impactful projects, and my dedication to technology and
+          innovation.
         </p>
       </div>
 

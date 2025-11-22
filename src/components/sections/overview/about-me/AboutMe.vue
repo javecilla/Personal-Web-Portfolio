@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import ImageSkeleton from '@/components/ImageSkeleton.vue'
 import Image from '@/components/ui/Image.vue'
-import profileImage from '@global/images/pogi.jpg'
+import profileImage from '@global/images/hodie_black.png'
 
 const imageLoaded = ref(false)
 const desktopImageLoaded = ref(false)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import picture from '@global/images/formal2.png'
+import picture from '@global/images/formal_black.png'
 import ImageSkeleton from '@/components/ImageSkeleton.vue'
 
 const isImageLoaded = ref(false)
