@@ -11,6 +11,7 @@ import inventoryWeb from '@global/images/551asfh.png'
 import chatBot from '@global/images/ch4tb.png'
 import oarsmc from '@global/images/oarsmc.png'
 import kmykSystem from '@global/images/kmyk.png'
+import drpauSystem from '@global/images/drpauabc_cis.png'
 
 // Import tech icons
 import vueIcon from '@global/svgs/vue.svg?url'
@@ -26,6 +27,8 @@ import htmlIcon from '@global/svgs/html5.svg?url'
 import mysqlIcon from '@global/svgs/mysql.svg?url'
 import postgresIcon from '@global/svgs/postgresql.svg?url'
 import firebaseIcon from '@global/svgs/firebase.svg?url'
+import reactIcon from '@global/svgs/react.svg?url'
+import dockerIcon from '@global/svgs/docker.svg?url'
 
 export const projects: readonly Project[] = [
   {
@@ -34,7 +37,7 @@ export const projects: readonly Project[] = [
     description:
       'My personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design.',
     image: portfolioWeb,
-    githubUrl: 'https://github.com/javecilla/portfolio',
+    githubUrl: 'https://github.com/javecilla/Personal-Web-Portfolio',
     demoUrl: 'https://javecilla.vercel.app/',
     technologies: [
       {
@@ -482,6 +485,7 @@ The existing portal at Golden Minds Colleges was built entirely with legacy PHP 
 - **Backend**: Laravel for API development, role-based authentication, and server-side validation.  
 - **Frontend**: Vue.js components integrated with Tailwind for responsive UI/UX.  
 - **Database**: PostgreSQL with optimized schema designs for reliable and scalable data management.  
+- **Containerization**: Docker for consistent development environments and simplified deployment workflows.
 - **Deployment**: Deployed on HostGator with Cloudflare support for enhanced performance and security.
 
 This project deepened my experience in building modular and scalable systems for educational institutions. I sharpened my expertise in backend architecture with Laravel, frontend reactivity with Vue.js, and secure data modeling with PostgreSQL. I also applied version control best practices to maintain consistent progress throughout the solo development cycle.
@@ -509,6 +513,10 @@ This project deepened my experience in building modular and scalable systems for
       {
         name: 'TypeScript',
         icon: tsIcon
+      },
+      {
+        name: 'Docker',
+        icon: dockerIcon
       }
     ],
     category: ProjectCategory.CLIENT,
@@ -621,6 +629,66 @@ This project reflects a **fusion of sustainable innovation and clean frontend en
       }
     ],
     category: ProjectCategory.CLIENT,
+    isHighlight: false,
+    isRecent: true
+  },
+  {
+    id: 11,
+    title: 'Clinic Information System for Dr. Pau Animal Bite Center',
+    description: `This project CIS for Dr. Pau Animal Bite Center is a web application developed to accomplish the requirements of the IT 305W - Advance Web Application a group project and i am team leader and developer of the project.
+
+## About the Project
+The **Clinic Information System** is designed to solve a common problem for medical clinics: the inefficient and decentralized management of patient records and appointments. This initial version focuses on the core **Patient Management Module**, which allows patients to register, log in, and book their own appointments online, while also empowering clinic staff to manage walk-in patients and view the daily appointment schedule.
+
+The application utilizes the **Create, Read, Update & Delete (CRUD)** method for all data operations, with all information securely stored and managed using **Firebase** services as required by the project specifications.
+
+## Key Features
+
+#### **Patient Portal**
+- **Secure Authentication** – User registration with email verification and login using Firebase Authentication.
+- **Personal Dashboard** – View profile information and appointment history.
+- **Appointment Booking** – A multi-step form to book new appointments for either a New Bite Incident or a Follow-up/General Consultation.
+
+#### **Staff Portal**
+- **Daily Appointments** – A comprehensive dashboard displaying the list of patient appointments for the day.
+- **Patient Search** – Functionality to search for existing patients.
+- **Walk-in Registration** – A dedicated form for staff to register walk-in patients directly.
+
+## Technologies Used
+This project is built using modern web technologies to ensure a responsive, efficient, and scalable application.
+
+- **Front-End Framework**: ReactJS (with Functional Components and Hooks)
+- **Styling**: Bootstrap
+- **Icons**: Font Awesome
+- **Backend as a Service (BaaS)**: Firebase
+- **Authentication**: Firebase Authentication for user registration and login.
+- **Database**: Firebase Realtime Database to store and manage all application data.
+- **Storage**: Firebase Storage for user profile pictures.
+- **Hosting**: Firebase Hosting for final deployment.
+- **Google ReCAPTCHA**: reCAPTCHA v2 (Checkbox) for client-side anti-bot verification on sensitive forms.
+- **Email Service**: EmailJS for sending email notifications.`,
+    image: drpauSystem,
+    githubUrl: 'https://github.com/javecilla/CIS-AWA-BSIT3EG1-PROJECT',
+    demoUrl: 'https://cis-awa-bsit3eg1-project.web.app/',
+    technologies: [
+      {
+        name: 'HTML',
+        icon: htmlIcon
+      },
+      {
+        name: 'Bootstrap',
+        icon: bootstrapIcon
+      },
+      {
+        name: 'React',
+        icon: reactIcon
+      },
+      {
+        name: 'Firebase',
+        icon: firebaseIcon
+      }
+    ],
+    category: ProjectCategory.ACADEMIC,
     isHighlight: false,
     isRecent: true
   }

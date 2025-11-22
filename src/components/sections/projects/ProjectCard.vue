@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { GithubIcon, Globe } from 'lucide-vue-next'
 import type { Project } from '@/types/project'
 import ImageSkeleton from '@/components/ImageSkeleton.vue'
-import BaseImage from '@/components/base/BaseImage.vue'
+import Image from '@/components/ui/Image.vue'
 
 defineProps<{
   project: Project
@@ -40,7 +40,7 @@ const handleImageLoad = () => {
       </Transition>
 
       <div class="relative w-full h-full">
-        <BaseImage
+        <Image
           :src="project.image"
           :alt="project.title"
           variant="project"
@@ -53,7 +53,7 @@ const handleImageLoad = () => {
               class="project-card__image-overlay group-hover:opacity-0"
             ></div>
           </template>
-        </BaseImage>
+        </Image>
       </div>
     </div>
 

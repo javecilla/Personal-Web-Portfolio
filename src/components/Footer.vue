@@ -46,12 +46,12 @@ const handleImageLoad = () => {
         <!-- User Info -->
         <div class="footer__info">
           <h2 class="footer__name">Jerome Avecilla</h2>
-          <p class="footer__role">Student Web Developer</p>
+          <p class="footer__role">Full-Stack Web Developer</p>
         </div>
       </div>
 
       <!-- Message with glowing background -->
-      <h4 class="footer__title">I don’t just code all day!</h4>
+      <h5 class="footer__title">I don’t just code all day!</h5>
       <p class="footer__message">
         Beyond my coding skills, I’m not just a keyboard warrior. I’m a huge
         basketball fan, a swimming enthusiast, an avid hiker, and always

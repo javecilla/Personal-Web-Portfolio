@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "handle": "filesystem" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "buildCommand": "npm run build",

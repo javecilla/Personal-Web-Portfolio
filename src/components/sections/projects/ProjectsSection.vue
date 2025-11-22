@@ -45,7 +45,7 @@ const closeModal = () => {
   <section :id="id" class="projects section-bg">
     <!-- Header -->
     <div class="projects__header">
-      <h2 class="projects__title section-title">Featured Projects</h2>
+      <h4 class="projects__title section-title">Featured Projects</h4>
       <p class="projects__description section-text">
         Displayed below are my diverse portfolio of projects, including
         academic, personal, and large-scale endeavors. Take a closer look to

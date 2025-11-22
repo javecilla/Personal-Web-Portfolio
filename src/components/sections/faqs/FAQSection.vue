@@ -1,38 +1,35 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { faqs } from '@/data/faqs';
-import { Plus, Minus } from 'lucide-vue-next';
+import { ref } from 'vue'
+import { faqs } from '@/data/faqs'
+import { Plus, Minus } from 'lucide-vue-next'
 
-const openItemId = ref<number | null>(null);
+const openItemId = ref<number | null>(null)
 
 function toggleItem(id: number) {
   if (openItemId.value === id) {
-    openItemId.value = null;
+    openItemId.value = null
   } else {
-    openItemId.value = id;
+    openItemId.value = id
   }
 }
 
 function formatNumber(num: number): string {
-  return num.toString().padStart(2, '0');
+  return num.toString().padStart(2, '0')
 }
 </script>
 
 <template>
   <section class="faqs-section section-bg">
     <div class="faqs-section__header">
-      <h2 class="section-title">Let’s Clear Things Up</h2>
+      <h4 class="section-title">Let’s Clear Things Up</h4>
       <p class="section-text">
-        Explore the most frequently asked questions about my work, approach, and what I can do for you.
+        Explore the most frequently asked questions about my work, approach, and
+        what I can do for you.
       </p>
     </div>
 
     <div class="faqs-container">
-      <div
-        v-for="faq in faqs"
-        :key="faq.id"
-        class="faq-item"
-      >
+      <div v-for="faq in faqs" :key="faq.id" class="faq-item">
         <button
           class="faq-item__header"
           @click="toggleItem(faq.id)"
@@ -58,10 +55,7 @@ function formatNumber(num: number): string {
           leave-from-class="opacity-100 translate-y-0"
           leave-to-class="opacity-0 -translate-y-2"
         >
-          <div 
-            v-show="openItemId === faq.id"
-            class="faq-item__answer"
-          >
+          <div v-show="openItemId === faq.id" class="faq-item__answer">
             {{ faq.answer }}
           </div>
         </transition>
@@ -132,15 +126,15 @@ function formatNumber(num: number): string {
 }
 
 /* Active states */
-.faq-item__header[aria-expanded="true"] {
+.faq-item__header[aria-expanded='true'] {
   @apply bg-gray-50/50 dark:bg-zinc-800/10;
 }
 
-.faq-item__header[aria-expanded="true"] .faq-item__number {
+.faq-item__header[aria-expanded='true'] .faq-item__number {
   @apply bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400;
 }
 
-.faq-item[aria-expanded="true"] {
+.faq-item[aria-expanded='true'] {
   @apply border-blue-500/20;
 }
 </style>

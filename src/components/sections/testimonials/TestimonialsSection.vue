@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { testimonials as testimonialsData } from '@/data/testimonials';
-import ImageSkeleton from "@/components/ImageSkeleton.vue";
-import BaseImage from '@/components/base/BaseImage.vue';
+import { ref } from 'vue'
+import { testimonials as testimonialsData } from '@/data/testimonials'
+import ImageSkeleton from '@/components/ImageSkeleton.vue'
+import Image from '@/components/ui/Image.vue'
 
-const testimonials = ref(testimonialsData);
-const imageLoadedMap = ref<Record<number, boolean>>({});
+const testimonials = ref(testimonialsData)
+const imageLoadedMap = ref<Record<number, boolean>>({})
 
 const handleImageLoad = (testimonialId: number) => {
-  imageLoadedMap.value[testimonialId] = true;
-};
+  imageLoadedMap.value[testimonialId] = true
+}
 </script>
 
 <template>
   <section class="testimonials-section section-bg">
     <div class="testimonials-section__header">
-      <h2 class="section-title">What People Are Saying</h2>
+      <h4 class="section-title">What People Are Saying</h4>
       <p class="section-text">
-        See what clients and colleagues say about working with me—genuine experiences, lasting impressions
+        See what clients and colleagues say about working with me genuine
+        experiences, lasting impressions
       </p>
     </div>
 
@@ -42,8 +43,8 @@ const handleImageLoad = (testimonialId: number) => {
                     className="absolute inset-0 w-full h-full"
                   />
                 </Transition>
-                
-                <BaseImage
+
+                <Image
                   :src="testimonial.avatar"
                   :alt="testimonial.name"
                   variant="profile"
@@ -60,19 +61,21 @@ const handleImageLoad = (testimonialId: number) => {
             <div class="testimonial-card__meta">
               <h3 class="testimonial-card__name">{{ testimonial.name }}</h3>
               <p class="testimonial-card__role">
-                {{ testimonial.role }} 
+                {{ testimonial.role }}
               </p>
               <!-- at {{ testimonial.company }} -->
             </div>
           </div>
 
           <div class="testimonial-card__content">
-            <svg 
-              class="testimonial-card__quote-icon" 
-              fill="currentColor" 
+            <svg
+              class="testimonial-card__quote-icon"
+              fill="currentColor"
               viewBox="0 0 24 24"
             >
-              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              <path
+                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+              />
             </svg>
             <p class="testimonial-card__text">{{ testimonial.content }}</p>
           </div>

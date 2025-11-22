@@ -1,100 +1,24 @@
 # Personal Web Portfolio
 
-A modern, responsive portfolio website showcasing my work and skills. Built with Vue.js 3, TypeScript, and Tailwind CSS, featuring dark mode support and interactive components.
+Welcome to my personal portfolio repository! This project is a reflection of my journey as a Full-Stack Web Developer, showcasing my skills, projects, and professional experiences.
 
-## Tech Stack
+## Live Demo
 
-- Vue.js 3 with Composition API
-- TypeScript
-- Tailwind CSS
-- Vite
+Check out the live version here: [https://jerome-avecilla.vercel.app/](https://jerome-avecilla.vercel.app/)
 
-## Features
-- 🤖 Conversational ChatBot for FAQs
-- 🗄️ Firebase Database(Firebase)
-- 📡 Deploy on Vercel
-- 🌓 Dark/Light mode theming
-- 📱 Responsive design
-- ⚡ Optimized performance
-- 🎨 Modern UI/UX
-- 🔄 Interactive components
-- 👨‍💻 About me section with code view
-- 🚀 Tech Stack and Skills section
-- 📝 Project showcase
-- 🏆 Achievements & certificates section
-- 🎓 Education & experience section
-- 🤔 Frequently Asked Questions section
-- 🚀 Contact form
+## About This Project
 
-## Project Setup
+This repository contains the source code for my personal portfolio website. It serves as a central hub to demonstrate my expertise in modern web technologies, including Vue.js, TypeScript, and Laravel.
 
-### Prerequisites
-
-- Node.js v22+
-- npm v10+
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/javecilla/Personal-Web-Portfolio.git
-cd Personal-Web-Portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start development server:
-```bash
-npm run dev
-```
-
-4. Build for production:
-```bash
-npm run build
-```
-
-## Project Structure
-
-```
-Personal-Web-Portfolio/
-├── src/
-│   ├── layout/         # Main entry point
-│   ├── components/     # Vue components
-│   ├── composables/    # Reusable component logic
-│   ├── assets/         # Static assets
-│   ├── utils/          # Utility functions
-│   ├── types/          # TypeScript types
-│   ├── stores/         # Pinia Store module
-│   ├── services/       # API services
-│   ├── libs/           # Third-party libraries
-│   ├── constants/      # Static data
-│   ├── App.vue         # Root component
-│   ├── main.ts         # Entry point
-│   └── vite-env.d.ts   # Vite TypeScript env
-├── public/             # Public assets
-└── ... config files
-```
-
-## Development Guidelines
-
-- Follow Vue 3 Composition API best practices
-- Use TypeScript for type safety
-- Follow the project's code style guide
-- Implement responsive design using Tailwind CSS
-- Optimize for performance and accessibility
-
-## Demo
-
-You can try the live demo [https://jerome-avecilla.vercel.app/](https://jerome-avecilla.vercel.app/)
+For detailed technical information about the project's architecture, features, and setup instructions, please refer to the [Project Documentation](docs/).
 
 ## Contact
 
-- Portfolio: [jerome-avecilla.vercel.app](https://jerome-avecilla.vercel.app/)
-- Email: jeromesavc@gmail.com
-- GitHub: [@javecilla](https://github.com/javecilla)
+Feel free to reach out if you have any questions or collaboration opportunities!
+
+- **Website:** [jerome-avecilla.vercel.app](https://jerome-avecilla.vercel.app/)
+- **Email:** jeromesavc@gmail.com
+- **GitHub:** [@javecilla](https://github.com/javecilla)
 
 ## License
 
