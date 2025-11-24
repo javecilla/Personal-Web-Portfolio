@@ -1,36 +1,35 @@
 <script setup lang="ts">
-interface Props {
-  href: string;
-  ariaLabel: string;
-  external?: boolean;
-  variant?: 'default' | 'icon' | 'nav' | 'button';
-  className?: string;
-}
+  interface Props {
+    href: string
+    ariaLabel: string
+    external?: boolean
+    variant?: 'default' | 'icon' | 'nav' | 'button'
+    className?: string
+  }
 
-withDefaults(defineProps<Props>(), {
-  external: false,
-  variant: 'default',
-  className: ''
-});
+  withDefaults(defineProps<Props>(), {
+    external: false,
+    variant: 'default',
+    className: '',
+  })
 
-const variantClasses = {
-  default: 'text-[var(--link-color)] hover:opacity-80 dark:text-[var(--link-color-dark)]',
-  nav: 'text-gray-800 dark:text-gray-200 hover:text-[var(--link-color)] dark:hover:text-[var(--link-color-dark)]',
-  button: 'px-4 py-2 rounded-full',
-  icon: 'text-gray-800 dark:text-gray-200 hover:text-[var(--link-color)] dark:hover:text-[var(--link-color-dark)]'
-} as const;
+  const variantClasses = {
+    default:
+      'text-[var(--link-color)] hover:opacity-80 dark:text-[var(--link-color-dark)]',
+    nav: 'text-gray-800 dark:text-gray-200 hover:text-[var(--link-color)] dark:hover:text-[var(--link-color-dark)]',
+    button: 'px-4 py-2 rounded-full',
+    icon: 'text-gray-800 dark:text-gray-200 hover:text-[var(--link-color)] dark:hover:text-[var(--link-color-dark)]',
+  } as const
 </script>
 
 <template>
   <a
     :href="href"
-    :class="
-      [
-        'transition-colors duration-200',
-        variantClasses[variant],
-        className
-      ]
-    "
+    :class="[
+      'transition-colors duration-200',
+      variantClasses[variant],
+      className,
+    ]"
     :target="external ? '_blank' : undefined"
     :rel="external ? 'noopener noreferrer' : undefined"
     :aria-label="ariaLabel"

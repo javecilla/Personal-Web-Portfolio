@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import picture from '@global/images/formal_black.png'
-import ImageSkeleton from '@/components/ImageSkeleton.vue'
+  import { ref } from 'vue'
+  import picture from '@global/images/formal_black.png'
+  import ImageSkeleton from '@/components/ImageSkeleton.vue'
 
-const isImageLoaded = ref(false)
+  const isImageLoaded = ref(false)
 
-const handleImageLoad = () => {
-  ;``
-  isImageLoaded.value = true
-}
+  const handleImageLoad = () => {
+    ;``
+    isImageLoaded.value = true
+  }
 </script>
 
 <template>
@@ -67,108 +67,97 @@ const handleImageLoad = () => {
 </template>
 `
 <style scoped>
-.footer {
-  @apply relative p-0 m-0 w-full max-w-5xl mx-auto overflow-hidden
-         text-gray-300 dark:text-gray-200 -mb-[33px];
-}
+  .footer {
+    @apply relative m-0 mx-auto -mb-[33px] w-full max-w-5xl overflow-hidden p-0 text-gray-300 dark:text-gray-200;
+  }
 
-.footer__background {
-  @apply absolute inset-0 w-full h-full opacity-50 dark:opacity-25;
-  background: linear-gradient(
-      to bottom,
-      rgb(9, 9, 9) 10%,
-      transparent 100%,
-      transparent 0%,
-      rgb(9, 9, 9) 80%
-    ),
-    radial-gradient(
-      circle at center,
-      theme('colors.blue.700/20'),
-      theme('colors.purple.500/10'),
-      transparent 40%
-    );
-  filter: blur(60px);
-}
+  .footer__background {
+    @apply absolute inset-0 h-full w-full opacity-50 dark:opacity-25;
+    background:
+      linear-gradient(
+        to bottom,
+        rgb(9, 9, 9) 10%,
+        transparent 100%,
+        transparent 0%,
+        rgb(9, 9, 9) 80%
+      ),
+      radial-gradient(
+        circle at center,
+        theme('colors.blue.700/20'),
+        theme('colors.purple.500/10'),
+        transparent 40%
+      );
+    filter: blur(60px);
+  }
 
-/* Background Glow - Light mode only */
-:root:not(.dark) .footer__background {
-  background: linear-gradient(
-      to bottom,
-      rgb(255, 255, 255) 10%,
-      transparent 100%,
-      transparent 0%,
-      rgb(255, 255, 255) 80%
-    ),
-    radial-gradient(
-      circle at center,
-      theme('colors.blue.500/10'),
-      theme('colors.purple.400/5'),
-      transparent 40%
-    );
-  @apply opacity-90;
-}
+  /* Background Glow - Light mode only */
+  :root:not(.dark) .footer__background {
+    background:
+      linear-gradient(
+        to bottom,
+        rgb(255, 255, 255) 10%,
+        transparent 100%,
+        transparent 0%,
+        rgb(255, 255, 255) 80%
+      ),
+      radial-gradient(
+        circle at center,
+        theme('colors.blue.500/10'),
+        theme('colors.purple.400/5'),
+        transparent 40%
+      );
+    @apply opacity-90;
+  }
 
-.footer__container {
-  @apply flex flex-col items-center text-center 
-         space-y-4 sm:space-y-6 
-         mt-8 mb-8 
-         relative z-10 
-         p-6 sm:p-16 md:p-28;
-}
+  .footer__container {
+    @apply relative z-10 mb-8 mt-8 flex flex-col items-center space-y-4 p-6 text-center sm:space-y-6 sm:p-16 md:p-28;
+  }
 
-.footer__header {
-  @apply flex items-start gap-3 sm:gap-4;
-}
-.footer__profile {
-  @apply relative flex-shrink-0;
-}
+  .footer__header {
+    @apply flex items-start gap-3 sm:gap-4;
+  }
+  .footer__profile {
+    @apply relative flex-shrink-0;
+  }
 
-.footer__profile-wrapper {
-  @apply relative w-12 h-12;
-}
+  .footer__profile-wrapper {
+    @apply relative h-12 w-12;
+  }
 
-.footer__profile-skeleton {
-  @apply absolute inset-0 z-10;
-}
+  .footer__profile-skeleton {
+    @apply absolute inset-0 z-10;
+  }
 
-.footer__profile-image {
-  @apply w-full h-full rounded-full  transition-all duration-300
-         absolute inset-0 opacity-0;
-}
+  .footer__profile-image {
+    @apply absolute inset-0 h-full w-full rounded-full opacity-0 transition-all duration-300;
+  }
 
-.footer__profile-image--loaded {
-  @apply opacity-100 z-20;
-}
+  .footer__profile-image--loaded {
+    @apply z-20 opacity-100;
+  }
 
-.footer__info {
-  @apply text-left space-y-0.5;
-}
+  .footer__info {
+    @apply space-y-0.5 text-left;
+  }
 
-.footer__name {
-  @apply font-bold text-lg;
-}
+  .footer__name {
+    @apply text-lg font-bold;
+  }
 
-.footer__role {
-  @apply text-sm text-gray-400;
-}
+  .footer__role {
+    @apply text-sm text-gray-400;
+  }
 
-.footer__title {
-  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl 
-         font-bold bg-gradient-to-r from-blue-500 to-purple-500 
-         bg-clip-text text-transparent
-         px-4 sm:px-0;
-}
+  .footer__title {
+    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text px-4 text-2xl font-bold text-transparent sm:px-0 sm:text-3xl md:text-4xl lg:text-5xl;
+  }
 
-.footer__message {
-  @apply dark:text-gray-400 text-gray-600 
-         text-sm sm:text-base 
-         max-w-[280px] sm:max-w-xl md:max-w-2xl lg:max-w-4xl 
-         mx-auto leading-relaxed
-         px-4 sm:px-0;
-}
+  .footer__message {
+    @apply mx-auto max-w-[280px] px-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:max-w-xl sm:px-0 sm:text-base md:max-w-2xl lg:max-w-4xl;
+  }
 
-/* Message - Light mode only */
-:root:not(.dark) .footer__message {
-  @apply text-gray-600;
-}
+  /* Message - Light mode only */
+  :root:not(.dark) .footer__message {
+    @apply text-gray-600;
+  }
 </style>

@@ -10,7 +10,7 @@ export const useChatStore = defineStore('chat', {
   state: (): ChatState => ({
     messages: [],
     currentChatId: null,
-    sessionId: null
+    sessionId: null,
   }),
 
   actions: {
@@ -27,9 +27,8 @@ export const useChatStore = defineStore('chat', {
 
         if (!forceNew && existingSessionId) {
           //console.log('Attempting to restore session:', existingSessionId);
-          const existingChat = await chatService.getChatBySessionId(
-            existingSessionId
-          )
+          const existingChat =
+            await chatService.getChatBySessionId(existingSessionId)
 
           if (existingChat && existingChat.messages.length > 0) {
             //console.log('Found existing chat with messages:', existingChat);
@@ -66,7 +65,7 @@ export const useChatStore = defineStore('chat', {
         content,
         timestamp: Date.now(),
         isStarter,
-        ...(options && { options }) // Only include options in Pinia state
+        ...(options && { options }), // Only include options in Pinia state
       }
 
       this.messages.push(message)
@@ -107,15 +106,18 @@ export const useChatStore = defineStore('chat', {
       if (!message) {
         const tolerance = 5 * 60 * 1000 // 5-minute tolerance in milliseconds
         const targetTime = new Date(timestamp).getTime()
-        message = this.messages.reduce((closest, current) => {
-          const currentDiff = Math.abs(current.timestamp - targetTime)
-          const closestDiff = closest
-            ? Math.abs(closest.timestamp - targetTime)
-            : Infinity
-          return currentDiff < closestDiff && currentDiff <= tolerance
-            ? current
-            : closest
-        }, undefined as GeminiMessage | undefined)
+        message = this.messages.reduce(
+          (closest, current) => {
+            const currentDiff = Math.abs(current.timestamp - targetTime)
+            const closestDiff = closest
+              ? Math.abs(closest.timestamp - targetTime)
+              : Infinity
+            return currentDiff < closestDiff && currentDiff <= tolerance
+              ? current
+              : closest
+          },
+          undefined as GeminiMessage | undefined
+        )
       }
       return message
     },
@@ -145,14 +147,14 @@ export const useChatStore = defineStore('chat', {
             role: message.role,
             content: content,
             timestamp: message.timestamp,
-            isStarter: message.isStarter || false
+            isStarter: message.isStarter || false,
           })
         } catch (error) {
           console.error('Error syncing message update to Firebase:', error)
         }
       }
-    }
-  }
+    },
+  },
 })
 
 console.trace('[Pinia Debug] useChatStore defined and ready')

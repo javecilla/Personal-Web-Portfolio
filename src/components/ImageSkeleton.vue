@@ -1,19 +1,21 @@
 <script setup lang="ts">
-defineProps<{
-  rounded?: string;
-  className?: string;
-}>();
+  defineProps<{
+    rounded?: string
+    className?: string
+  }>()
 </script>
 
 <template>
-  <div 
+  <div
     :class="[
       'animate-pulse bg-gradient-to-r from-gray-200 to-gray-300 dark:from-zinc-800 dark:to-zinc-700',
       rounded || 'rounded-xl',
-      className
+      className,
     ]"
   >
-    <div class="flex h-full w-full items-center justify-center text-gray-400 dark:text-gray-600">
+    <div
+      class="flex h-full w-full items-center justify-center text-gray-400 dark:text-gray-600"
+    >
       <svg
         width="28"
         height="31"

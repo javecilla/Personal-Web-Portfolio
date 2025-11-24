@@ -22,7 +22,7 @@ export const testimonials: readonly Testimonial[] = [
     company: 'Golden Minds Colleges',
     avatar: jeloAvatar,
     content:
-      'Jerome is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive.'
+      'Jerome is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive.',
   },
   // {
   //     id: 3,
@@ -39,7 +39,7 @@ export const testimonials: readonly Testimonial[] = [
     company: 'InnovateTech Solutions',
     avatar: michealDummyAvatar,
     content:
-      'Jerome is a skilled student developer who is always willing to go the extra mile to ensure that the project is successful. His eagerness to learn new technologies that align with the market allows him to deliver high-quality results that e`xceed my expectations.'
+      'Jerome is a skilled student developer who is always willing to go the extra mile to ensure that the project is successful. His eagerness to learn new technologies that align with the market allows him to deliver high-quality results that e`xceed my expectations.',
   },
   {
     id: 5,
@@ -48,8 +48,8 @@ export const testimonials: readonly Testimonial[] = [
     company: 'Golden Minds Colleges',
     avatar: derekAvatar,
     content:
-      'First i saw Jerome he is a good friend of mine, i know him from my school. He is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive.'
-  }
+      'First i saw Jerome he is a good friend of mine, i know him from my school. He is a talented and dedicated student developer who is always willing to go the extra mile to ensure that the project is successful. His ability to understand our needs and deliver results that exceed our expectations is impressive.',
+  },
   // {
   //     id: 6,
   //     name: "Rose Angeline L. Juanerio",

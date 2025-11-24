@@ -1,12 +1,9 @@
-import typography from '@tailwindcss/typography';
+import typography from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ["class"],
-  content: [
-    "./index.html",
-    "./src/**/*.{html,js,ts,vue,jsx,tsx}",
-  ],
+  darkMode: ['class'],
+  content: ['./index.html', './src/**/*.{html,js,ts,vue,jsx,tsx}'],
   theme: {
     extend: {
       typography: {

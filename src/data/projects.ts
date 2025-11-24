@@ -42,24 +42,24 @@ export const projects: readonly Project[] = [
     technologies: [
       {
         name: 'Vue.js',
-        icon: vueIcon
+        icon: vueIcon,
       },
       {
         name: 'TypeScript',
-        icon: tsIcon
+        icon: tsIcon,
       },
       {
         name: 'Tailwind CSS',
-        icon: tailwindIcon
+        icon: tailwindIcon,
       },
       {
         name: 'Firebase',
-        icon: firebaseIcon
-      }
+        icon: firebaseIcon,
+      },
     ],
     category: ProjectCategory.PERSONAL,
     isHighlight: false,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 2,
@@ -105,28 +105,28 @@ Building this website sharpened my skills in full-stack development. I gained pr
     technologies: [
       {
         name: 'MySQL',
-        icon: mysqlIcon
+        icon: mysqlIcon,
       },
       {
         name: 'Laravel',
-        icon: laravelIcon
+        icon: laravelIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'Vue.js',
-        icon: vueIcon
+        icon: vueIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
-      }
+        icon: jsIcon,
+      },
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: true,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 3,
@@ -173,28 +173,28 @@ Developing this system deepened my expertise in several key areas. I honed my ab
     technologies: [
       {
         name: 'MySQL',
-        icon: mysqlIcon
+        icon: mysqlIcon,
       },
       {
         name: 'Laravel',
-        icon: laravelIcon
+        icon: laravelIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'jQuery',
-        icon: jqueryIcon
+        icon: jqueryIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
-      }
+        icon: jsIcon,
+      },
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: true,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 4,
@@ -235,28 +235,28 @@ Developing this system deepened my expertise in several key areas. I honed my ab
     technologies: [
       {
         name: 'MySQL',
-        icon: mysqlIcon
+        icon: mysqlIcon,
       },
       {
         name: 'PHP',
-        icon: phpIcon
+        icon: phpIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'jQuery',
-        icon: jqueryIcon
+        icon: jqueryIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
-      }
+        icon: jsIcon,
+      },
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: false,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 5,
@@ -290,28 +290,28 @@ This project refined my skills in **full-stack development**, particularly in de
     technologies: [
       {
         name: 'MySQL',
-        icon: mysqlIcon
+        icon: mysqlIcon,
       },
       {
         name: 'PHP',
-        icon: phpIcon
+        icon: phpIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'jQuery',
-        icon: jqueryIcon
+        icon: jqueryIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
-      }
+        icon: jsIcon,
+      },
     ],
     category: ProjectCategory.ACADEMIC,
     isHighlight: false,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 6,
@@ -352,24 +352,24 @@ This project refined my skills in **full-stack development**, particularly in de
     technologies: [
       {
         name: 'Vue.js',
-        icon: vueIcon
+        icon: vueIcon,
       },
       {
         name: 'TypeScript',
-        icon: tsIcon
+        icon: tsIcon,
       },
       {
         name: 'Tailwind CSS',
-        icon: tailwindIcon
+        icon: tailwindIcon,
       },
       {
         name: 'Firebase',
-        icon: firebaseIcon
-      }
+        icon: firebaseIcon,
+      },
     ],
     category: ProjectCategory.PERSONAL,
     isHighlight: false,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 7,
@@ -432,28 +432,28 @@ This project refined my skills in **full-stack development**, particularly in de
     technologies: [
       {
         name: 'MySQL',
-        icon: mysqlIcon
+        icon: mysqlIcon,
       },
       {
         name: 'PHP',
-        icon: phpIcon
+        icon: phpIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'jQuery',
-        icon: jqueryIcon
+        icon: jqueryIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
-      }
+        icon: jsIcon,
+      },
     ],
     category: ProjectCategory.ACADEMIC,
     isHighlight: false,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 8,
@@ -496,32 +496,32 @@ This project deepened my experience in building modular and scalable systems for
     technologies: [
       {
         name: 'PostgreSQL',
-        icon: postgresIcon
+        icon: postgresIcon,
       },
       {
         name: 'Laravel',
-        icon: laravelIcon
+        icon: laravelIcon,
       },
       {
         name: 'Tailwind CSS',
-        icon: tailwindIcon
+        icon: tailwindIcon,
       },
       {
         name: 'Vue.js',
-        icon: vueIcon
+        icon: vueIcon,
       },
       {
         name: 'TypeScript',
-        icon: tsIcon
+        icon: tsIcon,
       },
       {
         name: 'Docker',
-        icon: dockerIcon
-      }
+        icon: dockerIcon,
+      },
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: true,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 9,
@@ -561,24 +561,24 @@ This project deepened my experience in building modular and scalable systems for
     technologies: [
       {
         name: 'Vue.js',
-        icon: vueIcon
+        icon: vueIcon,
       },
       {
         name: 'TypeScript',
-        icon: tsIcon
+        icon: tsIcon,
       },
       {
         name: 'Tailwind CSS',
-        icon: tailwindIcon
+        icon: tailwindIcon,
       },
       {
         name: 'Firebase',
-        icon: firebaseIcon
-      }
+        icon: firebaseIcon,
+      },
     ],
     category: ProjectCategory.PERSONAL,
     isHighlight: false,
-    isRecent: false
+    isRecent: false,
   },
   {
     id: 10,
@@ -613,24 +613,24 @@ This project reflects a **fusion of sustainable innovation and clean frontend en
     technologies: [
       {
         name: 'HTML',
-        icon: htmlIcon
+        icon: htmlIcon,
       },
       {
         name: 'CSS',
-        icon: cssIcon
+        icon: cssIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
-      }
+        icon: jsIcon,
+      },
     ],
     category: ProjectCategory.CLIENT,
     isHighlight: false,
-    isRecent: true
+    isRecent: true,
   },
   {
     id: 11,
@@ -673,25 +673,25 @@ This project is built using modern web technologies to ensure a responsive, effi
     technologies: [
       {
         name: 'HTML',
-        icon: htmlIcon
+        icon: htmlIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'React',
-        icon: reactIcon
+        icon: reactIcon,
       },
       {
         name: 'Firebase',
-        icon: firebaseIcon
-      }
+        icon: firebaseIcon,
+      },
     ],
     category: ProjectCategory.ACADEMIC,
     isHighlight: false,
-    isRecent: true
-  }
+    isRecent: true,
+  },
 ] as const
 
 export const categories: readonly ProjectCategoryItem[] = [
@@ -700,5 +700,5 @@ export const categories: readonly ProjectCategoryItem[] = [
   { id: 'all' as const, label: 'All Projects' },
   { id: ProjectCategory.ACADEMIC, label: 'Academic' },
   { id: ProjectCategory.PERSONAL, label: 'Personal' },
-  { id: ProjectCategory.CLIENT, label: 'Client' }
+  { id: ProjectCategory.CLIENT, label: 'Client' },
 ] as const

@@ -1,68 +1,68 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import { achievements } from '@/data/achievements'
-import Button from '@/components/ui/Button.vue'
-import AchievementDot from '@/components/sections/achievements/AchievementDot.vue'
-import ImageSkeleton from '@/components/ImageSkeleton.vue'
-import Image from '@/components/ui/Image.vue'
-import { useSwipe } from '@/composables/useSwipe'
+  import { ref, onMounted, onUnmounted } from 'vue'
+  import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+  import { achievements } from '@/data/achievements'
+  import Button from '@/components/ui/Button.vue'
+  import AchievementDot from '@/components/sections/achievements/AchievementDot.vue'
+  import ImageSkeleton from '@/components/ImageSkeleton.vue'
+  import Image from '@/components/ui/Image.vue'
+  import { useSwipe } from '@/composables/useSwipe'
 
-defineProps<{
-  id?: string
-}>()
+  defineProps<{
+    id?: string
+  }>()
 
-const currentSlide = ref(0)
-const isAnimating = ref(false)
-const slideDirection = ref<'left' | 'right'>('right')
-const imageLoaded = ref<{ [key: number]: boolean }>({})
+  const currentSlide = ref(0)
+  const isAnimating = ref(false)
+  const slideDirection = ref<'left' | 'right'>('right')
+  const imageLoaded = ref<{ [key: number]: boolean }>({})
 
-const handleImageLoad = (index: number) => {
-  imageLoaded.value[index] = true
-}
-
-/**
- * Handles slide navigation with animation
- */
-const navigateSlide = (direction: 'prev' | 'next') => {
-  if (isAnimating.value) return
-
-  isAnimating.value = true
-  slideDirection.value = direction === 'next' ? 'right' : 'left'
-
-  if (direction === 'next') {
-    currentSlide.value = (currentSlide.value + 1) % achievements.length
-  } else {
-    currentSlide.value =
-      currentSlide.value === 0
-        ? achievements.length - 1
-        : currentSlide.value - 1
+  const handleImageLoad = (index: number) => {
+    imageLoaded.value[index] = true
   }
 
-  setTimeout(() => {
-    isAnimating.value = false
-  }, 1000)
-}
+  /**
+   * Handles slide navigation with animation
+   */
+  const navigateSlide = (direction: 'prev' | 'next') => {
+    if (isAnimating.value) return
 
-const autoplayInterval = ref<number | undefined>()
+    isAnimating.value = true
+    slideDirection.value = direction === 'next' ? 'right' : 'left'
 
-onMounted(() => {
-  autoplayInterval.value = window.setInterval(() => {
-    navigateSlide('next')
-  }, 60000)
-})
+    if (direction === 'next') {
+      currentSlide.value = (currentSlide.value + 1) % achievements.length
+    } else {
+      currentSlide.value =
+        currentSlide.value === 0
+          ? achievements.length - 1
+          : currentSlide.value - 1
+    }
 
-onUnmounted(() => {
-  if (autoplayInterval.value) {
-    clearInterval(autoplayInterval.value)
+    setTimeout(() => {
+      isAnimating.value = false
+    }, 1000)
   }
-})
 
-const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
-  onSwipeLeft: () => navigateSlide('next'),
-  onSwipeRight: () => navigateSlide('prev'),
-  threshold: 50
-})
+  const autoplayInterval = ref<number | undefined>()
+
+  onMounted(() => {
+    autoplayInterval.value = window.setInterval(() => {
+      navigateSlide('next')
+    }, 60000)
+  })
+
+  onUnmounted(() => {
+    if (autoplayInterval.value) {
+      clearInterval(autoplayInterval.value)
+    }
+  })
+
+  const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
+    onSwipeLeft: () => navigateSlide('next'),
+    onSwipeRight: () => navigateSlide('prev'),
+    threshold: 50,
+  })
 </script>
 
 <template>
@@ -114,8 +114,8 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
                   currentSlide === index
                     ? 'achievements__slide--active'
                     : index > currentSlide
-                    ? 'achievements__slide--next'
-                    : 'achievements__slide--prev'
+                      ? 'achievements__slide--next'
+                      : 'achievements__slide--prev',
                 ]"
                 :id="`achievement-panel-${index}`"
                 role="tabpanel"
@@ -145,7 +145,7 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
                       rounded="xl"
                       :class="[
                         'achievements__image',
-                        { 'opacity-0': !imageLoaded[index] }
+                        { 'opacity-0': !imageLoaded[index] },
                       ]"
                       @load="() => handleImageLoad(index)"
                     >
@@ -217,173 +217,163 @@ const { onTouchStart, onTouchMove, onTouchEnd } = useSwipe({
 </template>
 
 <style scoped>
-/* Main container */
-.achievements {
-  @apply relative overflow-hidden space-y-6 pt-5 pb-5 rounded-2xl 
-         transition-all duration-500 ease-in-out min-h-[500px];
-}
+  /* Main container */
+  .achievements {
+    @apply relative min-h-[500px] space-y-6 overflow-hidden rounded-2xl pb-5 pt-5 transition-all duration-500 ease-in-out;
+  }
 
-.achievements__container {
-  @apply w-full h-full mx-auto px-4 sm:px-6 lg:px-8 pb-8;
-}
+  .achievements__container {
+    @apply mx-auto h-full w-full px-4 pb-8 sm:px-6 lg:px-8;
+  }
 
-/* Header styles */
-.achievements__header {
-  @apply text-center space-y-3 pb-5 sm:pb-8;
-}
+  /* Header styles */
+  .achievements__header {
+    @apply space-y-3 pb-5 text-center sm:pb-8;
+  }
 
-.achievements__title {
-  @apply text-2xl sm:text-3xl font-bold;
-}
+  .achievements__title {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
 
-.achievements__description {
-  @apply text-sm sm:text-base max-w-3xl mx-auto;
-}
+  .achievements__description {
+    @apply mx-auto max-w-3xl text-sm sm:text-base;
+  }
 
-/* Carousel container */
-.achievements__carousel-wrapper {
-  @apply flex flex-col gap-6;
-}
+  /* Carousel container */
+  .achievements__carousel-wrapper {
+    @apply flex flex-col gap-6;
+  }
 
-.achievements__navigation-row {
-  @apply relative flex items-center w-full;
-}
+  .achievements__navigation-row {
+    @apply relative flex w-full items-center;
+  }
 
-.achievements__dots {
-  @apply flex justify-center gap-2 mt-[30px];
-}
+  .achievements__dots {
+    @apply mt-[30px] flex justify-center gap-2;
+  }
 
-/* Navigation buttons - consolidated styles */
-.achievements__nav-btn {
-  @apply hidden md:block p-2 rounded-full bg-white/10 backdrop-blur-sm 
-         transition-all duration-300 border border-gray-200
-         hover:bg-white/20 z-50;
-}
+  /* Navigation buttons - consolidated styles */
+  .achievements__nav-btn {
+    @apply z-50 hidden rounded-full border border-gray-200 bg-white/10 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/20 md:block;
+  }
 
-.achievements__nav-btn:hover {
-  @apply bg-white/20;
-}
+  .achievements__nav-btn:hover {
+    @apply bg-white/20;
+  }
 
-.dark .achievements__nav-btn {
-  @apply border-gray-800;
-}
+  .dark .achievements__nav-btn {
+    @apply border-gray-800;
+  }
 
-.achievements__nav-btn--prev {
-  @apply mr-4;
-}
+  .achievements__nav-btn--prev {
+    @apply mr-4;
+  }
 
-.achievements__nav-btn--next {
-  @apply ml-4;
-}
+  .achievements__nav-btn--next {
+    @apply ml-4;
+  }
 
-.achievements__nav-icon {
-  @apply w-5 h-5 text-gray-600;
-}
+  .achievements__nav-icon {
+    @apply h-5 w-5 text-gray-600;
+  }
 
-.dark .achievements__nav-icon {
-  @apply text-gray-400;
-}
+  .dark .achievements__nav-icon {
+    @apply text-gray-400;
+  }
 
-/* Slides container */
-.achievements__slides {
-  @apply relative w-full min-h-[400px] md:min-h-[300px] touch-pan-y;
-}
+  /* Slides container */
+  .achievements__slides {
+    @apply relative min-h-[400px] w-full touch-pan-y md:min-h-[300px];
+  }
 
-.achievements__slide {
-  @apply absolute inset-0 w-full h-full transition-all duration-700 ease-in-out transform;
-}
+  .achievements__slide {
+    @apply absolute inset-0 h-full w-full transform transition-all duration-700 ease-in-out;
+  }
 
-.achievements__slide--active {
-  @apply translate-x-0 opacity-100;
-}
+  .achievements__slide--active {
+    @apply translate-x-0 opacity-100;
+  }
 
-.achievements__slide--next {
-  @apply translate-x-full opacity-0;
-}
+  .achievements__slide--next {
+    @apply translate-x-full opacity-0;
+  }
 
-.achievements__slide--prev {
-  @apply -translate-x-full opacity-0;
-}
+  .achievements__slide--prev {
+    @apply -translate-x-full opacity-0;
+  }
 
-/* Grid layout */
-.achievements__grid {
-  @apply grid grid-cols-1 md:grid-cols-2 h-full;
-}
+  /* Grid layout */
+  .achievements__grid {
+    @apply grid h-full grid-cols-1 md:grid-cols-2;
+  }
 
-/* Image section */
-.achievements__image-container {
-  @apply relative mt-[30px] h-[225px] md:h-[300px] overflow-hidden rounded-xl;
-}
+  /* Image section */
+  .achievements__image-container {
+    @apply relative mt-[30px] h-[225px] overflow-hidden rounded-xl md:h-[300px];
+  }
 
-.achievements__image {
-  @apply object-cover w-full h-full transition-all duration-700 
-         filter grayscale transform opacity-100;
-}
+  .achievements__image {
+    @apply h-full w-full transform object-cover opacity-100 grayscale filter transition-all duration-700;
+  }
 
-.group:hover .achievements__image {
-  @apply grayscale-0 scale-105;
-}
+  .group:hover .achievements__image {
+    @apply scale-105 grayscale-0;
+  }
 
-.achievements__image-overlay {
-  @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent;
-}
+  .achievements__image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent;
+  }
 
-/* Content section */
-.achievements__content {
-  @apply relative flex flex-col p-6 sm:p-8 text-start h-full;
-}
+  /* Content section */
+  .achievements__content {
+    @apply relative flex h-full flex-col p-6 text-start sm:p-8;
+  }
 
-.achievements__content-inner {
-  @apply space-y-2 -mt-1 sm:mt-0;
-}
+  .achievements__content-inner {
+    @apply -mt-1 space-y-2 sm:mt-0;
+  }
 
-.achievements__category {
-  @apply inline-block;
-}
+  .achievements__category {
+    @apply inline-block;
+  }
 
-.achievements__category-text {
-  @apply px-3 py-1.5
-         text-sm font-medium
-         border-2 border-blue-500/50 dark:border-blue-400/50
-         text-blue-600 dark:text-blue-400
-         rounded-full
-         bg-blue-50/50 dark:bg-blue-900/10
-         whitespace-nowrap;
-}
+  .achievements__category-text {
+    @apply whitespace-nowrap rounded-full border-2 border-blue-500/50 bg-blue-50/50 px-3 py-1.5 text-sm font-medium text-blue-600 dark:border-blue-400/50 dark:bg-blue-900/10 dark:text-blue-400;
+  }
 
-.achievements__category-text:hover {
-  @apply bg-gray-300;
-}
+  .achievements__category-text:hover {
+    @apply bg-gray-300;
+  }
 
-.dark .achievements__category-text:hover {
-  @apply bg-zinc-700;
-}
+  .dark .achievements__category-text:hover {
+    @apply bg-zinc-700;
+  }
 
-.achievements__content-title {
-  @apply text-lg md:text-xl font-bold text-gray-900;
-}
+  .achievements__content-title {
+    @apply text-lg font-bold text-gray-900 md:text-xl;
+  }
 
-.dark .achievements__content-title {
-  @apply text-white;
-}
+  .dark .achievements__content-title {
+    @apply text-white;
+  }
 
-.achievements__meta {
-  @apply block text-sm text-gray-900;
-}
+  .achievements__meta {
+    @apply block text-sm text-gray-900;
+  }
 
-.dark .achievements__meta {
-  @apply text-white;
-}
+  .dark .achievements__meta {
+    @apply text-white;
+  }
 
-.achievements__description--detail {
-  @apply hidden sm:block text-sm text-gray-600;
-}
+  .achievements__description--detail {
+    @apply hidden text-sm text-gray-600 sm:block;
+  }
 
-.dark .achievements__description--detail {
-  @apply text-gray-400;
-}
+  .dark .achievements__description--detail {
+    @apply text-gray-400;
+  }
 
-.transform {
-  will-change: transform;
-}
+  .transform {
+    will-change: transform;
+  }
 </style>

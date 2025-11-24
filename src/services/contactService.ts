@@ -16,7 +16,7 @@ export const contactService = {
       const docRef = await addDoc(collection(db, 'contacts'), {
         ...data,
         createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
+        updatedAt: serverTimestamp(),
       })
 
       // Send email using EmailJS
@@ -26,7 +26,7 @@ export const contactService = {
         subject: data.subject,
         message: data.message,
         to_name: import.meta.env.VITE_MAIL_FROM_NAME,
-        reply_to: data.email
+        reply_to: data.email,
       }
 
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
@@ -37,7 +37,7 @@ export const contactService = {
         serviceId,
         templateId,
         publicKey,
-        templateParams
+        templateParams,
       })
 
       const emailResponse = await emailjs.send(
@@ -53,5 +53,5 @@ export const contactService = {
       console.error('Error sending message:', error)
       throw error
     }
-  }
+  },
 }

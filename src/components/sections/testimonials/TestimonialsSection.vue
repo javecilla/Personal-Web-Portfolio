@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { testimonials as testimonialsData } from '@/data/testimonials'
-import ImageSkeleton from '@/components/ImageSkeleton.vue'
-import Image from '@/components/ui/Image.vue'
+  import { ref } from 'vue'
+  import { testimonials as testimonialsData } from '@/data/testimonials'
+  import ImageSkeleton from '@/components/ImageSkeleton.vue'
+  import Image from '@/components/ui/Image.vue'
 
-const testimonials = ref(testimonialsData)
-const imageLoadedMap = ref<Record<number, boolean>>({})
+  const testimonials = ref(testimonialsData)
+  const imageLoadedMap = ref<Record<number, boolean>>({})
 
-const handleImageLoad = (testimonialId: number) => {
-  imageLoadedMap.value[testimonialId] = true
-}
+  const handleImageLoad = (testimonialId: number) => {
+    imageLoadedMap.value[testimonialId] = true
+  }
 </script>
 
 <template>
@@ -51,7 +51,7 @@ const handleImageLoad = (testimonialId: number) => {
                   rounded="full"
                   :class="[
                     'testimonial-card__avatar-img',
-                    { 'opacity-0': !imageLoadedMap[testimonial.id] }
+                    { 'opacity-0': !imageLoadedMap[testimonial.id] },
                   ]"
                   @load="() => handleImageLoad(testimonial.id)"
                 />
@@ -86,116 +86,96 @@ const handleImageLoad = (testimonialId: number) => {
 </template>
 
 <style scoped>
-.testimonials-section {
-  @apply space-y-4 sm:space-y-6 p-6 lg:p-6 rounded-2xl;
-}
-
-.testimonials-section__header {
-  @apply space-y-2 sm:space-y-3 mb-6 sm:mb-8 px-2 sm:px-4 flex flex-col items-center;
-}
-
-/* Masonry Grid Layout */
-.masonry-grid {
-  columns: 1;
-  column-gap: 1rem;
-  width: 100%;
-  padding: 0 0.5rem;
-}
-
-@screen sm {
-  .masonry-grid {
-    columns: 2;
-    column-gap: 1.5rem;
-    padding: 0 1rem;
+  .testimonials-section {
+    @apply space-y-4 rounded-2xl p-6 sm:space-y-6 lg:p-6;
   }
-}
 
-@screen lg {
-  .masonry-grid {
-    columns: 3;
+  .testimonials-section__header {
+    @apply mb-6 flex flex-col items-center space-y-2 px-2 sm:mb-8 sm:space-y-3 sm:px-4;
   }
-}
 
-.masonry-item {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-  @apply sm:mb-6;
-}
+  /* Masonry Grid Layout */
+  .masonry-grid {
+    columns: 1;
+    column-gap: 1rem;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
 
-.testimonial-card {
-  @apply relative bg-white/80 dark:bg-zinc-900/10 
-         border border-gray-100/50 dark:border-zinc-800/10
-         rounded-lg sm:rounded-xl p-4 sm:p-6 space-y-3 sm:space-y-4
-         backdrop-blur-sm
-         hover:border-zinc-700/30 hover:shadow-md
-         hover:-translate-y-0.5
-         transition-all duration-300
-         transform;
-  height: fit-content;
-  width: 100%;
-  display: inline-block;
-}
+  @screen sm {
+    .masonry-grid {
+      columns: 2;
+      column-gap: 1.5rem;
+      padding: 0 1rem;
+    }
+  }
 
-/* Card Styles */
-.testimonial-card__header {
-  @apply flex items-start space-x-3 sm:space-x-4 mb-3 sm:mb-4;
-}
+  @screen lg {
+    .masonry-grid {
+      columns: 3;
+    }
+  }
 
-.testimonial-card__avatar {
-  @apply flex-shrink-0;
-}
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    @apply sm:mb-6;
+  }
 
-.testimonial-card__avatar-container {
-  @apply relative w-10 h-10 sm:w-12 sm:h-12;
-}
+  .testimonial-card {
+    @apply relative transform space-y-3 rounded-lg border border-gray-100/50 bg-white/80 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-700/30 hover:shadow-md dark:border-zinc-800/10 dark:bg-zinc-900/10 sm:space-y-4 sm:rounded-xl sm:p-6;
+    height: fit-content;
+    width: 100%;
+    display: inline-block;
+  }
 
-.testimonial-card__avatar-img {
-  @apply absolute inset-0 w-full h-full
-         rounded-full 
-         border-2 border-gray-200 dark:border-zinc-700
-         object-cover
-         filter grayscale
-         transition-all duration-300 ease-in-out;
-}
+  /* Card Styles */
+  .testimonial-card__header {
+    @apply mb-3 flex items-start space-x-3 sm:mb-4 sm:space-x-4;
+  }
 
-.testimonial-card:hover .testimonial-card__avatar-img {
-  @apply filter-none scale-110;
-}
+  .testimonial-card__avatar {
+    @apply flex-shrink-0;
+  }
 
-.testimonial-card__meta {
-  @apply flex-1 min-w-0 text-left;
-}
+  .testimonial-card__avatar-container {
+    @apply relative h-10 w-10 sm:h-12 sm:w-12;
+  }
 
-.testimonial-card__name {
-  @apply text-gray-900 dark:text-white 
-         font-semibold text-sm sm:text-base
-         truncate;
-}
+  .testimonial-card__avatar-img {
+    @apply absolute inset-0 h-full w-full rounded-full border-2 border-gray-200 object-cover grayscale filter transition-all duration-300 ease-in-out dark:border-zinc-700;
+  }
 
-.testimonial-card__role {
-  @apply text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate mt-0.5;
-  white-space: normal;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-  display: block;
-}
+  .testimonial-card:hover .testimonial-card__avatar-img {
+    @apply scale-110 filter-none;
+  }
 
-.testimonial-card__content {
-  @apply relative pt-3 sm:pt-4;
-}
+  .testimonial-card__meta {
+    @apply min-w-0 flex-1 text-left;
+  }
 
-.testimonial-card__quote-icon {
-  @apply absolute top-0 left-0 
-         w-6 h-6 sm:w-8 sm:h-8
-         text-gray-200 dark:text-zinc-800 
-         transform -translate-y-1 sm:-translate-y-2
-         opacity-50;
-}
+  .testimonial-card__name {
+    @apply truncate text-sm font-semibold text-gray-900 dark:text-white sm:text-base;
+  }
 
-.testimonial-card__text {
-  @apply relative text-start text-justify text-gray-600 dark:text-gray-300 
-         text-xs sm:text-sm leading-relaxed 
-         pl-4 sm:pl-6;
-}
+  .testimonial-card__role {
+    @apply mt-0.5 truncate text-xs text-gray-500 dark:text-gray-400 sm:text-sm;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: block;
+  }
+
+  .testimonial-card__content {
+    @apply relative pt-3 sm:pt-4;
+  }
+
+  .testimonial-card__quote-icon {
+    @apply absolute left-0 top-0 h-6 w-6 -translate-y-1 transform text-gray-200 opacity-50 dark:text-zinc-800 sm:h-8 sm:w-8 sm:-translate-y-2;
+  }
+
+  .testimonial-card__text {
+    @apply relative pl-4 text-justify text-start text-xs leading-relaxed text-gray-600 dark:text-gray-300 sm:pl-6 sm:text-sm;
+  }
 </style>

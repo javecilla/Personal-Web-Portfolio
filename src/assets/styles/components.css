@@ -12,79 +12,80 @@
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.15; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.15;
+  }
 }
 
 @keyframes pulse-slower {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.1; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 
 @layer components {
-	/* Section Classes */
-	.section-bg {
-		@apply dark:bg-zinc-900/10 bg-gray-50;
-	}
+  /* Section Classes */
+  .section-bg {
+    @apply bg-gray-50 dark:bg-zinc-900/10;
+  }
 
-	.section-title {
-		@apply dark:text-white text-gray-600 text-2xl sm:text-3xl font-bold;
-	}
+  .section-title {
+    @apply text-2xl font-bold text-gray-600 dark:text-white sm:text-3xl;
+  }
 
-	.section-title-gradient {
-		@apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
-	}
+  .section-title-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
+  }
 
-	.section-text {
-		@apply dark:text-gray-400 text-gray-600;
-	}
+  .section-text {
+    @apply text-gray-600 dark:text-gray-400;
+  }
 
-	/* Timeline Classes */
-	.timeline-marker-base {
-		@apply absolute w-4 h-4 rounded-full bg-white dark:bg-zinc-900 border-2 border-blue-500/50 -left-[29px] top-1
-         hover:border-blue-500 hover:scale-110;
-	}
+  /* Timeline Classes */
+  .timeline-marker-base {
+    @apply absolute -left-[29px] top-1 h-4 w-4 rounded-full border-2 border-blue-500/50 bg-white hover:scale-110 hover:border-blue-500 dark:bg-zinc-900;
+  }
 
-	.timeline-content-base {
-		@apply bg-white/80 dark:bg-zinc-900/80 p-6 rounded-xl shadow-sm
-         border border-gray-100/50 dark:border-zinc-800/50
-         backdrop-blur-sm
-         hover:border-blue-500/20 hover:shadow-md
-         hover:-translate-y-0.5;
-	}
+  .timeline-content-base {
+    @apply rounded-xl border border-gray-100/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm hover:-translate-y-0.5 hover:border-blue-500/20 hover:shadow-md dark:border-zinc-800/50 dark:bg-zinc-900/80;
+  }
 
-	/* Button Classes */
-	.btn {
-		@apply px-4 py-2 rounded-md;
-	}
+  /* Button Classes */
+  .btn {
+    @apply rounded-md px-4 py-2;
+  }
 
-	.btn-primary {
-		@apply bg-blue-500 text-white hover:bg-blue-600;
-	}
+  .btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600;
+  }
 
-	/* Card Classes */
-	.card {
-		@apply rounded-xl shadow-lg;
-	}
+  /* Card Classes */
+  .card {
+    @apply rounded-xl shadow-lg;
+  }
 
-	.card-hover {
-		@apply hover:scale-105;
-	}
+  .card-hover {
+    @apply hover:scale-105;
+  }
 
-	/* Project Section Classes */
-	.project-gradient {
-		@apply bg-gradient-to-r from-blue-500 to-purple-500;
-	}
+  /* Project Section Classes */
+  .project-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-purple-500;
+  }
 
-	.project-icon-btn {
-		@apply inline-flex items-center justify-center rounded-full 
-			   dark:bg-zinc-800 bg-gray-200 dark:hover:bg-zinc-700 
-			   hover:bg-gray-300;
-	}
+  .project-icon-btn {
+    @apply inline-flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-zinc-800 dark:hover:bg-zinc-700;
+  }
 
-	.project-tech-badge {
-		@apply flex items-center gap-2 px-4 py-2 rounded-full 
-			   dark:bg-zinc-800 bg-gray-200 dark:hover:bg-zinc-700 
-			   hover:bg-gray-300;
-	}
+  .project-tech-badge {
+    @apply flex items-center gap-2 rounded-full bg-gray-200 px-4 py-2 hover:bg-gray-300 dark:bg-zinc-800 dark:hover:bg-zinc-700;
+  }
 }

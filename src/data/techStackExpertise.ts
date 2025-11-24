@@ -11,31 +11,31 @@ export const techStacksExpertise: readonly TechStackExpertise[] = [
     name: 'Laravel',
     icon: laravelIcon,
     description: 'Developing robust backend systems with Laravel',
-    percentage: 90
+    percentage: 90,
   },
   {
     name: 'PostgreSQL',
     icon: postgresqlIcon,
     description: 'Designing and managing databases with PostgreSQL',
-    percentage: 85
+    percentage: 85,
   },
   {
     name: 'Tailwind',
     icon: tailwindIcon,
     description: 'Creating beautiful and responsive UIs with Tailwind CSS',
-    percentage: 70
+    percentage: 70,
   },
   {
     name: 'TypeScript',
     icon: tsIcon,
     description: 'Writing type-safe and maintainable code with TypeScript',
-    percentage: 80
+    percentage: 80,
   },
   {
     name: 'Vue.js',
     icon: vueIcon,
     description:
       'Building scalable and maintainable web applications with Vue.js',
-    percentage: 90
-  }
+    percentage: 90,
+  },
 ] as const

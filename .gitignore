@@ -8,7 +8,8 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode
+.vscode/*
+!.vscode/settings.json
 .idea
 *.suo
 *.ntvs*
@@ -28,6 +29,3 @@ lerna-debug.log*
 # Custom directories
 notes
 .env
-*.log
-.cursorrules
-.trae

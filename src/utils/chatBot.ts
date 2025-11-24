@@ -7,20 +7,20 @@ import { useAI } from '@/composables/useAI'
 import { ref } from 'vue'
 
 export const useChatBot = (
-  chatStore: ReturnType<typeof import('@/stores/chat')['useChatStore']>
+  chatStore: ReturnType<(typeof import('@/stores/chat'))['useChatStore']>
 ) => {
   const { useGemini } = useAI()
 
   const fuse = new Fuse(dataSets, {
     keys: [
       { name: 'question', weight: 0.6 },
-      { name: 'keywords', weight: 0.4 }
+      { name: 'keywords', weight: 0.4 },
     ],
     threshold: 0.4, // Lowered threshold to catch more matches across all FAQs
     ignoreLocation: true,
     includeScore: true,
     minMatchCharLength: 2, // Lowered to catch more keywords
-    shouldSort: true
+    shouldSort: true,
   })
 
   const chunkResponse = (text: string): string[] => {
@@ -292,7 +292,7 @@ export const useChatBot = (
             msg.content
           } (at ${new Date(msg.timestamp).toLocaleTimeString([], {
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
           })})`
       )
       .join('\n')
@@ -501,7 +501,7 @@ export const useChatBot = (
                 listItems.join('\n'),
                 outro
                   ? `You can find more details in my portfolio! ${outro}`
-                  : ''
+                  : '',
               ]
                 .filter((text) => text.trim())
                 .join('\n\n')
@@ -535,6 +535,6 @@ export const useChatBot = (
     streamResponse,
     generateQuickReplies,
     isOffTopic,
-    resetOffTopic
+    resetOffTopic,
   }
 }

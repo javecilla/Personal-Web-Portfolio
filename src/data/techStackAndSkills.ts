@@ -20,11 +20,11 @@ import githubActionIcon from '@global/svgs/github-actions.svg?url'
 import githubPagesIcon from '@global/svgs/github-pages.svg?url'
 import dockerIcon from '@global/svgs/docker.svg?url'
 
-import godaddyLogo from '@global/logos/godaddy.png'
-import hostingerLogo from '@global/logos/hostinger.png'
-import infinityFreeLogo from '@global/logos/infinityfree.svg?url'
-import vercelFavicon from '@global/logos/vercel.ico'
-import hostgatorFavicon from '@global/logos/hostgator.ico'
+import infinityFreeLogo from '@global/svgs/infinityfree.svg?url'
+import godaddyLogo from '@global/images/logos/godaddy.png'
+import hostingerLogo from '@global/images/logos/hostinger.png'
+import vercelFavicon from '@global/images/logos/vercel.ico'
+import hostgatorFavicon from '@global/images/logos/hostgator.ico'
 import googleCloudIcon from '@global/svgs/google-cloud.svg?url'
 
 export const techStackAndSkills: readonly TechStackAndSkill[] = [
@@ -34,37 +34,37 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
     skills: [
       {
         name: 'HTML',
-        icon: htmlIcon
+        icon: htmlIcon,
       },
       {
         name: 'CSS',
-        icon: cssIcon
+        icon: cssIcon,
       },
       {
         name: 'JavaScript',
-        icon: jsIcon
+        icon: jsIcon,
       },
       {
         name: 'Bootstrap',
-        icon: bootstrapIcon
+        icon: bootstrapIcon,
       },
       {
         name: 'jQuery',
-        icon: jqueryIcon
+        icon: jqueryIcon,
       },
       {
         name: 'Vue.js',
-        icon: vueIcon
+        icon: vueIcon,
       },
       {
         name: 'TypeScript',
-        icon: tsIcon
+        icon: tsIcon,
       },
       {
         name: 'Tailwind',
-        icon: tailwindIcon
-      }
-    ]
+        icon: tailwindIcon,
+      },
+    ],
   },
   {
     id: 'backend' as StackCategory,
@@ -72,13 +72,13 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
     skills: [
       {
         name: 'PHP',
-        icon: phpIcon
+        icon: phpIcon,
       },
       {
         name: 'Laravel',
-        icon: laravelIcon
-      }
-    ]
+        icon: laravelIcon,
+      },
+    ],
   },
   {
     id: 'database' as StackCategory,
@@ -86,17 +86,17 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
     skills: [
       {
         name: 'MySQL',
-        icon: mysqlIcon
+        icon: mysqlIcon,
       },
       {
         name: 'PostgreSQL',
-        icon: postgresqlIcon
+        icon: postgresqlIcon,
       },
       {
         name: 'Firebase',
-        icon: firebaseIcon
-      }
-    ]
+        icon: firebaseIcon,
+      },
+    ],
   },
   {
     id: 'ci-cd' as StackCategory,
@@ -104,21 +104,21 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
     skills: [
       {
         name: 'Git',
-        icon: gitIcon
+        icon: gitIcon,
       },
       {
         name: 'GitLab',
-        icon: gitLabIcon
+        icon: gitLabIcon,
       },
       {
         name: 'Github Action',
-        icon: githubActionIcon
+        icon: githubActionIcon,
       },
       {
         name: 'Docker',
-        icon: dockerIcon
-      }
-    ]
+        icon: dockerIcon,
+      },
+    ],
   },
   {
     id: 'web-hosting' as StackCategory,
@@ -126,35 +126,35 @@ export const techStackAndSkills: readonly TechStackAndSkill[] = [
     skills: [
       {
         name: 'Github Pages',
-        icon: githubPagesIcon
+        icon: githubPagesIcon,
       },
 
       {
         name: 'Vercel',
-        icon: vercelFavicon
+        icon: vercelFavicon,
       },
 
       {
         name: 'Hostgator',
-        icon: hostgatorFavicon
+        icon: hostgatorFavicon,
       },
 
       {
         name: 'GoDaddy',
-        icon: godaddyLogo
+        icon: godaddyLogo,
       },
       {
         name: 'Hostinger',
-        icon: hostingerLogo
+        icon: hostingerLogo,
       },
       {
         name: 'InfinityFree',
-        icon: infinityFreeLogo
+        icon: infinityFreeLogo,
       },
       {
         name: 'Google Cloud',
-        icon: googleCloudIcon
-      }
-    ]
-  }
+        icon: googleCloudIcon,
+      },
+    ],
+  },
 ] as const

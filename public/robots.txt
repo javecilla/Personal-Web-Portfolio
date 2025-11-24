@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /assets/images/avatars/bernardo.jpeg
-Disallow: /assets/images/avatars/estrella.jpg
-Disallow: /assets/images/avatars/juanerio.png
 
 Sitemap: https://jerome-avecilla.vercel.app/sitemap.xml

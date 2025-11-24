@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { faqs } from '@/data/faqs'
-import { Plus, Minus } from 'lucide-vue-next'
+  import { ref } from 'vue'
+  import { faqs } from '@/data/faqs'
+  import { Plus, Minus } from 'lucide-vue-next'
 
-const openItemId = ref<number | null>(null)
+  const openItemId = ref<number | null>(null)
 
-function toggleItem(id: number) {
-  if (openItemId.value === id) {
-    openItemId.value = null
-  } else {
-    openItemId.value = id
+  function toggleItem(id: number) {
+    if (openItemId.value === id) {
+      openItemId.value = null
+    } else {
+      openItemId.value = id
+    }
   }
-}
 
-function formatNumber(num: number): string {
-  return num.toString().padStart(2, '0')
-}
+  function formatNumber(num: number): string {
+    return num.toString().padStart(2, '0')
+  }
 </script>
 
 <template>
@@ -65,76 +65,52 @@ function formatNumber(num: number): string {
 </template>
 
 <style scoped>
-.faqs-section {
-  @apply space-y-4 sm:space-y-6 p-6 lg:p-6 rounded-2xl;
-}
+  .faqs-section {
+    @apply space-y-4 rounded-2xl p-6 sm:space-y-6 lg:p-6;
+  }
 
-.faqs-section__header {
-  @apply space-y-2 sm:space-y-3 mb-6 sm:mb-8 px-2 sm:px-4 flex flex-col items-center;
-}
+  .faqs-section__header {
+    @apply mb-6 flex flex-col items-center space-y-2 px-2 sm:mb-8 sm:space-y-3 sm:px-4;
+  }
 
-.faqs-container {
-  @apply max-w-4xl mx-auto space-y-3 sm:space-y-4;
-}
+  .faqs-container {
+    @apply mx-auto max-w-4xl space-y-3 sm:space-y-4;
+  }
 
-.faq-item {
-  @apply bg-white/80 dark:bg-zinc-900/10 
-         border border-gray-100/50 dark:border-zinc-800/10
-         rounded-lg overflow-hidden
-         backdrop-blur-sm
-         transition-all duration-300;
-}
+  .faq-item {
+    @apply overflow-hidden rounded-lg border border-gray-100/50 bg-white/80 backdrop-blur-sm transition-all duration-300 dark:border-zinc-800/10 dark:bg-zinc-900/10;
+  }
 
-.faq-item__header {
-  @apply w-full flex items-center gap-4 p-4 sm:p-5
-         text-left
-         hover:scale-[1.01]
-         transition-all duration-200
-         border-none outline-none ring-0
-         focus:outline-none focus:ring-0
-         hover:border-transparent hover:bg-transparent;
-}
+  .faq-item__header {
+    @apply flex w-full items-center gap-4 border-none p-4 text-left outline-none ring-0 transition-all duration-200 hover:scale-[1.01] hover:border-transparent hover:bg-transparent focus:outline-none focus:ring-0 sm:p-5;
+  }
 
-.faq-item__number {
-  @apply flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10
-         flex items-center justify-center
-         rounded-full
-         bg-gray-100 dark:bg-zinc-800
-         text-gray-600 dark:text-gray-300
-         text-sm sm:text-base font-medium
-         transition-colors duration-200;
-}
+  .faq-item__number {
+    @apply flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-medium text-gray-600 transition-colors duration-200 dark:bg-zinc-800 dark:text-gray-300 sm:h-10 sm:w-10 sm:text-base;
+  }
 
-.faq-item__question {
-  @apply flex-1 text-sm sm:text-base
-         font-medium
-         text-gray-900 dark:text-white;
-}
+  .faq-item__question {
+    @apply flex-1 text-sm font-medium text-gray-900 dark:text-white sm:text-base;
+  }
 
-.faq-item__icon {
-  @apply flex-shrink-0
-         text-gray-400 dark:text-gray-500
-         transition-transform duration-200;
-}
+  .faq-item__icon {
+    @apply flex-shrink-0 text-gray-400 transition-transform duration-200 dark:text-gray-500;
+  }
 
-.faq-item__answer {
-  @apply px-4 pb-4 sm:px-5 sm:pb-5
-         text-sm sm:text-base
-         text-start
-         text-gray-600 dark:text-gray-300
-         leading-relaxed;
-}
+  .faq-item__answer {
+    @apply px-4 pb-4 text-start text-sm leading-relaxed text-gray-600 dark:text-gray-300 sm:px-5 sm:pb-5 sm:text-base;
+  }
 
-/* Active states */
-.faq-item__header[aria-expanded='true'] {
-  @apply bg-gray-50/50 dark:bg-zinc-800/10;
-}
+  /* Active states */
+  .faq-item__header[aria-expanded='true'] {
+    @apply bg-gray-50/50 dark:bg-zinc-800/10;
+  }
 
-.faq-item__header[aria-expanded='true'] .faq-item__number {
-  @apply bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400;
-}
+  .faq-item__header[aria-expanded='true'] .faq-item__number {
+    @apply bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400;
+  }
 
-.faq-item[aria-expanded='true'] {
-  @apply border-blue-500/20;
-}
+  .faq-item[aria-expanded='true'] {
+    @apply border-blue-500/20;
+  }
 </style>

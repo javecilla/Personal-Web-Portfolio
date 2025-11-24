@@ -11,11 +11,11 @@ export const dataSets: DataSets[] = [
       'offerings',
       'web development',
       'skills',
-      'expertise'
+      'expertise',
     ],
     patternSuggestions: [2, 3, 10],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Services'
+    category: 'Services',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const dataSets: DataSets[] = [
     keywords: ['commissions', 'projects', 'hire', 'work', 'freelance'],
     patternSuggestions: [3, 5, 6],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Services'
+    category: 'Services',
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ export const dataSets: DataSets[] = [
     keywords: ['cost', 'price', 'hire', 'budget', 'quote'],
     patternSuggestions: [2, 5, 6],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Pricing'
+    category: 'Pricing',
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ export const dataSets: DataSets[] = [
     keywords: ['maintenance', 'support', 'after', 'post-launch', 'upkeep'],
     patternSuggestions: [5, 6, 18],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Services'
+    category: 'Services',
   },
   {
     id: 5,
@@ -58,10 +58,10 @@ export const dataSets: DataSets[] = [
       'updates',
       'progress',
       'collaboration',
-      'contact'
+      'contact',
     ],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Work Preferences'
+    category: 'Work Preferences',
   },
   {
     id: 6,
@@ -70,7 +70,7 @@ export const dataSets: DataSets[] = [
       'I prioritize deadlines by setting realistic milestones with clients. Through regular updates and proactive collaboration, I ensure projects stay on track and are delivered on time without compromising quality.',
     keywords: ['deadlines', 'timelines', 'schedule', 'delivery', 'time'],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Work Preferences'
+    category: 'Work Preferences',
   },
   {
     id: 7,
@@ -80,7 +80,7 @@ export const dataSets: DataSets[] = [
     keywords: ['who', 'Jerome', 'about', 'introduction', 'me'],
     patternSuggestions: [8, 9, 16],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'About Me'
+    category: 'About Me',
   },
   {
     id: 8,
@@ -90,7 +90,7 @@ export const dataSets: DataSets[] = [
     keywords: ['background', 'history', 'education', 'experience', 'past'],
     patternSuggestions: [14, 15, 9],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Background'
+    category: 'Background',
   },
   {
     id: 9,
@@ -100,7 +100,7 @@ export const dataSets: DataSets[] = [
     keywords: ['experience', 'work', 'job', 'projects', 'skills'],
     patternSuggestions: [10, 18, 11],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Background'
+    category: 'Background',
   },
   {
     id: 10,
@@ -110,7 +110,7 @@ export const dataSets: DataSets[] = [
     keywords: ['skills', 'abilities', 'expertise', 'tech', 'knowledge'],
     patternSuggestions: [11, 12, 13],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 11,
@@ -125,11 +125,11 @@ export const dataSets: DataSets[] = [
       'software',
       'typescript',
       'vue.js',
-      'laravel'
+      'laravel',
     ],
     patternSuggestions: [12, 13, 10],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 12,
@@ -139,7 +139,7 @@ export const dataSets: DataSets[] = [
     keywords: ['favorite', 'framework', 'preference', 'Vue.js', 'Laravel'],
     patternSuggestions: [10, 11, 13],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 13,
@@ -149,7 +149,7 @@ export const dataSets: DataSets[] = [
     keywords: ['databases', 'MySQL', 'PostgreSQL', 'data', 'management'],
     patternSuggestions: [10, 11, 12],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 14,
@@ -159,7 +159,7 @@ export const dataSets: DataSets[] = [
     keywords: ['education', 'study', 'school', 'degree', 'learning'],
     patternSuggestions: [15, 19, 8],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Background'
+    category: 'Background',
   },
   {
     id: 15,
@@ -173,11 +173,11 @@ export const dataSets: DataSets[] = [
       'honors',
       'recognition',
       'certification',
-      'cetificates'
+      'cetificates',
     ],
     patternSuggestions: [14, 9, 19],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Achievements'
+    category: 'Achievements',
   },
   {
     id: 16,
@@ -190,11 +190,11 @@ export const dataSets: DataSets[] = [
       'interests',
       'free time',
       'aside',
-      'activities'
+      'activities',
     ],
     patternSuggestions: [17, 7, 8],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Interests'
+    category: 'Interests',
   },
   {
     id: 17,
@@ -203,7 +203,7 @@ export const dataSets: DataSets[] = [
       'Let’s link up! You can reach me via:\n- LinkedIn\n- Slack\n- Facebook\n- X\nDrop me a message about projects, collabs, or even a quick gaming session I’m always up for a chat!',
     keywords: ['connect', 'contact', 'reach', 'social', 'message'],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Contact'
+    category: 'Contact',
   },
   {
     id: 18,
@@ -213,7 +213,7 @@ export const dataSets: DataSets[] = [
     keywords: ['projects', 'portfolio', 'work', 'examples', 'creations'],
     patternSuggestions: [19, 4, 5],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Services'
+    category: 'Services',
   },
   {
     id: 19,
@@ -223,7 +223,7 @@ export const dataSets: DataSets[] = [
     keywords: ['academic', 'help', 'project', 'school', 'support'],
     patternSuggestions: [3, 5, 17],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Services'
+    category: 'Services',
   },
   {
     id: 20,
@@ -233,7 +233,7 @@ export const dataSets: DataSets[] = [
     keywords: ['location', 'contact', 'address'],
     patternSuggestions: [17, 21, 3],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Contact'
+    category: 'Contact',
   },
   {
     id: 21,
@@ -242,7 +242,7 @@ export const dataSets: DataSets[] = [
     keywords: ['mode', 'work', 'remote', 'onsite'],
     patternSuggestions: [20, 6, 5],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Work Preferences'
+    category: 'Work Preferences',
   },
   {
     id: 22,
@@ -256,11 +256,11 @@ export const dataSets: DataSets[] = [
       'SDLC',
       'development',
       'process',
-      'workflow'
+      'workflow',
     ],
     patternSuggestions: [5, 6, 18],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Work Preferences'
+    category: 'Work Preferences',
   },
   {
     id: 23,
@@ -270,7 +270,7 @@ export const dataSets: DataSets[] = [
     keywords: ['REST', 'API', 'web service', 'HTTP', 'Laravel', 'endpoint'],
     patternSuggestions: [10, 11, 13],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 24,
@@ -283,11 +283,11 @@ export const dataSets: DataSets[] = [
       'website',
       'speed',
       'efficiency',
-      'caching'
+      'caching',
     ],
     patternSuggestions: [10, 11, 12],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 25,
@@ -297,7 +297,7 @@ export const dataSets: DataSets[] = [
     keywords: ['MVC', 'architecture', 'design', 'pattern', 'Laravel', 'Vue.js'],
     patternSuggestions: [11, 12, 10],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 26,
@@ -307,7 +307,7 @@ export const dataSets: DataSets[] = [
     keywords: ['bugs', 'debugging', 'fix', 'testing', 'troubleshooting'],
     patternSuggestions: [10, 13, 4],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 27,
@@ -317,7 +317,7 @@ export const dataSets: DataSets[] = [
     keywords: ['version control', 'Git', 'GitHub', 'branching', 'CI/CD'],
     patternSuggestions: [10, 11, 5],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 28,
@@ -329,11 +329,11 @@ export const dataSets: DataSets[] = [
       'best practices',
       'testing',
       'refactor',
-      'clean code'
+      'clean code',
     ],
     patternSuggestions: [10, 26, 11],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 29,
@@ -343,7 +343,7 @@ export const dataSets: DataSets[] = [
     keywords: ['testing', 'strategy', 'unit', 'integration', 'Jest'],
     patternSuggestions: [26, 10, 4],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Skills'
+    category: 'Skills',
   },
   {
     id: 30,
@@ -355,11 +355,11 @@ export const dataSets: DataSets[] = [
       'management',
       'planning',
       'milestones',
-      'Trello'
+      'Trello',
     ],
     patternSuggestions: [5, 6, 22],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Work Preferences'
+    category: 'Work Preferences',
   },
   {
     id: 31,
@@ -372,11 +372,11 @@ export const dataSets: DataSets[] = [
       'rest',
       'endpoints',
       'documentation',
-      'swagger'
+      'swagger',
     ],
     patternSuggestions: [23, 24, 25],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 32,
@@ -389,11 +389,11 @@ export const dataSets: DataSets[] = [
       'performance',
       'indexing',
       'caching',
-      'large data'
+      'large data',
     ],
     patternSuggestions: [24, 13, 23],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 33,
@@ -405,11 +405,11 @@ export const dataSets: DataSets[] = [
       'authentication',
       'authorization',
       'protection',
-      'validation'
+      'validation',
     ],
     patternSuggestions: [31, 24, 27],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 34,
@@ -419,7 +419,7 @@ export const dataSets: DataSets[] = [
     keywords: ['caching', 'performance', 'redis', 'optimization', 'memory'],
     patternSuggestions: [32, 24, 23],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 35,
@@ -429,7 +429,7 @@ export const dataSets: DataSets[] = [
     keywords: ['real-time', 'websockets', 'sse', 'pusher', 'broadcasting'],
     patternSuggestions: [34, 23, 24],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 36,
@@ -441,11 +441,11 @@ export const dataSets: DataSets[] = [
       'architecture',
       'docker',
       'kubernetes',
-      'services'
+      'services',
     ],
     patternSuggestions: [31, 32, 33],
     formatSuggestion: ['numbered', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 37,
@@ -455,7 +455,7 @@ export const dataSets: DataSets[] = [
     keywords: ['projects', 'portfolio', 'work', 'examples', 'creations'],
     patternSuggestions: [19, 4, 5],
     formatSuggestion: ['paragraph', 'sentence'],
-    category: 'Services'
+    category: 'Services',
   },
   {
     id: 38,
@@ -469,11 +469,11 @@ export const dataSets: DataSets[] = [
       'mastering',
       'docker',
       'kubernetes',
-      'microservices'
+      'microservices',
     ],
     patternSuggestions: [31, 32, 33],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 39,
@@ -485,11 +485,11 @@ export const dataSets: DataSets[] = [
       'agile',
       'development',
       'iterative',
-      'collaboration'
+      'collaboration',
     ],
     patternSuggestions: [31, 32, 33],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Technical Design'
+    category: 'Technical Design',
   },
   {
     id: 40,
@@ -499,6 +499,6 @@ export const dataSets: DataSets[] = [
     keywords: ['testing', 'tdd', 'approach', 'development', 'specifications'],
     patternSuggestions: [31, 32, 33],
     formatSuggestion: ['bullet', 'list'],
-    category: 'Technical Design'
-  }
+    category: 'Technical Design',
+  },
 ]

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import 'prismjs/themes/prism-tomorrow.css'
-import { ref } from 'vue'
-import Introduction from '@/components/sections/overview/introduction/Introduction.vue'
-import CodeEditor from '@/components/sections/overview/code-editor/CodeEditor.vue'
+  import 'prismjs/themes/prism-tomorrow.css'
+  import { ref } from 'vue'
+  import Introduction from '@/components/sections/overview/introduction/Introduction.vue'
+  import CodeEditor from '@/components/sections/overview/code-editor/CodeEditor.vue'
 
-defineProps<{
-  id?: string
-}>()
+  defineProps<{
+    id?: string
+  }>()
 
-const aboutMeCode = ref(
-  `<script setup lang="ts">
+  const aboutMeCode = ref(
+    `<script setup lang="ts">
 //code...
 </\script>
 
@@ -140,7 +140,7 @@ const aboutMeCode = ref(
 <style scoped>
  /*code...*/
 </style>`.replace(/\n\n+/g, '\n')
-)
+  )
 </script>
 
 <template>
@@ -149,7 +149,7 @@ const aboutMeCode = ref(
       <template #default>
         <div class="gap-4 sm:gap-6">
           <div
-            class="overflow-hidden lg:-mt-[15px] p-3 xl:p-5 rounded-2xl flex flex-col justify-end transition-all duration-500 ease-in-out"
+            class="flex flex-col justify-end overflow-hidden rounded-2xl p-3 transition-all duration-500 ease-in-out lg:-mt-[15px] xl:p-5"
           >
             <!-- Overview/Introduction Section -->
             <Introduction />
@@ -160,7 +160,7 @@ const aboutMeCode = ref(
         </div>
       </template>
       <template #fallback>
-        <div class="flex items-center justify-center min-h-[400px]">
+        <div class="flex min-h-[400px] items-center justify-center">
           <span class="text-lg">Loading...</span>
         </div>
       </template>
@@ -169,15 +169,15 @@ const aboutMeCode = ref(
 </template>
 
 <style>
-.overview {
-  @apply w-full;
-}
-/* Move critical styles inline */
-.space-y-2 > :not([hidden]) ~ :not([hidden]) {
-  margin-top: 0.5rem;
-}
-.about-me__text {
-  /* make the text justify */
-  @apply text-justify;
-}
+  .overview {
+    @apply w-full;
+  }
+  /* Move critical styles inline */
+  .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.5rem;
+  }
+  .about-me__text {
+    /* make the text justify */
+    @apply text-justify;
+  }
 </style>

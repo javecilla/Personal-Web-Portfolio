@@ -13,7 +13,10 @@ export function useActiveSection() {
       const sectionTop = element.offsetTop
       const sectionHeight = element.offsetHeight
 
-      if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition <= sectionTop + sectionHeight
+      ) {
         const hash = `#${element.id}`
         if (activeSection.value !== hash) {
           activeSection.value = hash
@@ -48,6 +51,6 @@ export function useActiveSection() {
   })
 
   return {
-    activeSection
+    activeSection,
   }
 }

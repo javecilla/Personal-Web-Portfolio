@@ -1,5 +1,5 @@
 export interface FAQ {
-  readonly id: number;
-  readonly question: string;
-  readonly answer: string;
+  readonly id: number
+  readonly question: string
+  readonly answer: string
 }

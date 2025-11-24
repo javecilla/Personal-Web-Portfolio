@@ -10,7 +10,7 @@ export interface ProjectTech {
 export enum ProjectCategory {
   PERSONAL = 'personal',
   CLIENT = 'client',
-  ACADEMIC = 'academic'
+  ACADEMIC = 'academic',
 }
 
 export interface ProjectCategoryItem {

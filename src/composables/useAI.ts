@@ -30,9 +30,9 @@ export function useAI() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [
-            { parts: [{ text: `${faqContext}\n\nUser Question: ${prompt}` }] }
-          ]
-        })
+            { parts: [{ text: `${faqContext}\n\nUser Question: ${prompt}` }] },
+          ],
+        }),
       })
 
       console.log('DEBUG - Response status:', response.status)
@@ -60,6 +60,6 @@ export function useAI() {
   }
 
   return {
-    useGemini
+    useGemini,
   }
 }

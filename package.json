@@ -8,7 +8,8 @@
     "build": "node --max-old-space-size=8192 node_modules/vite/bin/vite.js build --base=./ --mode production",
     "preview": "vite preview",
     "vercel-build": "npm run build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",
@@ -40,6 +41,8 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.5.6",
     "postcss-nesting": "^13.0.1",
+    "prettier": "3.6.2",
+    "prettier-plugin-tailwindcss": "0.7.1",
     "tailwindcss": "3.3.2",
     "terser": "^5.26.0",
     "typescript": "^5.7.3",

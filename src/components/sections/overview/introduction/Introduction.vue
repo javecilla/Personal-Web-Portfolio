@@ -19,28 +19,28 @@
 </template>
 
 <style scoped>
-.introduction {
-  @apply relative space-y-4 sm:space-y-6 text-center p-3 xl:p-5 flex-grow;
-}
+  .introduction {
+    @apply relative flex-grow space-y-4 p-3 text-center sm:space-y-6 xl:p-5;
+  }
 
-.introduction__title {
-  @apply text-3xl sm:text-4xl md:text-5xl dark:text-gray-400 text-gray-600 font-bold;
-}
+  .introduction__title {
+    @apply text-3xl font-bold text-gray-600 dark:text-gray-400 sm:text-4xl md:text-5xl;
+  }
 
-.introduction__title-highlight {
-  @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
-}
+  .introduction__title-highlight {
+    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
+  }
 
-.introduction__description {
-  @apply dark:text-gray-400 text-gray-600 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed;
-}
+  .introduction__description {
+    @apply mx-auto max-w-4xl text-sm leading-relaxed text-gray-600 dark:text-gray-400 sm:text-base;
+  }
 
-.introduction__subtitle {
-  @apply text-2xl sm:text-3xl font-bold dark:text-white text-gray-600 block;
-}
+  .introduction__subtitle {
+    @apply block text-2xl font-bold text-gray-600 dark:text-white sm:text-3xl;
+  }
 
-.introduction__subtitle-muted {
-  @apply dark:text-gray-500 text-gray-400 font-bold;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
+  .introduction__subtitle-muted {
+    @apply font-bold text-gray-400 dark:text-gray-500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
 </style>

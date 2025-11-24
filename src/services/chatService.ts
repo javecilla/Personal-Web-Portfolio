@@ -11,7 +11,7 @@ import {
   serverTimestamp,
   arrayUnion,
   //Timestamp,
-  where
+  where,
 } from 'firebase/firestore'
 //import type { DocumentData } from 'firebase/firestore';
 import { db } from '@/libs/firebase'
@@ -33,12 +33,12 @@ export const chatService = {
                 role: initialMessage.role,
                 content: initialMessage.content,
                 timestamp: Date.now(),
-                isStarter: initialMessage.isStarter || false
-              }
+                isStarter: initialMessage.isStarter || false,
+              },
             ]
           : [],
         createdAt: serverTimestamp(),
-        lastUpdated: serverTimestamp()
+        lastUpdated: serverTimestamp(),
       })
       return chatRef.id
     } catch (error) {
@@ -56,9 +56,9 @@ export const chatService = {
           role: message.role,
           content: message.content,
           timestamp: message.timestamp,
-          isStarter: message.isStarter || false
+          isStarter: message.isStarter || false,
         }),
-        lastUpdated: serverTimestamp()
+        lastUpdated: serverTimestamp(),
       })
     } catch (error) {
       console.error('Error adding message:', error)
@@ -76,7 +76,7 @@ export const chatService = {
       const messages = data.messages.map((msg: any) => ({
         ...msg,
         // Convert Firestore timestamps to Unix timestamps in milliseconds
-        timestamp: msg.timestamp?.toMillis() || Date.now()
+        timestamp: msg.timestamp?.toMillis() || Date.now(),
       }))
 
       return {
@@ -84,7 +84,7 @@ export const chatService = {
         sessionId: data.sessionId,
         messages,
         createdAt: data.createdAt?.toDate() || new Date(),
-        lastUpdated: data.lastUpdated?.toDate() || new Date()
+        lastUpdated: data.lastUpdated?.toDate() || new Date(),
       }
     }
     return null
@@ -118,7 +118,7 @@ export const chatService = {
             typeof msg.timestamp === 'number'
               ? msg.timestamp
               : msg.timestamp?.toMillis?.() || Date.now(),
-          isStarter: Boolean(msg.isStarter)
+          isStarter: Boolean(msg.isStarter),
         }))
         .sort((a: GeminiMessage, b: GeminiMessage) => a.timestamp - b.timestamp)
       //console.log('Processed messages:', messages);
@@ -128,7 +128,7 @@ export const chatService = {
         sessionId: data.sessionId,
         messages,
         createdAt: data.createdAt?.toDate() || new Date(),
-        lastUpdated: data.lastUpdated?.toDate() || new Date()
+        lastUpdated: data.lastUpdated?.toDate() || new Date(),
       }
     } catch (error) {
       console.error('Error getting chat by session ID:', error)
@@ -147,7 +147,7 @@ export const chatService = {
     const querySnapshot = await getDocs(chatsQuery)
     return querySnapshot.docs.map((doc) => ({
       id: doc.id,
-      ...doc.data()
+      ...doc.data(),
     })) as ChatSession[]
   },
 
@@ -169,21 +169,21 @@ export const chatService = {
             role: message.role,
             content: message.content,
             timestamp: message.timestamp,
-            isStarter: message.isStarter || false
+            isStarter: message.isStarter || false,
           }
         } else {
           messages.push({
             role: message.role,
             content: message.content,
             timestamp: message.timestamp,
-            isStarter: message.isStarter || false
+            isStarter: message.isStarter || false,
           })
         }
 
         // Ensure atomic update
         await updateDoc(chatRef, {
           messages,
-          lastUpdated: serverTimestamp()
+          lastUpdated: serverTimestamp(),
         })
 
         // Verify the update with proper typing
@@ -201,5 +201,5 @@ export const chatService = {
       console.error('Error updating message:', error)
       throw error
     }
-  }
+  },
 }

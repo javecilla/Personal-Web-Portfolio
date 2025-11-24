@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { ChevronUp } from 'lucide-vue-next';
+  import { ref, onMounted, onUnmounted } from 'vue'
+  import { ChevronUp } from 'lucide-vue-next'
 
-const isVisible = ref(false);
+  const isVisible = ref(false)
 
-const checkScroll = () => {
-  isVisible.value = window.scrollY > 400;
-};
+  const checkScroll = () => {
+    isVisible.value = window.scrollY > 400
+  }
 
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-  
-  // Reset hash and trigger hashchange event
-  const url = new URL(window.location.href);
-  url.hash = 'about';  // Set to about instead of removing
-  window.history.replaceState({}, '', url.href);
-  
-  // Dispatch hashchange event to update active state
-  window.dispatchEvent(new HashChangeEvent('hashchange'));
-};
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
 
-onMounted(() => {
-  window.addEventListener('scroll', checkScroll);
-});
+    // Reset hash and trigger hashchange event
+    const url = new URL(window.location.href)
+    url.hash = 'about' // Set to about instead of removing
+    window.history.replaceState({}, '', url.href)
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', checkScroll);
-});
+    // Dispatch hashchange event to update active state
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+  }
+
+  onMounted(() => {
+    window.addEventListener('scroll', checkScroll)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', checkScroll)
+  })
 </script>
 
 <template>
@@ -47,23 +47,13 @@ onUnmounted(() => {
       class="back-to-top"
       aria-label="Back to top"
     >
-      <ChevronUp class="w-6 h-6" />
+      <ChevronUp class="h-6 w-6" />
     </button>
   </Transition>
 </template>
 
 <style scoped>
-.back-to-top {
-  @apply fixed right-5 bottom-28 z-40
-         flex items-center justify-center
-         w-14 h-14
-         text-gray-600 dark:text-gray-300
-         bg-white/80 dark:bg-zinc-800/80
-         border border-gray-200 dark:border-zinc-700/50
-         rounded-full
-         shadow-lg backdrop-blur-sm
-         hover:bg-gray-50 dark:hover:bg-zinc-700/50
-         transition-all duration-300
-         hover:scale-110;
-}
+  .back-to-top {
+    @apply fixed bottom-28 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full border border-gray-200 bg-white/80 text-gray-600 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-gray-50 dark:border-zinc-700/50 dark:bg-zinc-800/80 dark:text-gray-300 dark:hover:bg-zinc-700/50;
+  }
 </style>

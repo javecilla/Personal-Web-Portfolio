@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { categories } from '@/data/projects'
+  import { categories } from '@/data/projects'
 
-defineProps<{
-  selectedCategory: string
-}>()
+  defineProps<{
+    selectedCategory: string
+  }>()
 
-const emit = defineEmits<{
-  (e: 'select', category: string): void
-}>()
+  const emit = defineEmits<{
+    (e: 'select', category: string): void
+  }>()
 </script>
 
 <template>
@@ -19,7 +19,7 @@ const emit = defineEmits<{
       class="project-filter__button"
       :class="{
         'project-filter__button--active': selectedCategory === category.id,
-        'project-filter__button--inactive': selectedCategory !== category.id
+        'project-filter__button--inactive': selectedCategory !== category.id,
       }"
     >
       {{ category.label }}
@@ -28,24 +28,23 @@ const emit = defineEmits<{
 </template>
 
 <style scoped>
-/* Container */
-.project-filter {
-  @apply flex flex-wrap gap-3 mb-8;
-}
+  /* Container */
+  .project-filter {
+    @apply mb-8 flex flex-wrap gap-3;
+  }
 
-/* Button base */
-.project-filter__button {
-  @apply px-4 py-2 rounded-full text-sm transition-all duration-300;
-}
+  /* Button base */
+  .project-filter__button {
+    @apply rounded-full px-4 py-2 text-sm transition-all duration-300;
+  }
 
-/* Active state */
-.project-filter__button--active {
-  @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white;
-}
+  /* Active state */
+  .project-filter__button--active {
+    @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white;
+  }
 
-/* Inactive state */
-.project-filter__button--inactive {
-  @apply dark:bg-zinc-800 bg-gray-200 dark:text-gray-400 text-gray-600 
-         hover:bg-gray-300 dark:hover:bg-zinc-700;
-}
+  /* Inactive state */
+  .project-filter__button--inactive {
+    @apply bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-zinc-800 dark:text-gray-400 dark:hover:bg-zinc-700;
+  }
 </style>

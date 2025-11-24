@@ -1,44 +1,44 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { Project } from '@/types/project'
-import { projects } from '@/data/projects'
-import ProjectCard from '@/components/sections/projects/ProjectCard.vue'
-import ProjectFilter from '@/components/sections/projects/ProjectFilter.vue'
-import ProjectModal from '@/components/sections/projects/ProjectModal.vue'
+  import { ref, computed } from 'vue'
+  import type { Project } from '@/types/project'
+  import { projects } from '@/data/projects'
+  import ProjectCard from '@/components/sections/projects/ProjectCard.vue'
+  import ProjectFilter from '@/components/sections/projects/ProjectFilter.vue'
+  import ProjectModal from '@/components/sections/projects/ProjectModal.vue'
 
-defineProps<{
-  id?: string
-}>()
+  defineProps<{
+    id?: string
+  }>()
 
-const selectedCategory = ref('highlights')
+  const selectedCategory = ref('highlights')
 
-const filteredProjects = computed(() => {
-  if (selectedCategory.value === 'highlights') {
-    return projects.filter((project) => project.isHighlight)
+  const filteredProjects = computed(() => {
+    if (selectedCategory.value === 'highlights') {
+      return projects.filter((project) => project.isHighlight)
+    }
+    if (selectedCategory.value === 'recent') {
+      return projects.filter((project) => project.isRecent)
+    }
+    if (selectedCategory.value === 'all') {
+      return projects
+    }
+    return projects.filter(
+      (project) => project.category === selectedCategory.value
+    )
+  })
+
+  const selectedProject = ref<Project | null>(null)
+  const isModalOpen = ref(false)
+
+  const handleProjectClick = (project: Project) => {
+    selectedProject.value = project
+    isModalOpen.value = true
   }
-  if (selectedCategory.value === 'recent') {
-    return projects.filter((project) => project.isRecent)
+
+  const closeModal = () => {
+    isModalOpen.value = false
+    selectedProject.value = null
   }
-  if (selectedCategory.value === 'all') {
-    return projects
-  }
-  return projects.filter(
-    (project) => project.category === selectedCategory.value
-  )
-})
-
-const selectedProject = ref<Project | null>(null)
-const isModalOpen = ref(false)
-
-const handleProjectClick = (project: Project) => {
-  selectedProject.value = project
-  isModalOpen.value = true
-}
-
-const closeModal = () => {
-  isModalOpen.value = false
-  selectedProject.value = null
-}
 </script>
 
 <template>
@@ -81,27 +81,27 @@ const closeModal = () => {
 </template>
 
 <style scoped>
-.projects {
-  @apply space-y-6 p-6 rounded-2xl transition-all duration-500 ease-in-out;
-}
+  .projects {
+    @apply space-y-6 rounded-2xl p-6 transition-all duration-500 ease-in-out;
+  }
 
-.projects__header {
-  @apply text-center space-y-3;
-}
+  .projects__header {
+    @apply space-y-3 text-center;
+  }
 
-.projects__title {
-  @apply text-2xl sm:text-3xl font-bold;
-}
+  .projects__title {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
 
-.projects__description {
-  @apply text-sm sm:text-base max-w-3xl mx-auto;
-}
+  .projects__description {
+    @apply mx-auto max-w-3xl text-sm sm:text-base;
+  }
 
-.projects__filter {
-  @apply flex justify-center my-6;
-}
+  .projects__filter {
+    @apply my-6 flex justify-center;
+  }
 
-.projects__grid {
-  @apply grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
-}
+  .projects__grid {
+    @apply grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3;
+  }
 </style>

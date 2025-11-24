@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="dark" style="color-scheme: dark">
+<!doctype html>
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -44,10 +44,7 @@
       property="og:description"
       content="Personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "
     />
-    <meta
-      property="og:image"
-      content="https://jerome-avecilla.vercel.app/assets/images/pogi.jpg"
-    />
+    <meta property="og:image" content="/assets/images/hodie_black.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Jerome Avecilla - Portfolio" />
@@ -69,10 +66,7 @@
       name="twitter:description"
       content="Personal website serves as a digital portfolio, showcasing my projects, skills, and experiences. This project is a testament to my passion for web development and design. "
     />
-    <meta
-      name="twitter:image"
-      content="https://jerome-avecilla.vercel.app/assets/images/pogi.jpg"
-    />
+    <meta name="twitter:image" content="/assets/images/hodie_black.png" />
 
     <meta name="theme-color" content="#060606" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -85,38 +79,28 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="https://jerome-avecilla.vercel.app/assets/favicons/favicon-32x32.png"
+      href="/assets/favicons/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="https://jerome-avecilla.vercel.app/assets/favicons/favicon-16x16.png"
+      href="/assets/favicons/favicon-16x16.png"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="https://jerome-avecilla.vercel.app/assets/favicons/favicon-180x180.png"
-    />
-    <meta
-      name="msapplication-TileImage"
-      content="https://jerome-avecilla.vercel.app/assets/favicons/favicon.png"
+      href="/assets/favicons/favicon-180x180.png"
     />
     <meta name="msapplication-TileColor" content="#f3f3f3" />
-    <meta
-      name="msapplication-config"
-      content="https://jerome-avecilla.vercel.app/browserconfig.xml"
-    />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
     <link
       rel="sitemap"
       type="application/xml"
       title="Sitemap"
-      href="https://jerome-avecilla.vercel.app/sitemap.xml"
+      href="/sitemap.xml"
     />
-    <link
-      rel="manifest"
-      href="https://jerome-avecilla.vercel.app/manifest.json"
-    />
+    <link rel="manifest" href="/manifest.json" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link
@@ -160,7 +144,7 @@
           gtag('js', new Date())
           gtag('config', 'G-NHV90YV828', {
             send_page_view: false,
-            transport_type: 'beacon'
+            transport_type: 'beacon',
           })
 
           var ga = document.createElement('script')
@@ -210,31 +194,9 @@
       window.__VUE_PROD_DEVTOOLS__ = false
       window.__VUE_OPTIONS_API__ = false
     </script>
-
-    <style>
-      .font-sans {
-        font-display: swap;
-      }
-
-      body {
-        min-height: 100vh;
-      }
-
-      #app {
-        min-height: 100vh;
-        opacity: 0;
-        animation: fade-in 0.3s ease-out forwards;
-      }
-
-      @keyframes fade-in {
-        to {
-          opacity: 1;
-        }
-      }
-    </style>
   </head>
   <body
-    class="font-sans antialiased bg-[#060606] text-gray-400 flex flex-col [overflow-anchor:none]"
+    class="flex flex-col bg-[#060606] font-sans text-gray-400 antialiased [overflow-anchor:none]"
   >
     <noscript>
       <iframe

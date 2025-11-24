@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TechStacksExpertise from '@/components/sections/skills/TechStackExpertise.vue'
-import TechStackAndSkills from '@/components/sections/skills/TechStackAndSkills.vue'
+  import TechStacksExpertise from '@/components/sections/skills/TechStackExpertise.vue'
+  import TechStackAndSkills from '@/components/sections/skills/TechStackAndSkills.vue'
 
-defineProps<{
-  id?: string
-}>()
+  defineProps<{
+    id?: string
+  }>()
 </script>
 
 <template>
@@ -36,31 +36,31 @@ defineProps<{
 </template>
 
 <style scoped>
-.tech-stack {
-  @apply space-y-6 p-6 rounded-2xl transition-all duration-500 ease-in-out;
-}
+  .tech-stack {
+    @apply space-y-6 rounded-2xl p-6 transition-all duration-500 ease-in-out;
+  }
 
-.tech-stack__header {
-  @apply space-y-4 text-center;
-}
+  .tech-stack__header {
+    @apply space-y-4 text-center;
+  }
 
-.tech-stack__title {
-  @apply text-2xl sm:text-3xl font-bold;
-}
+  .tech-stack__title {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
 
-.tech-stack__description {
-  @apply text-sm sm:text-base max-w-4xl mx-auto;
-}
+  .tech-stack__description {
+    @apply mx-auto max-w-4xl text-sm sm:text-base;
+  }
 
-.tech-stack__subheader {
-  @apply text-center;
-}
+  .tech-stack__subheader {
+    @apply text-center;
+  }
 
-:deep(img) {
-  @apply opacity-70 transition-all duration-300;
-}
+  :deep(img) {
+    @apply opacity-70 transition-all duration-300;
+  }
 
-:deep(.group:hover img) {
-  @apply opacity-100;
-}
+  :deep(.group:hover img) {
+    @apply opacity-100;
+  }
 </style>

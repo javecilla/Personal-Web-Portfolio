@@ -1,10 +1,10 @@
 <script setup lang="ts">
-defineProps<{
-  isOpen: boolean;
-  message: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-}>();
+  defineProps<{
+    isOpen: boolean
+    message: string
+    onConfirm: () => void
+    onCancel: () => void
+  }>()
 </script>
 
 <template>
@@ -16,19 +16,22 @@ defineProps<{
     leave-from-class="transform scale-100 opacity-100"
     leave-to-class="transform scale-95 opacity-0"
   >
-    <div v-if="isOpen" class="absolute inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg shadow-xl p-6 w-[80%] max-w-md mx-4">
-        <p class="text-gray-800 mb-6">{{ message }}</p>
+    <div
+      v-if="isOpen"
+      class="absolute inset-0 z-50 flex items-center justify-center bg-black/50"
+    >
+      <div class="mx-4 w-[80%] max-w-md rounded-lg bg-white p-6 shadow-xl">
+        <p class="mb-6 text-gray-800">{{ message }}</p>
         <div class="flex justify-center gap-3">
           <button
             @click="onCancel"
-            class="px-4 py-2 text-white bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
+            class="rounded-xl bg-gray-700 px-4 py-2 text-white transition-colors hover:bg-gray-600"
           >
             Cancel
           </button>
           <button
             @click="onConfirm"
-            class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 text-white rounded-xl transition-colors"
+            class="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-2 text-white transition-colors hover:opacity-90"
           >
             Confirm
           </button>

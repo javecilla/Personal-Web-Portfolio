@@ -1,140 +1,141 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { socials } from '@/data/socials'
-import ImageSkeleton from '@/components/ImageSkeleton.vue'
-import { contactService } from '@/services/contactService'
+  import { ref, onMounted } from 'vue'
+  import { socials } from '@/data/socials'
+  import ImageSkeleton from '@/components/ImageSkeleton.vue'
+  import { contactService } from '@/services/contactService'
 
-defineProps<{
-  id?: string
-}>()
+  defineProps<{
+    id?: string
+  }>()
 
-// Track loading state for each icon
-const loadedIcons = ref(new Set<string>())
-const handleIconLoad = (skillName: string) => {
-  loadedIcons.value.add(skillName)
-}
+  // Track loading state for each icon
+  const loadedIcons = ref(new Set<string>())
+  const handleIconLoad = (skillName: string) => {
+    loadedIcons.value.add(skillName)
+  }
 
-const isIconLoaded = (skillName: string): boolean => {
-  return loadedIcons.value.has(skillName)
-}
+  const isIconLoaded = (skillName: string): boolean => {
+    return loadedIcons.value.has(skillName)
+  }
 
-const clearError = (field: string) => {
-  if (errors.value[field]) {
-    errors.value = {
-      ...errors.value,
-      [field]: ''
+  const clearError = (field: string) => {
+    if (errors.value[field]) {
+      errors.value = {
+        ...errors.value,
+        [field]: '',
+      }
     }
   }
-}
 
-const form = ref({
-  name: '',
-  email: '',
-  subject: '',
-  message: ''
-})
+  const form = ref({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  })
 
-const handleInput = (field: keyof typeof form.value) => {
-  clearError(field)
-  if (errors.value.submit) {
-    errors.value.submit = ''
-  }
-  if (successMessage.value) {
-    successMessage.value = ''
-  }
-}
-
-const isSubmitting = ref(false)
-const errors = ref<Record<string, string>>({})
-
-const validateForm = () => {
-  const newErrors: Record<string, string> = {}
-
-  if (!form.value.name.trim()) {
-    newErrors.name = 'Name is required'
+  const handleInput = (field: keyof typeof form.value) => {
+    clearError(field)
+    if (errors.value.submit) {
+      errors.value.submit = ''
+    }
+    if (successMessage.value) {
+      successMessage.value = ''
+    }
   }
 
-  if (!form.value.email.trim()) {
-    newErrors.email = 'Email is required'
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
-    newErrors.email = 'Invalid email format'
+  const isSubmitting = ref(false)
+  const errors = ref<Record<string, string>>({})
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!form.value.name.trim()) {
+      newErrors.name = 'Name is required'
+    }
+
+    if (!form.value.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
+      newErrors.email = 'Invalid email format'
+    }
+
+    if (!form.value.subject.trim()) {
+      newErrors.subject = 'Subject is required'
+    }
+
+    if (!form.value.message.trim()) {
+      newErrors.message = 'Message is required'
+    }
+
+    errors.value = newErrors
+    return Object.keys(newErrors).length === 0
   }
 
-  if (!form.value.subject.trim()) {
-    newErrors.subject = 'Subject is required'
-  }
+  let recaptchaWidget: number
 
-  if (!form.value.message.trim()) {
-    newErrors.message = 'Message is required'
-  }
+  onMounted(() => {
+    const script = document.createElement('script')
+    script.src = 'https://www.google.com/recaptcha/api.js?render=explicit'
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
 
-  errors.value = newErrors
-  return Object.keys(newErrors).length === 0
-}
-
-let recaptchaWidget: number
-
-onMounted(() => {
-  const script = document.createElement('script')
-  script.src = 'https://www.google.com/recaptcha/api.js?render=explicit'
-  script.async = true
-  script.defer = true
-  document.head.appendChild(script)
-
-  script.onload = () => {
-    window.grecaptcha.ready(() => {
-      recaptchaWidget = window.grecaptcha.render('recaptcha', {
-        sitekey: import.meta.env.VITE_GOOGLE_RECAPTCHA_FRONTEND_KEY,
-        theme: 'light',
-        callback: () => {
-          // Clear recaptcha error when user completes the challenge
-          if (errors.value.recaptcha) {
-            errors.value.recaptcha = ''
-          }
-        }
+    script.onload = () => {
+      window.grecaptcha.ready(() => {
+        recaptchaWidget = window.grecaptcha.render('recaptcha', {
+          sitekey: import.meta.env.VITE_GOOGLE_RECAPTCHA_FRONTEND_KEY,
+          theme: 'light',
+          callback: () => {
+            // Clear recaptcha error when user completes the challenge
+            if (errors.value.recaptcha) {
+              errors.value.recaptcha = ''
+            }
+          },
+        })
       })
-    })
-  }
-})
+    }
+  })
 
-const handleSubmit = async (e: Event) => {
-  e.preventDefault()
+  const handleSubmit = async (e: Event) => {
+    e.preventDefault()
 
-  if (!validateForm()) {
-    return
-  }
-
-  try {
-    isSubmitting.value = true
-    const recaptchaToken = await window.grecaptcha.getResponse(recaptchaWidget)
-
-    if (!recaptchaToken) {
-      errors.value.recaptcha = 'Please complete the reCAPTCHA'
+    if (!validateForm()) {
       return
     }
 
-    console.log(form.value)
-    await contactService.sendMessage(form.value, recaptchaToken)
+    try {
+      isSubmitting.value = true
+      const recaptchaToken =
+        await window.grecaptcha.getResponse(recaptchaWidget)
 
-    form.value = {
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
+      if (!recaptchaToken) {
+        errors.value.recaptcha = 'Please complete the reCAPTCHA'
+        return
+      }
+
+      console.log(form.value)
+      await contactService.sendMessage(form.value, recaptchaToken)
+
+      form.value = {
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      }
+      window.grecaptcha.reset(recaptchaWidget)
+
+      errors.value = {}
+      successMessage.value =
+        'Message sent successfully! I will get back to you soon.'
+    } catch (error) {
+      errors.value.submit = 'Failed to send message. Please try again.'
+    } finally {
+      isSubmitting.value = false
     }
-    window.grecaptcha.reset(recaptchaWidget)
-
-    errors.value = {}
-    successMessage.value =
-      'Message sent successfully! I will get back to you soon.'
-  } catch (error) {
-    errors.value.submit = 'Failed to send message. Please try again.'
-  } finally {
-    isSubmitting.value = false
   }
-}
 
-const successMessage = ref('')
+  const successMessage = ref('')
 </script>
 
 <template>
@@ -180,7 +181,7 @@ const successMessage = ref('')
                 :title="link.label"
                 class="social-link__icon"
                 :class="{
-                  'social-link__icon--loaded': isIconLoaded(link.label)
+                  'social-link__icon--loaded': isIconLoaded(link.label),
                 }"
                 @load="handleIconLoad(link.label)"
               />
@@ -203,7 +204,7 @@ const successMessage = ref('')
             </div>
 
             <!-- Add a wrapper div for the two-column layout -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
               <div class="form-group">
                 <label for="name" class="form-label"
                   >Name <span class="text-red-500">*</span></label
@@ -306,156 +307,107 @@ const successMessage = ref('')
 </template>
 
 <style scoped>
-.social-link__icon--loaded {
-  @apply opacity-100 z-20;
-}
-.contact-section {
-  @apply space-y-10 sm:space-y-16 p-6 lg:p-8 rounded-2xl;
-}
+  .social-link__icon--loaded {
+    @apply z-20 opacity-100;
+  }
+  .contact-section {
+    @apply space-y-10 rounded-2xl p-6 sm:space-y-16 lg:p-8;
+  }
 
-.contact-section__header {
-  @apply space-y-2 sm:space-y-3 text-center;
-}
+  .contact-section__header {
+    @apply space-y-2 text-center sm:space-y-3;
+  }
 
-.contact-container {
-  @apply max-w-[65rem] mx-auto lg:ml-10;
-}
+  .contact-container {
+    @apply mx-auto max-w-[65rem] lg:ml-10;
+  }
 
-.contact-content {
-  @apply grid grid-cols-1 md:grid-cols-[170px_1fr] gap-8 md:gap-10;
-}
+  .contact-content {
+    @apply grid grid-cols-1 gap-8 md:grid-cols-[170px_1fr] md:gap-10;
+  }
 
-.contact-social {
-  @apply flex flex-col items-center md:items-start gap-4 pt-2 w-full;
-}
+  .contact-social {
+    @apply flex w-full flex-col items-center gap-4 pt-2 md:items-start;
+  }
 
-.contact-social__links {
-  @apply flex flex-row md:flex-col gap-3 
-         w-full justify-center md:justify-start;
-}
+  .contact-social__links {
+    @apply flex w-full flex-row justify-center gap-3 md:flex-col md:justify-start;
+  }
 
-.social-link {
-  @apply flex items-center justify-center md:justify-start
-         px-3 py-3 md:px-4 md:py-3
-         dark:bg-zinc-900/20 bg-white/80
-         backdrop-blur-sm
-         border border-gray-100/50 dark:border-zinc-900/10
-         rounded-full md:rounded-md
-         hover:scale-105 transition-all duration-300 ease-in-out
-         w-12 md:w-full; /* Fixed width for mobile, full width for desktop */
-}
+  .social-link {
+    @apply flex w-12 items-center justify-center rounded-full border border-gray-100/50 bg-white/80 px-3 py-3 backdrop-blur-sm transition-all duration-300 ease-in-out hover:scale-105 dark:border-zinc-900/10 dark:bg-zinc-900/20 md:w-full md:justify-start md:rounded-md md:px-4 md:py-3; /* Fixed width for mobile, full width for desktop */
+  }
 
-.social-link__icon {
-  @apply flex-shrink-0 /* Prevent icon from shrinking */
-         text-gray-500 dark:text-white/70
-         w-[23px] h-[23px] transition-all duration-300 grayscale group-hover:grayscale-0;
-}
+  .social-link__icon {
+    @apply /* Prevent icon from shrinking */ h-[23px] w-[23px] flex-shrink-0 text-gray-500 grayscale transition-all duration-300 group-hover:grayscale-0 dark:text-white/70;
+  }
 
-.social-link__label {
-  @apply hidden md:block /* Hide on mobile, show on md and up */
-         text-sm font-medium 
-         text-gray-600 dark:text-white/80
-         transition-all duration-300 
-         ml-3;
-}
+  .social-link__label {
+    @apply /* Hide on mobile, show on md and up */ ml-3 hidden text-sm font-medium text-gray-600 transition-all duration-300 dark:text-white/80 md:block;
+  }
 
-.contact-box {
-  @apply bg-white/80 dark:bg-zinc-900/10
-         backdrop-blur-sm
-         border border-gray-100/50 dark:border-zinc-900/5
-         rounded-xl
-         p-6 sm:p-8
-         relative;
-}
+  .contact-box {
+    @apply relative rounded-xl border border-gray-100/50 bg-white/80 p-6 backdrop-blur-sm dark:border-zinc-900/5 dark:bg-zinc-900/10 sm:p-8;
+  }
 
-/* shadow styles to only show on medium screens and up */
-.contact-box::before {
-  content: '';
-  @apply absolute hidden md:block
-         -right-[35px] -top-[30px]
-         w-full h-full
-         rounded-xl
-         border border-gray-100/50 dark:border-zinc-900/10
-         bg-white/80 dark:bg-zinc-900/10
-         -z-10;
-}
+  /* shadow styles to only show on medium screens and up */
+  .contact-box::before {
+    content: '';
+    @apply absolute -right-[35px] -top-[30px] -z-10 hidden h-full w-full rounded-xl border border-gray-100/50 bg-white/80 dark:border-zinc-900/10 dark:bg-zinc-900/10 md:block;
+  }
 
-.contact-form {
-  @apply space-y-6;
-}
+  .contact-form {
+    @apply space-y-6;
+  }
 
-.form-group {
-  @apply space-y-2;
-}
+  .form-group {
+    @apply space-y-2;
+  }
 
-.form-label {
-  @apply block text-sm font-semibold text-start
-         text-gray-700 dark:text-gray-300;
-}
+  .form-label {
+    @apply block text-start text-sm font-semibold text-gray-700 dark:text-gray-300;
+  }
 
-.form-input,
-.form-textarea {
-  @apply w-full px-4 py-3
-         bg-white dark:bg-zinc-800/20
-         border border-gray-200 dark:border-zinc-800/10
-         rounded-lg
-         text-gray-900 dark:text-white
-         placeholder-gray-400 dark:placeholder-gray-500
-         transition-all ease-in-out duration-500
-         focus:ring-2 focus:ring-blue-500/20
-         focus:border-blue-500/50 dark:focus:border-blue-400/50
-         focus:outline-none;
-}
+  .form-input,
+  .form-textarea {
+    @apply w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 transition-all duration-500 ease-in-out focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800/10 dark:bg-zinc-800/20 dark:text-white dark:placeholder-gray-500 dark:focus:border-blue-400/50;
+  }
 
-.form-textarea {
-  @apply resize-none;
-}
+  .form-textarea {
+    @apply resize-none;
+  }
 
-.submit-button {
-  @apply w-full flex items-center justify-center gap-2
-         px-6 py-3
-         bg-gradient-to-r from-blue-500 to-purple-500 
-         hover:opacity-90 transition-all duration-300
-         text-white
-         rounded-lg
-         font-medium
-         transition-all duration-200
-         disabled:opacity-50 disabled:cursor-not-allowed
-         focus:ring-2 focus:ring-blue-500/20
-         focus:outline-none;
-}
+  .submit-button {
+    @apply flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 font-medium text-white transition-all duration-200 duration-300 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:cursor-not-allowed disabled:opacity-50;
+  }
 
-.form-input:hover,
-.form-textarea:hover {
-  @apply border-gray-300 dark:border-zinc-800;
-}
+  .form-input:hover,
+  .form-textarea:hover {
+    @apply border-gray-300 dark:border-zinc-800;
+  }
 
-.contact-box:hover .form-input:focus,
-.contact-box:hover .form-textarea:focus {
-  @apply shadow-sm;
-}
+  .contact-box:hover .form-input:focus,
+  .contact-box:hover .form-textarea:focus {
+    @apply shadow-sm;
+  }
 
-.error {
-  @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
-}
+  .error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+  }
 
-.error-message {
-  @apply text-red-500 text-sm text-left mt-1 block;
-}
+  .error-message {
+    @apply mt-1 block text-left text-sm text-red-500;
+  }
 
-.recaptcha-container {
-  @apply flex flex-col items-center space-y-2;
-}
+  .recaptcha-container {
+    @apply flex flex-col items-center space-y-2;
+  }
 
-.recaptcha-error {
-  @apply text-red-500 text-sm mt-1 block w-full text-center;
-}
+  .recaptcha-error {
+    @apply mt-1 block w-full text-center text-sm text-red-500;
+  }
 
-.success-message {
-  @apply text-green-600 dark:text-green-400 
-         text-sm text-left mt-1 mb-4 
-         p-3 bg-green-50 dark:bg-green-900/10 
-         border border-green-100 dark:border-green-900/10 
-         rounded-lg;
-}
+  .success-message {
+    @apply mb-4 mt-1 rounded-lg border border-green-100 bg-green-50 p-3 text-left text-sm text-green-600 dark:border-green-900/10 dark:bg-green-900/10 dark:text-green-400;
+  }
 </style>

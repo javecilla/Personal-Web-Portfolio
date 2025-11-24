@@ -6,7 +6,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 import viteCompression from 'vite-plugin-compression'
 import viteImagemin from 'vite-plugin-imagemin'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
   plugins: [
@@ -23,60 +22,60 @@ export default defineConfig({
           {
             src: '/assets/favicons/android-chrome-180x180.png',
             sizes: '180x180',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: '/assets/favicons/android-chrome-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
-          }
-        ]
-      }
+            type: 'image/png',
+          },
+        ],
+      },
     }),
     viteCompression({
       algorithm: 'brotliCompress',
-      ext: '.br'
+      ext: '.br',
     }),
     viteImagemin({
       gifsicle: {
         optimizationLevel: 7,
-        interlaced: false
+        interlaced: false,
       },
       optipng: {
-        optimizationLevel: 7
+        optimizationLevel: 7,
       },
       mozjpeg: {
-        quality: 80
+        quality: 80,
       },
       pngquant: {
         quality: [0.8, 0.9],
-        speed: 4
+        speed: 4,
       },
       svgo: {
         plugins: [
           {
-            name: 'removeViewBox'
+            name: 'removeViewBox',
           },
           {
             name: 'removeEmptyAttrs',
-            active: false
-          }
-        ]
+            active: false,
+          },
+        ],
       },
       webp: {
-        quality: 80
-      }
-    })
+        quality: 80,
+      },
+    }),
   ],
   css: {
     postcss: './postcss.config.js',
-    devSourcemap: true
+    devSourcemap: true,
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@global': path.resolve(__dirname, './public/assets')
-    }
+      '@global': path.resolve(__dirname, './public/assets'),
+    },
   },
   build: {
     target: 'esnext',
@@ -156,8 +155,8 @@ export default defineConfig({
           return `assets/${extType}/[name]-[hash][extname]`
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js'
-      }
+        entryFileNames: 'assets/js/[name]-[hash].js',
+      },
     },
     chunkSizeWarningLimit: 2000,
     sourcemap: true,
@@ -167,58 +166,57 @@ export default defineConfig({
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log'],
-        passes: 1
+        passes: 1,
       },
       format: {
-        comments: false
+        comments: false,
       },
       mangle: {
-        toplevel: true
-      }
+        toplevel: true,
+      },
     },
     emptyOutDir: true,
     modulePreload: {
-      polyfill: false
-    }
+      polyfill: false,
+    },
   },
   optimizeDeps: {
     include: ['vue', 'pinia', 'element-plus', 'dayjs', '@vueuse/core'],
-    force: true
+    force: true,
   },
   assetsInclude: ['**/*.svg'],
   server: {
     host: '0.0.0.0',
     port: 5173,
-    strictPort: false, // Allow fallback to next available port
+    strictPort: false,
     open: false,
     cors: true,
     headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable'
+      'Cache-Control': 'public, max-age=31536000, immutable',
     },
-    // Additional network configuration
     hmr: {
       host: 'localhost',
-      port: 5173
+      port: 5173,
     },
     fs: {
-      strict: true
+      strict: true,
     },
     proxy: {
       '/recaptcha': {
         target: 'https://www.google.com/recaptcha/api',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/recaptcha/, '')
+        rewrite: (path) => path.replace(/^\/recaptcha/, ''),
       },
       '/api/verify-recaptcha': {
         target: 'https://www.google.com/recaptcha/api/siteverify',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/verify-recaptcha/, '')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/api\/verify-recaptcha/, ''),
+      },
+    },
   },
   preview: {
     port: 4173,
     host: true,
-    strictPort: true
-  }
+    strictPort: true,
+  },
 })

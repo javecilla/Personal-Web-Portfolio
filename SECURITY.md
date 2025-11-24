@@ -15,12 +15,12 @@ This project follows semantic versioning. Currently, these versions are supporte
 
 The portfolio website implements several security measures:
 
-- 🔒 HTTPS-only access
-- 🛡️ Content Security Policy (CSP)
-- 🔐 XSS protection
-- 🚫 No sensitive data storage
-- 📝 Input validation
-- 🔍 Regular dependency updates
+- HTTPS-only access
+- Content Security Policy (CSP)
+- XSS protection
+- No sensitive data storage
+- Input validation
+- Regular dependency updates
 
 ## Reporting a Vulnerability
 

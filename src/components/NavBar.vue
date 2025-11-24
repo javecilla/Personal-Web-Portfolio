@@ -1,41 +1,41 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { GithubIcon } from 'lucide-vue-next'
-import ThemeToggle from '@/components/ThemeToggle.vue'
-import menuIcon from '@global/svgs/menu-icon.svg?raw'
-import Sidebar from '@/components/Sidebar.vue'
-import { navigationItems } from '@/data/navigation'
-import Link from '@/components/ui/Link.vue'
+  import { ref, onMounted, onUnmounted } from 'vue'
+  import { GithubIcon } from 'lucide-vue-next'
+  import ThemeToggle from '@/components/ThemeToggle.vue'
+  import menuIcon from '@global/svgs/menu-icon.svg?raw'
+  import Sidebar from '@/components/Sidebar.vue'
+  import { navigationItems } from '@/data/navigation'
+  import Link from '@/components/ui/Link.vue'
 
-const isScrolled = ref(false)
-const isSidebarOpen = ref(false)
+  const isScrolled = ref(false)
+  const isSidebarOpen = ref(false)
 
-const mobileMenuLabels = {
-  open: 'Open navigation menu',
-  close: 'Close navigation menu'
-}
+  const mobileMenuLabels = {
+    open: 'Open navigation menu',
+    close: 'Close navigation menu',
+  }
 
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 0
-}
+  const handleScroll = () => {
+    isScrolled.value = window.scrollY > 0
+  }
 
-const currentHash = ref(window.location.hash || '#about')
+  const currentHash = ref(window.location.hash || '#about')
 
-const updateActiveHash = () => {
-  currentHash.value = window.location.hash || '#about'
-}
+  const updateActiveHash = () => {
+    currentHash.value = window.location.hash || '#about'
+  }
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-  window.addEventListener('hashchange', updateActiveHash)
-})
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('hashchange', updateActiveHash)
+  })
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('hashchange', updateActiveHash)
-})
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('hashchange', updateActiveHash)
+  })
 
-const isActive = (href: string) => currentHash.value === href
+  const isActive = (href: string) => currentHash.value === href
 </script>
 
 <template>
@@ -47,15 +47,15 @@ const isActive = (href: string) => currentHash.value === href
   />
 
   <header
-    class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+    class="fixed left-0 right-0 top-0 z-40 transition-all duration-300"
     :class="[
       isScrolled
-        ? 'border-b backdrop-blur-md bg-white/30 dark:bg-black/30'
+        ? 'border-b bg-white/30 backdrop-blur-md dark:bg-black/30'
         : 'bg-transparent',
-      'dark:border-zinc-800/50 border-gray-200/50'
+      'border-gray-200/50 dark:border-zinc-800/50',
     ]"
   >
-    <div class="max-w-[1230px] mx-auto px-4 sm:px-6 lg:px-1">
+    <div class="mx-auto max-w-[1230px] px-4 sm:px-6 lg:px-1">
       <div class="flex h-16 items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
@@ -66,7 +66,7 @@ const isActive = (href: string) => currentHash.value === href
             >
           </Link>
           <!-- Desktop Navigation -->
-          <nav class="hidden md:flex ml-10 space-x-8">
+          <nav class="ml-10 hidden space-x-8 md:flex">
             <Link
               v-for="item in navigationItems"
               :key="item.name"
@@ -75,8 +75,8 @@ const isActive = (href: string) => currentHash.value === href
               variant="nav"
               :class="[
                 isActive(item.href)
-                  ? 'text-blue-500 dark:text-blue-400 text-bold'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent'
+                  ? 'text-bold text-blue-500 dark:text-blue-400'
+                  : 'text-gray-600 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent dark:text-gray-300',
               ]"
             >
               {{ item.name }}
@@ -92,15 +92,15 @@ const isActive = (href: string) => currentHash.value === href
             ariaLabel="Visit my GitHub profile"
             variant="icon"
             external
-            class="p-2 dark:bg-zinc-800 bg-gray-200 rounded-full dark:hover:bg-zinc-700 hover:bg-gray-300 transition-all duration-300 ease-in-out inline-flex items-center justify-center"
+            class="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 transition-all duration-300 ease-in-out hover:bg-gray-300 dark:bg-zinc-800 dark:hover:bg-zinc-700"
           >
-            <GithubIcon class="h-5 w-5 dark:text-white text-gray-900" />
+            <GithubIcon class="h-5 w-5 text-gray-900 dark:text-white" />
           </Link>
 
           <!-- Mobile menu button -->
           <button
             type="button"
-            class="md:hidden p-2 dark:bg-zinc-800 bg-gray-200 rounded-full dark:hover:bg-zinc-700 hover:bg-gray-300 transition-all duration-300 ease-in-out inline-flex items-center justify-center"
+            class="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 transition-all duration-300 ease-in-out hover:bg-gray-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 md:hidden"
             :aria-expanded="isSidebarOpen"
             :aria-label="
               isSidebarOpen ? mobileMenuLabels.close : mobileMenuLabels.open
@@ -112,7 +112,7 @@ const isActive = (href: string) => currentHash.value === href
             }}</span>
             <div
               v-html="menuIcon"
-              class="h-5 w-5 dark:text-white text-gray-900 flex items-center justify-center"
+              class="flex h-5 w-5 items-center justify-center text-gray-900 dark:text-white"
               aria-hidden="true"
             ></div>
           </button>
@@ -121,9 +121,9 @@ const isActive = (href: string) => currentHash.value === href
             href="javascript:void(0)"
             ariaLabel="Download my resume"
             variant="button"
-            class="hidden md:flex text-center items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:opacity-90 transition-all duration-300 px-6 cursor-not-allowed"
+            class="hidden cursor-not-allowed items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 px-6 text-center transition-all duration-300 hover:opacity-90 md:flex"
           >
-            <span class="text-white font-medium">Resume</span>
+            <span class="font-medium text-white">Resume</span>
           </Link>
         </div>
       </div>
@@ -134,13 +134,13 @@ const isActive = (href: string) => currentHash.value === href
 </template>
 
 <style scoped>
-@supports not (backdrop-filter: blur(12px)) {
-  .backdrop-blur-md {
-    background-color: rgba(255, 255, 255, 0.95);
-  }
+  @supports not (backdrop-filter: blur(12px)) {
+    .backdrop-blur-md {
+      background-color: rgba(255, 255, 255, 0.95);
+    }
 
-  :global(.dark) .backdrop-blur-md {
-    background-color: rgba(0, 0, 0, 0.95);
+    :global(.dark) .backdrop-blur-md {
+      background-color: rgba(0, 0, 0, 0.95);
+    }
   }
-}
 </style>

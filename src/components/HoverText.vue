@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+  import { computed } from 'vue'
 
-const props = defineProps<{
-  text: string;
-  className?: string;
-}>();
+  const props = defineProps<{
+    text: string
+    className?: string
+  }>()
 
-const words = computed(() => props.text.split(' '));
+  const words = computed(() => props.text.split(' '))
 </script>
 
 <template>
@@ -15,16 +15,16 @@ const words = computed(() => props.text.split(' '));
       <span
         v-for="(word, index) in words.slice(0, 2)"
         :key="index"
-        class="cursor-default inline-block transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent"
+        class="inline-block cursor-default transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent"
       >
         {{ word }}{{ index !== 1 ? '\u00A0' : '' }}
       </span>
     </div>
-    <div class="mt-2 block">  
+    <div class="mt-2 block">
       <span
         v-for="(word, index) in words.slice(2)"
         :key="index"
-        class="cursor-default inline-block transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent"
+        class="inline-block cursor-default transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent"
       >
         {{ word }}
       </span>

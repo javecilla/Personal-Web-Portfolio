@@ -1,15 +1,15 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
     ignore:
-      - dependency-name: "vite"
-        versions: ["6.x"]
-      - dependency-name: "tailwindcss"
-        versions: ["4.x"]
-    versioning-strategy: "lockfile-only"
+      - dependency-name: 'vite'
+        versions: ['6.x']
+      - dependency-name: 'tailwindcss'
+        versions: ['4.x']
+    versioning-strategy: 'lockfile-only'
     allow:
-      - dependency-type: "production"
-      - dependency-type: "development"
+      - dependency-type: 'production'
+      - dependency-type: 'development'
