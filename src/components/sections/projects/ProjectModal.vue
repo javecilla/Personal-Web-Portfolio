@@ -3,6 +3,11 @@
   import { XIcon } from 'lucide-vue-next'
   import type { Project } from '@/types/project'
   import { useMarkdown } from '@/composables/useMarkdown'
+  import Button from '@/components/ui/Button.vue'
+  import Image from '@/components/ui/Image.vue'
+  import Link from '@/components/ui/Link.vue'
+  import TechBadge from '@/components/TechBadge.vue'
+  import Badge from '@/components/ui/Badge.vue'
 
   const props = defineProps<{
     show: boolean
@@ -60,13 +65,14 @@
       <!-- Close button wrapper repositioned -->
       <div class="modal-wrapper">
         <div class="modal-close-wrapper">
-          <button
-            class="modal-close"
+          <Button
+            variant="icon"
             @click="emit('close')"
-            aria-label="Close modal"
+            ariaLabel="Close modal"
+            class="modal-close"
           >
             <XIcon class="h-6 w-6" />
-          </button>
+          </Button>
         </div>
 
         <div class="modal-container" @click.stop>
@@ -74,10 +80,12 @@
           <div class="modal-content">
             <!-- Image -->
             <div class="modal-image-container">
-              <img
+              <Image
                 :src="project.image"
                 :alt="project.title"
                 class="modal-image"
+                :show-skeleton="true"
+                skeleton-class="h-full w-full"
               />
             </div>
 
@@ -85,12 +93,12 @@
             <div class="modal-details">
               <div class="modal-header">
                 <h3 class="modal-title">{{ project.title }}</h3>
-                <span class="modal-category">
+                <Badge>
                   {{
                     project.category.charAt(0).toLocaleUpperCase() +
                     project.category.slice(1)
                   }}
-                </span>
+                </Badge>
               </div>
 
               <div
@@ -101,40 +109,37 @@
               <div class="modal-tech-stack">
                 <h4 class="modal-subtitle">Technologies Used</h4>
                 <div class="modal-tech-icons">
-                  <div
+                  <TechBadge
                     v-for="tech in project.technologies"
                     :key="tech.name"
-                    class="modal-tech-item"
-                  >
-                    <img
-                      :src="tech.icon"
-                      :alt="tech.name"
-                      :title="tech.name"
-                      class="modal-tech-icon"
-                    />
-                    <span class="modal-tech-name">{{ tech.name }}</span>
-                  </div>
+                    :name="tech.name"
+                    :icon="tech.icon"
+                  />
                 </div>
               </div>
 
               <!-- Links -->
               <div class="modal-actions">
-                <a
+                <Link
                   v-if="project.demoUrl"
                   :href="project.demoUrl"
-                  target="_blank"
-                  class="modal-button modal-button--primary"
+                  :external="true"
+                  variant="primary"
+                  class="flex-1"
+                  ariaLabel="View Live Demo"
                 >
                   View Live Demo
-                </a>
-                <a
+                </Link>
+                <Link
                   v-if="project.githubUrl"
                   :href="project.githubUrl"
-                  target="_blank"
-                  class="modal-button modal-button--secondary"
+                  :external="true"
+                  variant="secondary"
+                  class="flex-1"
+                  ariaLabel="View Source Code"
                 >
                   View Source Code
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -190,10 +195,6 @@
     @apply flex-1 text-2xl font-bold text-gray-900 dark:text-white md:text-3xl;
   }
 
-  .modal-category {
-    @apply whitespace-nowrap rounded-full border-2 border-blue-500/50 bg-blue-50/50 px-3 py-1.5 text-sm font-medium text-blue-600 dark:border-blue-400/50 dark:bg-blue-900/10 dark:text-blue-400;
-  }
-
   /* Update markdown styles */
   .modal-description {
     @apply prose prose-sm max-w-none dark:prose-invert md:prose-base;
@@ -240,31 +241,7 @@
     @apply flex flex-wrap gap-3;
   }
 
-  .modal-tech-item {
-    @apply inline-flex items-center gap-2 whitespace-nowrap rounded-lg bg-gray-50 px-3 py-2 dark:bg-zinc-800;
-  }
-
-  .modal-tech-icon {
-    @apply h-6 w-6;
-  }
-
-  .modal-tech-name {
-    @apply text-sm text-gray-700 dark:text-gray-300;
-  }
-
   .modal-actions {
     @apply flex flex-col gap-4 pt-4 sm:flex-row;
-  }
-
-  .modal-button {
-    @apply flex-1 rounded-lg px-6 py-3 text-center font-medium transition-all duration-300;
-  }
-
-  .modal-button--primary {
-    @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:opacity-90;
-  }
-
-  .modal-button--secondary {
-    @apply border border-gray-200 text-gray-700 hover:bg-gray-50 dark:border-zinc-700 dark:text-gray-300 dark:hover:bg-zinc-800;
   }
 </style>

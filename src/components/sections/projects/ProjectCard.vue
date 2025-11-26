@@ -1,9 +1,8 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
   import { GithubIcon, Globe } from 'lucide-vue-next'
   import type { Project } from '@/types/project'
-  import ImageSkeleton from '@/components/ImageSkeleton.vue'
   import Image from '@/components/ui/Image.vue'
+  import Link from '@/components/ui/Link.vue'
 
   defineProps<{
     project: Project
@@ -12,12 +11,6 @@
   const emit = defineEmits<{
     (e: 'click', project: Project): void
   }>()
-
-  const imageLoaded = ref(false)
-
-  const handleImageLoad = () => {
-    imageLoaded.value = true
-  }
 </script>
 
 <template>
@@ -25,28 +18,17 @@
     class="project-card section-bg group cursor-pointer"
     @click="emit('click', project)"
   >
-    <!-- Project Image with Skeleton -->
+    <!-- Project Image -->
     <div class="project-card__image-container">
-      <Transition
-        enter-active-class="transition-opacity duration-300"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-      >
-        <ImageSkeleton
-          v-if="!imageLoaded"
-          rounded="rounded-t-2xl"
-          className="absolute inset-0 w-full h-full"
-        />
-      </Transition>
-
       <div class="relative h-full w-full">
         <Image
           :src="project.image"
           :alt="project.title"
           variant="project"
           rounded="2xl"
-          :class="['project-card__image', { 'opacity-0': !imageLoaded }]"
-          @load="handleImageLoad"
+          class="project-card__image"
+          :show-skeleton="true"
+          skeleton-class="absolute inset-0 w-full h-full"
         >
           <template #overlay>
             <div
@@ -73,37 +55,39 @@
           <!-- Tech Stack -->
           <div class="project-card__tech">
             <div class="project-card__tech-icons">
-              <img
+              <Image
                 v-for="tech in project.technologies"
                 :key="tech.name"
                 :src="tech.icon"
                 :alt="tech.name"
-                :title="tech.name"
                 class="project-card__tech-icon"
+                :show-skeleton="false"
               />
             </div>
           </div>
 
           <!-- Action Buttons -->
           <div class="project-card__actions">
-            <a
+            <Link
               v-if="project.githubUrl"
               :href="project.githubUrl"
-              target="_blank"
+              :external="true"
+              variant="icon"
+              ariaLabel="View source code on GitHub"
               class="project-card__action-btn"
-              :title="'View source code on GitHub'"
             >
               <GithubIcon class="project-card__action-icon" />
-            </a>
-            <a
+            </Link>
+            <Link
               v-if="project.demoUrl"
               :href="project.demoUrl"
-              target="_blank"
+              :external="true"
+              variant="icon"
+              ariaLabel="View live demo"
               class="project-card__action-btn"
-              :title="'View live demo'"
             >
               <Globe class="project-card__action-icon" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

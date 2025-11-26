@@ -1,39 +1,6 @@
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
-  import ImageSkeleton from '@/components/ImageSkeleton.vue'
   import Image from '@/components/ui/Image.vue'
   import profileImage from '@global/images/hodie_black.png'
-
-  const imageLoaded = ref(false)
-  const desktopImageLoaded = ref(false)
-  const mobileImageLoaded = ref(false)
-
-  const handleDesktopImageLoad = () => {
-    desktopImageLoaded.value = true
-    updateImageLoadedState()
-  }
-
-  const handleMobileImageLoad = () => {
-    mobileImageLoaded.value = true
-    updateImageLoadedState()
-  }
-
-  const updateImageLoadedState = () => {
-    imageLoaded.value = desktopImageLoaded.value && mobileImageLoaded.value
-  }
-
-  const initializeApp = async () => {
-    try {
-      return true
-    } catch (error) {
-      console.error('Error initializing app:', error)
-      return false
-    }
-  }
-
-  onMounted(async () => {
-    await initializeApp()
-  })
 
   const IMAGE_DIMENSIONS = {
     mobile: {
@@ -48,31 +15,15 @@
 </script>
 
 <template>
-  <section
-    class="space-y-6 rounded-2xl bg-gray-50 p-3 transition-all duration-500 ease-in-out dark:bg-zinc-900/10 xl:p-2"
-  >
+  <section class="">
     <div class="about-me__grid">
       <!-- Mobile Image Container -->
       <div class="about-me__mobile-image">
         <div
-          class="about-me__image-wrapper"
+          class="about-me__image-wrapper group"
           :style="`min-height: ${IMAGE_DIMENSIONS.mobile.height}px`"
         >
           <div class="about-me__image-container">
-            <Transition
-              enter-active-class="transition-opacity duration-300"
-              enter-from-class="opacity-0"
-              enter-to-class="opacity-100"
-              mode="out-in"
-            >
-              <ImageSkeleton
-                v-if="!imageLoaded"
-                :width="IMAGE_DIMENSIONS.mobile.width"
-                :height="IMAGE_DIMENSIONS.mobile.height"
-                rounded="rounded-2xl"
-                className="about-me__skeleton"
-              />
-            </Transition>
             <Image
               :src="profileImage"
               :width="IMAGE_DIMENSIONS.mobile.width"
@@ -80,8 +31,9 @@
               alt="Profile"
               variant="profile"
               rounded="2xl"
-              :class="['about-me__image', { 'opacity-0': !mobileImageLoaded }]"
-              @load="handleMobileImageLoad"
+              :show-skeleton="true"
+              skeleton-class="about-me__skeleton"
+              class="group-hover:scale-[1.05] group-hover:opacity-90"
             >
               <template #overlay>
                 <div class="about-me__image-overlay"></div>
@@ -141,23 +93,9 @@
       <!-- Desktop Image -->
       <div class="about-me__desktop-image">
         <div
-          class="about-me__desktop-image-wrapper"
+          class="about-me__desktop-image-wrapper group"
           :style="`min-height: ${IMAGE_DIMENSIONS.desktop.height}px`"
         >
-          <Transition
-            enter-active-class="transition-opacity duration-300"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            mode="out-in"
-          >
-            <ImageSkeleton
-              v-if="!imageLoaded"
-              :width="IMAGE_DIMENSIONS.desktop.width"
-              :height="IMAGE_DIMENSIONS.desktop.height"
-              rounded="rounded-3xl"
-              className="about-me__skeleton"
-            />
-          </Transition>
           <div class="about-me__desktop-image-container">
             <Image
               :src="profileImage"
@@ -166,8 +104,9 @@
               alt="Profile"
               variant="interactive"
               rounded="sm"
-              :class="['about-me__image', { 'opacity-0': !desktopImageLoaded }]"
-              @load="handleDesktopImageLoad"
+              :show-skeleton="true"
+              skeleton-class="about-me__skeleton"
+              class="group-hover:scale-[1.05] group-hover:opacity-90"
             />
           </div>
         </div>

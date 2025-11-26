@@ -7,7 +7,7 @@
   import PageLoader from '@/components/PageLoader.vue'
   import PageTransition from '@/components/PageTransition.vue'
   import CustomCursor from '@/components/CustomCursor.vue'
-  import NavBar from '@/components/NavBar.vue'
+  import NavBar from '@/components/layout/NavBar.vue'
   import Footer from '@/components/Footer.vue'
   import ChatButton from '@/components/chat/ChatButton.vue'
   import BackToTop from '@/components/BackToTop.vue'

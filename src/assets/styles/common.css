@@ -1,0 +1,26 @@
+@layer components {
+  /* Gradients */
+  .gradient__text--orange-yellow {
+    @apply bg-gradient-to-r from-[var(--gradient-orange-yellow-start)] to-[var(--gradient-orange-yellow-end)] bg-clip-text text-transparent;
+  }
+
+  .gradient__text--orange-yellow--hover {
+    @apply bg-gradient-to-r from-[var(--gradient-orange-yellow-start)] to-[var(--gradient-orange-yellow-end)] bg-clip-text;
+  }
+
+  .gradient__text--orange-yellow--hover:hover {
+    color: var(--transparent-text) !important;
+  }
+
+  .gradient__bg--orange-yellow {
+    @apply bg-gradient-to-r from-[var(--gradient-orange-yellow-start)] to-[var(--gradient-orange-yellow-end)];
+  }
+
+  .gradient__text--blue-purple {
+    @apply bg-gradient-to-r from-[var(--gradient-blue-purple-start)] to-[var(--gradient-blue-purple-end)] bg-clip-text text-transparent;
+  }
+
+  .gradient__bg--blue-purple {
+    @apply bg-gradient-to-r from-[var(--gradient-blue-purple-start)] to-[var(--gradient-blue-purple-end)];
+  }
+}

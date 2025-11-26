@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -156,13 +156,6 @@
       })
     </script>
 
-    <script>
-      document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
-      document.documentElement.style.colorScheme = 'dark'
-      localStorage.setItem('theme', 'dark')
-    </script>
-
     <link
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -196,7 +189,7 @@
     </script>
   </head>
   <body
-    class="flex flex-col bg-[#060606] font-sans text-gray-400 antialiased [overflow-anchor:none]"
+    class="flex flex-col bg-white font-sans text-gray-900 antialiased [overflow-anchor:none] dark:bg-[#060606] dark:text-gray-400"
   >
     <noscript>
       <iframe

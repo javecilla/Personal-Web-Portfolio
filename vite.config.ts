@@ -88,7 +88,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Core dependencies
+          // External dependencies - Rarely change, ideal for long-term caching
           if (
             id.includes('node_modules/vue') ||
             id.includes('node_modules/@vue')
@@ -114,27 +114,15 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             return 'vendor'
           }
-          // Rest of your existing chunks...
+
+          // Application utilities - Pure functions, safe to chunk
           if (id.includes('/composables/') || id.includes('/utils/')) {
             return 'utils'
           }
-          if (id.includes('/components/ui/')) {
-            return 'base-components'
-          }
-          if (id.includes('/components/sections/')) {
-            return 'sections'
-          }
-          if (id.includes('/stores/')) {
-            return 'stores'
-          }
-          if (id.includes('/services/')) {
-            return 'services'
-          }
-          if (id.includes('/types/')) {
-            return 'types'
-          }
 
-          return 'main'
+          // Let Vite automatically handle code-splitting for the rest
+          // This prevents circular dependencies and optimizes bundle size
+          // Removed: sections, stores, services, types chunking
         },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name ? assetInfo.name : 'unknown'

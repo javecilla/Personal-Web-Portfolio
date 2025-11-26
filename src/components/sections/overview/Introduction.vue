@@ -1,10 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="introduction">
+  <div class="introduction mb-[30px!important]">
     <h1 class="introduction__title">
       Hi, I'm
-      <span class="introduction__title-highlight">Jerome Avecilla</span>
+      <span class="gradient__text--orange-yellow">Jerome Avecilla</span>
     </h1>
     <p class="introduction__description" :style="{ contain: 'content' }">
       Building scalable web applications with Vue.js, TypeScript, and Laravel.
@@ -25,10 +25,6 @@
 
   .introduction__title {
     @apply text-3xl font-bold text-gray-600 dark:text-gray-400 sm:text-4xl md:text-5xl;
-  }
-
-  .introduction__title-highlight {
-    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
   }
 
   .introduction__description {

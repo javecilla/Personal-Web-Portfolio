@@ -4,7 +4,7 @@
   import { achievements } from '@/data/achievements'
   import Button from '@/components/ui/Button.vue'
   import AchievementDot from '@/components/sections/achievements/AchievementDot.vue'
-  import ImageSkeleton from '@/components/ImageSkeleton.vue'
+  import Badge from '@/components/ui/Badge.vue'
   import Image from '@/components/ui/Image.vue'
   import { useSwipe } from '@/composables/useSwipe'
 
@@ -15,11 +15,6 @@
   const currentSlide = ref(0)
   const isAnimating = ref(false)
   const slideDirection = ref<'left' | 'right'>('right')
-  const imageLoaded = ref<{ [key: number]: boolean }>({})
-
-  const handleImageLoad = (index: number) => {
-    imageLoaded.value[index] = true
-  }
 
   /**
    * Handles slide navigation with animation
@@ -126,28 +121,12 @@
                 <div class="achievements__grid">
                   <!-- Image Section with Skeleton -->
                   <div class="achievements__image-container group">
-                    <Transition
-                      enter-active-class="transition-opacity duration-300"
-                      enter-from-class="opacity-0"
-                      enter-to-class="opacity-100"
-                    >
-                      <ImageSkeleton
-                        v-if="!imageLoaded[index]"
-                        rounded="rounded-xl"
-                        className="absolute inset-0 w-full h-full"
-                      />
-                    </Transition>
-
                     <Image
                       :src="achievement.image"
                       :alt="achievement.title"
                       variant="achievement"
                       rounded="xl"
-                      :class="[
-                        'achievements__image',
-                        { 'opacity-0': !imageLoaded[index] },
-                      ]"
-                      @load="() => handleImageLoad(index)"
+                      class="achievements__image"
                     >
                       <template #overlay>
                         <div class="achievements__image-overlay"></div>
@@ -159,9 +138,9 @@
                   <div class="achievements__content">
                     <div class="achievements__content-inner">
                       <div class="achievements__category">
-                        <span class="achievements__category-text">
+                        <Badge variant="default">
                           {{ achievement.category }}
-                        </span>
+                        </Badge>
                       </div>
 
                       <h6 class="achievements__content-title">
@@ -335,18 +314,6 @@
 
   .achievements__category {
     @apply inline-block;
-  }
-
-  .achievements__category-text {
-    @apply whitespace-nowrap rounded-full border-2 border-blue-500/50 bg-blue-50/50 px-3 py-1.5 text-sm font-medium text-blue-600 dark:border-blue-400/50 dark:bg-blue-900/10 dark:text-blue-400;
-  }
-
-  .achievements__category-text:hover {
-    @apply bg-gray-300;
-  }
-
-  .dark .achievements__category-text:hover {
-    @apply bg-zinc-700;
   }
 
   .achievements__content-title {

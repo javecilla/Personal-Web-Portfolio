@@ -1,16 +1,18 @@
 <script setup lang="ts">
-  import { MoonIcon } from 'lucide-vue-next'
-  // import { useDarkMode } from "@/composables/useDarkMode";
-
-  // const { isDarkMode, toggleTheme } = useDarkMode();
+  import { MoonIcon, SunIcon } from 'lucide-vue-next'
+  import Button from '@/components/ui/Button.vue'
+  import { useDarkMode } from '@/composables/useDarkMode'
+  const { isDarkMode, toggleTheme } = useDarkMode()
 </script>
 
 <template>
-  <!-- @click="toggleTheme"  -->
-  <button
-    class="flex cursor-not-allowed items-center justify-center rounded-full bg-zinc-800 p-2 transition-all duration-300 ease-in-out hover:bg-zinc-700"
-    title="Dark mode only"
+  <Button
+    variant="icon"
+    :ariaLabel="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+    :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+    @click="toggleTheme"
   >
-    <MoonIcon class="h-5 w-5 text-white" />
-  </button>
+    <SunIcon v-if="isDarkMode" class="h-5 w-5 text-white" />
+    <MoonIcon v-else class="h-5 w-5 text-gray-900" />
+  </Button>
 </template>

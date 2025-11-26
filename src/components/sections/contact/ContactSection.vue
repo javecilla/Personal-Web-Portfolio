@@ -1,30 +1,58 @@
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
   import { socials } from '@/data/socials'
-  import ImageSkeleton from '@/components/ImageSkeleton.vue'
+  import Button from '@/components/ui/Button.vue'
+  import Image from '@/components/ui/Image.vue'
+  import Link from '@/components/ui/Link.vue'
   import { contactService } from '@/services/contactService'
 
   defineProps<{
     id?: string
   }>()
 
-  // Track loading state for each icon
-  const loadedIcons = ref(new Set<string>())
-  const handleIconLoad = (skillName: string) => {
-    loadedIcons.value.add(skillName)
-  }
+  const validateField = (field: keyof typeof form.value) => {
+    const value = form.value[field]
+    let error = ''
 
-  const isIconLoaded = (skillName: string): boolean => {
-    return loadedIcons.value.has(skillName)
-  }
-
-  const clearError = (field: string) => {
-    if (errors.value[field]) {
-      errors.value = {
-        ...errors.value,
-        [field]: '',
-      }
+    switch (field) {
+      case 'name':
+        if (!value.trim()) {
+          error = 'Name is required'
+        } else if (value.length < 4) {
+          error = 'Name must be at least 4 characters'
+        } else if (!/^[a-zA-Z\s]*$/.test(value)) {
+          error = 'Name should not contain numbers or special characters'
+        }
+        break
+      case 'email':
+        if (!value.trim()) {
+          error = 'Email is required'
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          error = 'Invalid email format'
+        }
+        break
+      case 'subject':
+        if (!value.trim()) {
+          error = 'Subject is required'
+        } else if (value.length < 6) {
+          error = 'Subject must be at least 6 characters'
+        }
+        break
+      case 'message':
+        if (!value.trim()) {
+          error = 'Message is required'
+        } else if (value.length < 6) {
+          error = 'Message must be at least 6 characters'
+        }
+        break
     }
+
+    errors.value = {
+      ...errors.value,
+      [field]: error,
+    }
+
+    return !error
   }
 
   const form = ref({
@@ -35,7 +63,7 @@
   })
 
   const handleInput = (field: keyof typeof form.value) => {
-    clearError(field)
+    validateField(field)
     if (errors.value.submit) {
       errors.value.submit = ''
     }
@@ -48,54 +76,43 @@
   const errors = ref<Record<string, string>>({})
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {}
+    const fields = Object.keys(form.value) as (keyof typeof form.value)[]
+    let isValid = true
 
-    if (!form.value.name.trim()) {
-      newErrors.name = 'Name is required'
-    }
+    fields.forEach((field) => {
+      if (!validateField(field)) {
+        isValid = false
+      }
+    })
 
-    if (!form.value.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
-      newErrors.email = 'Invalid email format'
-    }
-
-    if (!form.value.subject.trim()) {
-      newErrors.subject = 'Subject is required'
-    }
-
-    if (!form.value.message.trim()) {
-      newErrors.message = 'Message is required'
-    }
-
-    errors.value = newErrors
-    return Object.keys(newErrors).length === 0
+    return isValid
   }
 
-  let recaptchaWidget: number
+  // Temporarily disabled reCAPTCHA
+  // let recaptchaWidget: number
 
-  onMounted(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.google.com/recaptcha/api.js?render=explicit'
-    script.async = true
-    script.defer = true
-    document.head.appendChild(script)
+  // onMounted(() => {
+  //   const script = document.createElement('script')
+  //   script.src = 'https://www.google.com/recaptcha/api.js?render=explicit'
+  //   script.async = true
+  //   script.defer = true
+  //   document.head.appendChild(script)
 
-    script.onload = () => {
-      window.grecaptcha.ready(() => {
-        recaptchaWidget = window.grecaptcha.render('recaptcha', {
-          sitekey: import.meta.env.VITE_GOOGLE_RECAPTCHA_FRONTEND_KEY,
-          theme: 'light',
-          callback: () => {
-            // Clear recaptcha error when user completes the challenge
-            if (errors.value.recaptcha) {
-              errors.value.recaptcha = ''
-            }
-          },
-        })
-      })
-    }
-  })
+  //   script.onload = () => {
+  //     window.grecaptcha.ready(() => {
+  //       recaptchaWidget = window.grecaptcha.render('recaptcha', {
+  //         sitekey: import.meta.env.VITE_GOOGLE_RECAPTCHA_FRONTEND_KEY,
+  //         theme: 'light',
+  //         callback: () => {
+  //           // Clear recaptcha error when user completes the challenge
+  //           if (errors.value.recaptcha) {
+  //             errors.value.recaptcha = ''
+  //           }
+  //         },
+  //       })
+  //     })
+  //   }
+  // })
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault()
@@ -106,16 +123,17 @@
 
     try {
       isSubmitting.value = true
-      const recaptchaToken =
-        await window.grecaptcha.getResponse(recaptchaWidget)
+      // Temporarily disabled reCAPTCHA validation
+      // const recaptchaToken =
+      //   await window.grecaptcha.getResponse(recaptchaWidget)
 
-      if (!recaptchaToken) {
-        errors.value.recaptcha = 'Please complete the reCAPTCHA'
-        return
-      }
+      // if (!recaptchaToken) {
+      //   errors.value.recaptcha = 'Please complete the reCAPTCHA'
+      //   return
+      // }
 
       console.log(form.value)
-      await contactService.sendMessage(form.value, recaptchaToken)
+      await contactService.sendMessage(form.value, '')
 
       form.value = {
         name: '',
@@ -123,7 +141,7 @@
         subject: '',
         message: '',
       }
-      window.grecaptcha.reset(recaptchaWidget)
+      // window.grecaptcha.reset(recaptchaWidget) // Temporarily disabled
 
       errors.value = {}
       successMessage.value =
@@ -152,43 +170,24 @@
       <div class="contact-content">
         <div class="contact-social">
           <div class="contact-social__links">
-            <a
+            <Link
               v-for="link in socials"
               :key="link.label"
               :href="link.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              :title="link.label"
+              :external="true"
+              :ariaLabel="link.label"
               class="social-link group"
             >
-              <Transition
-                enter-active-class="transition-opacity duration-300"
-                enter-from-class="opacity-0"
-                enter-to-class="opacity-100"
-                leave-active-class="transition-opacity duration-300"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
-              >
-                <ImageSkeleton
-                  v-show="!isIconLoaded(link.label)"
-                  rounded="rounded-md"
-                  className="skills__icon-skeleton"
-                />
-              </Transition>
-              <img
+              <Image
                 :src="link.icon"
                 :alt="link.label"
-                :title="link.label"
                 class="social-link__icon"
-                :class="{
-                  'social-link__icon--loaded': isIconLoaded(link.label),
-                }"
-                @load="handleIconLoad(link.label)"
+                :show-skeleton="true"
               />
               <span class="social-link__label">
                 {{ link.label }}
               </span>
-            </a>
+            </Link>
           </div>
         </div>
         <div class="contact-box">
@@ -282,23 +281,25 @@
               }}</span>
             </div>
 
-            <!-- Replace the reCAPTCHA section with this updated version -->
-            <div class="form-group col-span-full">
+            <!-- Temporarily disabled reCAPTCHA -->
+            <!-- <div class="form-group col-span-full">
               <div class="recaptcha-container">
                 <div id="recaptcha"></div>
                 <span v-if="errors.recaptcha" class="recaptcha-error">
                   {{ errors.recaptcha }}
                 </span>
               </div>
-            </div>
+            </div> -->
 
-            <button
+            <Button
               type="submit"
-              class="submit-button"
+              variant="primary"
+              class="w-full"
               :disabled="isSubmitting"
+              ariaLabel="Send Message"
             >
               <span>{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
-            </button>
+            </Button>
           </form>
         </div>
       </div>
@@ -307,9 +308,6 @@
 </template>
 
 <style scoped>
-  .social-link__icon--loaded {
-    @apply z-20 opacity-100;
-  }
   .contact-section {
     @apply space-y-10 rounded-2xl p-6 sm:space-y-16 lg:p-8;
   }
@@ -375,10 +373,6 @@
 
   .form-textarea {
     @apply resize-none;
-  }
-
-  .submit-button {
-    @apply flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-3 font-medium text-white transition-all duration-200 duration-300 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .form-input:hover,

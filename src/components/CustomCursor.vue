@@ -49,7 +49,11 @@
     left: 0;
     width: 8px;
     height: 8px;
-    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    background: linear-gradient(
+      to right,
+      var(--gradient-orange-yellow-start),
+      var(--gradient-orange-yellow-end)
+    );
     border-radius: 50%;
     transform-origin: center;
     transition:
@@ -66,8 +70,8 @@
     left: 0;
     width: 40px;
     height: 40px;
-    background-color: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    background-color: rgba(var(--rgb-orange-primary), 0.1);
+    border: 1px solid rgba(var(--rgb-yellow-primary), 0.3);
     border-radius: 50%;
     margin: -20px 0 0 -20px;
     transition: all 0.1s ease-out;
@@ -82,7 +86,7 @@
   .cursor-dot.cursor-pointer,
   .cursor-outline.cursor-pointer {
     transform: scale(1.5);
-    background-color: rgba(139, 92, 246, 0.15);
+    background-color: rgba(var(--rgb-orange-primary), 0.15);
   }
 
   /* Show default cursor for touch devices */

@@ -1,8 +1,11 @@
 <script setup lang="ts">
   import 'prismjs/themes/prism-tomorrow.css'
   import { ref } from 'vue'
-  import Introduction from '@/components/sections/overview/introduction/Introduction.vue'
-  import CodeEditor from '@/components/sections/overview/code-editor/CodeEditor.vue'
+  import Introduction from '@/components/sections/overview/Introduction.vue'
+  import AboutMeSection from '@/components/sections/overview/AboutMe.vue'
+  import AppleWebView from '@/components/AppleWebView.vue'
+  import CodeEditor from '@/components/CodeEditor.vue'
+  import { min } from 'lodash'
 
   defineProps<{
     id?: string
@@ -10,33 +13,16 @@
 
   const aboutMeCode = ref(
     `<script setup lang="ts">
-//code...
+   /*code...*/
 </\script>
 
 <template>
-  <section
-    class="dark:bg-zinc-900/10 bg-gray-50 rounded-2xl transition-all duration-500 ease-in-out space-y-6 p-3 xl:p-2"
-  >
+  <section class="space-y-6 rounded-2xl bg-gray-50 p-3 transition-all duration-500 ease-in-out dark:bg-zinc-900/10 xl:p-2">
     <div class="about-me__grid">
       <!-- Mobile Image Container -->
       <div class="about-me__mobile-image">
-        <div
-          class="about-me__image-wrapper">
+        <div class="about-me__image-wrapper">
           <div class="about-me__image-container">
-            <Transition
-              enter-active-class="transition-opacity duration-300"
-              enter-from-class="opacity-0"
-              enter-to-class="opacity-100"
-              mode="out-in"
-            >
-              <ImageSkeleton
-                v-if="!imageLoaded"
-                :width="IMAGE_DIMENSIONS.mobile.width"
-                :height="IMAGE_DIMENSIONS.mobile.height"
-                rounded="rounded-2xl"
-                className="about-me__skeleton"
-              />
-            </Transition>
             <Image
               :src="profileImage"
               :width="IMAGE_DIMENSIONS.mobile.width"
@@ -44,8 +30,8 @@
               alt="Profile"
               variant="profile"
               rounded="2xl"
-              :class="['about-me__image', { 'opacity-0': !mobileImageLoaded }]"
-              @load="handleMobileImageLoad"
+              :show-skeleton="true"
+              skeleton-class="about-me__skeleton"
             >
               <template #overlay>
                 <div class="about-me__image-overlay"></div>
@@ -104,21 +90,8 @@
       </div>
       <!-- Desktop Image -->
       <div class="about-me__desktop-image">
-        <div class="about-me__desktop-image-wrapper">
-          <Transition
-            enter-active-class="transition-opacity duration-300"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            mode="out-in"
-          >
-            <ImageSkeleton
-              v-if="!imageLoaded"
-              :width="IMAGE_DIMENSIONS.desktop.width"
-              :height="IMAGE_DIMENSIONS.desktop.height"
-              rounded="rounded-3xl"
-              className="about-me__skeleton"
-            />
-          </Transition>
+        <div
+          class="about-me__desktop-image-wrapper">
           <div class="about-me__desktop-image-container">
             <Image
               :src="profileImage"
@@ -127,8 +100,8 @@
               alt="Profile"
               variant="interactive"
               rounded="sm"
-              :class="['about-me__image', { 'opacity-0': !desktopImageLoaded }]"
-              @load="handleDesktopImageLoad"
+              :show-skeleton="true"
+              skeleton-class="about-me__skeleton"
             />
           </div>
         </div>
@@ -138,13 +111,13 @@
 </template>
 
 <style scoped>
- /*code...*/
+  /*code...*/
 </style>`.replace(/\n\n+/g, '\n')
   )
 </script>
 
 <template>
-  <section :id="id" class="overview mt-[-30px!important]">
+  <section :id="id" class="overview">
     <Suspense>
       <template #default>
         <div class="gap-4 sm:gap-6">
@@ -154,8 +127,18 @@
             <!-- Overview/Introduction Section -->
             <Introduction />
 
-            <!-- Interactive Code Editor Section -->
-            <CodeEditor :code="aboutMeCode" />
+            <!-- Interactive Apple WebView with Code Editor -->
+            <AppleWebView :tabs="['Preview', 'Code']" default-tab="preview">
+              <!-- Preview Tab Content -->
+              <template #preview>
+                <AboutMeSection />
+              </template>
+
+              <!-- Code Tab Content -->
+              <template #code>
+                <CodeEditor :code="aboutMeCode" language="vue" />
+              </template>
+            </AppleWebView>
           </div>
         </div>
       </template>

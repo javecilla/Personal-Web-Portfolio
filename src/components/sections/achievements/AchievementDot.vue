@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import Button from '@/components/ui/Button.vue'
+
   interface Props {
     index: number
     isActive: boolean
@@ -14,25 +16,21 @@
 </script>
 
 <template>
-  <button
+  <Button
     :id="id"
+    variant="dot"
     role="tab"
     :class="[
-      'achievements__dot--button',
-      '-mt-5 h-1 w-1 rounded-full transition-colors duration-200 md:mt-[60px] md:h-2 md:w-2',
-      'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+      '-mt-5 h-1 w-1 transition-all duration-200 md:mt-[60px] md:h-2 md:w-2',
       isActive
-        ? 'bg-blue-500 hover:bg-blue-600'
+        ? 'bg-[var(--color-orange-vibrant)]'
         : 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500',
     ]"
-    :aria-label="`Achievement ${index + 1} of ${totalSlides}`"
+    :ariaLabel="`Achievement ${index + 1} of ${totalSlides}`"
     :aria-selected="isActive"
     :aria-controls="ariaControls"
     :tabindex="isActive ? 0 : -1"
-    type="button"
     @click="$emit('select', index)"
-    @keydown.space.prevent="$emit('select', index)"
-    @keydown.enter.prevent="$emit('select', index)"
     @keydown.arrow-right.prevent="$emit('select', (index + 1) % totalSlides)"
     @keydown.arrow-left.prevent="
       $emit('select', index === 0 ? totalSlides - 1 : index - 1)
@@ -45,5 +43,5 @@
           : `Go to achievement ${index + 1}`
       }}
     </span>
-  </button>
+  </Button>
 </template>

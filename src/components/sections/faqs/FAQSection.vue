@@ -107,10 +107,28 @@
   }
 
   .faq-item__header[aria-expanded='true'] .faq-item__number {
-    @apply bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400;
+    background-color: color-mix(
+      in srgb,
+      var(--color-orange-vibrant),
+      transparent 90%
+    );
+    color: var(--color-orange-vibrant);
+  }
+
+  html.dark .faq-item__header[aria-expanded='true'] .faq-item__number {
+    background-color: color-mix(
+      in srgb,
+      var(--color-orange-vibrant),
+      transparent 80%
+    );
+    color: var(--color-orange-vibrant);
   }
 
   .faq-item[aria-expanded='true'] {
-    @apply border-blue-500/20;
+    border-color: color-mix(
+      in srgb,
+      var(--color-orange-vibrant),
+      transparent 80%
+    );
   }
 </style>

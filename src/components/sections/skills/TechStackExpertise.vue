@@ -2,21 +2,10 @@
   import { techStacksExpertise } from '@/data/techStackExpertise'
   import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
   import codeIcon from '@global/gif_webp/code-icon.webp?url'
-  import ImageSkeleton from '@/components/ImageSkeleton.vue'
-
-  const loadedIcons = ref(new Set<string>())
-  const isCenterIconLoaded = ref(false)
+  import Image from '@/components/ui/Image.vue'
 
   const containerRef = ref<HTMLElement | null>(null)
   const containerWidth = ref(240) // default fallback
-
-  const handleIconLoad = (iconName: string) => {
-    loadedIcons.value.add(iconName)
-  }
-
-  const isIconLoaded = (iconName: string): boolean => {
-    return loadedIcons.value.has(iconName)
-  }
 
   const updateContainerWidth = () => {
     if (containerRef.value) {
@@ -74,33 +63,20 @@
     <div class="expertise__container group" ref="containerRef">
       <!-- Central circle with items -->
       <div class="expertise__circle">
-        <!-- Center logo with skeleton -->
+        <!-- Center logo -->
         <div class="expertise__center">
-          <Transition
-            enter-active-class="transition-opacity duration-300"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            leave-active-class="transition-opacity duration-300"
-            leave-from-class="opacity-100"
-            leave-to-class="opacity-0"
-          >
-            <ImageSkeleton
-              v-show="!isCenterIconLoaded"
-              rounded="rounded-full"
-              className="expertise__center-skeleton"
-            />
-          </Transition>
-          <img
+          <Image
             :src="codeIcon"
-            width="60"
-            alt="gif"
+            alt="Code Icon"
+            :width="32"
+            :height="32"
             class="expertise__center-gif"
-            :class="{ 'expertise__center-gif--loaded': isCenterIconLoaded }"
-            @load="isCenterIconLoaded = true"
+            :show-skeleton="true"
+            skeleton-class="expertise__center-skeleton"
           />
         </div>
 
-        <!-- Tech stack items with skeletons -->
+        <!-- Tech stack items -->
         <div
           v-for="tech in techWithPositions"
           :key="tech.name"
@@ -109,28 +85,12 @@
         >
           <div class="expertise__icon-wrapper">
             <div class="expertise__icon-container">
-              <Transition
-                enter-active-class="transition-opacity duration-300"
-                enter-from-class="opacity-0"
-                enter-to-class="opacity-100"
-                leave-active-class="transition-opacity duration-300"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
-              >
-                <ImageSkeleton
-                  v-show="!isIconLoaded(tech.name)"
-                  rounded="rounded-xl"
-                  className="expertise__icon-skeleton"
-                />
-              </Transition>
-              <img
+              <Image
                 :src="tech.icon"
                 :alt="tech.name"
                 class="expertise__icon-img"
-                :class="{
-                  'expertise__icon-img--loaded': isIconLoaded(tech.name),
-                }"
-                @load="handleIconLoad(tech.name)"
+                :show-skeleton="true"
+                skeleton-class="expertise__icon-skeleton"
               />
             </div>
             <span class="expertise__name">{{ tech.name }}</span>
@@ -145,24 +105,10 @@
   .expertise {
     @apply w-full py-10;
   }
-  /*
-.expertise {
-  @apply w-full py-10;
-}
-*/
 
   .expertise__container {
     @apply relative mx-auto aspect-square w-[15rem] rounded-full border border-gray-200 bg-gray-50 dark:border-zinc-700/10 dark:bg-zinc-900/5 lg:w-80;
   }
-
-  /*
-.expertise__container {
-  @apply relative lg:w-80 w-[19rem] mx-auto aspect-square
-         bg-gray-50 dark:bg-zinc-900/5
-         border border-gray-200 dark:border-zinc-700/10
-         rounded-full;
-}
-*/
 
   .expertise__circle {
     @apply absolute inset-0 rounded-full;
@@ -171,37 +117,13 @@
   .expertise__center {
     @apply absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white dark:border-zinc-700/10 dark:bg-zinc-900/10;
   }
-  /*
-.expertise__center {
-  @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-         w-16 h-16 
-         flex items-center justify-center
-         rounded-full
-         bg-white dark:bg-zinc-900/10
-         border border-gray-200 dark:border-zinc-700/10;
-}
-*/
 
   .expertise__center-skeleton {
-    @apply absolute left-1/2 top-1/2 z-10 h-6 w-6 -translate-x-1/2 -translate-y-1/2;
+    @apply absolute left-1/2 top-1/2 z-10 h-8 w-8 -translate-x-1/2 -translate-y-1/2;
   }
-
-  /*
-.expertise__center-skeleton {
-  @apply w-8 h-8  
-         absolute
-         left-1/2 top-1/2
-         -translate-x-1/2 -translate-y-1/2
-         z-10;
-}
-*/
 
   .expertise__center-gif {
-    @apply absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 object-contain opacity-0 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0;
-  }
-
-  .expertise__center-gif--loaded {
-    @apply z-20 opacity-70;
+    @apply absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 object-contain opacity-70 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0;
   }
 
   .expertise__item {
@@ -212,16 +134,6 @@
     @apply flex flex-col items-center gap-2 rounded-xl bg-gray-50 p-4 transition-all duration-300 group-hover:scale-110 dark:bg-zinc-900/10;
   }
 
-  /*
-.expertise__icon-wrapper {
-  @apply flex flex-col items-center gap-2
-         p-4 rounded-xl
-         bg-gray-50 dark:bg-zinc-900/10
-         transition-all duration-300
-         group-hover:scale-110;
-}
-*/
-
   .expertise__icon-container {
     @apply relative h-10 w-10 lg:h-12 lg:w-12;
   }
@@ -230,31 +142,8 @@
     @apply absolute inset-0 z-10 h-12 w-12;
   }
 
-  /*
-.expertise__icon-container {
-  @apply relative w-12 h-12;
-}
-
-.expertise__icon-skeleton {
-  @apply w-12 h-12 absolute inset-0 z-10;
-}
-*/
-
   .expertise__icon-img {
-    @apply absolute inset-0 h-12 w-12 opacity-0 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0;
-  }
-  /*
-.expertise__icon-img {
-  @apply w-12 h-12
-         opacity-0 grayscale
-         transition-all duration-300
-         group-hover:opacity-100 group-hover:grayscale-0
-         absolute inset-0;
-}
-*/
-
-  .expertise__icon-img--loaded {
-    @apply z-20 opacity-70;
+    @apply absolute inset-0 h-12 w-12 opacity-70 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0;
   }
 
   .expertise__name {

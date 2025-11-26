@@ -1,11 +1,13 @@
 <script setup lang="ts">
   import { ref, onMounted, onUnmounted } from 'vue'
+
   import { GithubIcon } from 'lucide-vue-next'
   import ThemeToggle from '@/components/ThemeToggle.vue'
   import menuIcon from '@global/svgs/menu-icon.svg?raw'
-  import Sidebar from '@/components/Sidebar.vue'
+  import Sidebar from '@/components/layout/Sidebar.vue'
   import { navigationItems } from '@/data/navigation'
   import Link from '@/components/ui/Link.vue'
+  import Button from '@/components/ui/Button.vue'
 
   const isScrolled = ref(false)
   const isSidebarOpen = ref(false)
@@ -57,15 +59,11 @@
   >
     <div class="mx-auto max-w-[1230px] px-4 sm:px-6 lg:px-1">
       <div class="flex h-16 items-center justify-between">
-        <!-- Logo -->
         <div class="flex items-center">
           <Link href="#about" ariaLabel="Home" class="text-2xl font-bold">
-            <span
-              class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
-              >JA.</span
-            >
+            <span class="gradient__text--orange-yellow">JA.</span>
           </Link>
-          <!-- Desktop Navigation -->
+
           <nav class="ml-10 hidden space-x-8 md:flex">
             <Link
               v-for="item in navigationItems"
@@ -75,8 +73,8 @@
               variant="nav"
               :class="[
                 isActive(item.href)
-                  ? 'text-bold text-blue-500 dark:text-blue-400'
-                  : 'text-gray-600 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:bg-clip-text hover:text-transparent dark:text-gray-300',
+                  ? 'text-bold gradient__text--orange-yellow'
+                  : 'gradient__text--orange-yellow--hover text-gray-600 dark:text-gray-300',
               ]"
             >
               {{ item.name }}
@@ -92,17 +90,16 @@
             ariaLabel="Visit my GitHub profile"
             variant="icon"
             external
-            class="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 transition-all duration-300 ease-in-out hover:bg-gray-300 dark:bg-zinc-800 dark:hover:bg-zinc-700"
           >
-            <GithubIcon class="h-5 w-5 text-gray-900 dark:text-white" />
+            <GithubIcon class="h-5 w-5" />
           </Link>
 
-          <!-- Mobile menu button -->
-          <button
+          <Button
             type="button"
-            class="inline-flex items-center justify-center rounded-full bg-gray-200 p-2 transition-all duration-300 ease-in-out hover:bg-gray-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 md:hidden"
+            variant="icon"
+            class="md:hidden"
             :aria-expanded="isSidebarOpen"
-            :aria-label="
+            :ariaLabel="
               isSidebarOpen ? mobileMenuLabels.close : mobileMenuLabels.open
             "
             @click="isSidebarOpen = true"
@@ -115,16 +112,17 @@
               class="flex h-5 w-5 items-center justify-center text-gray-900 dark:text-white"
               aria-hidden="true"
             ></div>
-          </button>
+          </Button>
 
-          <Link
-            href="javascript:void(0)"
+          <Button
             ariaLabel="Download my resume"
-            variant="button"
-            class="hidden cursor-not-allowed items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 px-6 text-center transition-all duration-300 hover:opacity-90 md:flex"
+            variant="primary"
+            type="button"
+            class="hidden px-6 md:flex"
+            :disabled="true"
           >
             <span class="font-medium text-white">Resume</span>
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

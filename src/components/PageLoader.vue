@@ -55,7 +55,7 @@
             class="mx-auto h-1 w-48 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800"
           >
             <div
-              class="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300"
+              class="h-full rounded-full bg-[var(--color-orange-vibrant)] transition-all duration-300"
               :style="{ width: `${loadingProgress}%` }"
             ></div>
           </div>

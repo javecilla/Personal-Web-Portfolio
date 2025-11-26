@@ -29,3 +29,4 @@ lerna-debug.log*
 # Custom directories
 notes
 .env
+.agent

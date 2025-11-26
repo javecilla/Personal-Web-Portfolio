@@ -2,6 +2,8 @@
   import { XIcon } from 'lucide-vue-next'
   import { navigationItems } from '@/data/navigation'
   import { ref, onMounted, onUnmounted } from 'vue'
+  import Link from '@/components/ui/Link.vue'
+  import Button from '@/components/ui/Button.vue'
 
   defineProps<{
     isOpen: boolean
@@ -61,12 +63,14 @@
             <span class="text-lg font-bold text-gray-900 dark:text-white"
               >.me</span
             >
-            <button
-              class="rounded-full p-2 transition-colors hover:bg-gray-100/50 dark:hover:bg-zinc-800/50"
+            <Button
+              variant="icon"
+              ariaLabel="Close sidebar"
+              type="button"
               @click="onClose"
             >
               <XIcon class="h-5 w-5 text-gray-900 dark:text-white" />
-            </button>
+            </Button>
           </div>
 
           <!-- Nav items with icons -->
@@ -79,22 +83,34 @@
               leave-from-class="opacity-100 translate-x-0"
               leave-to-class="opacity-0 translate-x-4"
             >
-              <a
+              <Link
                 v-for="(item, index) in navigationItems"
                 :key="item.name"
                 :href="item.href"
+                :ariaLabel="`Navigate to ${item.name}`"
                 :style="{ transitionDelay: `${index * 50}ms` }"
                 class="flex items-center space-x-3 rounded-lg p-3 transition-colors"
                 :class="[
                   isActive(item.href)
-                    ? 'bg-blue-50 text-blue-500 dark:bg-blue-900/10 dark:text-blue-400'
+                    ? 'bg-[rgba(var(--rgb-orange-primary),0.1)] dark:bg-[rgba(var(--rgb-orange-primary),0.1)]'
                     : 'text-gray-600 hover:bg-gray-100/50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-zinc-800/50 dark:hover:text-white',
                 ]"
                 @click="onClose"
               >
-                <component :is="item.icon" class="h-5 w-5" />
-                <span>{{ item.name }}</span>
-              </a>
+                <component
+                  :is="item.icon"
+                  class="h-5 w-5"
+                  :class="{
+                    'text-[var(--color-orange-vibrant)]': isActive(item.href),
+                  }"
+                />
+                <span
+                  :class="{
+                    'gradient__text--orange-yellow': isActive(item.href),
+                  }"
+                  >{{ item.name }}</span
+                >
+              </Link>
             </TransitionGroup>
           </nav>
         </div>

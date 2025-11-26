@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <section :id="id" class="tech-stack section-bg" style="margin-top: 10px">
+  <section :id="id" class="tech-stack section-bg mt-[-50px!important]">
     <!-- Section Header -->
     <div class="tech-stack__header">
       <h4 class="tech-stack__title section-title">Tech Stacks and Tools</h4>
@@ -54,13 +54,5 @@
 
   .tech-stack__subheader {
     @apply text-center;
-  }
-
-  :deep(img) {
-    @apply opacity-70 transition-all duration-300;
-  }
-
-  :deep(.group:hover img) {
-    @apply opacity-100;
   }
 </style>

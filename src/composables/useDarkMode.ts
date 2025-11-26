@@ -1,24 +1,35 @@
 import { ref, onMounted } from 'vue'
 
 export function useDarkMode() {
-  const isDarkMode = ref(true)
+  const isDarkMode = ref(false)
 
   const toggleTheme = () => {
-    // Disable theme toggle - always keep dark mode
-    console.log('Theme toggle disabled - dark mode only')
+    isDarkMode.value = !isDarkMode.value
+    updateTheme()
+  }
+
+  const updateTheme = () => {
+    if (isDarkMode.value) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
   }
 
   onMounted(() => {
-    // Force dark mode regardless of user preferences or localStorage
-    isDarkMode.value = true
-    document.documentElement.classList.add('dark')
-    document.documentElement.classList.remove('light')
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches
 
-    // Override any existing theme preference
-    localStorage.setItem('theme', 'dark')
-
-    // Force color scheme to dark
-    document.documentElement.style.colorScheme = 'dark'
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      isDarkMode.value = true
+    } else {
+      isDarkMode.value = false
+    }
+    updateTheme()
   })
 
   return {

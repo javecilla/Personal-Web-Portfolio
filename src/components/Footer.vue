@@ -1,14 +1,6 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
   import picture from '@global/images/formal_black.png'
-  import ImageSkeleton from '@/components/ImageSkeleton.vue'
-
-  const isImageLoaded = ref(false)
-
-  const handleImageLoad = () => {
-    ;``
-    isImageLoaded.value = true
-  }
+  import Image from '@/components/ui/Image.vue'
 </script>
 
 <template>
@@ -22,23 +14,12 @@
         <!-- Profile & Details -->
         <div class="footer__profile">
           <div class="footer__profile-wrapper">
-            <Transition
-              enter-active-class="transition-opacity duration-300"
-              enter-from-class="opacity-0"
-              enter-to-class="opacity-100"
-            >
-              <ImageSkeleton
-                v-show="!isImageLoaded"
-                rounded="rounded-full"
-                className="footer__profile-skeleton"
-              />
-            </Transition>
-            <img
+            <Image
               :src="picture"
               alt="User"
-              class="footer__profile-image"
-              :class="{ 'footer__profile-image--loaded': isImageLoaded }"
-              @load="handleImageLoad"
+              class="h-full w-full"
+              :show-skeleton="true"
+              rounded="full"
             />
           </div>
         </div>
@@ -60,7 +41,7 @@
         Teamfight Tactics (League of Legends), and for PC, I’m all about League
         of Legends, and Crossfire. So, if you’re up for a game or want to
         collaborate on a web development project (or both), hit me up! Let’s
-        team up, code, and maybe win some matches along the way! 🎮
+        team up, code, and maybe win some matches along the way! 🔥
       </p>
     </div>
   </footer>
@@ -83,8 +64,8 @@
       ),
       radial-gradient(
         circle at center,
-        theme('colors.blue.700/20'),
-        theme('colors.purple.500/10'),
+        theme('colors.orange.500/20'),
+        theme('colors.yellow.500/10'),
         transparent 40%
       );
     filter: blur(60px);
@@ -102,8 +83,8 @@
       ),
       radial-gradient(
         circle at center,
-        theme('colors.blue.500/10'),
-        theme('colors.purple.400/5'),
+        theme('colors.orange.500/10'),
+        theme('colors.yellow.400/5'),
         transparent 40%
       );
     @apply opacity-90;
@@ -124,18 +105,6 @@
     @apply relative h-12 w-12;
   }
 
-  .footer__profile-skeleton {
-    @apply absolute inset-0 z-10;
-  }
-
-  .footer__profile-image {
-    @apply absolute inset-0 h-full w-full rounded-full opacity-0 transition-all duration-300;
-  }
-
-  .footer__profile-image--loaded {
-    @apply z-20 opacity-100;
-  }
-
   .footer__info {
     @apply space-y-0.5 text-left;
   }
@@ -149,7 +118,7 @@
   }
 
   .footer__title {
-    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text px-4 text-2xl font-bold text-transparent sm:px-0 sm:text-3xl md:text-4xl lg:text-5xl;
+    @apply bg-gradient-to-r from-[var(--gradient-orange-yellow-start)] to-[var(--gradient-orange-yellow-end)] bg-clip-text px-4 text-2xl font-bold text-transparent sm:px-0 sm:text-3xl md:text-4xl lg:text-5xl;
   }
 
   .footer__message {

@@ -1,3 +1,7 @@
+@import './common.css';
+@import './components.css';
+@import './utilities.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,23 +25,60 @@
   --text-muted-dark: #a1a1aa;
   --text-body: #333333;
   --text-body-dark: #e4e4e7;
-  --link-color: #2563eb;
-  --link-color-dark: #60a5fa;
+
+  /* Theme Colors */
+  --color-orange-primary: #fc210d;
+  --color-orange-vibrant: #f94001;
+  --color-yellow-primary: #f7ce38;
+  --color-blue-primary: #3b82f6;
+  --color-purple-primary: #a855f7;
+
+  /* RGB Values for Opacity Support */
+  --rgb-orange-primary: 252, 33, 13;
+  --rgb-yellow-primary: 247, 206, 56;
+  --rgb-mouse-light: 241, 229, 212;
+
+  --link-color: var(--color-orange-primary);
+  --link-color-dark: var(--color-yellow-primary);
+
+  /* Gradient Colors */
+  --gradient-orange-yellow-start: var(--color-orange-primary);
+  --gradient-orange-yellow-end: var(--color-yellow-primary);
+  --gradient-blue-purple-start: var(--color-blue-primary);
+  --gradient-blue-purple-end: var(--color-purple-primary);
+
+  /* Transparent Text for Animations */
+  --transparent-text: rgba(75, 85, 99, 0); /* gray-600 transparent */
 }
 
-@layer base {
-  .prose {
-    @apply max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-strong:text-gray-900 prose-ul:text-gray-600 dark:prose-headings:text-white dark:prose-p:text-gray-300 dark:prose-strong:text-white dark:prose-ul:text-gray-300;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  overflow-y: scroll;
+}
+
+html.dark {
+  --transparent-text: rgba(209, 213, 219, 0); /* gray-300 transparent */
+  color-scheme: dark;
+}
+
+/* For browsers that don't support smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -54,93 +95,14 @@ body {
   @apply text-[var(--text-body-dark)];
 }
 
+::selection {
+  background-color: var(--color-orange-vibrant);
+  color: #f3f3f3;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  color: #e4e4e7;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-/* Dark mode only - removed light mode preferences */
-
-/* Force dark mode always */
-html {
-  color-scheme: dark !important;
-}
-
-html.dark {
-  color-scheme: dark;
-}
-
-/* Override any system preferences */
-@media (prefers-color-scheme: light) {
-  html {
-    color-scheme: dark !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-.overview {
-  margin-block-start: 10px !important;
-}
-
-.aspiring-job-title {
-  line-height: 3.4375rem;
-}
-
-.grayscale {
-  filter: grayscale(1);
-}
-
-/* Smooth scrolling container */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-  overflow-y: scroll;
-}
-
-/* For browsers that don't support smooth scrolling */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
 }
 
 section[id] {
@@ -150,8 +112,9 @@ section[id] {
   position: relative;
 }
 
-/* Ensure sections have enough height to properly trigger the observer (scroll-into-section-view) */
-.section-bg {
-  min-height: 60vh;
-  position: relative;
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }

@@ -28,10 +28,10 @@
 
 <style>
   :root {
-    --light-color: rgba(29, 78, 216, 0.15);
+    --light-color: rgba(var(--rgb-mouse-light), 0.15);
   }
 
   html.dark {
-    --light-color: rgba(255, 255, 255, 0.01);
+    --light-color: rgba(var(--rgb-mouse-light), 0.02);
   }
 </style>

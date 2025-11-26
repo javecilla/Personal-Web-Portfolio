@@ -5,6 +5,7 @@
   import MarkdownIt from 'markdown-it'
   import { PlusIcon } from 'lucide-vue-next'
   import ConfirmationModal from './ConfirmationModal.vue'
+  import Button from '@/components/ui/Button.vue'
 
   const userInput = ref('')
   const isLoading = ref(false)
@@ -239,7 +240,7 @@
     <div v-if="isInitializing" class="flex flex-1 items-center justify-center">
       <div class="text-center">
         <div
-          class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-purple-500 border-t-transparent"
+          class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[var(--color-orange-vibrant)] border-t-transparent"
         ></div>
         <p class="mt-2 text-gray-600">Initializing chat...</p>
       </div>
@@ -255,11 +256,11 @@
         >
           <div v-if="msg.role !== 'user'" class="flex-shrink-0">
             <div
-              class="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100"
+              class="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 text-purple-500"
+                class="h-5 w-5 text-[var(--color-orange-primary)]"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -303,9 +304,9 @@
               :class="[
                 'max-w-[95%] break-words rounded-2xl px-5 py-2 text-start',
                 msg.role === 'user'
-                  ? 'ml-auto bg-purple-500 text-white'
+                  ? 'ml-auto bg-[var(--color-orange-primary)] text-white'
                   : msg.isStarter
-                    ? 'bg-[#b4a7d6]'
+                    ? 'bg-orange-200'
                     : 'bg-gray-100',
               ]"
             >
@@ -323,21 +324,26 @@
             </div>
             <div
               v-if="msg.role === 'model' && msg.options"
-              class="mt-3 flex flex-wrap gap-2"
+              class="mb-3 mt-3 flex flex-wrap gap-2"
             >
-              <button
+              <Button
                 v-for="option in msg.options"
                 :key="option"
-                class="max-w-[350px] whitespace-normal rounded-xl border border-purple-200 bg-transparent px-4 py-2 text-left text-sm text-black transition-colors hover:scale-[1.01] hover:border-purple-600"
+                variant="suggestion"
+                class="max-w-[350px] whitespace-normal px-4 py-2 text-left text-sm"
+                ariaLabel="Select option"
                 @click="selectOption(option)"
               >
                 {{ option }}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
       </div>
-      <form @submit.prevent="sendMessage" class="bg-gray-800 p-2">
+      <form
+        @submit.prevent="sendMessage"
+        class="bg-gray-500 p-2 text-white dark:bg-zinc-900"
+      >
         <div class="flex min-h-[15px] flex-grow flex-col">
           <textarea
             ref="textareaRef"
@@ -352,26 +358,29 @@
         <div
           class="-mt-3 flex items-center justify-between gap-4 px-2 pb-1 pt-2"
         >
-          <button
+          <Button
             @click="handleNewConversation"
             type="button"
-            class="flex items-center justify-center rounded-xl bg-gray-700 px-4 py-2 text-white transition-colors hover:bg-gray-600"
+            variant="secondary"
+            class="flex items-center justify-center px-4 py-2"
             :class="{ 'animate-pulse': isOffTopic }"
-            title="Start a new conversation"
+            ariaLabel="Start a new conversation"
           >
             <PlusIcon
-              class="forced-icon mr-1 h-5 w-5 text-white"
+              class="forced-icon mr-1 h-5 w-5 text-gray-900 dark:text-gray-100"
               stroke-width="1.5"
             />
             New
-          </button>
-          <button
+          </Button>
+          <Button
             type="submit"
+            variant="primary"
+            class="px-6 py-2"
             :disabled="isLoading || !userInput.trim() || isOffTopic"
-            class="flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2 text-white transition-colors hover:opacity-90 disabled:opacity-50"
+            ariaLabel="Send message"
           >
             {{ isLoading ? 'Sending...' : 'Send' }}
-          </button>
+          </Button>
         </div>
       </form>
     </template>
@@ -382,7 +391,6 @@
   .forced-icon {
     width: 20px !important;
     height: 20px !important;
-    stroke: white !important;
     display: block !important;
   }
   .typing-dots {

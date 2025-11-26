@@ -35,7 +35,7 @@
     width: 13.33333px;
     height: 13.33333px;
     border-radius: 50%;
-    background: #3b82f6;
+    background: var(--color-orange-vibrant);
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
 
@@ -87,10 +87,10 @@
   }
 
   :root[class~='dark'] .lds-ellipsis div {
-    background: #3b82f6;
+    background: var(--color-orange-vibrant);
   }
 
   :root:not([class~='dark']) .lds-ellipsis div {
-    background: #3b82f6;
+    background: var(--color-orange-vibrant);
   }
 </style>

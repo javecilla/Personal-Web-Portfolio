@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import GeminiChat from '@/components/chat/GeminiChat.vue'
+  import Button from '@/components/ui/Button.vue'
   import { MessageCircle, Minus } from 'lucide-vue-next'
 
   const isOpen = ref(false)
@@ -28,15 +29,17 @@
       >
         <!-- Modal Header -->
         <div
-          class="flex items-center justify-between bg-gray-800 p-4 text-white"
+          class="flex items-center justify-between bg-gray-500 p-4 text-white dark:bg-zinc-900"
         >
           <h3 class="text-lg font-semibold">Message Me</h3>
-          <button
+          <Button
             @click="toggleChat"
-            class="rounded-full p-1 transition-colors hover:bg-gray-700"
+            variant="icon"
+            class="p-1"
+            ariaLabel="Close chat"
           >
             <Minus class="h-5 w-5" />
-          </button>
+          </Button>
         </div>
 
         <!-- Chat Component -->
@@ -47,13 +50,15 @@
     </Transition>
 
     <!-- Toggle Button -->
-    <button
+    <Button
       @click="toggleChat"
-      class="rounded-full bg-gradient-to-r from-blue-500 to-purple-500 p-4 text-white shadow-lg transition-colors hover:opacity-90"
+      variant="primary"
+      class="rounded-full p-4 text-white shadow-lg hover:opacity-90"
       :class="{ 'animate-bounce': !isOpen }"
+      ariaLabel="Toggle chat"
     >
       <MessageCircle class="h-6 w-6" />
-    </button>
+    </Button>
   </div>
 </template>
 

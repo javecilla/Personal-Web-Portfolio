@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import Button from '@/components/ui/Button.vue'
   defineProps<{
     isOpen: boolean
     message: string
@@ -23,18 +24,22 @@
       <div class="mx-4 w-[80%] max-w-md rounded-lg bg-white p-6 shadow-xl">
         <p class="mb-6 text-gray-800">{{ message }}</p>
         <div class="flex justify-center gap-3">
-          <button
+          <Button
             @click="onCancel"
-            class="rounded-xl bg-gray-700 px-4 py-2 text-white transition-colors hover:bg-gray-600"
+            variant="secondary"
+            class="px-4 py-2"
+            ariaLabel="Cancel"
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             @click="onConfirm"
-            class="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-2 text-white transition-colors hover:opacity-90"
+            variant="primary"
+            class="px-4 py-2"
+            ariaLabel="Confirm"
           >
             Confirm
-          </button>
+          </Button>
         </div>
       </div>
     </div>
