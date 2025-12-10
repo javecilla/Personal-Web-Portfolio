@@ -29,6 +29,6 @@
 <style scoped>
   /* Container */
   .project-filter {
-    @apply mb-8 flex flex-wrap gap-3;
+    @apply mb-8 flex flex-wrap justify-center gap-3;
   }
 </style>

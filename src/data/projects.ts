@@ -95,7 +95,7 @@ Golden Minds Colleges lacked a centralized, user-friendly online presence, leavi
 - **Backend**: Laravel for robust API endpoints, content management, and authentication.  
 - **Frontend**: Vue.js for reactive components paired with Bootstrap for styling.  
 - **Database**: MySQL with normalized tables for scalable data storage.  
-- **Deployment**: Hosted on HostGator with Cloudflare for security and CDN performance.
+- **Deployment**: Hosted on HostGator with Google ReCaptcha for extra security.
 
 Building this website sharpened my skills in full-stack development. I gained proficiency in integrating Vue.js with Laravel for a smooth, reactive frontend, reducing average page load times by 25% through optimization techniques like lazy loading. I also improved my database design skills with MySQL, ensuring scalability for future growth, and embraced version control best practices using Git for efficient solo project management.
 `,
@@ -138,7 +138,7 @@ I created a dynamic Online Voting System for Golden Minds Colleges to replace in
 Manual voting at Golden Minds Colleges was slow, error-prone, and inaccessible to remote participants. My solution digitized the process, integrating real-time updates, secure payments via GCash, and Recaptcha verification. This increased voter turnout by 40% in its first year while ensuring accuracy and accessibility.
 
 ## Key Features  
-- **Live Previews**: Real-time voting results powered by WebSockets.  
+- **Live Previews**: Real-time voting results.  
 - **Accurate Calculations**: Reliable vote tabulation with optimized database queries.  
 - **GCash Integration**: Secure, seamless payment handling.  
 - **Security**: Email verification and Recaptcha to prevent fraud.  
@@ -151,8 +151,8 @@ Manual voting at Golden Minds Colleges was slow, error-prone, and inaccessible t
 - **2024 - Buwan ng Wika**: Celebrated linguistic heritage with high participation.
 
 ## Technical Challenges & Solutions  
-- **Real-Time Updates**: Used Laravel’s event broadcasting with WebSockets to manage live previews efficiently, avoiding server overload.  
-- **Payment Security**: Integrated GCash via Laravel’s HTTP client and transaction callbacks for reliable processing.
+- **Real-Time Updates**: Used Laravel’s event broadcasting to manage live previews efficiently, avoiding server overload.  
+- **Payment Security**: Integrated GCash (QR Code)via Laravel’s HTTP client for reliable processing.
 
 ## Impact  
 - Processed 5,000+ votes across four events with zero downtime.  
@@ -161,9 +161,9 @@ Manual voting at Golden Minds Colleges was slow, error-prone, and inaccessible t
 
 ## Architecture  
 - **Backend**: Laravel for API endpoints, logic, and integrations (GCash, Recaptcha, email).  
-- **Frontend**: jQuery and Bootstrap with real-time WebSocket updates and Chart.js visuals.  
+- **Frontend**: jQuery and Bootstrap with real-time updates and Chart.js visuals.  
 - **Database**: MySQL with normalized tables and indexes for fast vote tallying.
-- **Deployment**: Hosted on HostGator with Cloudflare for security and performance.
+- **Deployment**: Hosted on HostGator with Google ReCAPTCHA for extra security.
 
 Developing this system deepened my expertise in several key areas. I honed my ability to optimize high-traffic database queries, achieving a 30% reduction in response times through efficient indexing and query refactoring. Additionally, I mastered secure API integration particularly with third-party services like GCash by leveraging thorough documentation to ensure robust, maintainable code. This project also led me to adopt unit testing for critical components like vote calculations, enhancing reliability and enabling early detection of edge cases.
 `,

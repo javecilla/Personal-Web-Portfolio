@@ -2,12 +2,34 @@ import { Experience, EmploymentType, Education } from '@/types/experience'
 
 export const experiences: readonly Experience[] = [
   {
+    company: 'Self Employed',
+    position: 'Freelance Web Developer',
+    type: 'Freelance' as EmploymentType,
+    location: 'Online',
+    description:
+      'Developed and maintained websites for clients, including front-end UI/UX improvements and backend integration.',
+    projects: [
+      {
+        name: 'Ph-En Vocabulary Web App',
+        description:
+          'I developed the Philippine-English Vocabulary Web App as a commissioned project for fourth-year Bachelor of Secondary Education (BSED) students majoring in English at Polytechnic University of the Philippines (PUP). Designed to enhance vocabulary mastery, this web app offers interactive learning tools, pronunciation guides, and quizzes to support effective language acquisition.',
+      },
+      {
+        name: 'Kalat Mo, Yaman Ko',
+        description:
+          'I developed Kalat Mo, Yaman Ko, a community-driven digital platform designed to transform clutter into opportunities and strengthen local connections through sustainability. This platform empowers users to share, give away, and repurpose pre-loved items, aligning with the core principles of Reduce, Reuse, and Recycle. Beyond just item sharing, it’s a space built to promote eco-conscious living and foster a collaborative community ecosystem. I was referred by my professor to join the project team as the Frontend Developer, where I handled the full front-end implementation—ensuring a clean, responsive, and accessible user interface. The platform also integrates an automated CI/CD pipeline for frictionless deployment and iteration.',
+      },
+    ],
+    startDate: 'January 2022',
+    endDate: 'Present',
+  },
+  {
     company: 'Golden Minds Colleges',
     position: 'IT Assistant',
     type: 'Part-time' as EmploymentType,
     location: 'Sta. Maria, Bulacan',
     description:
-      "My journey at Golden Minds Colleges started in 2022 when my advisor, Junilo Victoriano Flores, introduced me to the school's President, Engr. Derek Malibiran. Initially, I focused on front-end UI/UX improvements, refining the college’s digital platforms for better usability. As I gained experience, I expanded into backend development, collaborating closely with Sir Jelo to integrate seamless functionality. Over time, I took on a leadership role in designing, developing, and maintaining the college’s digital infrastructure—implementing innovative solutions to enhance performance, streamline operations, and align with institutional goals.",
+      'Since 2022 at Golden Minds Colleges, I rapidly transitioned from optimizing front-end UI/UX to leading the design, development, and maintenance of their core digital infrastructure. I collaborated on seamless backend integration and implemented innovative full-stack solutions to streamline operations and enhance performance, directly aligning with institutional goals.',
     projects: [
       {
         name: 'Golden Minds Colleges Official Website',
