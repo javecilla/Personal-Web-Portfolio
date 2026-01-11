@@ -11,8 +11,19 @@ import ImageF2 from '@global/images/Introduction_to_IoT.png'
 // import ImageF5 from '@global/images/Networking_Devices_and_Initial_Configurations.png'
 // import ImageF6 from '@global/images/Networking-basics.png'
 import ImageF7 from '@global/images/agentblazer-champion-workshop-completion.png'
+import ImageF8 from '@global/images/salesforce-supportted-virtual-internship-program.png'
 
 export const achievements: readonly Achievement[] = [
+  {
+    category: 'Certification' as AchievementCategory,
+    title:
+      'Salesforce Supported Virtual Internship Program 2025- Philippines Completion',
+    description:
+      'Successfully completed the Salesforce Supported Virtual Internship Program, a comprehensive training program focused on developing skills in customer engagement, sales strategies, and digital marketing. This certification reflects my ability to leverage technology and innovative approaches to enhance customer experiences and drive business growth. It demonstrates my commitment to continuous learning and professional development in the dynamic field of digital marketing and customer relationship management.',
+    image: ImageF8,
+    date: 'January 2026',
+    location: 'Bulacan State University | SmartBridge | Salesforce',
+  },
   {
     category: 'Competition' as AchievementCategory,
     title: 'BulSU 13th IT Congress – Hackathon Champion',

@@ -9,22 +9,22 @@ export function useAI() {
       import.meta.env.VITE_GEMINI_API_KEY
     }`
 
-    console.log('DEBUG - API URL:', apiUrl)
-    console.log(
-      'DEBUG - VITE_GEMINI_API_URL:',
-      import.meta.env.VITE_GEMINI_API_URL
-    )
-    console.log(
-      'DEBUG - VITE_GEMINI_API_KEY:',
-      import.meta.env.VITE_GEMINI_API_KEY
-    )
+    // console.log('DEBUG - API URL:', apiUrl)
+    // console.log(
+    //   'DEBUG - VITE_GEMINI_API_URL:',
+    //   import.meta.env.VITE_GEMINI_API_URL
+    // )
+    // console.log(
+    //   'DEBUG - VITE_GEMINI_API_KEY:',
+    //   import.meta.env.VITE_GEMINI_API_KEY
+    // )
 
     if (!apiUrl || !import.meta.env.VITE_GEMINI_API_KEY) {
       throw new Error('Gemini API URL or key is missing')
     }
 
     try {
-      console.log('DEBUG - Sending request to:', apiUrl)
+      // console.log('DEBUG - Sending request to:', apiUrl)
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -35,12 +35,12 @@ export function useAI() {
         }),
       })
 
-      console.log('DEBUG - Response status:', response.status)
-      console.log('DEBUG - Response ok:', response.ok)
+      // console.log('DEBUG - Response status:', response.status)
+      // console.log('DEBUG - Response ok:', response.ok)
 
       if (!response.ok) {
         const errorText = await response.text()
-        console.log('DEBUG - Error response:', errorText)
+        // console.log('DEBUG - Error response:', errorText)
         throw new Error(`Gemini API failed with status: ${response.status}`)
       }
 
